@@ -26,3 +26,6 @@ def get_embedding_layer(vocabulary_size, embedding_dims, data):
                                             initializer= tf.truncated_normal())
         word_embeddings= tf.nn.embedding_lookup(embeddings_weights, data)
         return word_embeddings
+def get_query_encoder_layer():
+def get_session_enconder_layer():
+def get_decoder_layer():
