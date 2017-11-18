@@ -1,7 +1,17 @@
+"""
+IR2 - Reproduction of "A Hierarchical Recurrent
+      Encoder-Decoder for Generative Context-Aware Query Suggestion"
+      by Sordoni et al.
+Group 8
+
+File to implement the methods that describe each layer needed for the model.
+
+"""
+
 import tensorflow as tf
 import numpy as np
 
-class QueryEncoder(object):
+class Encoder(object):
 
     def __init__(self,batch_size, reuse, input_dim=300, num_hidden=1000):
 
@@ -14,7 +24,7 @@ class QueryEncoder(object):
         #initializer_biases = tf.constant_initializer(0.0)
 
         #Define network architecture
-        with tf.variable_scope('Query_GRU', reuse = self.reuse):
+        with tf.variable_scope('Encoder_GRU', reuse = self.reuse):
 
             # Weights for reset gate
             self.Hr = tf.get_variable(shape=[self.num_hidden, self.num_hidden], initializer=initializer_weights,
@@ -41,7 +51,7 @@ class QueryEncoder(object):
         # Calculate candidate
         c = tf.tanh(tf.matmul(x, self.Ic) + tf.matmul(r*h_prev, self.Hc) )
 
-        return tf.sub(np.float32(1.0),u) * h_prev + u * c
+        return tf.subtract(np.float32(1.0),u) * h_prev + u * c
 
     def compute_state(self, x):
         """
