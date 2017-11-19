@@ -10,15 +10,21 @@ import numpy as np
 
 class HERED():
     """"
-    This class will include the methods to build de graph to build the Recurrent
+    This Class includes the methods to build de graph for the Recurrent
       Encoder-Decoder.
     """
 
     def __init__(self):
+        raise NotImplementedError
 
     def inference(self):
+        raise NotImplementedError
 
     def train_step(self):
+        raise NotImplementedError
+
     def get_loss(self):
+
+        raise NotImplementedError
 
 
