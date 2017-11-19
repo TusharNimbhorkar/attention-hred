@@ -10,6 +10,7 @@ import tensorflow as tf
 import numpy as np
 import _pickle as cPickle
 import sys
+import argparse
 # Path to get batch iterator
 sys.path.insert(0, '../sordoni/')
 import data_iterator
@@ -18,7 +19,7 @@ import data_iterator
 BATCH_SIZE = 50
 MAX_LENGTH = 50
 N_BUCKETS = 20
-MAX_STEP = 10000000
+MAX_STEPS = 10000000
 VOCAB_SIZE = 50003
 random_seed = 1234
 UNK_SYMBOL = 0
@@ -39,10 +40,10 @@ class Train(object):
         self.train_data, self.valid_data = data_iterator.get_batch_iterator(np.random.RandomState(random_seed), {
             'eoq_sym': EOQ_SYMBOL,
             'eos_sym': EOS_SYMBOL,
-            'sort_k_batches': N_BUCKETS,
-            'bs': BATCH_SIZE,
+            'sort_k_batches': FLAGS.buckets,
+            'bs': FLAGS.buckets,
             'train_session': TRAIN_FILE,
-            'seqlen': MAX_LENGTH,
+            'seqlen': FLAGS.max_length,
             'valid_session': VALID_FILE
         })
 
@@ -53,6 +54,18 @@ class Train(object):
         return
 if __name__ == '__main__':
 
+    # Command line arguments
+    parser = argparse.ArgumentParser()
+    parser.add_argument('--batch_size', type = int, default = BATCH_SIZE,
+                          help='Batch size to run trainer.')
+    parser.add_argument('--max_length', type = int, default = MAX_LENGTH,
+                          help='Max length.')
+    parser.add_argument('--buckets', type = int, default = N_BUCKETS,
+                          help='Number of buckets.')
+    parser.add_argument('--max_steps', type = int, default = MAX_STEPS,
+                          help='Number of steps to run trainer.')
+    FLAGS, unparsed = parser.parse_known_args()
+
     with tf.Graph().as_default():
         trainer = Train()
-        trainer.train_model(batch_size=BATCH_SIZE)
+        trainer.train_model(batch_size=FLAGS.batch_size)
