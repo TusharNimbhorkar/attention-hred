@@ -24,7 +24,7 @@ def create_padded_batch(state, x, y=None):
     num_preds = 0
     max_length = 0
     
-    for idx in xrange(len(x[0])):
+    for idx in range(len(x[0])):
         # Insert sequence idx in a column of matrix X
         session_length = len(x[0][idx])
 
