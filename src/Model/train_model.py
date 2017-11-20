@@ -18,6 +18,7 @@ import data_iterator
 from model import HERED
 
 # todo: put this stuff in arg.parse as well
+LEARNING_RATE = 1e-4
 BATCH_SIZE = 50
 MAX_LENGTH = 50
 N_BUCKETS = 20
@@ -27,7 +28,9 @@ random_seed = 1234
 UNK_SYMBOL = 0
 EOQ_SYMBOL = 1
 EOS_SYMBOL = 2
-
+EMBEDDING_DIM = 64
+QUERY_DIM = 128
+SESSION_DIM = 256
 VOCAB_FILE = '../../data/input_model/train.dict.pkl'
 TRAIN_FILE = '../../data/input_model/train.ses.pkl'
 VALID_FILE = '../../data/input_model/valid.ses.pkl'
@@ -53,9 +56,18 @@ class Train(object):
         self.vocab_size = len(self.vocab_lookup_dict)
         # class object
         # todo: put variables as needed and place holders
-        self.HERED = HERED()
+        self.HERED = HERED(vocab_size=self.vocab_size, embedding_dim=EMBEDDING_DIM, query_dim=QUERY_DIM,
+                           session_dim=SESSION_DIM, decoder_dim=QUERY_DIM, output_dim=EMBEDDING_DIM,
+                           eoq_symbol=EOQ_SYMBOL, eos_symbol=EOS_SYMBOL, unk_symbol=UNK_SYMBOL,
+                           learning_rate=LEARNING_RATE)
+
         self.X = tf.placeholder(tf.int64, shape=(None, None))
         self.Y = tf.placeholder(tf.int64, shape=(None, None))
+
+        self.logits = self.HERED.inference(self.X)
+        self.loss = self.HERED.get_loss(self.X, self.logits, self.Y)
+        self.softmax = self.HERED.softmax(self.logits)
+        self.accuracy = self.HERED.accuracy(self.logits, self.Y)
 
         # init = tf.global_variables_initializer()
         # summaries = tf.summary.merge_all()
