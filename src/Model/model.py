@@ -14,7 +14,18 @@ class HERED():
       Encoder-Decoder.
     """
 
-    def __init__(self):
+    def __init__(self,vocab_size=50004,embedding_dim=300, query_dim=1000, session_dim=1500,
+                 decoder_dim=1000, output_dim=50004, unk_symbol=0, eoq_symbol=1, eos_symbol=2):
+        
+        self.vocab_size = vocab_size
+        self.embedding_dim = embedding_dim
+        self.query_dim = query_dim
+        self.session_dim = session_dim
+        self.decoder_dim = decoder_dim
+        self.output_dim = output_dim
+        self.unk_symbol = unk_symbol
+        self.eoq_symbol = eoq_symbol
+        self.eos_symbol = eos_symbol
 
         # create objects for query encoder, session encoder and decoder.
         raise NotImplementedError
