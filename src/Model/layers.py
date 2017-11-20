@@ -23,7 +23,7 @@ def get_embedding_layer(vocabulary_size, embedding_dims, data):
     """
     with tf.variable_scope('embedding_layer'):
         embeddings_weights= tf.get_variable(name='embeddings', shape=[vocabulary_size, embedding_dims] ,
-                                            initializer= tf.truncated_normal())
+                                            initializer= tf.truncated_normal(shape=[embedding_dims]))
         word_embeddings= tf.nn.embedding_lookup(embeddings_weights, data)
         return word_embeddings
 def get_query_encoder_layer():
