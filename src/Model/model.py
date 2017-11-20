@@ -34,6 +34,7 @@ class HERED():
         # raise NotImplementedError
 
     def inference(self, X):
+
         # call here tf.scan for each.
         # see if we should add an additional output layer after decoder.
 
@@ -51,6 +52,7 @@ class HERED():
         # not needed anymore
         raise NotImplementedError
 
-    def get_loss(self):
+    def get_loss(self, embedding_dims, num_hidden, vocabulary_size, logits_states, logits_words):
         # same as for train_step.....
+        return tf.reduce_sum(tf.reduce_sum(tf.log(layers.ouput_layer(embedding_dims, num_hidden, vocabulary_size, logits_states, logits_words))))
         raise NotImplementedError
