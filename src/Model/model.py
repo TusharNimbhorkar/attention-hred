@@ -60,7 +60,8 @@ class HERED():
 
     def get_loss(self, embedding_dims, num_hidden, vocabulary_size, logits_states, logits_words):
         # same as for train_step.....
-        return tf.reduce_sum(tf.reduce_sum(tf.log(layers.ouput_layer(embedding_dims, num_hidden, vocabulary_size, logits_states, logits_words))))
-        raise NotImplementedError
+        loss = tf.reduce_sum(tf.reduce_sum(tf.log(layers.ouput_layer(embedding_dims, num_hidden, vocabulary_size, logits_states, logits_words))))
+        tf.scalar_summary("loss", loss)
+        return loss
 
 
