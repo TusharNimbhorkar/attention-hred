@@ -21,6 +21,8 @@ class HERED():
 
     def inference(self):
 
+        # embeddings
+
         # call here tf.scan for each.
 
         # see if we should add an additional output layer after decoder.
