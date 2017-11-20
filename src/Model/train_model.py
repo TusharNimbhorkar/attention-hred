@@ -83,8 +83,6 @@ class Train(object):
 
 
 
-
-
         return
 
     def get_batch(self, train_data):
