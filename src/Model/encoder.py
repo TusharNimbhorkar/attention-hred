@@ -16,6 +16,7 @@ class Encoder(object):
     def __init__(self,batch_size, reuse, input_dim=300, num_hidden=1000):
 
         """
+
         This Class implements an Encoder.
 
         :param batch_size: int, length of batch
