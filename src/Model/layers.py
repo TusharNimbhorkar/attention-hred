@@ -10,6 +10,8 @@ File to implement the methods that describe each layer needed for the model.
 
 import tensorflow as tf
 import numpy as np
+import decoder
+import encoder
 
 
 def get_embedding_layer(vocabulary_size, embedding_dims, data):
