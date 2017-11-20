@@ -62,7 +62,12 @@ class Train(object):
         # sess = tf.Session()
         # sess.run(init)
 
+        # Define global step for the optimizer  --- OPTIMIZER
+        #global_step = tf.Variable(0, trainable=False, dtype=tf.int32)
+        #optimizer = self.get_optimizer(loss, learning_rate, global_step)
+
         some_variables = 0
+
         # ...
         #
 
@@ -80,9 +85,6 @@ class Train(object):
 
                 x_batch, y_batch, seq_len = self.get_batch(train_data=self.train_data)
 
-
-
-
         return
 
     def get_batch(self, train_data):
@@ -96,6 +98,29 @@ class Train(object):
 
 
         return x_batch, y_batch, seq_len
+
+
+    def get_optimizer(self, loss, learning_rate, global_step, max_norm_gradient=10.0):
+        """
+        Optimizer with clipped gradients.
+
+        :param loss: tensor, loss to minimize
+        :param learning_rate: float, learning rate
+        :param max_norm_gradient: float, max value for the gradients. Default is 10.0
+        :return: the optimizer object
+        """
+
+        # Define the optimizer with default parameters set by tensorflow (the ones from the paper)
+        optimizer = tf.train.AdamOptimizer(learning_rate)
+
+        # Clip gradients
+        grads_and_vars = optimizer.compute_gradients(loss)
+        grads, variables = zip(*grads_and_vars)
+        grads_clipped, _ = tf.clip_by_global_norm(grads, clip_norm=max_norm_gradient)
+        opt = optimizer.apply_gradients(zip(grads_clipped, variables), global_step=global_step)
+
+        # Return minimizer
+        return opt
 
 
 if __name__ == '__main__':
