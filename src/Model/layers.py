@@ -29,10 +29,12 @@ def get_embedding_layer(vocabulary_size, embedding_dims, data):
         word_embeddings= tf.nn.embedding_lookup(embeddings_weights, data)
 
         return word_embeddings
-    
+
 def get_query_encoder_layer():
     return
+
 def get_session_enconder_layer():
     return
+
 def get_decoder_layer():
     return
