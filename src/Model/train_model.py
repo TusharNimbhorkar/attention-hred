@@ -68,7 +68,7 @@ class Train(object):
         self.loss = self.HERED.get_loss(self.X, self.logits, self.Y)
         self.softmax = self.HERED.softmax(self.logits)
         self.accuracy = self.HERED.accuracy(self.logits, self.Y)
-
+        # self.optimizer = self.get_optimizer(learning_rate=LEARNING_RATE,loss=self.loss)
         # init = tf.global_variables_initializer()
         # summaries = tf.summary.merge_all()
         # sess = tf.Session()
@@ -96,6 +96,7 @@ class Train(object):
             for iteration in range(MAX_STEPS):
 
                 x_batch, y_batch, seq_len = self.get_batch(train_data=self.train_data)
+                #todo:
 
         return
 
