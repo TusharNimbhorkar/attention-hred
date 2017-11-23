@@ -13,7 +13,7 @@ import numpy as np
 
 class Encoder(object):
 
-    def __init__(self,batch_size, reuse, input_dim=300, num_hidden=1000):
+    def __init__(self,  reset_emb, batch_size, reuse, input_dim=300, num_hidden=1000):
 
         """
 
@@ -29,6 +29,7 @@ class Encoder(object):
         self.num_hidden = num_hidden
         self.reuse = reuse
         self.batch_size = batch_size
+
 
         initializer_weights = tf.variance_scaling_initializer() #xavier
         #initializer_biases = tf.constant_initializer(0.0)
@@ -59,7 +60,8 @@ class Encoder(object):
         :param x: data for current timestep
         :return: the next state.
         """
-
+        x, reset_vector = tf.unstack(x)
+        _, h_prev = tf.unstack(h_prev)
         # Calculate reset
         r = tf.sigmoid(tf.matmul(x,self.Ir)+tf.matmul(h_prev, self.Hr))
         # Calculate update
@@ -67,15 +69,39 @@ class Encoder(object):
         # Calculate candidate
         c = tf.tanh(tf.matmul(x, self.Ic) + tf.matmul(r*h_prev, self.Hc) )
 
-        return tf.subtract(np.float32(1.0),u) * h_prev + u * c
+        h = tf.subtract(np.float32(1.0),u) * h_prev + u * c
+
+        """"
+         h gives you the hidden state without taking into account the end of query,  h * reset_vector will reset
+         the hidden state to zero if its the end of the query, the first parameter will be used by the session encoder,
+         while the second parameter is used as the actual hidden state of the encoder so that the encoder resets when there
+         is an end of query symbol
+        """
+
+        return tf.stack([h, h * reset_vector])
 
     def compute_state(self, x):
         """
-        :x: array of embeddings of query batch
+        :x: array of embeddings of query batch and reset vector 1 when embedding is not end of session/query 0 when it is
         :return: query representation tensor
         """
         # Initialise recurrent state
-        init_state = tf.zeros([self.batch_size, self.num_hidden], name= 'init_state')
+        init_state = tf.zeros([2, self.batch_size, self.num_hidden], name='init_state')
         # Calculate RNN states
-        states = tf.scan(self._gru_step, tf.transpose(x), initializer= init_state)
+        states = tf.scan(self._gru_step, x , initializer= init_state)
+        original_states, _ = tf.unstack(states)
+        _, reset_vector = tf.unstack(x)
+
+        return ([original_states, reset_vector])
+
+    def compute_state_session(self, x):
+        """
+        :x: array of embeddings of query batch and reset vector 1 when embedding is not end of session/query 0 when it is
+        :return: query representation tensor
+        """
+        x, reset_vector = tf.unstack(x)
+        # Calculate RNN states
+        states = tf.scan(self._gru_step,tf.transpose(x), initializer=self.init_state)
+        # Update recurrent state if  received entire query
+        self.init_state = states[-2] * reset_vector + tf.sub(tf.constant(1.0, tf.float32) , reset_vector)*states[-1]
         return states[-1]
