@@ -85,7 +85,7 @@ class Encoder(object):
         :param x: data for current timestep
         :return: the next state.
         """
-        x, reset_vector = tf.unstack(x)
+        x, query_reset_vector, session_reset_vector = tf.unstack(x)
         _, h_prev = tf.unstack(h_prev)
         # Calculate reset
         r = tf.sigmoid(tf.matmul(x, self.Ir) + tf.matmul(h_prev, self.Hr))
@@ -99,15 +99,19 @@ class Encoder(object):
 
 
         """"
-        It returns 2 h the first is without taking into account any mask, the second gives you the previous hidden
+        h gives you the previous hidden
         state if the x is not End of query (does not update state). It is only updated when the reset vector tells us
         it is the end of the query.
         """
-        #TODO handle session reset and think if we need to use "original State" or the "real state " for decoder
-        # h = h_prev * reset_vector + tf.sub(tf.constant(1.0, tf.float32), reset_vector) * h
-        # return tf.stack([h, h * reset_vector_session )
+        h = h_prev * query_reset_vector + tf.subtract(tf.constant(1.0, tf.float32), query_reset_vector) * h
 
-        return tf.stack([h, h_prev * reset_vector + tf.sub(tf.constant(1.0, tf.float32), reset_vector) * h])
+        """"
+        h gives you the hidden state without taking into account the end of session,  h * reset_vector will reset
+        the hidden state to zero if its the end of the session
+        """
+        return tf.stack([h, h * session_reset_vector])
+
+
 
     def compute_state(self, x):
         """
@@ -125,7 +129,8 @@ class Encoder(object):
 
     def compute_state_session(self, x ):
         """
-        :x: array of embeddings of query batch and reset vector 1 when embedding is not end of session/query 0 when it is
+        :x: array of embeddings of query batch and reset vector 1 when embedding is not end of query 0 when it is
+        and session reset vector 1 when it is not end of session, 0 when it is
         :return: query representation tensor
         """
 
