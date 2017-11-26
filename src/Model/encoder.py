@@ -78,6 +78,37 @@ class Encoder(object):
 
         return tf.stack([h, h * reset_vector])
 
+    def _gru_step_session(self, h_prev, x):
+        """
+        Custom function to implement a recurrent step. To use with tf.scan
+        :param h_prev: previous hidden state.
+        :param x: data for current timestep
+        :return: the next state.
+        """
+        x, reset_vector = tf.unstack(x)
+        _, h_prev = tf.unstack(h_prev)
+        # Calculate reset
+        r = tf.sigmoid(tf.matmul(x, self.Ir) + tf.matmul(h_prev, self.Hr))
+        # Calculate update
+        u = tf.sigmoid(tf.matmul(x, self.Iu) + tf.matmul(h_prev, self.Hu))
+        # Calculate candidate
+        c = tf.tanh(tf.matmul(x, self.Ic) + tf.matmul(r * h_prev, self.Hc))
+
+        h = tf.subtract(np.float32(1.0), u) * h_prev + u * c
+
+
+
+        """"
+        It returns 2 h the first is without taking into account any mask, the second gives you the previous hidden
+        state if the x is not End of query (does not update state). It is only updated when the reset vector tells us
+        it is the end of the query.
+        """
+        #TODO handle session reset and think if we need to use "original State" or the "real state " for decoder
+        # h = h_prev * reset_vector + tf.sub(tf.constant(1.0, tf.float32), reset_vector) * h
+        # return tf.stack([h, h * reset_vector_session )
+
+        return tf.stack([h, h_prev * reset_vector + tf.sub(tf.constant(1.0, tf.float32), reset_vector) * h])
+
     def compute_state(self, x):
         """
         :x: array of embeddings of query batch and reset vector 1 when embedding is not end of session/query 0 when it is
@@ -92,14 +123,16 @@ class Encoder(object):
 
         return ([original_states, reset_vector])
 
-    def compute_state_session(self, x):
+    def compute_state_session(self, x ):
         """
         :x: array of embeddings of query batch and reset vector 1 when embedding is not end of session/query 0 when it is
         :return: query representation tensor
         """
-        x, reset_vector = tf.unstack(x)
+
+        x, reset_vector, session_reset_vector = tf.unstack(x)
         # Calculate RNN states
-        states = tf.scan(self._gru_step,tf.transpose(x), initializer=self.init_state)
+        states = tf.scan(self._gru_step_session,tf.transpose(x), initializer=self.init_state)
         # Update recurrent state if  received entire query
-        self.init_state = states[-2] * reset_vector + tf.sub(tf.constant(1.0, tf.float32) , reset_vector)*states[-1]
-        return states[-1]
+        original_states, _ = tf.unstack(states)
+        _, reset_vector = tf.unstack(x)
+        return ([original_states, reset_vector])
