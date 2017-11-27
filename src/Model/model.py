@@ -53,11 +53,16 @@ class HERED():
         # not needed anymore
         raise NotImplementedError
 
-    def get_loss(self, embedding_dims, num_hidden, vocabulary_size, logits_states, logits_words):
+    def get_loss(self, X, logits, labels):
         # same as for train_step.....
-        # todo: check this again. looks comlicated
-        loss = tf.reduce_sum(tf.reduce_sum(tf.log(layers.ouput_layer(embedding_dims, num_hidden, vocabulary_size, logits_states, logits_words))))
-        tf.scalar_summary("loss", loss)
+        labels = tf.one_hot(labels, self.vocab_size)
+
+        eos_mask = tf.expand_dims(tf.cast(tf.not_equal(X, self.eos_symbol), tf.float32), 2)
+        labels = labels * eos_mask
+
+        loss = tf.reduce_sum(tf.nn.softmax_cross_entropy_with_logits(logits, labels))
+
+        tf.scalar_summary("LOSS", loss)
         return loss
 
     def softmax(self, logits):
