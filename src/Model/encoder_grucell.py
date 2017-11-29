@@ -31,7 +31,7 @@ class Encoder(object):
 
         initializer_weights = tf.variance_scaling_initializer() #xavier
         initializer_biases = tf.constant_initializer(0.0)
-        self.gru_cell = tf.contrib.rnn.GRUCell(num_hidden, kernel_initializer=initializer_weights, bias_initializer=initializer_biases)
+        self.gru_cell = tf.contrib.rnn.GRUCell(num_hidden, reuse=tf.AUTO_REUSE, kernel_initializer=initializer_weights, bias_initializer=initializer_biases)
         #self.zero_state = self.gru_cell.zero_state(batch_size, tf.float32)
 
     def length(self,sequence):
@@ -54,10 +54,8 @@ class Encoder(object):
         if not state:
             state = self.gru_cell.zero_state(self.batch_size, tf.float32)
 
-        x=tf.convert_to_tensor(x)
-
         if self.level == 'query': 
-            length = self.length(x) 
+            length = self.length(tf.convert_to_tensor(x))
             # Calculate RNN states
             _, state = tf.nn.dynamic_rnn(
                 self.gru_cell,
@@ -66,9 +64,11 @@ class Encoder(object):
                 sequence_length=length,
                 initial_state=state)
         elif self.level=='session':
+            # hoping this is right and GRUs outputs is equivalent to state (second answer)
+            # https://stackoverflow.com/questions/39716241/tensorflow-getting-all-states-from-a-rnn
             state, _ = tf.nn.static_rnn(
                 self.gru_cell,
-                x,
+                [x],
                 dtype=tf.float32,
                 initial_state=state)
         else:
