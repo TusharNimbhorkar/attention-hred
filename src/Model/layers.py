@@ -33,7 +33,7 @@ def get_embedding_layer(vocabulary_size, embedding_dims, data):
         return word_embeddings
 
 
-def ouput_layer(embedding_dims, num_hidden, vocabulary_size, state, word):
+def output_layer(embedding_dims, num_hidden, vocabulary_size, state, word):
     """
     Layer to get the output to predict the probability of the next word (word_t+1).
     The previous recurrent state of the decoder and the previous word are used.
