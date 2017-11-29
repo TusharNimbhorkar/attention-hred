@@ -11,7 +11,7 @@ import numpy as np
 
 class Encoder(object):
 
-    def __init__(self,  reset_emb, batch_size, reuse, input_dim=300, num_hidden=1000):
+    def __init__(self, batch_size, input_dim=300, num_hidden=1000):
 
         """
 
@@ -25,7 +25,6 @@ class Encoder(object):
 
         self.input_dim = input_dim
         self.num_hidden = num_hidden
-        self.reuse = reuse
         self.batch_size = batch_size
 
         initializer_weights = tf.variance_scaling_initializer() #xavier

@@ -48,10 +48,10 @@ class Train(object):
         self.train_data, self.valid_data = data_iterator.get_batch_iterator(np.random.RandomState(random_seed), {
             'eoq_sym': EOQ_SYMBOL,
             'eos_sym': EOS_SYMBOL,
-            'sort_k_batches': FLAGS.buckets,
-            'bs': FLAGS.BATCH_SIZE,
+            'sort_k_batches': config.buckets,
+            'bs': config.batch_size,
             'train_session': TRAIN_FILE,
-            'seqlen': FLAGS.max_length,
+            'seqlen': config.max_length,
             'valid_session': VALID_FILE
         })
 
@@ -68,10 +68,12 @@ class Train(object):
         self.X = tf.placeholder(tf.int64, shape=(None, None))
         self.Y = tf.placeholder(tf.int64, shape=(None, None))
         # todo check this
-        self.logits = self.HERED.inference(self.X)
-        self.loss = self.HERED.get_loss(self.X, self.logits, self.Y)
-        self.softmax = self.HERED.softmax(self.logits)
-        self.accuracy = self.HERED.accuracy(self.logits, self.Y)
+        self.logits = self.HERED.inference(self.X,self.Y)
+        self.loss = self.HERED.get_loss(self.logits, self.Y)
+        # self.loss_val = tf.placeholder(tf.float32)
+
+        # self.softmax = self.HERED.softmax(self.logits)
+        # self.accuracy = self.HERED.accuracy(self.logits, self.Y)
 
         # Define global step for the optimizer  --- OPTIMIZER
         global_step = tf.Variable(0, trainable=False, dtype=tf.int32)
@@ -103,7 +105,7 @@ class Train(object):
                 self.Y: y_batch
             }
             # todo ?
-            sess.run([self.initialise], feed_dict=feed_dict)
+            # sess.run([self.initialise], feed_dict=feed_dict)
 
             for iteration in range(self.config.max_steps):
 
@@ -115,7 +117,9 @@ class Train(object):
                     self.X: x_batch,
                     self.Y: y_batch
                 }
-                _, loss_value = sess.run([self.optimizer, self.loss], feed_dict=feed_dict)
+                # logits_ = sess.run([self.logits],feed_dict=feed_dict)
+                # loss_value,_ = sess.run([self.loss,self.optimizer],)
+                _,loss_val = sess.run([self.optimizer,self.loss], feed_dict=feed_dict)
 
                 t2 = time.time()
 
@@ -126,7 +130,7 @@ class Train(object):
                     print("[{}] Train Step {:04d}/{:04d}, Batch Size = {}, Examples/Sec = {:.2f}, Loss = {:.2f}".format(
                         datetime.now().strftime("%Y-%m-%d %H:%M"), iteration+1,
                         int(self.config.max_steps), self.config.batch_size, examples_per_second,
-                        loss_value
+                        self.loss
                     ))
 
 
@@ -135,14 +139,14 @@ class Train(object):
                 #summary_writer.add_summary(summary_str, train_step)
                 #summary_writer.flush()
                 
-                if train_step % config.checkpoint_every == 0:
-                    saver.save(sess, save_path=config.checkpoint_path)
+                # if iteration % 10 == 0:
+                #     saver.save(sess, save_path=config.checkpoint_path)
         return
 
-    def predict_model(self):
-        if not sess:
-            saver.restore(sess, config.checkpoint_path)
-        raise NotImplementedError
+    # def predict_model(self):
+    #     if not sess:
+    #         saver.restore(sess, config.checkpoint_path)
+    #     raise NotImplementedError
 
 
     def get_batch(self, dataset):
