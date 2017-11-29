@@ -11,13 +11,14 @@ import numpy as np
 
 class Encoder(object):
 
-    def __init__(self, batch_size, input_dim=300, num_hidden=1000):
+    def __init__(self, batch_size, level, input_dim=300, num_hidden=1000):
 
         """
 
         This Class implements an Encoder.
 
         :param batch_size: int, length of batch
+        :param level: specify wether it's query or session level encoder
         :param reuse: bool, parameter to reuse tensorflow variables
         :param input_dim: int, word embedding dimensions
         :param num_hidden: int, dimensions for the hidden state of the encoder
@@ -26,6 +27,7 @@ class Encoder(object):
         self.input_dim = input_dim
         self.num_hidden = num_hidden
         self.batch_size = batch_size
+        self.level      = level
 
         initializer_weights = tf.variance_scaling_initializer() #xavier
         initializer_biases = tf.constant_initializer(0.0)
@@ -51,16 +53,19 @@ class Encoder(object):
         # Initialise recurrent state
         if not state:
             state = self.gru_cell.zero_state(self.batch_size, tf.float32)
-        states = []
 
+        x=tf.convert_to_tensor(x)
+
+        length = None
+        if self.level == 'query': length = self.length(x) 
         # Calculate RNN states
         _, state = tf.nn.dynamic_rnn(
             self.gru_cell,
             x,
             dtype=tf.float32,
-            sequence_length=self.length(x),
+            sequence_length=length,
             initial_state=state)
-        return states
+        return state
 
     def get_final_state(self, x, states):
         """
