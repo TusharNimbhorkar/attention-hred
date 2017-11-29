@@ -115,13 +115,13 @@ class Encoder(object):
 
     def compute_state(self, x):
         """
-        :x: array of embeddings of query batch and reset vector 1 when embedding is not end of session/query 0 when it is
+        :x: stack with query and reset vector
         :return: query representation tensor
         """
         # Initialise recurrent state
         init_state = tf.zeros([2, self.batch_size, self.num_hidden], name='init_state')
         # Calculate RNN states
-        states = tf.scan(self._gru_step, x , initializer= init_state)
+        states = tf.scan(self._gru_step, x, initializer= init_state)
         original_states, _ = tf.unstack(states)
         _, reset_vector = tf.unstack(x)
 
