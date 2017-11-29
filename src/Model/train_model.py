@@ -89,6 +89,7 @@ class Train(object):
 
         with tf.Session() as sess:
 
+            summary_writer = tf.summary.FileWriter(config.summary_path, sess.graph)
             sess.run(init)
 
             total_loss = 0.0
@@ -98,6 +99,12 @@ class Train(object):
                 x_batch, y_batch, seq_len = self.get_batch(train_data=self.train_data)
                 #todo:
 
+
+                
+                # Update the events file.
+                #summary_str = sess.run(summary, feed_dict=feed_dict)
+                #summary_writer.add_summary(summary_str, train_step)
+                #summary_writer.flush()
         return
 
     def get_batch(self, dataset):
@@ -143,14 +150,15 @@ class Train(object):
 if __name__ == '__main__':
     # Command line arguments
     parser = argparse.ArgumentParser()
-    parser.add_argument('--batch_size', type=int, default=BATCH_SIZE,
-                        help='Batch size to run trainer.')
-    parser.add_argument('--max_length', type=int, default=MAX_LENGTH,
-                        help='Max length.')
-    parser.add_argument('--buckets', type=int, default=N_BUCKETS,
-                        help='Number of buckets.')
-    parser.add_argument('--max_steps', type=int, default=MAX_STEPS,
-                        help='Number of steps to run trainer.')
+
+    # Training params
+    parser.add_argument('--batch_size', type=int, default=BATCH_SIZE, help='Batch size to run trainer.')
+    parser.add_argument('--max_length', type=int, default=MAX_LENGTH, help='Max length.')
+    parser.add_argument('--buckets', type=int, default=N_BUCKETS, help='Number of buckets.')
+    parser.add_argument('--max_steps', type=int, default=MAX_STEPS, help='Number of steps to run trainer.')
+
+    # Misc params
+    parser.add_argument('--summary_path', type=str, default='./summaries/',help='Output path for summaries.')
     FLAGS, unparsed = parser.parse_known_args()
 
     with tf.Graph().as_default():
