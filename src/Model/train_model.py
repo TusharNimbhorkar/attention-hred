@@ -72,14 +72,10 @@ class Train(object):
         self.loss = self.HERED.get_loss(self.X, self.logits, self.Y)
         self.softmax = self.HERED.softmax(self.logits)
         self.accuracy = self.HERED.accuracy(self.logits, self.Y)
-        # init = tf.global_variables_initializer()
-        # summaries = tf.summary.merge_all()
-        # sess = tf.Session()
-        # sess.run(init)
 
         # Define global step for the optimizer  --- OPTIMIZER
         global_step = tf.Variable(0, trainable=False, dtype=tf.int32)
-        optimizer = self.get_optimizer(self.loss, self.config.learning_rate, global_step)
+        self.optimizer = self.get_optimizer(self.loss, self.config.learning_rate, global_step)
 
         some_variables = 0
 
@@ -87,8 +83,9 @@ class Train(object):
         #
 
     def train_model(self, batch_size=None):
-
+        # summaries = tf.summary.merge_all()
         init = tf.global_variables_initializer()
+        saver = tf.train.Saver()
 
         with tf.Session() as sess:
 
@@ -110,8 +107,9 @@ class Train(object):
                 _, loss_value = sess.run([self.optimizer, self.loss], feed_dict=feed_dict)
 
                 t2 = time.time()
+
                 examples_per_second = self.config.batch_size/float(t2-t1)
-                
+
                 # Output the training progress
                 if iteration % self.config.print_every == 0:
                     print("[{}] Train Step {:04d}/{:04d}, Batch Size = {}, Examples/Sec = {:.2f}, Loss = {:.2f}".format(
@@ -125,7 +123,16 @@ class Train(object):
                 #summary_str = sess.run(summary, feed_dict=feed_dict)
                 #summary_writer.add_summary(summary_str, train_step)
                 #summary_writer.flush()
+                
+                if train_step % config.checkpoint_every == 0:
+                    saver.save(sess, save_path=config.checkpoint_path)
         return
+
+    def predict_model(self):
+        if not sess:
+            saver.restore(sess, config.checkpoint_path)
+        raise NotImplementedError
+
 
     def get_batch(self, dataset):
         if dataset == 'train':
@@ -183,6 +190,8 @@ if __name__ == '__main__':
     # Misc params
     parser.add_argument('--print_every', type=int, default=100, help='How often to print training progress')
     parser.add_argument('--summary_path', type=str, default='./summaries/',help='Output path for summaries.')
+    parser.add_argument('--checkpoint_every', type=int, default=500,help='How often to save checkpoints.')
+    parser.add_argument('--checkpoint_path', type=str, default='./checkpoints/model.ckpt',help='Output path for checkpoints.')
     FLAGS, unparsed = parser.parse_known_args()
 
     with tf.Graph().as_default():

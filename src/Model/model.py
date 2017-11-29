@@ -43,7 +43,12 @@ class HERED():
 
         embedder = layers.get_embedding_layer(vocabulary_size=self.vocab_size,
                                               embedding_dims=self.embedding_dim, data=X)
-        logits=0#Todo:calculate logits somehow
+        logits=0 #Todo:calculate logits somehow
+
+
+        # Calculate the omega function w(d_n-1, w_n-1).
+        #  word is the previous word and state the previous hidden state of the decoder
+        w = layers.output_layer(self.embedding_dim, self.decoder_dim, self.vocab_size, state, word)
 
         return logits
 
