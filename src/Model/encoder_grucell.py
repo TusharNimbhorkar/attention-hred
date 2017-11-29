@@ -43,15 +43,15 @@ class Encoder(object):
         length = tf.cast(length, tf.int32)
         return length
 
-    def compute_state(self, x, batch_size, state=None):
+    def compute_state(self, x, state=None):
         """
         :x:      query/session batch of padded length [batch_size x max_length x out_size]
-        :state:  previous state. used to not initialize with zero_state
+        :state:  previous state. used initialize the encoder. if not given it initializes with zero_state
         :return: states representation per query/session step [batch_size x max_length x out_size]
         """
         # Initialise recurrent state
         if not state:
-            state = self.gru_cell.zero_state(batch_size, tf.float32)
+            state = self.gru_cell.zero_state(self.batch_size, tf.float32)
 
         # Calculate RNN states
         _, states = tf.nn.dynamic_rnn(
@@ -69,4 +69,12 @@ class Encoder(object):
         :states: output of compute_state
         :return: vector of all the final states per query
         """
-        return states[:, self.length(x)-1]
+        length = self.length(x)
+        batch_size = tf.shape(output)[0]
+        max_length = tf.shape(output)[1]
+        out_size = int(output.get_shape()[2])
+        index = tf.range(0, batch_size) * max_length + (length - 1)
+        flat = tf.reshape(output, [-1, out_size])
+        relevant = tf.gather(flat, index)
+        return relevant
+        #return states[:, self.length(x)-1] # TensorFlow does’t support advanced slicing yet
