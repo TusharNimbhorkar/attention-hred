@@ -31,7 +31,7 @@ class Decoder(object):
         self.Bo = tf.get_variable(shape= [self.num_hidden_query], initializer= initializer_biases, name= 'Bo')
         self.Do = tf.get_variable(shape= [self.num_hidden_query, self.num_hidden_session], initializer= initializer_biases, name= 'Do' )
 
-    def length(sequence):
+    def length(self,sequence):
         """
          :sequence: batch of padded length; with zero vectors after eoq_symbol 
          :return:   vector determining length of queries (at what point the eoq_symbol is encountered)
@@ -48,7 +48,7 @@ class Decoder(object):
         :return:        query representation tensor [batch_size x max_length x out_size]
         """
         # Initialise recurrent state with session_state
-        state = tf.tanh(tf.sum(tf.matmul(session_state, self.Do), self.Bo))
+        state = tf.tanh(tf.reduce_sum(tf.matmul(session_state, self.Do), self.Bo))
         first_output, state = self.gru_cell(query_encoder_last_state, state)
 
         # Calculate RNN states
@@ -67,7 +67,7 @@ class Decoder(object):
         :query_encoder_last_state: last encoder state of the previous query to be used as first input
         """
         outputs       = []
-        state         = tf.tanh(tf.sum(tf.matmul(session_state, self.Do), self.Bo))
+        state         = tf.tanh(tf.reduce_sum(tf.matmul(session_state, self.Do), self.Bo))
         output, state = self.gru_cell(query_encoder_last_state, state)
         output        = self.prediction(output)
         outputs.append(output)
