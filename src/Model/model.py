@@ -62,7 +62,7 @@ class HERED():
 
         loss = tf.reduce_sum(tf.nn.softmax_cross_entropy_with_logits(logits, labels))
 
-        tf.scalar_summary("LOSS", loss)
+        tf.summary.scalar('LOSS', loss)
         return loss
 
     def softmax(self, logits):
@@ -75,8 +75,9 @@ class HERED():
     def accuracy(self,logits,labels):
 
         # todo: find out how to calculate accuracy and implement
+        accuracy=0
 
-
+        tf.summary.scalar('Accuracy', accuracy)
         raise NotImplementedError
 
 

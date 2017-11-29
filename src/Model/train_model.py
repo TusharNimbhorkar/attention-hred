@@ -79,7 +79,7 @@ class Train(object):
 
         # Define global step for the optimizer  --- OPTIMIZER
         global_step = tf.Variable(0, trainable=False, dtype=tf.int32)
-        optimizer = self.get_optimizer(loss, self.config.learning_rate, global_step)
+        optimizer = self.get_optimizer(self.loss, self.config.learning_rate, global_step)
 
         some_variables = 0
 
