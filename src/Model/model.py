@@ -85,15 +85,17 @@ class HERED():
 
         return logits
 
-    def train_step(self):
-        # here it would go the optimizer for the model. However, since it is now 3 RNN
-        # and not all of them are optimize or might be done differently maybe this is
-        # not needed anymore
-        raise NotImplementedError
+    def get_predictions(self, X):
+        embedder = layers.get_embedding_layer(vocabulary_size=self.vocab_size,
+                                              embedding_dims=self.embedding_dim, data=X)
+        # Create the query encoder state
+        states = self.encoder_grucell.compute_state(x=embedder)
+        self.initial_query_state = self.encoder_grucell.get_final_state(x=embedder, states=states)
+        # Create the session state
+        self.initial_session_state = self.encoder_grucell.compute_state(x=self.initial_query_state)
 
     def get_loss(self, logits, labels):
         # same as for train_step.....
-
 
         labels = tf.one_hot(labels, self.vocab_size)
         loss = tf.reduce_sum(tf.nn.softmax_cross_entropy_with_logits(logits, labels))
@@ -102,14 +104,12 @@ class HERED():
         return loss
 
     def softmax(self, logits):
-
         return tf.nn.softmax(logits)
 
     def optimizer(self,loss):
         return tf.train.AdamOptimizer(learning_rate=self.learning_rate)
 
     def accuracy(self,logits,labels):
-
         # todo: find out how to calculate accuracy and implement
         accuracy=0
 

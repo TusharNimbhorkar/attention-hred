@@ -69,11 +69,11 @@ class Encoder(object):
         :return: vector of all the final states per query
         """
         length = self.length(x)
-        batch_size = tf.shape(output)[0]
-        max_length = tf.shape(output)[1]
-        out_size = int(output.get_shape()[2])
+        batch_size = tf.shape(states)[0]
+        max_length = tf.shape(states)[1]
+        out_size = int(states.get_shape()[2])
         index = tf.range(0, batch_size) * max_length + (length - 1)
-        flat = tf.reshape(output, [-1, out_size])
+        flat = tf.reshape(states, [-1, out_size])
         relevant = tf.gather(flat, index)
         return relevant
         #return states[:, self.length(x)-1] # TensorFlow does’t support advanced slicing yet

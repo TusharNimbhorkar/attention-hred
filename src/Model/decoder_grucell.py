@@ -26,7 +26,7 @@ class Decoder(object):
         initializer_weights = tf.variance_scaling_initializer() #xavier
         initializer_biases = tf.constant_initializer(0.0)
 
-        self.gru_cell = tf.contrib.rnn.GRUCell(num_hidden, kernel_initializer=initializer_weights, bias_initializer=initializer_biases)
+        self.gru_cell = tf.contrib.rnn.GRUCell(num_hidden_query, kernel_initializer=initializer_weights, bias_initializer=initializer_biases)
         # Weights for initial recurrent state
         self.Bo = tf.get_variable(shape= [self.num_hidden_query], initializer= initializer_biases, name= 'Bo')
         self.Do = tf.get_variable(shape= [self.num_hidden_query, self.num_hidden_session], initializer= initializer_biases, name= 'Do' )

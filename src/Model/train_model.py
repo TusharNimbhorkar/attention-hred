@@ -74,6 +74,7 @@ class Train(object):
 
         # self.softmax = self.HERED.softmax(self.logits)
         # self.accuracy = self.HERED.accuracy(self.logits, self.Y)
+        #self.get_predictions = self.HERED.get_predictions(self.X)
 
         # Define global step for the optimizer  --- OPTIMIZER
         global_step = tf.Variable(0, trainable=False, dtype=tf.int32)
@@ -105,7 +106,7 @@ class Train(object):
                 self.Y: y_batch
             }
             # todo ?
-            # sess.run([self.initialise], feed_dict=feed_dict)
+            #sess.run([self.HERED.initialise], feed_dict=feed_dict)
 
             for iteration in range(self.config.max_steps):
 
@@ -138,15 +139,23 @@ class Train(object):
                 #summary_str = sess.run(summary, feed_dict=feed_dict)
                 #summary_writer.add_summary(summary_str, train_step)
                 #summary_writer.flush()
-                
-                # if iteration % 10 == 0:
-                #     saver.save(sess, save_path=config.checkpoint_path)
-        return
 
-    # def predict_model(self):
-    #     if not sess:
-    #         saver.restore(sess, config.checkpoint_path)
-    #     raise NotImplementedError
+                #if iteration % config.checkpoint_every == 0:
+                #    saver.save(sess, save_path=config.checkpoint_path)
+        return sess
+
+    def predict_model(self, sess=None):
+        raise NotImplementedError
+        if not sess:
+            saver.restore(sess, config.checkpoint_path)
+        x_batch, y_batch, seq_len = self.get_batch(dataset='valid')
+        feed_dict = {
+            self.X: x_batch,
+            self.Y: y_batch
+        }
+        # self.predictions: tensor function to compute predictions given x_batch
+        query_output = sess.run([self.get_predictions], feed_dict=feed_dict)
+        return
 
 
     def get_batch(self, dataset):
@@ -205,7 +214,7 @@ if __name__ == '__main__':
     # Misc params
     parser.add_argument('--print_every', type=int, default=100, help='How often to print training progress')
     parser.add_argument('--summary_path', type=str, default='./summaries/',help='Output path for summaries.')
-    parser.add_argument('--checkpoint_every', type=int, default=500,help='How often to save checkpoints.')
+    parser.add_argument('--checkpoint_every', type=int, default=10,help='How often to save checkpoints.')
     parser.add_argument('--checkpoint_path', type=str, default='./checkpoints/model.ckpt',help='Output path for checkpoints.')
     FLAGS, unparsed = parser.parse_known_args()
 
