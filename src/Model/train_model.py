@@ -11,11 +11,13 @@ import numpy as np
 import _pickle as cPickle
 import sys
 import argparse
+import time
 
 # Path to get batch iterator
 sys.path.insert(0, '../sordoni/')
 import data_iterator
 from model import HERED
+
 
 # todo: put this stuff in arg.parse as well
 LEARNING_RATE = 1e-4
@@ -37,7 +39,9 @@ VALID_FILE = '../../data/input_model/valid.ses.pkl'
 
 
 class Train(object):
-    def __init__(self):
+    def __init__(self,config=None):
+
+        self.config = config
         self.vocab = cPickle.load(open(VOCAB_FILE, 'rb'))
         self.vocab_lookup_dict = {k: v for v, k, count in self.vocab}
 
@@ -59,7 +63,7 @@ class Train(object):
         self.HERED = HERED(vocab_size=self.vocab_size, embedding_dim=EMBEDDING_DIM, query_dim=QUERY_DIM,
                            session_dim=SESSION_DIM, decoder_dim=QUERY_DIM, output_dim=EMBEDDING_DIM,
                            eoq_symbol=EOQ_SYMBOL, eos_symbol=EOS_SYMBOL, unk_symbol=UNK_SYMBOL,
-                           learning_rate=config.learning_rate)
+                           learning_rate=self.config.learning_rate)
 
         self.X = tf.placeholder(tf.int64, shape=(None, None))
         self.Y = tf.placeholder(tf.int64, shape=(None, None))
@@ -75,7 +79,7 @@ class Train(object):
 
         # Define global step for the optimizer  --- OPTIMIZER
         global_step = tf.Variable(0, trainable=False, dtype=tf.int32)
-        optimizer = self.get_optimizer(loss, learning_rate, global_step)
+        optimizer = self.get_optimizer(self.loss, self.config.learning_rate, global_step)
 
         some_variables = 0
 
@@ -88,12 +92,12 @@ class Train(object):
 
         with tf.Session() as sess:
 
-            summary_writer = tf.summary.FileWriter(config.summary_path, sess.graph)
+            summary_writer = tf.summary.FileWriter(self.config.summary_path, sess.graph)
             sess.run(init)
 
             total_loss = 0.0
 
-            for iteration in range(config.max_steps):
+            for iteration in range(self.config.max_steps):
 
                 #todo:
                 t1 = time.time()
@@ -106,13 +110,13 @@ class Train(object):
                 _, loss_value = sess.run([self.optimizer, self.loss], feed_dict=feed_dict)
 
                 t2 = time.time()
-                examples_per_second = config.batch_size/float(t2-t1)
+                examples_per_second = self.config.batch_size/float(t2-t1)
                 
                 # Output the training progress
-                if train_step % config.print_every == 0:
+                if iteration % self.config.print_every == 0:
                     print("[{}] Train Step {:04d}/{:04d}, Batch Size = {}, Examples/Sec = {:.2f}, Loss = {:.2f}".format(
-                        datetime.now().strftime("%Y-%m-%d %H:%M"), train_step+1,
-                        int(config.max_steps), config.batch_size, examples_per_second,
+                        datetime.now().strftime("%Y-%m-%d %H:%M"), iteration+1,
+                        int(self.config.max_steps), self.config.batch_size, examples_per_second,
                         loss_value
                     ))
 
@@ -182,5 +186,5 @@ if __name__ == '__main__':
     FLAGS, unparsed = parser.parse_known_args()
 
     with tf.Graph().as_default():
-        trainer = Train()
+        trainer = Train(config=FLAGS)
         trainer.train_model(batch_size=FLAGS.batch_size)
