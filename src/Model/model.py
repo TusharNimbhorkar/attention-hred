@@ -10,8 +10,8 @@ import numpy as np
 import layers
 import encoder
 import decoder
-from src.Model import encoder_grucell
-from src.Model import decoder_grucell
+from encoder_grucell import Encoder
+from decoder_grucell import Decoder
 
 
 class HERED():
@@ -33,6 +33,8 @@ class HERED():
         self.eos_symbol = eos_symbol
         self.learning_rate = learning_rate
         self.hidden_layers = hidden_layer
+        self.encoder_grucell = Encoder()
+        self.decoder_grucell = Decoder()
 
 
 
@@ -44,12 +46,12 @@ class HERED():
         embedder = layers.get_embedding_layer(vocabulary_size=self.vocab_size,
                                               embedding_dims=self.embedding_dim, data=X)
         #Create the query encoder state
-        states = encoder_grucell.compute_state(x=embedder)
-        self.initial_query_state = encoder_grucell.get_final_state(x=embedder, states=states)
+        states = self.encoder_grucell.compute_state(x=embedder)
+        self.initial_query_state = self.encoder_grucell.get_final_state(x=embedder, states=states)
         #Create the session state
-        self.initial_session_state = encoder_grucell.compute_state(x=self.initial_query_state)
+        self.initial_session_state = self.encoder_grucell.compute_state(x=self.initial_query_state)
 
-        self.decoder_state = decoder_grucell.compute_state(x=self.initial_query_state,
+        self.decoder_state = self.decoder_grucell.compute_state(x=self.initial_query_state,
                                                       session_state=self.initial_session_state)
 
 
@@ -64,12 +66,12 @@ class HERED():
         embedder = layers.get_embedding_layer(vocabulary_size=self.vocab_size,
                                               embedding_dims=self.embedding_dim, data=X)
         # Create the query encoder state
-        states = encoder_grucell.compute_state(x=embedder)
-        self.initial_query_state = encoder_grucell.get_final_state(x=embedder, states=states)
+        states = self.encoder_grucell.compute_state(x=embedder)
+        self.initial_query_state = self.encoder_grucell.get_final_state(x=embedder, states=states)
         # Create the session state
-        self.initial_session_state = encoder_grucell.compute_state(x=self.initial_query_state)
+        self.initial_session_state = self.encoder_grucell.compute_state(x=self.initial_query_state)
         #TODO fix this when the decoder is finished
-        self.decoder_state = decoder_grucell.compute_state(x=Y,
+        self.decoder_state = self.decoder_grucell.compute_state(x=Y,
                                                       session_state=self.initial_session_state)
 
         logits = layers.output_layer(embedding_dims=self.embedding_dim, vocabulary_size= self.vocab_size, num_hidden= self.hidden_layers,
@@ -111,8 +113,7 @@ class HERED():
         accuracy=0
 
         tf.summary.scalar('Accuracy', accuracy)
-        raise NotImplementedError
-
+        return accuracy
 
 
 
