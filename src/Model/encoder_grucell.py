@@ -51,7 +51,6 @@ class Encoder(object):
         # Initialise recurrent state
         if not state:
             state = self.gru_cell.zero_state(self.batch_size, tf.float32)
-        states = []
 
         # Calculate RNN states
         _, state = tf.nn.dynamic_rnn(
@@ -60,7 +59,7 @@ class Encoder(object):
             dtype=tf.float32,
             sequence_length=self.length(x),
             initial_state=state)
-        return states
+        return state
 
     def get_final_state(self, x, states):
         """
