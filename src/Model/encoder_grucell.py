@@ -46,21 +46,22 @@ class Encoder(object):
     def compute_state(self, x, batch_size, state=None):
         """
         :x:      query/session batch of padded length [batch_size x max_length x out_size]
-        :return: state representation per step of size [batch_size x max_length x out_size]
+        :state:  previous state. used to not initialize with zero_state
+        :return: states representation per query/session step [batch_size x max_length x out_size]
         """
         # Initialise recurrent state
         if not state:
             state = self.gru_cell.zero_state(batch_size, tf.float32)
 
         # Calculate RNN states
-        _, state = tf.nn.dynamic_rnn(
+        _, states = tf.nn.dynamic_rnn(
             self.gru_cell,
             x,
             dtype=tf.float32,
             sequence_length=self.length(x),
             initial_state=state)
 
-        return state
+        return states
 
     def get_final_state(self, x, states):
         """

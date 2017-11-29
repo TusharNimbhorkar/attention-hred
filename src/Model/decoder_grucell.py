@@ -35,19 +35,34 @@ class Decoder(object):
         self.Bo = tf.get_variable(shape= [self.num_hidden_query], initializer= initializer_biases, name= 'Bo')
         self.Do = tf.get_variable(shape= [self.num_hidden_query, self.num_hidden_session], initializer= initializer_biases, name= 'Do' )
 
-    def compute_state(self, x, session_state, query_length):
+    def length(sequence):
         """
+         :sequence: batch of padded length; with zero vectors after eoq_symbol 
+         :return:   vector determining length of queries (at what point the eoq_symbol is encountered)
+        """
+        used = tf.sign(tf.reduce_max(tf.abs(sequence), 2))
+        length = tf.reduce_sum(used, 1)
+        length = tf.cast(length, tf.int32)
+        return length
+
+    def compute_state(self, x, session_state):
+        """
+        :x:             query/session batch of padded length [batch_size x max_length x out_size]
         :session_state: state to initialise the recurrent state of the decoder
-        :x: array of embeddings of query batch
-        :return: query representation tensor
+        :return:        query representation tensor [batch_size x max_length x out_size]
         """
         # Initialise recurrent state with session_state
         state = tf.tanh(tf.sum(tf.matmul(session_state, self.Do), self.Bo))
-        # Calculate RNN states
-        for step in range(query_length):
-            _, state = self.gru_cell(x[step], state)
 
-        return state
+        # Calculate RNN states
+        outputs, states = tf.nn.dynamic_rnn(
+            self.gru_cell,
+            x,
+            dtype=tf.float32,
+            sequence_length=self.length(x),
+            initial_state=state)
+
+        return outputs, states
 
     def compute_prediction(self, session_state, eoq_symbol):
         # is output of decoder a vector of size=vocab_size (all 0s except the value corresponding to the word),
