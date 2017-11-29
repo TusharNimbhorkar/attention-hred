@@ -67,7 +67,7 @@ class Train(object):
 
         self.X = tf.placeholder(tf.int64, shape=(None, None))
         self.Y = tf.placeholder(tf.int64, shape=(None, None))
-
+        # todo check this
         self.logits = self.HERED.inference(self.X)
         self.loss = self.HERED.get_loss(self.X, self.logits, self.Y)
         self.softmax = self.HERED.softmax(self.logits)
@@ -89,8 +89,11 @@ class Train(object):
 
         with tf.Session() as sess:
 
-            summary_writer = tf.summary.FileWriter(self.config.summary_path, sess.graph)
-            sess.run(init)
+            sess.run(tf.global_variables_initializer())
+            log_path = self.config.summary_path + time.strftime("%Y%m%d-%H%M")
+            summaries = tf.summary.merge_all()
+            writer = tf.summary.FileWriter(log_path)
+            writer.add_graph(sess.graph)
 
             total_loss = 0.0
             # initialisation
@@ -99,6 +102,7 @@ class Train(object):
                 self.X: x_batch,
                 self.Y: y_batch
             }
+            # todo ?
             sess.run([self.initialise], feed_dict=feed_dict)
 
             for iteration in range(self.config.max_steps):

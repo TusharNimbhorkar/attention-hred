@@ -8,8 +8,8 @@ Group 8
 import tensorflow as tf
 import numpy as np
 import layers
-import encoder
-import decoder
+# import encoder
+# import decoder
 from encoder_grucell import Encoder
 from decoder_grucell import Decoder
 
