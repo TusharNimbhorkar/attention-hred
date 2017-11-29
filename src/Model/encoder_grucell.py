@@ -56,15 +56,23 @@ class Encoder(object):
 
         x=tf.convert_to_tensor(x)
 
-        length = None
-        if self.level == 'query': length = self.length(x) 
-        # Calculate RNN states
-        _, state = tf.nn.dynamic_rnn(
-            self.gru_cell,
-            x,
-            dtype=tf.float32,
-            sequence_length=length,
-            initial_state=state)
+        if self.level == 'query': 
+            length = self.length(x) 
+            # Calculate RNN states
+            _, state = tf.nn.dynamic_rnn(
+                self.gru_cell,
+                x,
+                dtype=tf.float32,
+                sequence_length=length,
+                initial_state=state)
+        elif self.level=='session':
+            state, _ = tf.nn.static_rnn(
+                self.gru_cell,
+                x,
+                dtype=tf.float32,
+                initial_state=state)
+        else:
+            raise BaseException('Values for Encoder.level can only be "query" or "session"')
         return state
 
     def get_final_state(self, x, states):
