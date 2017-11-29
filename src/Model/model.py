@@ -103,6 +103,17 @@ class HERED():
         tf.summary.scalar('LOSS', loss)
         return loss
 
+    def get_auc(self, labels, predictions):
+        """
+
+        :param labels: list of labels in int64
+        :param predictions:  list of prediictions size (none, self.vocabsize) in one hot encoding
+        :return: the area under the curve of the predictions
+        """
+        one_hot_labels = tf.one_hot(indices= labels, depth=self.vocab_size)
+        return tf.metrics.auc(labels= labels, predictions = predictions)
+
+
     def softmax(self, logits):
         return tf.nn.softmax(logits)
 
