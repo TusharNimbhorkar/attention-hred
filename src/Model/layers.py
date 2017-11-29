@@ -48,10 +48,10 @@ def output_layer(embedding_dims, num_hidden, vocabulary_size, state, word):
     with tf.variable_scope('output_layer'):
         # Define the weights H_o, E_o and bias b_o
         H_ouput = tf.get_variable(name='h_output', shape=[embedding_dims, num_hidden],
-                                  initializer=tf.truncated_normal())
+                                  initializer=tf.truncated_normal(shape=[num_hidden]))
         E_output = tf.get_variable(name='e_output', shape=[embedding_dims, vocabulary_size],
-                                   initializer=tf.truncated_normal())
+                                   initializer=tf.truncated_normal(shape=[vocabulary_size]))
         b_output = tf.get_variable(name='b_output', shape=[embedding_dims],
-                                   initializer=tf.truncated_normal())
+                                   initializer=tf.truncated_normal(shape=embedding_dims))
 
         return tf.matmul(H_ouput, state) + tf.matmul(E_output, word) + b_output
