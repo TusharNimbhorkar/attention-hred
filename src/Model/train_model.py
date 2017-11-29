@@ -11,7 +11,8 @@ import numpy as np
 import _pickle as cPickle
 import sys
 import argparse
-import time,datetime
+import time
+from datetime import datetime
 
 # Path to get batch iterator
 sys.path.insert(0, '../sordoni/')
