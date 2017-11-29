@@ -59,7 +59,7 @@ class Train(object):
         self.HERED = HERED(vocab_size=self.vocab_size, embedding_dim=EMBEDDING_DIM, query_dim=QUERY_DIM,
                            session_dim=SESSION_DIM, decoder_dim=QUERY_DIM, output_dim=EMBEDDING_DIM,
                            eoq_symbol=EOQ_SYMBOL, eos_symbol=EOS_SYMBOL, unk_symbol=UNK_SYMBOL,
-                           learning_rate=LEARNING_RATE)
+                           learning_rate=config.learning_rate)
 
         self.X = tf.placeholder(tf.int64, shape=(None, None))
         self.Y = tf.placeholder(tf.int64, shape=(None, None))
@@ -68,15 +68,14 @@ class Train(object):
         self.loss = self.HERED.get_loss(self.X, self.logits, self.Y)
         self.softmax = self.HERED.softmax(self.logits)
         self.accuracy = self.HERED.accuracy(self.logits, self.Y)
-        # self.optimizer = self.get_optimizer(learning_rate=LEARNING_RATE,loss=self.loss)
         # init = tf.global_variables_initializer()
         # summaries = tf.summary.merge_all()
         # sess = tf.Session()
         # sess.run(init)
 
         # Define global step for the optimizer  --- OPTIMIZER
-        #global_step = tf.Variable(0, trainable=False, dtype=tf.int32)
-        #optimizer = self.get_optimizer(loss, learning_rate, global_step)
+        global_step = tf.Variable(0, trainable=False, dtype=tf.int32)
+        optimizer = self.get_optimizer(loss, learning_rate, global_step)
 
         some_variables = 0
 
@@ -94,13 +93,30 @@ class Train(object):
 
             total_loss = 0.0
 
-            for iteration in range(MAX_STEPS):
+            for iteration in range(config.max_steps):
 
-                x_batch, y_batch, seq_len = self.get_batch(train_data=self.train_data)
                 #todo:
+                t1 = time.time()
 
+                x_batch, y_batch, seq_len = self.get_batch(dataset='train')
+                feed_dict = {
+                    self.X: x_batch,
+                    self.Y: y_batch
+                }
+                _, loss_value = sess.run([self.optimizer, self.loss], feed_dict=feed_dict)
 
+                t2 = time.time()
+                examples_per_second = config.batch_size/float(t2-t1)
                 
+                # Output the training progress
+                if train_step % config.print_every == 0:
+                    print("[{}] Train Step {:04d}/{:04d}, Batch Size = {}, Examples/Sec = {:.2f}, Loss = {:.2f}".format(
+                        datetime.now().strftime("%Y-%m-%d %H:%M"), train_step+1,
+                        int(config.max_steps), config.batch_size, examples_per_second,
+                        loss_value
+                    ))
+
+
                 # Update the events file.
                 #summary_str = sess.run(summary, feed_dict=feed_dict)
                 #summary_writer.add_summary(summary_str, train_step)
@@ -150,14 +166,18 @@ class Train(object):
 if __name__ == '__main__':
     # Command line arguments
     parser = argparse.ArgumentParser()
+    # Model params
+    parser.add_argument('--max_length', type=int, default=MAX_LENGTH, help='Max length.')
+    parser.add_argument('--buckets', type=int, default=N_BUCKETS, help='Number of buckets.')
 
     # Training params
     parser.add_argument('--batch_size', type=int, default=BATCH_SIZE, help='Batch size to run trainer.')
-    parser.add_argument('--max_length', type=int, default=MAX_LENGTH, help='Max length.')
-    parser.add_argument('--buckets', type=int, default=N_BUCKETS, help='Number of buckets.')
+    parser.add_argument('--learning_rate', type=float, default=2e-3, help='Learning rate')
+    parser.add_argument('--learning_rate_decay', type=float, default=0.96, help='Learning rate decay fraction')
     parser.add_argument('--max_steps', type=int, default=MAX_STEPS, help='Number of steps to run trainer.')
 
     # Misc params
+    parser.add_argument('--print_every', type=int, default=100, help='How often to print training progress')
     parser.add_argument('--summary_path', type=str, default='./summaries/',help='Output path for summaries.')
     FLAGS, unparsed = parser.parse_known_args()
 
