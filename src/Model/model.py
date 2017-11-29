@@ -43,7 +43,12 @@ class HERED():
 
         embedder = layers.get_embedding_layer(vocabulary_size=self.vocab_size,
                                               embedding_dims=self.embedding_dim, data=X)
-        logits=0#Todo:calculate logits somehow
+        logits=0 #Todo:calculate logits somehow
+
+
+        # Calculate the omega function w(d_n-1, w_n-1).
+        #  word is the previous word and state the previous hidden state of the decoder
+        w = layers.output_layer(self.embedding_dim, self.decoder_dim, self.vocab_size, state, word)
 
         return logits
 
@@ -62,7 +67,7 @@ class HERED():
 
         loss = tf.reduce_sum(tf.nn.softmax_cross_entropy_with_logits(logits, labels))
 
-        tf.scalar_summary("LOSS", loss)
+        tf.summary.scalar('LOSS', loss)
         return loss
 
     def softmax(self, logits):
@@ -75,8 +80,9 @@ class HERED():
     def accuracy(self,logits,labels):
 
         # todo: find out how to calculate accuracy and implement
+        accuracy=0
 
-
+        tf.summary.scalar('Accuracy', accuracy)
         raise NotImplementedError
 
 
