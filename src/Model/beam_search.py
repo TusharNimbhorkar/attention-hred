@@ -16,7 +16,7 @@ class BeamSearch(object):
 
     """
 
-    def __init__(self, softmax_outputs, batch_size, beam_size=5):
+    def __init__(self, softmax_outputs, batch_size=None, beam_size=5):
         """
         Initialise the BeamSearch object
         :param softmax_outputs, numpy of size [vocab_size], the softmax output of the last layer of the decoder.
@@ -29,11 +29,11 @@ class BeamSearch(object):
         """
 
         self.beam_size = beam_size
-        self.batch_size = batch_size
-        self.beam_items, self.sorted_probs = self._init_beam(softmax_outputs)
+        self.batch_size = batch_size # used for batch beam search
+        self.beam_items, self.sorted_probs = self._init_beam_single(softmax_outputs)
 
 
-    def _init_beam(self, softmax_outputs):
+    def _init_beam_single(self, softmax_outputs):
         """
         Adds the initial top-beam_size candidates to the beam for an example.
         :param softmax_outputs, probabilities
@@ -58,10 +58,10 @@ class BeamSearch(object):
 
         return beam_items, beam_probs
 
-    def beam_step(self, hypotheses):
+    def beam_step_single(self, hypotheses):
         """
         Perform a beam_step for an example. This receives the probabilities for the hypothesis. This would be a numpy of size[beam_size, vocab_size]
-        :param hypothesis, numpy matrix of size [beam_size, vocab_size],
+        :param hypotheses, numpy matrix of size [beam_size, vocab_size],
         :return:
         """
         # Sort probabilities and prune them
@@ -125,15 +125,26 @@ class BeamSearch(object):
 
         return new_hypotheses, new_probs
 
+    def check_eoq_single(self, beam_items):
+        """
+        :param beam_items: numpy 2D array [beam_items, query_length] beam_items for an example.
+                           Query length would be the suggestion length so far
+        :return: True if end of query symbol in the beam search. False if different from eoq.
+        """
+        for i in range(beam_items.shape[0]):
+            if beam_items[i][-1] == 1:
+                return True
+        return False
 
 
-# -------  Code for debugging purposes   ---------
+# -------  Code for debugging purposes - batch  ---------
 
 # initial = np.matrix([0.2, 0.2, 0.3, 0.16, 0.14], [0.2, 0.2, 0.3, 0.16, 0.14], [0.2, 0.2, 0.3, 0.16, 0.14])
+#
 # mat = np.matrix([[0.1, 0.2, 0.4, 0.06, 0.24], [0.3, 0.04, 0.1, 0.4, 0.16], [0.1, 0.5, 0.06, 0.04, 0.3],
 #                  [0.2, 0.1, 0.4, 0.06, 0.24]])
-# b = BeamSearch(mat, batch_size=4, beam_size=3)
 #
+# b = BeamSearch(mat, batch_size=4, beam_size=3)
 #
 # m = np.array([[[0.1, 0.2, 0.4, 0.06, 0.24], [0.3, 0.04, 0.1, 0.4, 0.16], [0.1, 0.2, 0.4, 0.06, 0.24]],
 #                  [[0.3, 0.04, 0.1, 0.4, 0.16], [0.1, 0.2, 0.4, 0.06, 0.24], [0.1, 0.2, 0.4, 0.06, 0.24]],
@@ -142,3 +153,13 @@ class BeamSearch(object):
 # b.beam_step(m)
 
 # end of query == 1
+
+# -------  Code for debugging purposes - example  ---------
+
+# b = BeamSearch(np.asarray([0.2, 0.2, 0.3, 0.16, 0.14]), batch_size=None, beam_size=3)
+# print(b.beam_items)
+# print(b.sorted_probs)
+# print(b.check_eoq_single(b.beam_items))
+#
+# mat = np.matrix([[0.1, 0.2, 0.4, 0.06, 0.24], [0.3, 0.04, 0.1, 0.4, 0.16], [0.1, 0.5, 0.06, 0.04, 0.3]])
+# b.beam_step_single(mat)
