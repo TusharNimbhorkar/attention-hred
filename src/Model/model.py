@@ -67,8 +67,8 @@ class HERED():
         embedder = layers.get_embedding_layer(vocabulary_size=self.vocab_size,
                                               embedding_dims=self.embedding_dim, data=X)
         # Create the query encoder state
-        states = self.encoder_grucell.compute_state(x=embedder)
-        self.initial_query_state = self.encoder_grucell.get_final_state(x=embedder, states=states)
+        self.initial_query_state = self.encoder_grucell.compute_state(x=embedder)
+        #self.initial_query_state = self.encoder_grucell.get_final_state(x=embedder, states=states)
         # Create the session state
         self.initial_session_state = self.encoder_grucell.compute_state(x=self.initial_query_state)
         #TODO fix this when the decoder is finished
@@ -89,8 +89,8 @@ class HERED():
         embedder = layers.get_embedding_layer(vocabulary_size=self.vocab_size,
                                               embedding_dims=self.embedding_dim, data=X)
         # Create the query encoder state
-        states = self.encoder_grucell.compute_state(x=embedder)
-        self.initial_query_state = self.encoder_grucell.get_final_state(x=embedder, states=states)
+        self.initial_query_state = self.encoder_grucell.compute_state(x=embedder)
+        #self.initial_query_state = self.encoder_grucell.get_final_state(x=embedder, states=states)
         # Create the session state
         self.initial_session_state = self.encoder_grucell.compute_state(x=self.initial_query_state)
         outputs, self.decoder_state = self.decoder_grucell.compute_prediction(session_state=self.initial_session_state,
