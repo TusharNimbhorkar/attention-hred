@@ -11,7 +11,6 @@ import layers
 import encoder
 import decoder
 from src.Model import encoder_grucell
-
 from src.Model import decoder_grucell
 
 
@@ -89,13 +88,11 @@ class HERED():
         # not needed anymore
         raise NotImplementedError
 
-    def get_loss(self, X, logits, labels):
+    def get_loss(self, logits, labels):
         # same as for train_step.....
+
+
         labels = tf.one_hot(labels, self.vocab_size)
-
-        eos_mask = tf.expand_dims(tf.cast(tf.not_equal(X, self.eos_symbol), tf.float32), 2)
-        labels = labels * eos_mask
-
         loss = tf.reduce_sum(tf.nn.softmax_cross_entropy_with_logits(logits, labels))
 
         tf.summary.scalar('LOSS', loss)
