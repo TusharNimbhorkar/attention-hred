@@ -11,7 +11,7 @@ import numpy as np
 import _pickle as cPickle
 import sys
 import argparse
-import time
+import time,datetime
 
 # Path to get batch iterator
 sys.path.insert(0, '../sordoni/')
@@ -49,7 +49,7 @@ class Train(object):
             'eoq_sym': EOQ_SYMBOL,
             'eos_sym': EOS_SYMBOL,
             'sort_k_batches': FLAGS.buckets,
-            'bs': FLAGS.buckets,
+            'bs': FLAGS.BATCH_SIZE,
             'train_session': TRAIN_FILE,
             'seqlen': FLAGS.max_length,
             'valid_session': VALID_FILE
@@ -140,7 +140,7 @@ class Train(object):
         x_batch = x_data_full[:seq_len]# [seq_len, embedding_dimension]
         y_batch = x_data_full[1:seq_len + 1]# [seq_len, embedding_dimension]
 
-
+        print(seq_len)
         return x_batch, y_batch, seq_len
 
 
