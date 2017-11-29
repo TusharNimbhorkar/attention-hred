@@ -32,7 +32,7 @@ class Encoder(object):
         self.gru_cell = tf.contrib.rnn.GRUCell(num_hidden, kernel_initializer=initializer_weights, bias_initializer=initializer_biases)
         #self.zero_state = self.gru_cell.zero_state(batch_size, tf.float32)
 
-    def length(sequence):
+    def length(self,sequence):
         """
          :sequence: batch of padded length; with zero vectors after eoq_symbol 
          :return:   vector determining length of queries (at what point the eoq_symbol is encountered)
