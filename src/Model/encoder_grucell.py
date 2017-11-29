@@ -11,13 +11,14 @@ import numpy as np
 
 class Encoder(object):
 
-    def __init__(self, batch_size, input_dim=300, num_hidden=1000):
+    def __init__(self, batch_size, level, input_dim=300, num_hidden=1000):
 
         """
 
         This Class implements an Encoder.
 
         :param batch_size: int, length of batch
+        :param level: specify wether it's query or session level encoder
         :param reuse: bool, parameter to reuse tensorflow variables
         :param input_dim: int, word embedding dimensions
         :param num_hidden: int, dimensions for the hidden state of the encoder
@@ -26,6 +27,7 @@ class Encoder(object):
         self.input_dim = input_dim
         self.num_hidden = num_hidden
         self.batch_size = batch_size
+        self.level      = level
 
         initializer_weights = tf.variance_scaling_initializer() #xavier
         initializer_biases = tf.constant_initializer(0.0)
@@ -52,15 +54,26 @@ class Encoder(object):
         if not state:
             state = self.gru_cell.zero_state(self.batch_size, tf.float32)
 
-        # Calculate RNN states
-        _, states = tf.nn.dynamic_rnn(
-            self.gru_cell,
-            x,
-            dtype=tf.float32,
-            sequence_length=self.length(x),
-            initial_state=state)
+        x=tf.convert_to_tensor(x)
 
-        return states
+        if self.level == 'query': 
+            length = self.length(x) 
+            # Calculate RNN states
+            _, state = tf.nn.dynamic_rnn(
+                self.gru_cell,
+                x,
+                dtype=tf.float32,
+                sequence_length=length,
+                initial_state=state)
+        elif self.level=='session':
+            state, _ = tf.nn.static_rnn(
+                self.gru_cell,
+                x,
+                dtype=tf.float32,
+                initial_state=state)
+        else:
+            raise BaseException('Values for Encoder.level can only be "query" or "session"')
+        return state
 
     def get_final_state(self, x, states):
         """
@@ -71,7 +84,7 @@ class Encoder(object):
         length = self.length(x)
         batch_size = tf.shape(states)[0]
         max_length = tf.shape(states)[1]
-        out_size = int(states.get_shape()[2])
+        out_size = tf.shape(states)[2]
         index = tf.range(0, batch_size) * max_length + (length - 1)
         flat = tf.reshape(states, [-1, out_size])
         relevant = tf.gather(flat, index)

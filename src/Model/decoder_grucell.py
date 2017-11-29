@@ -49,17 +49,17 @@ class Decoder(object):
         """
         # Initialise recurrent state with session_state
         state = tf.tanh(tf.reduce_sum(tf.matmul(session_state, self.Do), self.Bo))
-        first_output, state = self.gru_cell(query_encoder_last_state, state)
+        _, state = self.gru_cell(query_encoder_last_state, state)
 
         # Calculate RNN states
-        outputs, states = tf.nn.dynamic_rnn(
+        _, states = tf.nn.dynamic_rnn(
             self.gru_cell,
             x,
             dtype=tf.float32,
             sequence_length=self.length(x),
             initial_state=state)
 
-        return tf.stack(first_output, outputs), states
+        return states
 
     def compute_prediction(self, session_state, query_encoder_last_state, sequence_length):
         """
