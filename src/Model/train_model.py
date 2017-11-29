@@ -100,14 +100,18 @@ class Train(object):
 
         return
 
-    def get_batch(self, train_data):
-
-        data = train_data.next()
+    def get_batch(self, dataset):
+        if dataset == 'train':
+            data = self.train_data.next()
+        elif dataset == 'valid':
+            data = self.valid_data.next()
+        else:
+            raise BaseException('get_batch(): Dataset must be either "train" or "valid"')
         seq_len = data['max_length']
         prepend = np.ones((1, data['x'].shape[1]))
         x_data_full = np.concatenate((prepend, data['x']))
-        x_batch = x_data_full[:seq_len]
-        y_batch = x_data_full[1:seq_len + 1]
+        x_batch = x_data_full[:seq_len]# [seq_len, embedding_dimension]
+        y_batch = x_data_full[1:seq_len + 1]# [seq_len, embedding_dimension]
 
 
         return x_batch, y_batch, seq_len
