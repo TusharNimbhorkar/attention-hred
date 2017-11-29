@@ -93,6 +93,13 @@ class Train(object):
             sess.run(init)
 
             total_loss = 0.0
+            # initialisation
+            x_batch, y_batch, seq_len = self.get_batch(dataset='train')
+            feed_dict = {
+                self.X: x_batch,
+                self.Y: y_batch
+            }
+            sess.run([self.initialise], feed_dict=feed_dict)
 
             for iteration in range(self.config.max_steps):
 

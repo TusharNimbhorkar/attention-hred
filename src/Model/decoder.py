@@ -60,6 +60,7 @@ class Decoder(object):
         :param x: data for current timestep
         :return: the next state.
         """
+        x, session_reset_vector = tf.unstack(x)
 
         # Calculate reset gate
         r = tf.sigmoid(tf.matmul(x,self.Ir)+tf.matmul(h_prev, self.Hr))
@@ -68,7 +69,10 @@ class Decoder(object):
         # Calculate candidate
         c = tf.tanh(tf.matmul(x, self.Ic) + tf.matmul(r*h_prev, self.Hc) )
 
-        return tf.subtract(np.float32(1.0),u) * h_prev + u * c
+        h = tf.subtract(np.float32(1.0),u) * h_prev + u * c
+
+
+        return h_prev * session_reset_vector + tf.subtract(tf.constant(1.0, tf.float32), session_reset_vector) * h
 
     def compute_state(self, x, session_state):
         """
