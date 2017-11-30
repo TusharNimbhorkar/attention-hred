@@ -23,7 +23,7 @@ def get_embedding_layer(vocabulary_size, embedding_dims, data):
     :return: embeddings for data
 
     """
-    with tf.variable_scope('embedding_layer'):
+    with tf.variable_scope('embedding_layer', reuse=True):
 
         embeddings_weights= tf.get_variable(name='embeddings', shape=[vocabulary_size, embedding_dims],
                                             initializer= tf.random_normal_initializer(mean=0.0,stddev=1.0))

@@ -66,12 +66,14 @@ class HERED():
 
         embedder = layers.get_embedding_layer(vocabulary_size=self.vocab_size,
                                               embedding_dims=self.embedding_dim, data=X)
+        y_embedder = layers.get_embedding_layer(vocabulary_size=self.vocab_size,
+                                              embedding_dims=self.embedding_dim, data=Y)
         # Create the query encoder state
         self.initial_query_state = self.query_encoder.compute_state(x=embedder)
         # Create the session state
         self.initial_session_state = self.session_encoder.compute_state(x=self.initial_query_state)
         #TODO fix this when the decoder is finished
-        self.decoder_state = self.decoder_grucell.compute_state(x=Y,
+        self.decoder_state = self.decoder_grucell.compute_state(x=y_embedder,
                                                       session_state=self.initial_session_state,
                                                       query_encoder_last_state=self.initial_query_state)
 
