@@ -31,7 +31,8 @@ class Encoder(object):
 
         initializer_weights = tf.variance_scaling_initializer() #xavier
         initializer_biases = tf.constant_initializer(0.0)
-        self.gru_cell = tf.contrib.rnn.GRUCell(num_hidden, reuse=tf.AUTO_REUSE, kernel_initializer=initializer_weights, bias_initializer=initializer_biases)
+        # https://stackoverflow.com/questions/45456116/valueerror-trying-to-share-variable-enco-gru-cell-gates-kernel-but-specified-s
+        self.gru_cell = tf.contrib.rnn.GRUCell(num_hidden, kernel_initializer=initializer_weights, bias_initializer=initializer_biases)
         #self.zero_state = self.gru_cell.zero_state(batch_size, tf.float32)
 
     def length(self,sequence):
@@ -62,7 +63,8 @@ class Encoder(object):
                 x,
                 dtype=tf.float32,
                 sequence_length=length,
-                initial_state=state)
+                initial_state=state,
+                scope=self.level)
         elif self.level=='session':
             # hoping this is right and GRUs outputs is equivalent to state (second answer)
             # https://stackoverflow.com/questions/39716241/tensorflow-getting-all-states-from-a-rnn
@@ -70,7 +72,8 @@ class Encoder(object):
                 self.gru_cell,
                 [x],
                 dtype=tf.float32,
-                initial_state=state)
+                initial_state=state,
+                scope=self.level)
         else:
             raise BaseException('Values for Encoder.level can only be "query" or "session"')
         return state

@@ -35,7 +35,7 @@ class HERED():
         self.learning_rate = learning_rate
         self.hidden_layers = hidden_layer
         self.query_encoder = Encoder(batch_size = self.batch_size, level='query')
-        self.session_encoder = Encoder(batch_size = self.batch_size, level='session')
+        self.session_encoder = Encoder(batch_size = self.batch_size, level='session', input_dim=1000, num_hidden=1500)
         self.decoder_grucell = Decoder()
 
 

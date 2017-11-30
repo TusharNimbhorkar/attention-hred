@@ -48,15 +48,16 @@ class Decoder(object):
         :return:        query representation tensor [batch_size x max_length x out_size]
         """
         # Initialise recurrent state with session_state
-        state = tf.tanh(tf.reduce_sum(tf.matmul(session_state, self.Do), self.Bo))
+        state = tf.tanh(tf.matmul(tf.squeeze(session_state), tf.transpose(self.Do)) + self.Bo)
         _, state = self.gru_cell(query_encoder_last_state, state)
 
         # Calculate RNN states
+        length = self.length(tf.convert_to_tensor(x))
         _, states = tf.nn.dynamic_rnn(
             self.gru_cell,
             x,
             dtype=tf.float32,
-            sequence_length=self.length(x),
+            sequence_length=length,
             initial_state=state)
 
         return states
