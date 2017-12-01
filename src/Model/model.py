@@ -68,6 +68,7 @@ class HERED():
                                               embedding_dims=self.embedding_dim, data=X)
         y_embedder = layers.get_embedding_layer(vocabulary_size=self.vocab_size,
                                               embedding_dims=self.embedding_dim, data=Y)
+        print(y_embedder.get_shape())
         # Create the query encoder state
         self.initial_query_state = self.query_encoder.compute_state(x=embedder)
         # Create the session state
@@ -82,7 +83,7 @@ class HERED():
                                                       query_encoder_last_state=self.initial_query_state)
 
         logits = layers.output_layer(embedding_dims=self.embedding_dim, vocabulary_size= self.vocab_size, num_hidden= 1000,
-                                     state=self.decoder_state, word=Y)
+                                     state=self.decoder_state, word=y_embedder)
 
         # Calculate the omega function w(d_n-1, w_n-1).
         #  word is the previous word and state the previous hidden state of the decoder
