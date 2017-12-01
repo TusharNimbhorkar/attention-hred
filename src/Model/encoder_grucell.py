@@ -40,7 +40,9 @@ class Encoder(object):
          :sequence: batch of padded length; with zero vectors after eoq_symbol 
          :return:   vector determining length of queries (at what point the eoq_symbol is encountered)
         """
-        used = tf.sign(tf.reduce_max(tf.abs(sequence), 2))
+        print(sequence)
+        used = tf.sign(tf.reduce_max(tf.abs(tf.convert_to_tensor(sequence)), 2))
+        used.shape
         length = tf.reduce_sum(used, 1)
         length = tf.cast(length, tf.int32)
         return length

@@ -54,3 +54,14 @@ def output_layer(embedding_dims, num_hidden, vocabulary_size, state, word):
                                    initializer=tf.truncated_normal(shape=[embedding_dims]))
 
         return tf.matmul(H_ouput, state) + tf.matmul(E_output, word) + b_output
+
+def decoder_initialise_layer(initial_session_state, embedding_dims):
+
+    with tf.variable_scope('decoder_initial_layer', reuse=tf.AUTO_REUSE):
+
+        return tf.contrib.layers.fully_connected(initial_session_state, embedding_dims, activation_fn= tf.nn.tanh,
+                                                 weights_initializer= tf.contrib.layers.xavier_initializer(),
+                                                 biases_initializer=tf.zeros_initializer())
+
+
+

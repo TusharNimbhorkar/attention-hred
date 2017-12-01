@@ -72,10 +72,15 @@ class HERED():
         self.initial_query_state = self.query_encoder.compute_state(x=embedder)
         # Create the session state
         self.initial_session_state = self.session_encoder.compute_state(x=self.initial_query_state)
-        #TODO fix this when the decoder is finished
+
+        self.initial_decoder_state = layers.decoder_initialise_layer(self.initial_session_state, self.embedding_dim)
+
+        # self.initial_decoder_state.shape()
+
         self.decoder_state = self.decoder_grucell.compute_state(x=y_embedder,
-                                                      session_state=self.initial_session_state,
+                                                      session_state=self.initial_decoder_state,
                                                       query_encoder_last_state=self.initial_query_state)
+
 
         logits = layers.output_layer(embedding_dims=self.embedding_dim, vocabulary_size= self.vocab_size, num_hidden= self.hidden_layers,
                                      state=self.decoder_state, word= Y)
