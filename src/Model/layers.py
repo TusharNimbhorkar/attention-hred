@@ -14,7 +14,7 @@ import decoder
 import encoder
 
 
-def get_embedding_layer(vocabulary_size, embedding_dims, data,scope):
+def get_embedding_layer(vocabulary_size, embedding_dims, data, scope):
     """
     Layer to train embeddings and retunr the embeddings for data
     :param vocabulary_size: int for the vocabulary size
@@ -24,10 +24,9 @@ def get_embedding_layer(vocabulary_size, embedding_dims, data,scope):
 
     """
     with tf.variable_scope(scope):
-
-        embeddings_weights= tf.get_variable(name=scope, shape=[vocabulary_size, embedding_dims],
-                                            initializer= tf.random_normal_initializer(mean=0.0,stddev=1.0))
-        word_embeddings= tf.nn.embedding_lookup(embeddings_weights, data)
+        embeddings_weights = tf.get_variable(name=scope, shape=[vocabulary_size, embedding_dims],
+                                             initializer=tf.random_normal_initializer(mean=0.0, stddev=1.0))
+        word_embeddings = tf.nn.embedding_lookup(embeddings_weights, data)
 
         return word_embeddings
 
@@ -47,30 +46,27 @@ def output_layer(embedding_dims, num_hidden, vocabulary_size, state, word):
     with tf.variable_scope('output_layer'):
         # Define the weights H_o, E_o and bias b_o
         H_ouput = tf.get_variable(name='h_output', shape=[embedding_dims, num_hidden],
-                                  initializer=tf.random_normal_initializer(mean=0.0,stddev=1.0))
-        #E_output = tf.get_variable(name='e_output', shape=[embedding_dims, vocabulary_size],
+                                  initializer=tf.random_normal_initializer(mean=0.0, stddev=1.0))
+        # E_output = tf.get_variable(name='e_output', shape=[embedding_dims, vocabulary_size],
         #                           initializer=tf.random_normal_initializer(mean=0.0,stddev=1.0))
         b_output = tf.get_variable(name='b_output', shape=[embedding_dims],
-                                   initializer=tf.truncated_normal_initializer(mean=0.0,stddev=1.0))
+                                   initializer=tf.truncated_normal_initializer(mean=0.0, stddev=1.0))
 
         a = tf.matmul(state, tf.transpose(H_ouput))
         b = tf.cast(word, tf.float32)
         c = b_output
 
-        print(a.get_shape())
-        print(b.get_shape())
-        print(c.get_shape())
+        y_onehot = tf.one_hot(word, vocabulary_size)
 
+        y_embedding_onehot = get_embedding_layer(vocabulary_size=vocabulary_size,
+                                                 embedding_dims=embedding_dims, scope='output_embedding', data=y_onehot)
+        # todo: check this back again
+        # todo: use o/p embedding?
         return tf.matmul(state, tf.transpose(H_ouput)) + tf.transpose(tf.cast(word, tf.float32)) + b_output
 
 
 def decoder_initialise_layer(initial_session_state, hidden_dims):
-
     with tf.variable_scope('decoder_initial_layer', reuse=tf.AUTO_REUSE):
-
-        return tf.contrib.layers.fully_connected(initial_session_state, hidden_dims, activation_fn= tf.nn.tanh,
-                                                 weights_initializer= tf.contrib.layers.xavier_initializer(),
+        return tf.contrib.layers.fully_connected(initial_session_state, hidden_dims, activation_fn=tf.nn.tanh,
+                                                 weights_initializer=tf.contrib.layers.xavier_initializer(),
                                                  biases_initializer=tf.zeros_initializer())
-
-
-
