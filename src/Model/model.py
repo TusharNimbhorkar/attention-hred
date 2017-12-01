@@ -65,9 +65,9 @@ class HERED():
         batch_size = tf.shape(X)[1]
 
         embedder = layers.get_embedding_layer(vocabulary_size=self.vocab_size,
-                                              embedding_dims=self.embedding_dim, data=X)
+                                              embedding_dims=self.embedding_dim, data=X,scope='X_embedder')
         y_embedder = layers.get_embedding_layer(vocabulary_size=self.vocab_size,
-                                              embedding_dims=self.embedding_dim, data=Y)
+                                              embedding_dims=self.embedding_dim, data=Y,scope = 'Y_embedder')
         print(y_embedder.get_shape())
         # Create the query encoder state
         self.initial_query_state = self.query_encoder.compute_state(x=embedder)

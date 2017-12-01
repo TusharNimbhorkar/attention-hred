@@ -14,7 +14,7 @@ import decoder
 import encoder
 
 
-def get_embedding_layer(vocabulary_size, embedding_dims, data):
+def get_embedding_layer(vocabulary_size, embedding_dims, data,scope):
     """
     Layer to train embeddings and retunr the embeddings for data
     :param vocabulary_size: int for the vocabulary size
@@ -23,9 +23,9 @@ def get_embedding_layer(vocabulary_size, embedding_dims, data):
     :return: embeddings for data
 
     """
-    with tf.variable_scope('embedding_layer', reuse=tf.AUTO_REUSE):
+    with tf.variable_scope(scope):
 
-        embeddings_weights= tf.get_variable(name='embeddings', shape=[vocabulary_size, embedding_dims],
+        embeddings_weights= tf.get_variable(name=scope, shape=[vocabulary_size, embedding_dims],
                                             initializer= tf.random_normal_initializer(mean=0.0,stddev=1.0))
         word_embeddings= tf.nn.embedding_lookup(embeddings_weights, data)
 
