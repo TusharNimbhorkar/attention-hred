@@ -82,7 +82,7 @@ class HERED():
                                                       query_encoder_last_state=self.initial_query_state)
 
 
-        logits = layers.output_layer(embedding_dims=self.embedding_dim, vocabulary_size= self.vocab_size, num_hidden= self.hidden_layers,
+        logits = layers.output_layer(embedding_dims=self.embedding_dim, vocabulary_size= self.vocab_size, num_hidden= 1000,
                                      state=self.decoder_state, word= Y)
 
         # Calculate the omega function w(d_n-1, w_n-1).
