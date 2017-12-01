@@ -81,9 +81,8 @@ class HERED():
                                                       session_state=self.initial_decoder_state,
                                                       query_encoder_last_state=self.initial_query_state)
 
-
         logits = layers.output_layer(embedding_dims=self.embedding_dim, vocabulary_size= self.vocab_size, num_hidden= 1000,
-                                     state=self.decoder_state, word= Y)
+                                     state=self.decoder_state, word=Y)
 
         # Calculate the omega function w(d_n-1, w_n-1).
         #  word is the previous word and state the previous hidden state of the decoder
@@ -101,6 +100,7 @@ class HERED():
         outputs, self.decoder_state = self.decoder_grucell.compute_prediction(session_state=self.initial_session_state,
                                                                             query_encoder_last_state=self.initial_query_state,
                                                                             sequence_length=10)# todo set sequen_length=max_size
+
         logits = layers.output_layer(embedding_dims=self.embedding_dim, vocabulary_size= self.vocab_size, num_hidden= self.hidden_layers,
                                      state=self.decoder_state, word=outputs)
 

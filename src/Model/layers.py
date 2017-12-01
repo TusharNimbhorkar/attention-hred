@@ -48,12 +48,20 @@ def output_layer(embedding_dims, num_hidden, vocabulary_size, state, word):
         # Define the weights H_o, E_o and bias b_o
         H_ouput = tf.get_variable(name='h_output', shape=[embedding_dims, num_hidden],
                                   initializer=tf.random_normal_initializer(mean=0.0,stddev=1.0))
-        E_output = tf.get_variable(name='e_output', shape=[embedding_dims, vocabulary_size],
-                                   initializer=tf.random_normal_initializer(mean=0.0,stddev=1.0))
+        #E_output = tf.get_variable(name='e_output', shape=[embedding_dims, vocabulary_size],
+        #                           initializer=tf.random_normal_initializer(mean=0.0,stddev=1.0))
         b_output = tf.get_variable(name='b_output', shape=[embedding_dims],
                                    initializer=tf.truncated_normal_initializer(mean=0.0,stddev=1.0))
 
-        return tf.transpose(tf.matmul(H_ouput, tf.transpose(state)) + tf.matmul(E_output, tf.cast(word, tf.float32))) + b_output
+        a = tf.matmul(H_ouput, tf.transpose(state))
+        b = tf.cast(word, tf.float32)
+        c = b_output
+
+        print(a.get_shape())
+        print(b.get_shape())
+        print(c.get_shape())
+
+        return tf.transpose(tf.matmul(H_ouput, tf.transpose(state))) + tf.cast(word, tf.float32) + b_output
 
 
 def decoder_initialise_layer(initial_session_state, hidden_dims):

@@ -115,6 +115,7 @@ class Train(object):
                 t1 = time.time()
 
                 x_batch, y_batch, seq_len = self.get_batch(dataset='train')
+
                 feed_dict = {
                     self.X: x_batch,
                     self.Y: y_batch
