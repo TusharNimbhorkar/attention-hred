@@ -51,6 +51,8 @@ class Decoder(object):
         # state = tf.tanh(tf.matmul(tf.squeeze(session_state), tf.transpose(self.Do)) + self.Bo)
         # _, state = self.gru_cell(query_encoder_last_state, state)
 
+        # TODO: check that the x is right because maybe the decoder is not reusing its outputs
+
         # Calculate RNN states
         length = self.length(tf.convert_to_tensor(x))
         _, states = tf.nn.dynamic_rnn(

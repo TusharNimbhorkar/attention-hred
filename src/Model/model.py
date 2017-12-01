@@ -66,9 +66,10 @@ class HERED():
 
         embedder = layers.get_embedding_layer(vocabulary_size=self.vocab_size,
                                               embedding_dims=self.embedding_dim, data=X,scope='X_embedder')
+        # TODO: this should be for the output of the decoder
         y_embedder = layers.get_embedding_layer(vocabulary_size=self.vocab_size,
-                                              embedding_dims=self.embedding_dim, data=Y,scope = 'Y_embedder')
-        print(y_embedder.get_shape())
+                                            embedding_dims=self.embedding_dim, data=Y, scope = 'Y_embedder')
+
         # Create the query encoder state
         self.initial_query_state = self.query_encoder.compute_state(x=embedder)
         # Create the session state
@@ -76,20 +77,19 @@ class HERED():
         # todo make variable for 1000 here
         self.initial_decoder_state = layers.decoder_initialise_layer(self.initial_session_state[0], 1000)
 
-        # self.initial_decoder_state.shape()
-
+        # TODO: it seems that decoder is not currently reusing its output
         self.decoder_state = self.decoder_grucell.compute_state(x=y_embedder,
                                                       session_state=self.initial_decoder_state,
                                                       query_encoder_last_state=self.initial_query_state)
 
-        logits = layers.output_layer(embedding_dims=self.embedding_dim, vocabulary_size= self.vocab_size, num_hidden= 1000,
-                                     state=self.decoder_state, word=y_embedder)
-
         # Calculate the omega function w(d_n-1, w_n-1).
-        #  word is the previous word and state the previous hidden state of the decoder
-        #w = layers.output_layer(self.embedding_dim, self.decoder_dim, self.vocab_size, state, word)
+        omega = layers.output_layer(embedding_dims=self.embedding_dim, vocabulary_size= self.vocab_size, num_hidden= 1000,
+                                     state=self.decoder_state, word=Y)
 
-        return logits
+        #TODO: do dot product between omega and embeddings of decoder output
+
+
+        return omega
 
     def get_predictions(self, X):
         embedder = layers.get_embedding_layer(vocabulary_size=self.vocab_size,

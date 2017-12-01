@@ -52,17 +52,13 @@ def output_layer(embedding_dims, num_hidden, vocabulary_size, state, word):
         b_output = tf.get_variable(name='b_output', shape=[embedding_dims],
                                    initializer=tf.truncated_normal_initializer(mean=0.0, stddev=1.0))
 
-        a = tf.matmul(state, tf.transpose(H_ouput))
-        b = tf.cast(word, tf.float32)
-        c = b_output
-
         y_onehot = tf.one_hot(word, vocabulary_size)
 
         y_embedding_onehot = get_embedding_layer(vocabulary_size=vocabulary_size,
                                                  embedding_dims=embedding_dims, scope='output_embedding', data=y_onehot)
         # todo: check this back again
         # todo: use o/p embedding?
-        return tf.matmul(state, tf.transpose(H_ouput)) + tf.transpose(tf.cast(word, tf.float32)) + b_output
+        return tf.matmul(state, tf.transpose(H_ouput)) + tf.transpose(tf.cast(y_embedding_onehot, tf.float32)) + b_output
 
 
 def decoder_initialise_layer(initial_session_state, hidden_dims):
