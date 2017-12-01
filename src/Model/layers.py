@@ -53,7 +53,7 @@ def output_layer(embedding_dims, num_hidden, vocabulary_size, state, word):
         b_output = tf.get_variable(name='b_output', shape=[embedding_dims],
                                    initializer=tf.truncated_normal_initializer(mean=0.0,stddev=1.0))
 
-        a = tf.matmul(H_ouput, tf.transpose(state))
+        a = tf.matmul(state, tf.transpose(H_ouput))
         b = tf.cast(word, tf.float32)
         c = b_output
 
@@ -61,7 +61,7 @@ def output_layer(embedding_dims, num_hidden, vocabulary_size, state, word):
         print(b.get_shape())
         print(c.get_shape())
 
-        return tf.transpose(tf.matmul(H_ouput, tf.transpose(state))) + tf.transpose(tf.cast(word, tf.float32)) + b_output
+        return tf.matmul(state, tf.transpose(H_ouput)) + tf.transpose(tf.cast(word, tf.float32)) + b_output
 
 
 def decoder_initialise_layer(initial_session_state, hidden_dims):
