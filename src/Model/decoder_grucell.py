@@ -41,15 +41,15 @@ class Decoder(object):
         length = tf.cast(length, tf.int32)
         return length
 
-    def compute_state(self, x, session_state, query_encoder_last_state):
+    def compute_state(self, x, session_state, query_encoder_last_state=None):
         """
         :x:             query/session batch of padded length [batch_size x in_size]
         :session_state: state to initialise the recurrent state of the decoder
         :return:        query representation tensor [batch_size x in_size]
         """
         # Initialise recurrent state with session_state
-        state = tf.tanh(tf.matmul(tf.squeeze(session_state), tf.transpose(self.Do)) + self.Bo)
-        _, state = self.gru_cell(query_encoder_last_state, state)
+        # state = tf.tanh(tf.matmul(tf.squeeze(session_state), tf.transpose(self.Do)) + self.Bo)
+        # _, state = self.gru_cell(query_encoder_last_state, state)
 
         # Calculate RNN states
         length = self.length(tf.convert_to_tensor(x))
@@ -58,7 +58,7 @@ class Decoder(object):
             x,
             dtype=tf.float32,
             sequence_length=length,
-            initial_state=state)
+            initial_state=session_state)
 
         return states
 

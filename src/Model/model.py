@@ -72,8 +72,8 @@ class HERED():
         self.initial_query_state = self.query_encoder.compute_state(x=embedder)
         # Create the session state
         self.initial_session_state = self.session_encoder.compute_state(x=self.initial_query_state)
-
-        self.initial_decoder_state = layers.decoder_initialise_layer(self.initial_session_state, self.embedding_dim)
+        # todo make variable for 1000 here
+        self.initial_decoder_state = layers.decoder_initialise_layer(self.initial_session_state[0], 1000)
 
         # self.initial_decoder_state.shape()
 
