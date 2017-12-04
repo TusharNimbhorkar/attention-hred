@@ -61,14 +61,12 @@ class HERED():
         # call here tf.scan for each.
         # see if we should add an additional output layer after decoder.
 
-        num_of_steps = tf.shape(X)[0]
-        batch_size = tf.shape(X)[1]
+        # num_of_steps = tf.shape(X)[0]
+        # batch_size = tf.shape(X)[1]
 
         embedder = layers.get_embedding_layer(vocabulary_size=self.vocab_size,
                                               embedding_dims=self.embedding_dim, data=X,scope='X_embedder')
-        # TODO: this should be for the output of the decoder
-        y_embedder = layers.get_embedding_layer(vocabulary_size=self.vocab_size,
-                                            embedding_dims=self.embedding_dim, data=Y, scope = 'Y_embedder')
+
 
         # Create the query encoder state
         self.initial_query_state = self.query_encoder.compute_state(x=embedder)
@@ -77,19 +75,21 @@ class HERED():
         # todo make variable for 1000 here
         self.initial_decoder_state = layers.decoder_initialise_layer(self.initial_session_state[0], 1000)
 
-        # TODO: it seems that decoder is not currently reusing its output
+        # TODO: it seems that decoder is not currently reusing its output (ALL)
         self.decoder_state = self.decoder_grucell.compute_state(x=y_embedder,
-                                                      session_state=self.initial_decoder_state,
-                                                      query_encoder_last_state=self.initial_query_state)
-
+                                                      session_state=self.initial_decoder_state)
+        #TODO change the dimensions of the layer so we can handle the entire batch
         # Calculate the omega function w(d_n-1, w_n-1).
         omega = layers.output_layer(embedding_dims=self.embedding_dim, vocabulary_size= self.vocab_size, num_hidden= 1000,
-                                     state=self.decoder_state, word=Y)
+                                     state=self.decoder_state, word=Y) #previous word
+        #TODO change dimensions
+        y_embedder = layers.get_embedding_layer(vocabulary_size=self.vocab_size,
+                                                embedding_dims=self.embedding_dim, data=Y, scope='Y_embedder')
 
-        #TODO: do dot product between omega and embeddings of decoder output
+        #dot product between omega and embeddings of decoder output
+        logits = tf.matmul(omega, y_embedder)
 
-
-        return omega
+        return logits
 
     def get_predictions(self, X):
         embedder = layers.get_embedding_layer(vocabulary_size=self.vocab_size,

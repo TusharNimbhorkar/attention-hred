@@ -66,8 +66,8 @@ class Train(object):
                            eoq_symbol=EOQ_SYMBOL, eos_symbol=EOS_SYMBOL, unk_symbol=UNK_SYMBOL,
                            learning_rate=self.config.learning_rate)
 
-        self.X = tf.placeholder(tf.int64, shape=(None, None))
-        self.Y = tf.placeholder(tf.int64, shape=(None, None))
+        self.X = tf.placeholder(tf.int64, shape=(None, config.max_length))
+        self.Y = tf.placeholder(tf.int64, shape=(None, config.max_length))
         # todo check this
         self.logits = self.HERED.inference(self.X,self.Y)
         self.loss = self.HERED.get_loss(self.logits, self.Y)

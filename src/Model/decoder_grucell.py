@@ -54,14 +54,12 @@ class Decoder(object):
         # TODO: check that the x is right because maybe the decoder is not reusing its outputs
 
         # Calculate RNN states
-        length = self.length(tf.convert_to_tensor(x))
-        _, states = tf.nn.dynamic_rnn(
+        # length = self.length(tf.convert_to_tensor(x))
+        _, states = tf.nn.static_rnn(
             self.gru_cell,
-            x,
+            [x],
             dtype=tf.float32,
-            sequence_length=length,
-            initial_state=session_state)
-
+            initial_state= session_state)
         return states
 
     def compute_prediction(self, session_state, query_encoder_last_state, sequence_length):
