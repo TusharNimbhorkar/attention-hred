@@ -34,7 +34,7 @@ class Decoder(object):
          :sequence: batch of padded length; with zero vectors after eoq_symbol 
          :return:   vector determining length of queries (at what point the eoq_symbol is encountered)
         """
-        used = tf.sign(tf.reduce_max(tf.abs(sequence), 2))
+        used = tf.sign(tf.reduce_max(tf.abs(tf.convert_to_tensor(sequence)), 2))
         length = tf.reduce_sum(used, 1)
         length = tf.cast(length, tf.int32)
         return length
@@ -74,7 +74,12 @@ class Decoder(object):
         c = lambda o,s,os,ss,i: tf.greater(i, 0)
         b = lambda o,s,os,ss,i: self.concat_fn(o,s,os,ss,i)
 
-        _, _, outputs, states, _ = tf.while_loop(cond=c, body=b,loop_vars=(output,state,outputs,states,sequence_length),name='while')
+        _, _, outputs, states, _ = tf.while_loop(cond=c, body=b,loop_vars=(output,state,outputs,states,sequence_length),
+                                                 name='while',shape_invariants=[tf.TensorShape([50, 1000]),
+                                                                                tf.TensorShape([50, 1000]),
+                                                                                tf.TensorShape([50, 1000, None]),
+                                                                                tf.TensorShape([50, 1000, None]),
+                                                                                tf.TensorShape((None))])
 
         #
         # while stop_after>0:
@@ -86,8 +91,8 @@ class Decoder(object):
 
     def concat_fn(self,output,state,outputs,states,seq_len):
         output, state = self.gru_cell(output, state)
-        outputs = tf.concat([outputs, tf.expand_dims(output, 2)], 2)
-        states  = tf.concat([states, tf.expand_dims(state, 2)], 2)
+        outputs = tf.concat([outputs, tf.expand_dims(output, 1)], 2)
+        states  = tf.concat([states, tf.expand_dims(state, 1)], 2)
         seq_len = tf.subtract(seq_len, 1)
         return output,state,outputs,states,seq_len
 
