@@ -110,7 +110,7 @@ class HERED():
         y_embedder = layers.get_embedding_layer(vocabulary_size=self.vocab_size,
                                                 embedding_dims=self.embedding_dim, data=result, scope='Y_embedder')
 
-        #dot product between omega and embeddings of decoder output
+        # Dot product between omega and embeddings of decoder output
         logits = tf.matmul(omega, y_embedder)
 
         return logits

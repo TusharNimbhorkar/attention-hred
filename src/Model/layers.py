@@ -10,8 +10,6 @@ File to implement the methods that describe each layer needed for the model.
 
 import tensorflow as tf
 import numpy as np
-import decoder
-import encoder
 
 
 def get_embedding_layer(vocabulary_size, embedding_dims, data, scope):
@@ -74,3 +72,29 @@ def decoder_initialise_layer(initial_session_state, hidden_dims):
         return tf.contrib.layers.fully_connected(initial_session_state, hidden_dims, activation_fn=tf.nn.tanh,
                                                  weights_initializer=tf.contrib.layers.xavier_initializer(),
                                                  biases_initializer=tf.zeros_initializer())
+
+
+def attention_context_layer(query_state, decoder_state):
+    """
+    Fully connected layer to calculate the attention scores (alignment model). For score(h_{n-1}, q_j), query_state is
+    q_j and decoder state is h_{n-1}, so the current decoder state. Returns the attention state.
+
+    :param query_state: query encoder hidden state
+    :return:
+    """
+
+
+
+def context_vector(query_states):
+    """
+    Layer to create the context vector c_i for attention. It is the sum over the weighted combination of queries.
+
+    This context layer receives the hidden states of the query encoder as input and outputs a context vector ct.
+    :param query_states: the query-level hidden states for the queries in the session
+    :return:
+    """
+    # TODO: how would this work? How to make sure that the states are the ones for the queries in the session
+    weights = attention_context_layer(query_state, decoder_state) # TODO not right
+    context = tf.reduce_sum(weights * query_states)
+
+    return context
