@@ -66,15 +66,15 @@ class Decoder(object):
         :query_encoder_last_state: last encoder state of the previous query to be used as first input
         """
         output, state = self.gru_cell(query_encoder_last_state, first_state)
-        outputs = output
-        states = state
+        outputs = tf.expand_dims(output, 2)
+        states = tf.expand_dims(state, 2)
         # Calculate RNN states
         # stop_after = sequence_length
 
         c = lambda o,s,os,ss,i: tf.greater(i, 0)
         b = lambda o,s,os,ss,i: self.concat_fn(o,s,os,ss,i)
 
-        output, state, outputs, states, _ = tf.while_loop(cond=c, body=b,loop_vars=(output,state,outputs,states,sequence_length),name='while')
+        _, _, outputs, states, _ = tf.while_loop(cond=c, body=b,loop_vars=(output,state,outputs,states,sequence_length),name='while')
 
         #
         # while stop_after>0:
@@ -86,8 +86,8 @@ class Decoder(object):
 
     def concat_fn(self,output,state,outputs,states,seq_len):
         output, state = self.gru_cell(output, state)
-        tf.concat([outputs, output], 1)
-        tf.concat([states, state], 1)
+        outputs = tf.concat([outputs, tf.expand_dims(output, 2)], 2)
+        states  = tf.concat([states, tf.expand_dims(state, 2)], 2)
         seq_len = tf.subtract(seq_len, 1)
         return output,state,outputs,states,seq_len
 
