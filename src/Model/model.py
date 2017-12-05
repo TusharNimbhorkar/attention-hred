@@ -84,12 +84,14 @@ class HERED():
             sequence_length=sequence_max_length)
 
         # Remove mask from outputs of decoder
+        # todo: cant slice with None, Make slicing with NOne dimension? how.
+
         print(self.decoder_outputs.shape)
         mask = self.decoder_grucell.length(embedder)  # get length for every example in the batch
         dec_out = self.decoder_outputs.get_shape()[2]
-        result = tf.slice(self.decoder_outputs, tf.convert_to_tensor([0, 0, 0], dtype=tf.int32),
-                          tf.convert_to_tensor([0, tf.gather(mask, tf.constant(0)),
-                                                dec_out], dtype=tf.int32))
+        result = tf.slice(self.decoder_outputs, tf.convert_to_tensor(np.array([0, 0, 0]), dtype=tf.int32),
+                          tf.convert_to_tensor(np.array([tf.constant(0), tf.gather(mask, tf.constant(0)),
+                                                dec_out]), dtype=tf.int32))
         # result = tf.slice(self.decoder_outputs, [0, 0, 0], [0, tf.gather(mask, tf.convert_to_tensor(0)), dec_out])
 
         result = tf.reshape(result, [-1, dec_out])
