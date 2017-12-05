@@ -86,12 +86,13 @@ class HERED():
         # Remove mask from outputs of decoder
         print(self.decoder_outputs.shape)
         mask = self.decoder_grucell.length(embedder)  # get length for every example in the batch
-        result = tf.slice(self.decoder_outputs, [0, 0, 0], [0, tf.gather(mask, tf.convert_to_tensor(0)), self.decoder_outputs.get_shape(2)])
-        result = tf.reshape(result, [-1, self.decoder_outputs.get_shape(2)])
+        dec_out = self.decoder_outputs.get_shape()[2]
+        result = tf.slice(self.decoder_outputs, [0, 0, 0], [0, tf.gather(mask, tf.convert_to_tensor(0)), dec_out])
+        result = tf.reshape(result, [-1, dec_out])
         for i in range(1, self.batch_size):
             example = tf.slice(self.decoder_outputs, [i, 0, 0],
-                               [i, tf.gather(mask, tf.convert_to_tensor(i)), self.decoder_outputs.get_shape(2)])
-            example = tf.reshape(example, [-1, self.decoder_outputs.get_shape(2)])
+                               [i, tf.gather(mask, tf.convert_to_tensor(i)), dec_out])
+            example = tf.reshape(example, [-1, dec_out])
             result = tf.concat([result, example], 0)
 
         # Shift y
