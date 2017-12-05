@@ -74,27 +74,22 @@ def decoder_initialise_layer(initial_session_state, hidden_dims):
                                                  biases_initializer=tf.zeros_initializer())
 
 
-def attention_context_layer(query_state, decoder_state):
+def attention_context_layer(query_state, decoder_state, decoder_dims, encoder_dims):
     """
     Fully connected layer to calculate the attention scores (alignment model). For score(h_{n-1}, q_j), query_state is
-    q_j and decoder state is h_{n-1}, so the current decoder state. Returns the attention state.
+    q_j and decoder state is h_{n-1}, so the current decoder state. Returns the attention.
 
-    :param query_state: query encoder hidden state
-    :return:
+    :param query_state: the query-level hidden states for the queries in the session
+    :param decoder_state: current decoder output
+    :return: context vector
     """
+    #TODO: what should be the dimensions of attention
 
+    w = tf.get_variable(name='weight', shape=(decoder_dims, encoder_dims),
+                        initializer=tf.random_normal_initializer(stddev=0.01))
 
-
-def context_vector(query_states):
-    """
-    Layer to create the context vector c_i for attention. It is the sum over the weighted combination of queries.
-
-    This context layer receives the hidden states of the query encoder as input and outputs a context vector ct.
-    :param query_states: the query-level hidden states for the queries in the session
-    :return:
-    """
     # TODO: how would this work? How to make sure that the states are the ones for the queries in the session
-    weights = attention_context_layer(query_state, decoder_state) # TODO not right
+    weights = tf.nn.softmax(query_state * W * decoder_state)  # TODO: use matmul
     context = tf.reduce_sum(weights * query_states)
 
     return context
