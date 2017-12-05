@@ -66,7 +66,7 @@ class Train(object):
                            eoq_symbol=EOQ_SYMBOL, eos_symbol=EOS_SYMBOL, unk_symbol=UNK_SYMBOL,
                            learning_rate=self.config.learning_rate)
 
-        self.X = tf.placeholder(tf.int64, shape=(None, None))
+        self.X = tf.placeholder(tf.int64, shape=(None, None)) #(BS,seq_len)
         self.Y = tf.placeholder(tf.int64, shape=(None, None))
         self.sequence_max_length = tf.placeholder(tf.int64)
         # todo check this
