@@ -65,7 +65,6 @@ class Decoder(object):
         :session_state:            state to initialize the recurrent state of the decoder
         :query_encoder_last_state: last encoder state of the previous query to be used as first input
         """
-
         output, state = self.gru_cell(query_encoder_last_state, first_state)
         outputs = output
         states = state
