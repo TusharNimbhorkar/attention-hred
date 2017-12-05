@@ -27,9 +27,7 @@ class Decoder(object):
         initializer_biases = tf.constant_initializer(0.0)
 
         self.gru_cell = tf.contrib.rnn.GRUCell(num_hidden_query, kernel_initializer=initializer_weights, bias_initializer=initializer_biases)
-        # Weights for initial recurrent state
-        self.Bo = tf.get_variable(shape= [self.num_hidden_query], initializer= initializer_biases, name= 'Bo')
-        self.Do = tf.get_variable(shape= [self.num_hidden_query, self.num_hidden_session], initializer= initializer_biases, name= 'Do' )
+
 
     def length(self,sequence):
         """
@@ -62,26 +60,23 @@ class Decoder(object):
             initial_state= session_state)
         return states
 
-    def compute_prediction(self, session_state, query_encoder_last_state, sequence_length):
+    def compute_prediction(self, first_state, query_encoder_last_state, sequence_length):
         """
         :session_state:            state to initialize the recurrent state of the decoder
         :query_encoder_last_state: last encoder state of the previous query to be used as first input
         """
-        outputs       = []
-        state         = tf.tanh(tf.reduce_sum(tf.matmul(session_state, self.Do), self.Bo))
-        output, state = self.gru_cell(query_encoder_last_state, state)
-        output        = self.prediction(output)
-        outputs.append(output)
 
+        output, state = self.gru_cell(query_encoder_last_state, first_state)
+        outputs = output
+        states = state
         # Calculate RNN states
-        # TODO: how do I check that the output is the eoq_symbol!! (or do I only run seq_length and we will see afterwards)
         stop_after = sequence_length
         while stop_after>0:
             output, state = self.gru_cell(output, state)
-            output        = self.prediction(output)
-            outputs.append(output)
+            tf.concat(outputs, output)
+            tf.concat(states, state)
             stop_after -= 1
-        return outputs
+        return outputs, states
 
     def check_if_eoq(self, gru_output):
         # Check if the output is the end of query symbol

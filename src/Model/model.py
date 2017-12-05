@@ -56,7 +56,7 @@ class HERED():
                                                       session_state=self.initial_session_state)
 
 
-    def inference(self, X, Y):
+    def inference(self, X, Y, sequence_max_length):
 
         # call here tf.scan for each.
         # see if we should add an additional output layer after decoder.
@@ -72,15 +72,18 @@ class HERED():
         self.initial_query_state = self.query_encoder.compute_state(x=embedder)
         # Create the session state
         self.initial_session_state = self.session_encoder.compute_state(x=self.initial_query_state)
-        # todo make variable for 1000 here
-        self.initial_decoder_state = layers.decoder_initialise_layer(self.initial_session_state[0], 1000)
+
+        self.initial_decoder_state = layers.decoder_initialise_layer(self.initial_session_state[0],self.decoder_dim)
 
         # TODO: it seems that decoder is not currently reusing its output (ALL)
-        self.decoder_state = self.decoder_grucell.compute_state(x=y_embedder,
-                                                      session_state=self.initial_decoder_state)
-        #TODO change the dimensions of the layer so we can handle the entire batch
+        self.decoder_outputs, self.decoder_states = self.decoder_grucell.compute_prediction(first_state =self.initial_decoder_state,
+                                                                                            query_encoder_last_state =self.initial_query_state,
+                                                                                            sequence_length = sequence_max_length)
+
+        #Remove mask from outputs of decoder
+
         # Calculate the omega function w(d_n-1, w_n-1).
-        omega = layers.output_layer(embedding_dims=self.embedding_dim, vocabulary_size= self.vocab_size, num_hidden= 1000,
+        omega = layers.output_layer(embedding_dims=self.embedding_dim, vocabulary_size= self.vocab_size, num_hidden= self.decoder_dim,
                                      state=self.decoder_state, word=Y) #previous word
         #TODO change dimensions
         y_embedder = layers.get_embedding_layer(vocabulary_size=self.vocab_size,
