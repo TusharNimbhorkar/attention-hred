@@ -72,7 +72,7 @@ class Decoder(object):
         # stop_after = sequence_length
 
         c = lambda o,s,os,ss,i: tf.greater(i, 0)
-        b = lambda o,s,os,ss,i,: self.concat_fn(o,s,os,ss,i)
+        b = lambda o,s,os,ss,i: self.concat_fn(o,s,os,ss,i)
 
         output, state, outputs, states, _ = tf.while_loop(cond=c, body=b,loop_vars=(output,state,outputs,states,sequence_length),name='while')
 
