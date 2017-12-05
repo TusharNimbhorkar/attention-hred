@@ -68,8 +68,9 @@ class Train(object):
 
         self.X = tf.placeholder(tf.int64, shape=(None, config.max_length))
         self.Y = tf.placeholder(tf.int64, shape=(None, config.max_length))
+        self.sequence_max_length = tf.placeholder(tf.int64)
         # todo check this
-        self.logits = self.HERED.inference(self.X,self.Y)
+        self.logits = self.HERED.inference(self.X,self.Y,self.sequence_max_length)
         self.loss = self.HERED.get_loss(self.logits, self.Y)
         # self.loss_val = tf.placeholder(tf.float32)
 
@@ -104,7 +105,9 @@ class Train(object):
             x_batch, y_batch, seq_len = self.get_batch(dataset='train')
             feed_dict = {
                 self.X: x_batch,
-                self.Y: y_batch
+                self.Y: y_batch,
+                self.sequence_max_length : seq_len
+
             }
             # todo ?
             #sess.run([self.HERED.initialise], feed_dict=feed_dict)
@@ -118,7 +121,8 @@ class Train(object):
 
                 feed_dict = {
                     self.X: x_batch,
-                    self.Y: y_batch
+                    self.Y: y_batch,
+                    self.sequence_max_length : seq_len
                 }
                 # logits_ = sess.run([self.logits],feed_dict=feed_dict)
                 # loss_value,_ = sess.run([self.loss,self.optimizer],)
