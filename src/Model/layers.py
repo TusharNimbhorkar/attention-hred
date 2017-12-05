@@ -62,6 +62,14 @@ def output_layer(embedding_dims, num_hidden, vocabulary_size, state, word):
 
 
 def decoder_initialise_layer(initial_session_state, hidden_dims):
+    """
+    Function to train the weights for the decoder init state d = tanh(D_0 * s_{m-1} + b_0
+
+    :param initial_session_state: initial session state to initialise the decoder
+    :param hidden_dims: the hidden dimensions of the RNN
+    :return: returns the fully connected layer used to initialise the decoder
+    """
+
     with tf.variable_scope('decoder_initial_layer', reuse=tf.AUTO_REUSE):
         return tf.contrib.layers.fully_connected(initial_session_state, hidden_dims, activation_fn=tf.nn.tanh,
                                                  weights_initializer=tf.contrib.layers.xavier_initializer(),

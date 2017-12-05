@@ -29,7 +29,7 @@ class Decoder(object):
         self.gru_cell = tf.contrib.rnn.GRUCell(num_hidden_query, kernel_initializer=initializer_weights, bias_initializer=initializer_biases)
 
 
-    def length(self,sequence):
+    def length(self, sequence):
         """
          :sequence: batch of padded length; with zero vectors after eoq_symbol 
          :return:   vector determining length of queries (at what point the eoq_symbol is encountered)

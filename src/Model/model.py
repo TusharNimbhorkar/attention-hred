@@ -39,17 +39,18 @@ class HERED():
         self.decoder_grucell = Decoder()
 
 
-
-        # create objects for query encoder, session encoder and decoder.
-        # raise NotImplementedError
     def initialise(self, X):
+        """
+        Function to initialise the architecture. It runs until a session state is created.
+        :param X: input data batch
+        """
 
-        #Create the embeddings
+        # Create the embeddings
         embedder = layers.get_embedding_layer(vocabulary_size=self.vocab_size,
                                               embedding_dims=self.embedding_dim, data=X)
-        #Create the query encoder state
+        # Create the query encoder state
         states = self.query_encoder.compute_state(x=embedder)
-        #Create the session state
+        # Create the session state
         self.initial_session_state = self.session_encoder.compute_state(x=self.initial_query_state)
 
         self.decoder_state = self.decoder_grucell.compute_state(x=self.initial_query_state,
@@ -58,43 +59,46 @@ class HERED():
 
     def inference(self, X, Y, sequence_max_length):
 
-        # call here tf.scan for each.
-        # see if we should add an additional output layer after decoder.
-
-        # num_of_steps = tf.shape(X)[0]
-        # batch_size = tf.shape(X)[1]
+        """
+        Function to run the model.
+        :param X: data batch [batch_size x max_seq]
+        :param Y: target batch
+        :param sequence_max_length: max_seq of the batch
+        :return: logits [N, hidden size] where N is the number of words (including eoq) in the batch
+        """
 
         embedder = layers.get_embedding_layer(vocabulary_size=self.vocab_size,
                                               embedding_dims=self.embedding_dim, data=X,scope='X_embedder')
 
-
         # Create the query encoder state
-        self.initial_query_state = self.query_encoder.compute_state(x=embedder)
+        self.initial_query_state = self.query_encoder.compute_state(x=embedder)  # batch_size x query_dims
         # Create the session state
-        self.initial_session_state = self.session_encoder.compute_state(x=self.initial_query_state)
+        self.initial_session_state = self.session_encoder.compute_state(x=self.initial_query_state)  # batch_size x session_dims
+        # Create the initial decoder state
+        self.initial_decoder_state = layers.decoder_initialise_layer(self.initial_session_state[0], self.decoder_dim)  # batch_size x decoder_dims
 
-        self.initial_decoder_state = layers.decoder_initialise_layer(self.initial_session_state[0],self.decoder_dim)
+        # Run decoder and retrieve outputs and states for all timesteps
+        self.decoder_outputs, self.decoder_states = self.decoder_grucell.compute_prediction(  # batch size x timesteps x output_size
+            first_state=self.initial_decoder_state,
+            query_encoder_last_state=self.initial_query_state,
+            sequence_length=sequence_max_length)
 
-
-        self.decoder_outputs, self.decoder_states = self.decoder_grucell.compute_prediction(first_state =self.initial_decoder_state,
-                                                                                            query_encoder_last_state =self.initial_query_state,
-                                                                                            sequence_length = sequence_max_length)
-
-        #Remove mask from outputs of decoder
-        mask = self.decoder_grucell.length(Y)
-        result = tf.slice([0,0,0],[0,tf.gather(mask,tf.convert_to_tensor(0)),self.decoder_outputs.get_shape(2)])
-        result = tf.reshape(result,[-1,self.decoder_outputs.get_shape(2)])
+        # Remove mask from outputs of decoder
+        mask = self.decoder_grucell.length(Y)  # get length for every example in the batch
+        result = tf.slice(self.decoder_outputs, [0, 0, 0], [0, tf.gather(mask, tf.convert_to_tensor(0)), self.decoder_outputs.get_shape(2)])
+        result = tf.reshape(result, [-1, self.decoder_outputs.get_shape(2)])
         for i in range(1, self.batch_size):
-            example =  tf.slice([i,0,0],[i,tf.gather(mask,tf.convert_to_tensor(i)),self.decoder_outputs.get_shape(2)])
+            example = tf.slice(self.decoder_outputs, [i, 0, 0],
+                               [i, tf.gather(mask, tf.convert_to_tensor(i)), self.decoder_outputs.get_shape(2)])
             example = tf.reshape(example, [-1, self.decoder_outputs.get_shape(2)])
-            result = tf.concat([result, example],0)
+            result = tf.concat([result, example], 0)
 
-        #Shift y
-        y_shifted =tf.concat([tf.zeros(self.batch_size, 1),Y],1)
+        # Shift y
+        y_shifted = tf.concat([tf.zeros(self.batch_size, 1), Y], 1)
         # Calculate the omega function w(d_n-1, w_n-1).
         omega = layers.output_layer(embedding_dims=self.embedding_dim, vocabulary_size= self.vocab_size, num_hidden= self.decoder_dim,
                                      state=self.decoder_state, word=y_shifted) #previous word
-
+        # Get embeddings for decoder output
         y_embedder = layers.get_embedding_layer(vocabulary_size=self.vocab_size,
                                                 embedding_dims=self.embedding_dim, data=result, scope='Y_embedder')
 
