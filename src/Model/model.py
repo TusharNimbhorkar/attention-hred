@@ -75,19 +75,28 @@ class HERED():
 
         self.initial_decoder_state = layers.decoder_initialise_layer(self.initial_session_state[0],self.decoder_dim)
 
-        # TODO: it seems that decoder is not currently reusing its output (ALL)
+
         self.decoder_outputs, self.decoder_states = self.decoder_grucell.compute_prediction(first_state =self.initial_decoder_state,
                                                                                             query_encoder_last_state =self.initial_query_state,
                                                                                             sequence_length = sequence_max_length)
 
         #Remove mask from outputs of decoder
+        mask = self.decoder_grucell.length(Y)
+        result = tf.slice([0,0,0],[0,tf.gather(mask,tf.convert_to_tensor(0)),self.decoder_outputs.get_shape(2)])
+        result = tf.reshape(result,[-1,self.decoder_outputs.get_shape(2)])
+        for i in range(1, self.batch_size):
+            example =  tf.slice([i,0,0],[i,tf.gather(mask,tf.convert_to_tensor(i)),self.decoder_outputs.get_shape(2)])
+            example = tf.reshape(example, [-1, self.decoder_outputs.get_shape(2)])
+            result = tf.concat([result, example],0)
 
+        #Shift y
+        y_shifted =tf.concat([tf.zeros(self.batch_size, 1),Y],1)
         # Calculate the omega function w(d_n-1, w_n-1).
         omega = layers.output_layer(embedding_dims=self.embedding_dim, vocabulary_size= self.vocab_size, num_hidden= self.decoder_dim,
-                                     state=self.decoder_state, word=Y) #previous word
-        #TODO change dimensions
+                                     state=self.decoder_state, word=y_shifted) #previous word
+
         y_embedder = layers.get_embedding_layer(vocabulary_size=self.vocab_size,
-                                                embedding_dims=self.embedding_dim, data=Y, scope='Y_embedder')
+                                                embedding_dims=self.embedding_dim, data=result, scope='Y_embedder')
 
         #dot product between omega and embeddings of decoder output
         logits = tf.matmul(omega, y_embedder)

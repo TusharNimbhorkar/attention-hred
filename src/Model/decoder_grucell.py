@@ -73,8 +73,8 @@ class Decoder(object):
         stop_after = sequence_length
         while stop_after>0:
             output, state = self.gru_cell(output, state)
-            tf.concat(outputs, output)
-            tf.concat(states, state)
+            tf.concat([outputs, output], 1)
+            tf.concat([states, state], 1)
             stop_after -= 1
         return outputs, states
 
