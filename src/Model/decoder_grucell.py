@@ -75,10 +75,10 @@ class Decoder(object):
         b = lambda o,s,os,ss,i: self.concat_fn(o,s,os,ss,i)
 
         _, _, outputs, states, _ = tf.while_loop(cond=c, body=b,loop_vars=(output,state,outputs,states,sequence_length),
-                                                 name='while',shape_invariants=(tf.TensorShape([50, 1000]),
-                                                                                tf.TensorShape([50, 1000]),
-                                                                                tf.TensorShape([50, 1000, None]),
-                                                                                tf.TensorShape([50, 1000, None]),
+                                                 name='while',shape_invariants=(tf.TensorShape([output.get_shape()[0], output.get_shape()[1]]),
+                                                                                tf.TensorShape([state.get_shape()[0], state.get_shape()[1]]),
+                                                                                tf.TensorShape([outputs.get_shape()[0], outputs.get_shape()[1], None]),
+                                                                                tf.TensorShape([states.get_shape()[0], states.get_shape()[1], None]),
                                                                                 tf.TensorShape(None)))
 
         #
