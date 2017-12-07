@@ -110,7 +110,7 @@ class HERED():
         print(omega)
 
         # Dot product between omega and embeddings of vocabulary matrix
-        logits = tf.matmul(omega, ov_embedder)
+        logits = tf.einsum('ve,bse->bsv',omega, ov_embedder)
 
         return logits
 
