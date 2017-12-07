@@ -60,7 +60,7 @@ class Decoder(object):
             initial_state= session_state)
         return states
 
-    def compute_prediction(self, first_state, query_encoder_last_state, sequence_length):
+    def compute_prediction_using_while_loop(self, first_state, query_encoder_last_state, sequence_length):
         """
         :session_state:            state to initialize the recurrent state of the decoder
         :query_encoder_last_state: last encoder state of the previous query to be used as first input
@@ -80,14 +80,27 @@ class Decoder(object):
                                                                                 tf.TensorShape([outputs.get_shape()[0], outputs.get_shape()[1], None]),
                                                                                 tf.TensorShape([states.get_shape()[0], states.get_shape()[1], None]),
                                                                                 tf.TensorShape(None)))
-
-        #
-        # while stop_after>0:
-        #     output, state = self.gru_cell(output, state)
-        #     tf.concat([outputs, output], 1)
-        #     tf.concat([states, state], 1)
-        #     stop_after -= 1
         return outputs, states
+
+    def compute_prediction(self, y, state, batch_size, vocab_size):
+        """
+        :session_state:            state to initialize the recurrent state of the decoder
+        :query_encoder_last_state: last encoder state of the previous query to be used as first input
+        """
+        # Add first input (zeros)
+        y_one_hot_shifted = tf.one_hot(y, depth=vocab_size)
+        start_word        = tf.expand_dims(tf.zeros([batch_size, vocab_size]), 1)
+        y_one_hot_shifted = tf.concat([start_word, y_one_hot_shifted], 1)
+
+        length = self.length(tf.convert_to_tensor(y_one_hot_shifted))+1
+        # Calculate RNN states
+        outputs, _ = tf.nn.dynamic_rnn(
+            self.gru_cell,
+            y_one_hot_shifted,
+            dtype=tf.float32,
+            sequence_length=length,
+            initial_state=state)
+        return outputs
 
     def concat_fn(self,output,state,outputs,states,seq_len):
         output, state = self.gru_cell(output, state)
