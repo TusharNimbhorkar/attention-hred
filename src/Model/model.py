@@ -37,7 +37,7 @@ class HERED():
         self.query_encoder = Encoder(batch_size = self.batch_size, level='query')
         self.session_encoder = Encoder(batch_size = self.batch_size, level='session', input_dim=1000, num_hidden=1500)
         self.decoder_grucell = Decoder()
-        self.vocabulary_matrix = tf.eye(self.vocab_size)
+        self.vocabulary_matrix = tf.cast(tf.eye(self.vocab_size), tf.int32)
 
     def initialise(self, X):
         """
@@ -69,7 +69,8 @@ class HERED():
 
         embedder = layers.get_embedding_layer(vocabulary_size=self.vocab_size,
                                               embedding_dims=self.embedding_dim, data=X,scope='X_embedder')
-
+        print(X)
+        print(embedder)
         # Create the query encoder state
         self.initial_query_state = self.query_encoder.compute_state(x=embedder)  # batch_size x query_dims
         # Create the session state
@@ -101,16 +102,17 @@ class HERED():
         # Calculate the omega function w(d_n-1, w_n-1).
         omega = layers.output_layer(embedding_dims=self.embedding_dim, vocabulary_size=self.vocab_size, num_hidden=self.decoder_dim,
                                     state=self.decoder_outputs, word=Y)
-        print(omega)
-        ov_matrix = []
+
         # Get embeddings for decoder output
-        ov_embedder = layers.get_embedding_layer(vocabulary_size=self.vocab_size,
-                                                embedding_dims=self.embedding_dim, data=self.vocabulary_matrix, scope='Ov_embedder')
+        #ov_embedder = layers.get_embedding_layer(vocabulary_size=self.vocab_size,
+        #                                        embedding_dims=self.embedding_dim, data=self.vocabulary_matrix, scope='Ov_embedder')
+        ov_embedder = tf.get_variable(name='Ov_embedder', shape=[self.vocab_size, self.embedding_dim],
+                                             initializer=tf.random_normal_initializer(mean=0.0, stddev=1.0))
 
         print(omega)
-
+        print(ov_embedder)
         # Dot product between omega and embeddings of vocabulary matrix
-        logits = tf.einsum('ve,bse->bsv',omega, tf.cast(ov_embedder, tf.int32))
+        logits = tf.einsum('bse,ve->bsv',omega, ov_embedder)
 
         return logits
 
