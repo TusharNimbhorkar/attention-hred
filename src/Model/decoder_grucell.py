@@ -100,7 +100,7 @@ class Decoder(object):
             dtype=tf.float32,
             sequence_length=length,
             initial_state=state)
-        return outputs
+        return outputs[:,1:]
 
     def concat_fn(self,output,state,outputs,states,seq_len):
         output, state = self.gru_cell(output, state)

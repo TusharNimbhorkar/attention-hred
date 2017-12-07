@@ -102,13 +102,13 @@ class Train(object):
 
             total_loss = 0.0
             # initialisation
-            x_batch, y_batch, seq_len = self.get_batch(dataset='train')
-            feed_dict = {
-                self.X: x_batch,
-                self.Y: y_batch,
-                self.sequence_max_length : seq_len
-
-            }
+            # x_batch, y_batch, seq_len = self.get_batch(dataset='train')
+            # feed_dict = {
+            #     self.X: x_batch,
+            #     self.Y: y_batch,
+            #     self.sequence_max_length : seq_len
+            #
+            # }
             # todo ?
             #sess.run([self.HERED.initialise], feed_dict=feed_dict)
 
@@ -117,8 +117,11 @@ class Train(object):
                 #todo:
                 t1 = time.time()
 
-                x_batch, y_batch, seq_len = self.get_batch(dataset='train')
+                # x_batch, y_batch, seq_len = self.get_batch(dataset='train')
+                # print(x_batch)
+                x_batch, y_batch, seq_len = self.get_random_batch()
 
+                print(x_batch.shape,y_batch.shape)
                 feed_dict = {
                     self.X: x_batch,
                     self.Y: y_batch,
@@ -137,7 +140,7 @@ class Train(object):
                     print("[{}] Train Step {:04d}/{:04d}, Batch Size = {}, Examples/Sec = {:.2f}, Loss = {:.2f}".format(
                         datetime.now().strftime("%Y-%m-%d %H:%M"), iteration+1,
                         int(self.config.max_steps), self.config.batch_size, examples_per_second,
-                        self.loss
+                        loss_val
                     ))
 
 
@@ -202,6 +205,14 @@ class Train(object):
 
         # Return minimizer
         return opt
+
+    def get_random_batch(self):
+        a = np.random.randint(5000, size=(51, 7))
+        b = a[1:]
+        a = a[:-1]
+
+        return a, b, 7
+
 
 
 if __name__ == '__main__':

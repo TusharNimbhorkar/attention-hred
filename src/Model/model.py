@@ -69,8 +69,8 @@ class HERED():
 
         embedder = layers.get_embedding_layer(vocabulary_size=self.vocab_size,
                                               embedding_dims=self.embedding_dim, data=X,scope='X_embedder')
-        print(X)
-        print(embedder)
+        # print(X)
+        # print(embedder)
         # Create the query encoder state
         self.initial_query_state = self.query_encoder.compute_state(x=embedder)  # batch_size x query_dims
         # Create the session state
@@ -109,8 +109,8 @@ class HERED():
         ov_embedder = tf.get_variable(name='Ov_embedder', shape=[self.vocab_size, self.embedding_dim],
                                              initializer=tf.random_normal_initializer(mean=0.0, stddev=1.0))
 
-        print(omega)
-        print(ov_embedder)
+        # print(omega)
+        # print(ov_embedder)
         # Dot product between omega and embeddings of vocabulary matrix
         logits = tf.einsum('bse,ve->bsv',omega, ov_embedder)
 
