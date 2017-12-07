@@ -100,7 +100,7 @@ class HERED():
 
         # Calculate the omega function w(d_n-1, w_n-1).
         omega = layers.output_layer(embedding_dims=self.embedding_dim, vocabulary_size=self.vocab_size, num_hidden=self.decoder_dim,
-                                     state=self.decoder_outputs, word=Y)
+                                    state=self.decoder_outputs, word=Y)
         print(omega)
         ov_matrix = []
         # Get embeddings for decoder output

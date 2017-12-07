@@ -45,21 +45,25 @@ def output_layer(embedding_dims, num_hidden, vocabulary_size, state, word):
         # Define the weights H_o, E_o and bias b_o
         H_ouput = tf.get_variable(name='h_output', shape=[embedding_dims, num_hidden],
                                   initializer=tf.random_normal_initializer(mean=0.0, stddev=1.0))
-        # E_output = tf.get_variable(name='e_output', shape=[embedding_dims, vocabulary_size],
-        #                           initializer=tf.random_normal_initializer(mean=0.0,stddev=1.0))
+        E_output = tf.get_variable(name='e_output', shape=[embedding_dims, vocabulary_size],
+                                   initializer=tf.random_normal_initializer(mean=0.0,stddev=1.0))
         b_output = tf.get_variable(name='b_output', shape=[embedding_dims],
                                    initializer=tf.truncated_normal_initializer(mean=0.0, stddev=1.0))
 
+        #h_embedding = get_embedding_layer(vocabulary_size=)
+
         y_one_hot = tf.one_hot(word, vocabulary_size)
         start_word = tf.expand_dims(tf.zeros([tf.shape(word)[0],vocabulary_size]),1)
+
         y_one_hot_shifted = tf.cast(tf.concat([start_word,y_one_hot],1),tf.int32)
         print(vocabulary_size)
         print(embedding_dims)
         print(y_one_hot_shifted)
-        y_embedding_onehot = get_embedding_layer(vocabulary_size=vocabulary_size,
-                                                 embedding_dims=embedding_dims, scope='output_embedding', data=y_one_hot_shifted)
+        #y_embedding_onehot = get_embedding_layer(vocabulary_size=vocabulary_size,
+        #                                         embedding_dims=embedding_dims, scope='output_embedding', data=y_one_hot_shifted)
 
-        return tf.matmul(state, tf.transpose(H_ouput)) + tf.transpose(tf.cast(y_embedding_onehot, tf.float32)) + b_output
+        #return tf.matmul(state, tf.transpose(H_ouput)) + tf.transpose(tf.cast(y_embedding_onehot, tf.float32)) + b_output
+        return tf.matmul(state, tf.transpose(H_ouput)) + tf.matmul(y_one_hot_shifted, tf.transpose(E_output)) + b_output
 
 
 def decoder_initialise_layer(initial_session_state, hidden_dims):
