@@ -37,7 +37,7 @@ class HERED():
         self.query_encoder = Encoder(batch_size = self.batch_size, level='query')
         self.session_encoder = Encoder(batch_size = self.batch_size, level='session', input_dim=1000, num_hidden=1500)
         self.decoder_grucell = Decoder()
-
+        self.vocabulary_matrix = tf.eye(self.vocab_size)
 
     def initialise(self, X):
         """
@@ -101,25 +101,20 @@ class HERED():
         #     example = tf.reshape(example, [-1, dec_out])
         #     result = tf.concat([result, example], 0)
 
-        # Shift y
-
-        y_shifted = tf.concat([tf.zeros(self.batch_size, 1), Y], 1)
         # Calculate the omega function w(d_n-1, w_n-1).
         omega = layers.output_layer(embedding_dims=self.embedding_dim, vocabulary_size= self.vocab_size, num_hidden= self.decoder_dim,
-                                     state=self.decoder_state, word=Y) #previous word
+                                     state=self.decoder_states, word=Y)
         print(omega)
+        ov_matrix = []
         # Get embeddings for decoder output
-        y_embedder = layers.get_embedding_layer(vocabulary_size=self.vocab_size,
-                                                embedding_dims=self.embedding_dim, data=self.decoder_outputs, scope='Y_embedder')
+        ov_embedder = layers.get_embedding_layer(vocabulary_size=self.vocab_size,
+                                                embedding_dims=self.embedding_dim, data=self.vocabulary_matrix, scope='Ov_embedder')
 
         print(omega)
 
-        # Dot product between omega and embeddings of decoder output
-        logits = tf.matmul(omega, y_embedder)
-        #TODO Change RNN to Dynamic fix dims to vocab size
-        # TODO Do a matrix with all the words of the vocabulary for Ovs
-        # TODO Do an embedding layer for the matrix
-        # TODO Check that omega works as it should and change the dims to vocab size
+        # Dot product between omega and embeddings of vocabulary matrix
+        logits = tf.matmul(omega, ov_embedder)
+
         return logits
 
     def get_predictions(self, X):

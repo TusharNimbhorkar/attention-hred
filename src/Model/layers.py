@@ -50,12 +50,13 @@ def output_layer(embedding_dims, num_hidden, vocabulary_size, state, word):
         b_output = tf.get_variable(name='b_output', shape=[embedding_dims],
                                    initializer=tf.truncated_normal_initializer(mean=0.0, stddev=1.0))
 
-        y_onehot = tf.one_hot(word, vocabulary_size)
+        y_one_hot = tf.one_hot(word, vocabulary_size)
+        start_word = tf.expand_dims(tf.zeros([tf.shape(word)[0],vocabulary_size]),1)
+        y_one_hot_shifted = tf.concat([start_word,y_one_hot],1)
 
         y_embedding_onehot = get_embedding_layer(vocabulary_size=vocabulary_size,
-                                                 embedding_dims=embedding_dims, scope='output_embedding', data=y_onehot)
-        # todo: check this back again
-        # todo: use o/p embedding?
+                                                 embedding_dims=embedding_dims, scope='output_embedding', data=y_one_hot_shifted)
+
         return tf.matmul(state, tf.transpose(H_ouput)) + tf.transpose(tf.cast(y_embedding_onehot, tf.float32)) + b_output
 
 
