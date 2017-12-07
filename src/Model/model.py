@@ -78,11 +78,8 @@ class HERED():
         self.initial_decoder_state = layers.decoder_initialise_layer(self.initial_session_state[0], self.decoder_dim)  # batch_size x decoder_dims
 
         # Run decoder and retrieve outputs and states for all timesteps
-        self.decoder_outputs, self.decoder_states = self.decoder_grucell.compute_prediction(  # batch size x timesteps x output_size
-            first_state=self.initial_decoder_state,
-            query_encoder_last_state=self.initial_query_state,
-            sequence_length=sequence_max_length)
-
+        self.decoder_outputs = self.decoder_grucell.compute_prediction(  # batch size x timesteps x output_size
+            y=Y, state=self.initial_decoder_state, batch_size=self.batch_size, vocab_size=self.vocab_size)
         # Remove mask from outputs of decoder
         # todo: cant slice with None, Make slicing with NOne dimension? how.
 
@@ -102,8 +99,8 @@ class HERED():
         #     result = tf.concat([result, example], 0)
 
         # Calculate the omega function w(d_n-1, w_n-1).
-        omega = layers.output_layer(embedding_dims=self.embedding_dim, vocabulary_size= self.vocab_size, num_hidden= self.decoder_dim,
-                                     state=self.decoder_states, word=Y)
+        omega = layers.output_layer(embedding_dims=self.embedding_dim, vocabulary_size=self.vocab_size, num_hidden=self.decoder_dim,
+                                     state=self.decoder_outputs, word=Y)
         print(omega)
         ov_matrix = []
         # Get embeddings for decoder output
