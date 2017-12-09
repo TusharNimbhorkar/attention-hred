@@ -80,32 +80,30 @@ def decoder_initialise_layer(initial_session_state, hidden_dims):
                                                  biases_initializer=tf.zeros_initializer())
 
 
-def attention_context_layer(annotations, decoder_state, decoder_dims, encoder_dims):
+def get_context_attention(annotations, decoder_states, decoder_dims, encoder_dims):
     """
     Fully connected layer to calculate the attention scores (alignment model). Calculates attention for a batch and for
     step (word level) for a current hidden state of the decoder.
 
     :param annotations: (batch_size x max_steps x (2 x enc_dims)), annotations from bidirectional RNN
-    :param decoder_state: (batch_size x dec_dims), current hidden state of the decoder for which calculate attention.
+    :param decoder_states: (batch_size x max_Steps xdec_dims), current hidden state of the decoder for which calculate attention.
     :param decoder_dims: decoder dims
     :param encoder_dims: encoder dims
-    :return: (batch_size, max_steps, (2 x enc_dims))context vector with attention scores
+    :return: (batch_size, max_steps) context vector with attention scores
     """
 
     # Define weight for attention
-    w = tf.get_variable(name='weight', shape=(2*encoder_dims, decoder_dims),
+    w = tf.get_variable(name='weight', shape=(2 * encoder_dims, decoder_dims),
                         initializer=tf.random_normal_initializer(stddev=0.01))
     # Calculate alphas for the context vector
-    alphas = tf.nn.softmax(tf.einsum('bse,b -> bs', annotations, tf.matmul(w, decoder_state)))  # batch_size x seq_leght
+    alphas = tf.nn.softmax(tf.einsum('bme, ebm -> bm', annotations, tf.einsum('ed, bmd -> ebm', w, decoder_states)))  # batch_size x seq_leght
     # Calculate context vector
-    context = tf.reduce_sum(tf.einsum('bs, bse -> bse', alphas, annotations), axis=2)
+    context = tf.reduce_sum(tf.einsum('bm, bme -> bme', alphas, annotations), axis=2) # reduce over 2 x enc_dims
 
     return context
 
 
-
 def bidirectional_layer(x, encoder_dims, batch_size):
-
     """
     Calculate annotations for attention with a bidirectional RNN
     :param x: batch x seq_length x word_embedding
@@ -117,7 +115,7 @@ def bidirectional_layer(x, encoder_dims, batch_size):
     initializer_biases = tf.constant_initializer(0.0)
 
     gru_cell = tf.contrib.rnn.GRUCell(encoder_dims, kernel_initializer=initializer_weights,
-                                           bias_initializer=initializer_biases)
+                                      bias_initializer=initializer_biases)
 
     # Forward pass
     _, states_forward = tf.nn.static_rnn(
@@ -135,5 +133,3 @@ def bidirectional_layer(x, encoder_dims, batch_size):
         initial_state=gru_cell.zero_state(batch_size, tf.float32))
 
     return tf.concat([states_forward, states_backward], axis=2)
-
-
