@@ -22,7 +22,7 @@ from model import HERED
 
 # todo: put this stuff in arg.parse as well
 LEARNING_RATE = 1e-4
-BATCH_SIZE = 50
+BATCH_SIZE = 60
 MAX_LENGTH = 50
 N_BUCKETS = 20
 MAX_STEPS = 10000000
@@ -67,8 +67,9 @@ class Train(object):
                            learning_rate=self.config.learning_rate)
 
         self.sequence_max_length = tf.placeholder(tf.int64)
-        self.X = tf.placeholder(tf.int64, shape=(config.batch_size, None)) #(BS,seq_len)
-        self.Y = tf.placeholder(tf.int64, shape=(config.batch_size, None))
+        # TODO: attention needs config.max_lenght to be not None
+        self.X = tf.placeholder(tf.int64, shape=(config.batch_size, config.max_length)) #(BS,seq_len)
+        self.Y = tf.placeholder(tf.int64, shape=(config.batch_size, config.max_length))
 
         # todo check this
         self.logits = self.HERED.inference(self.X,self.Y, self.sequence_max_length, attention=True)

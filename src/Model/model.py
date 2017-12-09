@@ -71,10 +71,12 @@ class HERED():
                                               embedding_dims=self.embedding_dim, data=X,scope='X_embedder')
         # print(X)
         # print(embedder)
+        #embedder.set_shape((50, sequence_max_length.eval(), 300)) # set shape now that is known (before it was '?')
 
         # For attention, pass bidirectional RNN
         if attention:
-            self.annotations = layers.bidirectional_layer(embedder, self.query_dim, self.batch_size)
+            self.annotations = layers.bidirectional_layer(embedder, self.query_dim, self.batch_size, self.embedding_dim)
+
         # Create the query encoder state
         self.initial_query_state = self.query_encoder.compute_state(x=embedder)  # batch_size x query_dims
         # Create the session state
@@ -86,7 +88,7 @@ class HERED():
         self.decoder_outputs = self.decoder_grucell.compute_prediction(  # batch size x timesteps x output_size
             y=Y, state=self.initial_decoder_state, batch_size=self.batch_size, vocab_size=self.vocab_size)
         # Remove mask from outputs of decoder
-        # todo: cant slice with None, Make slicing with NOne dimension? how.
+        # todo: cant slice with None, Make slicing with None dimension? how.
 
         # print(self.decoder_outputs.shape)
         # mask = self.decoder_grucell.length(embedder)  # get length for every example in the batch
