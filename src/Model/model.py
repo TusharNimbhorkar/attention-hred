@@ -57,7 +57,7 @@ class HERED():
                                                       session_state=self.initial_session_state)
 
 
-    def inference(self, X, Y, sequence_max_length):
+    def inference(self, X, Y, sequence_max_length, attention=False):
 
         """
         Function to run the model.
@@ -71,6 +71,10 @@ class HERED():
                                               embedding_dims=self.embedding_dim, data=X,scope='X_embedder')
         # print(X)
         # print(embedder)
+
+        # For attention, pass bidirectional RNN
+        if attention:
+            self.annotations = layers.bidirectional_layer(embedder, self.query_dim, self.batch_size)
         # Create the query encoder state
         self.initial_query_state = self.query_encoder.compute_state(x=embedder)  # batch_size x query_dims
         # Create the session state
@@ -99,9 +103,20 @@ class HERED():
         #     example = tf.reshape(example, [-1, dec_out])
         #     result = tf.concat([result, example], 0)
 
-        # Calculate the omega function w(d_n-1, w_n-1).
-        omega = layers.output_layer(embedding_dims=self.embedding_dim, vocabulary_size=self.vocab_size, num_hidden=self.decoder_dim,
-                                    state=self.decoder_outputs, word=Y)
+        # For attention, calculate context vector
+        if attention:
+            self.context = layers.get_context_attention(self.annotations, self.decoder_outputs, self.decoder_dim,
+                                                        self.query_dim)  # batch_size x max_steps
+            # Concatenate context vector to decoder state, assuming in a GRU states = outputs
+            self.decoder_states_attention = tf.concat([self.decoder_outputs, tf.expand_dims(self.context, 1)], axis=2)
+            # Calculate the omega function w(d_n-1, w_n-1) for attention
+            omega = layers.output_layer(embedding_dims=self.embedding_dim, vocabulary_size=self.vocab_size,
+                                        num_hidden=self.decoder_dim + 1,
+                                        state=self.decoder_states_attention, word=Y)
+        else:
+            omega = layers.output_layer(embedding_dims=self.embedding_dim, vocabulary_size=self.vocab_size,
+                                        num_hidden=self.decoder_dim,
+                                        state=self.decoder_outputs, word=Y)
 
         # Get embeddings for decoder output
         #ov_embedder = layers.get_embedding_layer(vocabulary_size=self.vocab_size,
