@@ -88,8 +88,12 @@ class Decoder(object):
         :query_encoder_last_state: last encoder state of the previous query to be used as first input
         """
         # Add first input (zeros)
+        print('here')
+        print(y)
         y_one_hot_shifted = tf.one_hot(y, depth=vocab_size)
+        print(y_one_hot_shifted)
         start_word        = tf.expand_dims(tf.zeros([batch_size, vocab_size]), 1)
+        print(start_word)
         y_one_hot_shifted = tf.concat([start_word, y_one_hot_shifted], 1)
 
         length = self.length(tf.convert_to_tensor(y_one_hot_shifted))+1

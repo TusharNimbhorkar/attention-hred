@@ -80,22 +80,60 @@ def decoder_initialise_layer(initial_session_state, hidden_dims):
                                                  biases_initializer=tf.zeros_initializer())
 
 
-def attention_context_layer(query_state, decoder_state, decoder_dims, encoder_dims):
+def attention_context_layer(annotations, decoder_state, decoder_dims, encoder_dims):
     """
-    Fully connected layer to calculate the attention scores (alignment model). For score(h_{n-1}, q_j), query_state is
-    q_j and decoder state is h_{n-1}, so the current decoder state. Returns the attention.
+    Fully connected layer to calculate the attention scores (alignment model). Calculates attention for a batch and for
+    step (word level) for a current hidden state of the decoder.
 
-    :param query_state: the query-level hidden states for the queries in the session
-    :param decoder_state: current decoder output
-    :return: context vector
+    :param annotations: (batch_size x max_steps x (2 x enc_dims)), annotations from bidirectional RNN
+    :param decoder_state: (batch_size x dec_dims), current hidden state of the decoder for which calculate attention.
+    :param decoder_dims: decoder dims
+    :param encoder_dims: encoder dims
+    :return: (batch_size, max_steps, (2 x enc_dims))context vector with attention scores
     """
-    #TODO: what should be the dimensions of attention
 
-    w = tf.get_variable(name='weight', shape=(decoder_dims, encoder_dims),
+    # Define weight for attention
+    w = tf.get_variable(name='weight', shape=(2*encoder_dims, decoder_dims),
                         initializer=tf.random_normal_initializer(stddev=0.01))
-
-    # TODO: how would this work? How to make sure that the states are the ones for the queries in the session
-    weights = tf.nn.softmax(query_state * W * decoder_state)  # TODO: use matmul
-    context = tf.reduce_sum(weights * query_states)
+    # Calculate alphas for the context vector
+    alphas = tf.nn.softmax(tf.einsum('bse,b -> bs', annotations, tf.matmul(w, decoder_state)))  # batch_size x seq_leght
+    # Calculate context vector
+    context = tf.reduce_sum(tf.einsum('bs, bse -> bse', alphas, annotations), axis=2)
 
     return context
+
+
+
+def bidirectional_layer(x, encoder_dims, batch_size):
+
+    """
+    Calculate annotations for attention with a bidirectional RNN
+    :param x: batch x seq_length x word_embedding
+    :param encoder_dims: query_level enconder dims
+    :param batch_size: batch size
+    :return: concatenated hidden states from the forward and backward pass: batch_size x seq_lenght x (2 x encoder_dims)
+    """
+    initializer_weights = tf.variance_scaling_initializer()  # xavier
+    initializer_biases = tf.constant_initializer(0.0)
+
+    gru_cell = tf.contrib.rnn.GRUCell(encoder_dims, kernel_initializer=initializer_weights,
+                                           bias_initializer=initializer_biases)
+
+    # Forward pass
+    _, states_forward = tf.nn.static_rnn(
+        gru_cell,
+        [x],
+        dtype=tf.float32,
+        initial_state=gru_cell.zero_state(batch_size, tf.float32))
+
+    # Backward pass
+    x_reverse = tf.reverse(x, axis=1)
+    _, states_backward = tf.nn.static_rnn(
+        gru_cell,
+        [x_reverse],
+        dtype=tf.float32,
+        initial_state=gru_cell.zero_state(batch_size, tf.float32))
+
+    return tf.concat([states_forward, states_backward], axis=2)
+
+
