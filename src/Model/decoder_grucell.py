@@ -92,8 +92,7 @@ class Decoder(object):
         y_one_hot_shifted = tf.one_hot(y, depth=vocab_size)
         print(y_one_hot_shifted)
         start_word        = tf.expand_dims(tf.zeros([batch_size, vocab_size]), 1)
-        print(start_word)
-        y_one_hot_shifted = tf.concat([start_word, y_one_hot_shifted], 1)
+        y_one_hot_shifted= tf.concat([start_word, y_one_hot_shifted], 1)[:,:-1]
 
         length = self.length(tf.convert_to_tensor(y_one_hot_shifted))+1
         # Calculate RNN states
@@ -103,7 +102,7 @@ class Decoder(object):
             dtype=tf.float32,
             sequence_length=length,
             initial_state=state)
-        return outputs[:,1:]
+        return outputs
 
     def concat_fn(self,output,state,outputs,states,seq_len):
         output, state = self.gru_cell(output, state)
