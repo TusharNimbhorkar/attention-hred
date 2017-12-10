@@ -86,10 +86,10 @@ class Decoder(object):
         :session_state:            state to initialize the recurrent state of the decoder
         :query_encoder_last_state: last encoder state of the previous query to be used as first input
         """
-        # Add first input (zeros)
+        # Add first input (zeros) by shifting
         y_one_hot_shifted = tf.one_hot(y, depth=vocab_size)
         start_word        = tf.expand_dims(tf.zeros([batch_size, vocab_size]), 1)
-        y_one_hot_shifted= tf.concat([start_word, y_one_hot_shifted], 1)[:,:-1]
+        y_one_hot_shifted = tf.concat([start_word, y_one_hot_shifted], 1)[:, :-1]
 
         length = self.length(tf.convert_to_tensor(y_one_hot_shifted))+1
         # Calculate RNN states

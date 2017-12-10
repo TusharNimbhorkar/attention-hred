@@ -103,7 +103,7 @@ def get_context_attention(annotations, decoder_states, decoder_dims, encoder_dim
     return context
 
 
-def bidirectional_layer(x, encoder_dims, batch_size, embedding_dims):
+def bidirectional_layer(x, encoder_dims, batch_size):
     """
     Calculate annotations for attention with a bidirectional RNN
     :param x: batch x seq_length x embedding_dims
@@ -121,7 +121,7 @@ def bidirectional_layer(x, encoder_dims, batch_size, embedding_dims):
 
     # Change x to a list of size max_steps of tensors of shape [batch_size, embedding_dims] for the static rnn
     x_list = tf.unstack(x, axis=1)
-    x_reverse = tf.reverse(x, axis=[1]) # reverse for backwar pass
+    x_reverse = tf.reverse(x, axis=[1]) # reverse for backward pass
     x_reverse_unstack = tf.unstack(x_reverse, axis=1)
 
     # Forward pass - returns a list of size max_steps of tensors of shape [batch_size, hidden_dims]
