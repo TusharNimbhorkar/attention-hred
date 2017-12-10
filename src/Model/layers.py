@@ -106,7 +106,7 @@ def get_context_attention(annotations, decoder_states, decoder_dims, encoder_dim
 def bidirectional_layer(x, encoder_dims, batch_size, embedding_dims):
     """
     Calculate annotations for attention with a bidirectional RNN
-    :param x: batch x seq_length x word_embedding
+    :param x: batch x seq_length x embedding_dims
     :param encoder_dims: query_level encoder dims
     :param batch_size: batch size
     :return: concatenated hidden states from the forward and backward pass: batch_size x seq_lenght x (2 x encoder_dims)
@@ -114,40 +114,36 @@ def bidirectional_layer(x, encoder_dims, batch_size, embedding_dims):
     initializer_weights = tf.variance_scaling_initializer()  # xavier
     initializer_biases = tf.constant_initializer(0.0)
 
-    gru_cell = tf.contrib.rnn.GRUCell(encoder_dims, kernel_initializer=initializer_weights,
+    with tf.variable_scope('gru_bidirectional'):
+        gru_cell_bi = tf.contrib.rnn.GRUCell(encoder_dims, kernel_initializer=initializer_weights,
                                       bias_initializer=initializer_biases)
     x_length = length(tf.convert_to_tensor(x))
 
-    # TODO: x should be a list seq_length x batch_size x embedding
-
-    a = tf.unstack(x, axis=1)
-
-    x_reverse = tf.reverse(x, axis=[1])
+    # Change x to a list of size max_steps of tensors of shape [batch_size, embedding_dims] for the static rnn
+    x_list = tf.unstack(x, axis=1)
+    x_reverse = tf.reverse(x, axis=[1]) # reverse for backwar pass
     x_reverse_unstack = tf.unstack(x_reverse, axis=1)
-    # print(x_reverse)
-    # print(x_reverse_unstack)
-    # print(len(x_reverse_unstack))
 
-    # Forward pass
-    _, states_forward = tf.nn.static_rnn(
-        gru_cell,
-        a,
+    # Forward pass - returns a list of size max_steps of tensors of shape [batch_size, hidden_dims]
+    states_forward, _ = tf.nn.static_rnn(
+        gru_cell_bi,
+        x_list,
         dtype=tf.float32,
         sequence_length=x_length,
-        initial_state=gru_cell.zero_state([batch_size], tf.float32))
+        initial_state=gru_cell_bi.zero_state([batch_size], tf.float32))
 
-    print(states_forward)
+    #print(states_forward)
 
-    # Backward pass
-    _, states_backward = tf.nn.static_rnn(
-        gru_cell,
+    # Backward pass - returns a list of size max_steps of tensors of shape [batch_size, hidden_dims]
+    states_backward, _ = tf.nn.static_rnn(
+        gru_cell_bi,
         x_reverse_unstack,
         dtype=tf.float32,
         sequence_length=x_length,
-        initial_state=gru_cell.zero_state([batch_size], tf.float32))
+        initial_state=gru_cell_bi.zero_state([batch_size], tf.float32))
 
-    print(states_backward)
-    # TODO: we need all states....
+    #print(states_backward)
+
     return tf.concat([states_forward, states_backward], axis=2)
 
 

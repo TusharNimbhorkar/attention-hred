@@ -74,8 +74,7 @@ class Train(object):
         self.X = tf.placeholder(tf.int64, shape=(config.batch_size, config.max_length)) #(BS,seq_len)
         self.Y = tf.placeholder(tf.int64, shape=(config.batch_size, config.max_length))
 
-        # todo check this
-        self.logits = self.HERED.inference(self.X,self.Y, self.sequence_max_length, attention=True)
+        self.logits = self.HERED.inference(self.X,self.Y, self.sequence_max_length, attention=True) # <--- set attention here
         self.loss = self.HERED.get_loss(self.logits, self.Y)
         # self.loss_val = tf.placeholder(tf.float32)
 
