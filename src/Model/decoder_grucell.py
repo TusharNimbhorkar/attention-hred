@@ -56,7 +56,8 @@ class Decoder(object):
             self.gru_cell,
             [x],
             dtype=tf.float32,
-            initial_state= session_state)
+            initial_state= session_state,
+            scope = 'decoder')
         return states
 
     def compute_prediction_using_while_loop(self, first_state, query_encoder_last_state, sequence_length):

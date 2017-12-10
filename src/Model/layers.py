@@ -130,7 +130,8 @@ def bidirectional_layer(x, encoder_dims, batch_size, embedding_dims):
         x_list,
         dtype=tf.float32,
         sequence_length=x_length,
-        initial_state=gru_cell_bi.zero_state([batch_size], tf.float32))
+        initial_state=gru_cell_bi.zero_state([batch_size], tf.float32),
+        scope = 'bidirectional')
 
     #print(states_forward)
 
@@ -140,7 +141,8 @@ def bidirectional_layer(x, encoder_dims, batch_size, embedding_dims):
         x_reverse_unstack,
         dtype=tf.float32,
         sequence_length=x_length,
-        initial_state=gru_cell_bi.zero_state([batch_size], tf.float32))
+        initial_state=gru_cell_bi.zero_state([batch_size], tf.float32),
+        scope = 'bidirectional')
 
     #print(states_backward)
 
