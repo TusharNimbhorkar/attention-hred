@@ -67,6 +67,7 @@ class HERED():
         :return: logits [N, hidden size] where N is the number of words (including eoq) in the batch
         """
 
+
         embedder = layers.get_embedding_layer(vocabulary_size=self.vocab_size,
                                               embedding_dims=self.embedding_dim, data=X,scope='X_embedder')
         # print(X)

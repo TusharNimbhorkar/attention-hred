@@ -114,7 +114,7 @@ def bidirectional_layer(x, encoder_dims, batch_size, embedding_dims):
     initializer_weights = tf.variance_scaling_initializer()  # xavier
     initializer_biases = tf.constant_initializer(0.0)
 
-    with tf.variable_scope('gru_bidirectional'):
+    with tf.variable_scope('gru_bidirectional', reuse=tf.AUTO_REUSE):
         gru_cell_bi = tf.contrib.rnn.GRUCell(encoder_dims, kernel_initializer=initializer_weights,
                                       bias_initializer=initializer_biases)
     x_length = length(tf.convert_to_tensor(x))
