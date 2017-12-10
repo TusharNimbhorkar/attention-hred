@@ -121,30 +121,33 @@ def bidirectional_layer(x, encoder_dims, batch_size, embedding_dims):
     # TODO: x should be a list seq_length x batch_size x embedding
 
     a = tf.unstack(x, axis=1)
-    print(a)
-    # x_reverse = tf.reverse(a, axis=[1])
+
+    x_reverse = tf.reverse(x, axis=[1])
+    x_reverse_unstack = tf.unstack(x_reverse, axis=1)
     # print(x_reverse)
+    # print(x_reverse_unstack)
+    # print(len(x_reverse_unstack))
+
     # Forward pass
     _, states_forward = tf.nn.static_rnn(
         gru_cell,
-        # tf.split(1, int(x.get_shape()[1].value), x),
         a,
         dtype=tf.float32,
         sequence_length=x_length,
-        initial_state=gru_cell.zero_state([batch_size, encoder_dims], tf.float32))
+        initial_state=gru_cell.zero_state([batch_size], tf.float32))
 
     print(states_forward)
 
     # Backward pass
-    x_reverse = tf.unstack(tf.reverse(x, axis=[1]), axis=1)
-
     _, states_backward = tf.nn.static_rnn(
         gru_cell,
-        x_reverse,
+        x_reverse_unstack,
         dtype=tf.float32,
         sequence_length=x_length,
-        initial_state=gru_cell.zero_state([batch_size, encoder_dims], tf.float32))
+        initial_state=gru_cell.zero_state([batch_size], tf.float32))
 
+    print(states_backward)
+    # TODO: we need all states....
     return tf.concat([states_forward, states_backward], axis=2)
 
 

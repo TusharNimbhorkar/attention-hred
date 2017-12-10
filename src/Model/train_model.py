@@ -22,6 +22,7 @@ from model import HERED
 
 # todo: put this stuff in arg.parse as well
 LEARNING_RATE = 1e-4
+HIDDEN_LAYERS = 1
 BATCH_SIZE = 60
 MAX_LENGTH = 50
 N_BUCKETS = 20
@@ -61,13 +62,15 @@ class Train(object):
         self.vocab_size = len(self.vocab_lookup_dict)
         # class object
         # todo: put variables as needed and place holders
-        self.HERED = HERED(vocab_size=self.vocab_size, embedding_dim=EMBEDDING_DIM, query_dim=QUERY_DIM,
-                           session_dim=SESSION_DIM, decoder_dim=QUERY_DIM, output_dim=EMBEDDING_DIM,
-                           eoq_symbol=EOQ_SYMBOL, eos_symbol=EOS_SYMBOL, unk_symbol=UNK_SYMBOL,
-                           learning_rate=self.config.learning_rate)
+        self.HERED = HERED(vocab_size=self.vocab_size, embedding_dim=config.embedding_dim, query_dim=config.query_dim,
+                           session_dim=config.session_dim, decoder_dim=config.query_dim,
+                           output_dim=config.output_dim,
+                           eoq_symbol=config.eoq_symbol, eos_symbol=config.eos_symbol, unk_symbol=config.unk_symbol,
+                           learning_rate=self.config.learning_rate, hidden_layer=config.hidden_layer,
+                           batch_size=config.batch_size)
 
         self.sequence_max_length = tf.placeholder(tf.int64)
-        # TODO: attention needs config.max_lenght to be not None
+        # TODO: attention needs config.max_lenght to be not None <---------- check this !!!
         self.X = tf.placeholder(tf.int64, shape=(config.batch_size, config.max_length)) #(BS,seq_len)
         self.Y = tf.placeholder(tf.int64, shape=(config.batch_size, config.max_length))
 
@@ -223,6 +226,16 @@ if __name__ == '__main__':
     # Model params
     parser.add_argument('--max_length', type=int, default=MAX_LENGTH, help='Max length.')
     parser.add_argument('--buckets', type=int, default=N_BUCKETS, help='Number of buckets.')
+    parser.add_argument('--embedding_dim', type=int, default=EMBEDDING_DIM, help='Embedding dimensions.')
+    parser.add_argument('--query_dim', type=int, default=QUERY_DIM, help='Query encoder dims')
+    parser.add_argument('--session_dim', type=int, default=SESSION_DIM, help='Session encoder dims.')
+    parser.add_argument('--decoder_dim', type=int, default=QUERY_DIM, help='Decoder dims.')
+    parser.add_argument('--output_dim', type=int, default=EMBEDDING_DIM, help='Output embedding dims.')
+    parser.add_argument('--eoq_symbol', type=int, default=EOQ_SYMBOL, help='End of query symbol.')
+    parser.add_argument('--eos_symbol', type=int, default=EOS_SYMBOL, help='End of session symbol.')
+    parser.add_argument('--unk_symbol', type=int, default=UNK_SYMBOL, help='Unknown symbol.')
+    parser.add_argument('--hidden_layer', type=int, default=HIDDEN_LAYERS, help='Number of hidden layers.')
+
 
     # Training params
     parser.add_argument('--batch_size', type=int, default=BATCH_SIZE, help='Batch size to run trainer.')
