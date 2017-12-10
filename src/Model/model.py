@@ -108,9 +108,9 @@ class HERED():
         # For attention, calculate context vector
         if attention:
             self.context = layers.get_context_attention(self.annotations, self.decoder_outputs, self.decoder_dim,
-                                                        self.query_dim)  # batch_size x max_steps
+                                                        self.query_dim,  sequence_max_length, self.batch_size)  # batch_size x max_steps
             # Concatenate context vector to decoder state, assuming in a GRU states = outputs
-            self.decoder_states_attention = tf.concat([self.decoder_outputs, tf.expand_dims(self.context, 1)], axis=2)
+            self.decoder_states_attention = tf.concat([self.decoder_outputs, tf.expand_dims(self.context, 2)], axis=2) # TODO: check this
             # Calculate the omega function w(d_n-1, w_n-1) for attention
             omega = layers.output_layer(embedding_dims=self.embedding_dim, vocabulary_size=self.vocab_size,
                                         num_hidden=self.decoder_dim + 1,

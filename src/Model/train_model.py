@@ -23,7 +23,7 @@ from model import HERED
 # todo: put this stuff in arg.parse as well
 LEARNING_RATE = 1e-4
 HIDDEN_LAYERS = 1
-BATCH_SIZE = 60
+BATCH_SIZE = 50
 MAX_LENGTH = 50
 N_BUCKETS = 20
 MAX_STEPS = 10000000
@@ -71,8 +71,8 @@ class Train(object):
 
         self.sequence_max_length = tf.placeholder(tf.int64)
         # TODO: attention needs config.max_lenght to be not None <---------- check this !!!
-        self.X = tf.placeholder(tf.int64, shape=(config.batch_size, config.max_length)) #(BS,seq_len)
-        self.Y = tf.placeholder(tf.int64, shape=(config.batch_size, config.max_length))
+        self.X = tf.placeholder(tf.int64, shape=(config.batch_size, 7)) #(BS,seq_len)
+        self.Y = tf.placeholder(tf.int64, shape=(config.batch_size, 7))
 
         self.logits = self.HERED.inference(self.X,self.Y, self.sequence_max_length, attention=True) # <--- set attention here
         self.loss = self.HERED.get_loss(self.logits, self.Y)
