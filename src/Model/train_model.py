@@ -18,7 +18,8 @@ from datetime import datetime
 sys.path.insert(0, '../sordoni/')
 import data_iterator
 from model import HERED
-
+from get_batch import get_batch
+import random
 
 # todo: put this stuff in arg.parse as well
 LEARNING_RATE = 1e-4
@@ -92,6 +93,11 @@ class Train(object):
         #
 
     def train_model(self, batch_size=None):
+
+        # batch parameters,train
+        train_list = list(range(0, 19619275, batch_size))
+
+
         # summaries = tf.summary.merge_all()
         init = tf.global_variables_initializer()
         saver = tf.train.Saver()
@@ -123,7 +129,11 @@ class Train(object):
 
                 # x_batch, y_batch, seq_len = self.get_batch(dataset='train')
                 # print(x_batch)
-                x_batch, y_batch, seq_len = self.get_random_batch()
+                # x_batch, y_batch, seq_len = self.get_random_batch()
+                random_element = random.choice(train_list)
+                x_batch, y_batch, seq_len, train_list = get_batch(train_list, type='train', element=random_element,
+                                                                  batch_size=self.config.batch_size,
+                                                                  max_len=self.config.max_length)
 
                 print(x_batch.shape,y_batch.shape)
                 feed_dict = {
