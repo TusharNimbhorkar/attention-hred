@@ -99,7 +99,7 @@ class Train(object):
     def train_model(self, batch_size=None):
 
         # batch parameters,train
-        train_list = list(range(0, 19619275, batch_size))
+        train_list = list(range(0, 19619225, batch_size))
 
 
         # summaries = tf.summary.merge_all()
