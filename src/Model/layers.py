@@ -80,13 +80,13 @@ def decoder_initialise_layer(initial_session_state, hidden_dims):
                                                  biases_initializer=tf.zeros_initializer())
 
 
-def get_context_attention(annotations, decoder_states, decoder_dims, encoder_dims):
+def get_context_attention(annotations, decoder_states, decoder_dims, encoder_dims, max_length, batch_size):
     """
     Fully connected layer to calculate the attention scores (alignment model). Calculates attention for a batch and for
     step (word level) for a current hidden state of the decoder.
 
-    :param annotations: (batch_size x max_steps x (2 x enc_dims)), annotations from bidirectional RNN
-    :param decoder_states: (batch_size x max_Steps xdec_dims), current hidden state of the decoder for which calculate attention.
+    :param annotations: (max_steps x batch_size x (2 x enc_dims)), annotations from bidirectional RNN
+    :param decoder_states: (batch_size x max_steps x dec_dims), current hidden state of the decoder for which calculate attention.
     :param decoder_dims: decoder dims
     :param encoder_dims: encoder dims
     :return: (batch_size, max_steps) context vector with attention scores
@@ -96,17 +96,34 @@ def get_context_attention(annotations, decoder_states, decoder_dims, encoder_dim
     w = tf.get_variable(name='weight', shape=(2 * encoder_dims, decoder_dims),
                         initializer=tf.random_normal_initializer(stddev=0.01))
     # Calculate alphas for the context vector
-    alphas = tf.nn.softmax(tf.einsum('bme, ebm -> bm', annotations, tf.einsum('ed, bmd -> ebm', w, decoder_states)))  # batch_size x seq_leght
+    #a = tf.einsum('ed, bmd -> ebm', w, decoder_states)
+    #a = tf.einsum('bmd, ed --> ebm', decoder_states, w)
+    w_tile = tf.tile(tf.expand_dims(w, 0), (batch_size, 1, 1))
+    dec_w = tf.matmul(decoder_states, tf.transpose(w_tile, perm=[0, 2, 1]))  # batch x max_steps x 2 x enc_dims
+    # print(dec_w)
+    annotations = tf.transpose(annotations, perm=[1, 0, 2])
+    # print(annotations)
+    annotations_mul = tf.matmul(annotations, tf.transpose(dec_w, perm=[0, 2, 1]))
+    # print(annotations_mul)
+    #b = tf.einsum('bme, ebm -> bm', annotations, dec_w)
+    alphas = tf.nn.softmax(annotations_mul)  # batch_size x seq_leght
+    print(alphas)
     # Calculate context vector
-    context = tf.reduce_sum(tf.einsum('bm, bme -> bme', alphas, annotations), axis=2) # reduce over 2 x enc_dims
-
+    alphas_tile = tf.tile(tf.expand_dims(alphas,3), (1, 1, 1, 2 * encoder_dims))
+    annotations_tile = tf.tile(tf.expand_dims(annotations, 2), (1, 1, 7, 1))
+    weighted_annotations = tf.matmul(tf.transpose(alphas_tile, perm=[0, 1, 3, 2]), annotations_tile)
+    #tf.einsum('bm, bme -> bme', alphas, annotations)
+    print(weighted_annotations)
+    # weighted_annotations is (b x m x 2e x 2e) and we need context to be b x m so we reduce sum twice TODO: ask if this is alright
+    context = tf.reduce_sum(tf.reduce_sum(weighted_annotations, axis=3), axis=2)  # reduce over 2 x enc_dims twice
+    print(context)
     return context
 
 
-def bidirectional_layer(x, encoder_dims, batch_size, embedding_dims):
+def bidirectional_layer(x, encoder_dims, batch_size):
     """
     Calculate annotations for attention with a bidirectional RNN
-    :param x: batch x seq_length x word_embedding
+    :param x: batch x seq_length x embedding_dims
     :param encoder_dims: query_level encoder dims
     :param batch_size: batch size
     :return: concatenated hidden states from the forward and backward pass: batch_size x seq_lenght x (2 x encoder_dims)
@@ -114,36 +131,37 @@ def bidirectional_layer(x, encoder_dims, batch_size, embedding_dims):
     initializer_weights = tf.variance_scaling_initializer()  # xavier
     initializer_biases = tf.constant_initializer(0.0)
 
-    gru_cell = tf.contrib.rnn.GRUCell(encoder_dims, kernel_initializer=initializer_weights,
+    with tf.variable_scope('gru_bidirectional', reuse=tf.AUTO_REUSE):
+        gru_cell_bi = tf.contrib.rnn.GRUCell(encoder_dims, kernel_initializer=initializer_weights,
                                       bias_initializer=initializer_biases)
     x_length = length(tf.convert_to_tensor(x))
 
-    # TODO: x should be a list seq_length x batch_size x embedding
+    # Change x to a list of size max_steps of tensors of shape [batch_size, embedding_dims] for the static rnn
+    x_list = tf.unstack(x, axis=1)
+    x_reverse = tf.reverse(x, axis=[1]) # reverse for backward pass
+    x_reverse_unstack = tf.unstack(x_reverse, axis=1)
 
-    a = tf.unstack(x, axis=1)
-    print(a)
-    # x_reverse = tf.reverse(a, axis=[1])
-    # print(x_reverse)
-    # Forward pass
-    _, states_forward = tf.nn.static_rnn(
-        gru_cell,
-        # tf.split(1, int(x.get_shape()[1].value), x),
-        a,
+    # Forward pass - returns a list of size max_steps of tensors of shape [batch_size, hidden_dims]
+    states_forward, _ = tf.nn.static_rnn(
+        gru_cell_bi,
+        x_list,
         dtype=tf.float32,
         sequence_length=x_length,
-        initial_state=gru_cell.zero_state([batch_size, encoder_dims], tf.float32))
+        initial_state=gru_cell_bi.zero_state([batch_size], tf.float32),
+        scope = 'bidirectional')
 
-    print(states_forward)
+    #print(states_forward)
 
-    # Backward pass
-    x_reverse = tf.unstack(tf.reverse(x, axis=[1]), axis=1)
-
-    _, states_backward = tf.nn.static_rnn(
-        gru_cell,
-        x_reverse,
+    # Backward pass - returns a list of size max_steps of tensors of shape [batch_size, hidden_dims]
+    states_backward, _ = tf.nn.static_rnn(
+        gru_cell_bi,
+        x_reverse_unstack,
         dtype=tf.float32,
         sequence_length=x_length,
-        initial_state=gru_cell.zero_state([batch_size, encoder_dims], tf.float32))
+        initial_state=gru_cell_bi.zero_state([batch_size], tf.float32),
+        scope = 'bidirectional')
+
+    #print(states_backward)
 
     return tf.concat([states_forward, states_backward], axis=2)
 

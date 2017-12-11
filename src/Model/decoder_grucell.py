@@ -25,8 +25,8 @@ class Decoder(object):
 
         initializer_weights = tf.variance_scaling_initializer() #xavier
         initializer_biases = tf.constant_initializer(0.0)
-
-        self.gru_cell = tf.contrib.rnn.GRUCell(num_hidden_query, kernel_initializer=initializer_weights, bias_initializer=initializer_biases)
+        with tf.variable_scope('gru_decoder', reuse=tf.AUTO_REUSE):
+            self.gru_cell = tf.contrib.rnn.GRUCell(num_hidden_query, kernel_initializer=initializer_weights, bias_initializer=initializer_biases)
 
 
     def length(self, sequence):
@@ -56,7 +56,8 @@ class Decoder(object):
             self.gru_cell,
             [x],
             dtype=tf.float32,
-            initial_state= session_state)
+            initial_state= session_state,
+            scope = 'decoder')
         return states
 
     def compute_prediction_using_while_loop(self, first_state, query_encoder_last_state, sequence_length):
@@ -86,13 +87,10 @@ class Decoder(object):
         :session_state:            state to initialize the recurrent state of the decoder
         :query_encoder_last_state: last encoder state of the previous query to be used as first input
         """
-        # Add first input (zeros)
-        print('here')
-        print(y)
+        # Add first input (zeros) by shifting
         y_one_hot_shifted = tf.one_hot(y, depth=vocab_size)
-        print(y_one_hot_shifted)
         start_word        = tf.expand_dims(tf.zeros([batch_size, vocab_size]), 1)
-        y_one_hot_shifted= tf.concat([start_word, y_one_hot_shifted], 1)[:,:-1]
+        y_one_hot_shifted = tf.concat([start_word, y_one_hot_shifted], 1)[:, :-1]
 
         length = self.length(tf.convert_to_tensor(y_one_hot_shifted))+1
         # Calculate RNN states

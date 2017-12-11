@@ -21,7 +21,7 @@ class HERED():
     """
 
     def __init__(self, vocab_size=50004, embedding_dim=300, query_dim=1000, session_dim=1500,
-                 decoder_dim=1000, output_dim=50004, unk_symbol=0, eoq_symbol=1, eos_symbol=2,learning_rate=1e-1, hidden_layer=1,batch_size = 50):
+                 decoder_dim=1000, output_dim=50004, unk_symbol=0, eoq_symbol=1, eos_symbol=2,learning_rate=1e-1, hidden_layer=1, batch_size=60):
         self.vocab_size = vocab_size
         self.batch_size = batch_size
         self.embedding_dim = embedding_dim
@@ -67,6 +67,7 @@ class HERED():
         :return: logits [N, hidden size] where N is the number of words (including eoq) in the batch
         """
 
+
         embedder = layers.get_embedding_layer(vocabulary_size=self.vocab_size,
                                               embedding_dims=self.embedding_dim, data=X,scope='X_embedder')
         # print(X)
@@ -75,7 +76,7 @@ class HERED():
 
         # For attention, pass bidirectional RNN
         if attention:
-            self.annotations = layers.bidirectional_layer(embedder, self.query_dim, self.batch_size, self.embedding_dim)
+            self.annotations = layers.bidirectional_layer(embedder, self.query_dim, self.batch_size)
 
         # Create the query encoder state
         self.initial_query_state = self.query_encoder.compute_state(x=embedder)  # batch_size x query_dims
@@ -87,9 +88,8 @@ class HERED():
         # Run decoder and retrieve outputs and states for all timesteps
         self.decoder_outputs = self.decoder_grucell.compute_prediction(  # batch size x timesteps x output_size
             y=Y, state=self.initial_decoder_state, batch_size=self.batch_size, vocab_size=self.vocab_size)
-        # Remove mask from outputs of decoder
-        # todo: cant slice with None, Make slicing with None dimension? how.
 
+        # Remove mask from outputs of decoder
         # print(self.decoder_outputs.shape)
         # mask = self.decoder_grucell.length(embedder)  # get length for every example in the batch
         # dec_out = self.decoder_outputs.get_shape()[2]
@@ -108,9 +108,9 @@ class HERED():
         # For attention, calculate context vector
         if attention:
             self.context = layers.get_context_attention(self.annotations, self.decoder_outputs, self.decoder_dim,
-                                                        self.query_dim)  # batch_size x max_steps
+                                                        self.query_dim,  sequence_max_length, self.batch_size)  # batch_size x max_steps
             # Concatenate context vector to decoder state, assuming in a GRU states = outputs
-            self.decoder_states_attention = tf.concat([self.decoder_outputs, tf.expand_dims(self.context, 1)], axis=2)
+            self.decoder_states_attention = tf.concat([self.decoder_outputs, tf.expand_dims(self.context, 2)], axis=2) # TODO: check this
             # Calculate the omega function w(d_n-1, w_n-1) for attention
             omega = layers.output_layer(embedding_dims=self.embedding_dim, vocabulary_size=self.vocab_size,
                                         num_hidden=self.decoder_dim + 1,
