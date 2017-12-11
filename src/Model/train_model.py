@@ -39,6 +39,8 @@ SESSION_DIM = 1500
 VOCAB_FILE = '../../data/input_model/train.dict.pkl'
 TRAIN_FILE = '../../data/input_model/train.ses.pkl'
 VALID_FILE = '../../data/input_model/valid.ses.pkl'
+train_file = '../../data/new_batch/allq_train.p'
+valid_file = '../../data/new_batch/allq_train.p'
 
 
 class Train(object):
@@ -48,18 +50,20 @@ class Train(object):
         self.vocab = cPickle.load(open(VOCAB_FILE, 'rb'))
         self.vocab_lookup_dict = {k: v for v, k, count in self.vocab}
 
-        self.train_data, self.valid_data = data_iterator.get_batch_iterator(np.random.RandomState(random_seed), {
-            'eoq_sym': EOQ_SYMBOL,
-            'eos_sym': EOS_SYMBOL,
-            'sort_k_batches': config.buckets,
-            'bs': config.batch_size,
-            'train_session': TRAIN_FILE,
-            'seqlen': config.max_length,
-            'valid_session': VALID_FILE
-        })
+        # self.train_data, self.valid_data = data_iterator.get_batch_iterator(np.random.RandomState(random_seed), {
+        #     'eoq_sym': EOQ_SYMBOL,
+        #     'eos_sym': EOS_SYMBOL,
+        #     'sort_k_batches': config.buckets,
+        #     'bs': config.batch_size,
+        #     'train_session': TRAIN_FILE,
+        #     'seqlen': config.max_length,
+        #     'valid_session': VALID_FILE
+        # })
+        self.train_data = cPickle.load(open(train_file, 'rb'))
+        # print('getBatch', len(data))
 
-        self.train_data.start()
-        self.valid_data.start()
+        # self.train_data.start()
+        # self.valid_data.start()
         self.vocab_size = len(self.vocab_lookup_dict)
         # class object
         # todo: put variables as needed and place holders
@@ -72,10 +76,10 @@ class Train(object):
 
         self.sequence_max_length = tf.placeholder(tf.int64)
         # TODO: attention needs config.max_lenght to be not None <---------- check this !!!
-        self.X = tf.placeholder(tf.int64, shape=(config.batch_size, 7)) #(BS,seq_len)
-        self.Y = tf.placeholder(tf.int64, shape=(config.batch_size, 7))
+        self.X = tf.placeholder(tf.int64, shape=(config.batch_size, None)) #(BS,seq_len)
+        self.Y = tf.placeholder(tf.int64, shape=(config.batch_size, None))
 
-        self.logits = self.HERED.inference(self.X,self.Y, self.sequence_max_length, attention=True) # <--- set attention here
+        self.logits = self.HERED.inference(self.X,self.Y, self.sequence_max_length, attention=False) # <--- set attention here
         self.loss = self.HERED.get_loss(self.logits, self.Y)
         # self.loss_val = tf.placeholder(tf.float32)
 
@@ -111,16 +115,7 @@ class Train(object):
             writer.add_graph(sess.graph)
 
             total_loss = 0.0
-            # initialisation
-            # x_batch, y_batch, seq_len = self.get_batch(dataset='train')
-            # feed_dict = {
-            #     self.X: x_batch,
-            #     self.Y: y_batch,
-            #     self.sequence_max_length : seq_len
-            #
-            # }
-            # todo ?
-            #sess.run([self.HERED.initialise], feed_dict=feed_dict)
+
 
             for iteration in range(self.config.max_steps):
 
@@ -131,7 +126,7 @@ class Train(object):
                 # print(x_batch)
                 # x_batch, y_batch, seq_len = self.get_random_batch()
                 random_element = random.choice(train_list)
-                x_batch, y_batch, seq_len, train_list = get_batch(train_list, type='train', element=random_element,
+                x_batch, y_batch, seq_len, train_list = get_batch(train_list,self.train_data, type='train', element=random_element,
                                                                   batch_size=self.config.batch_size,
                                                                   max_len=self.config.max_length)
 
@@ -181,7 +176,7 @@ class Train(object):
         return
 
 
-    def get_batch(self, dataset):
+    def get_batch_old(self, dataset):
         if dataset == 'train':
             data = self.train_data.next()
         elif dataset == 'valid':

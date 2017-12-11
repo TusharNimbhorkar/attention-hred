@@ -6,10 +6,9 @@ valid_file = 'allq_valid.p'
 # random_list = range(0,1000,50)
 # element = 0
 
-def get_batch( random_list,type='train',element=50, batch_size=50,max_len=50):
+def get_batch( random_list,data,type='train',element=50, batch_size=50,max_len=50):
     if type == 'train':
-        data = cPickle.load(open(train_file, 'rb'))
-        print('getBatch',len(data))
+
         random_list.remove(element)
         train_list = []
         for i in range(element,element+batch_size+1):
