@@ -286,7 +286,7 @@ if __name__ == '__main__':
     # Misc params
     parser.add_argument('--print_every', type=int, default=100, help='How often to print training progress')
     parser.add_argument('--summary_path', type=str, default='./summaries/',help='Output path for summaries.')
-    parser.add_argument('--checkpoint_every', type=int, default=1,help='How often to save checkpoints.')
+    parser.add_argument('--checkpoint_every', type=int, default=100,help='How often to save checkpoints.')
     parser.add_argument('--checkpoint_path', type=str, default='./checkpoints/model.ckpt',help='Output path for checkpoints.')
     FLAGS, unparsed = parser.parse_known_args()
 
