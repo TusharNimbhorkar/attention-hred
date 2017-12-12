@@ -59,9 +59,6 @@ def output_layer(embedding_dims, num_hidden, vocabulary_size, state, word):
         #return tf.matmul(state, tf.transpose(H_ouput)) + tf.transpose(tf.cast(y_embedding_onehot, tf.float32)) + b_output
         # tf.einsum('bsh,eh->bse',state, H_ouput)
         # tf.einsum('bsv,ev->bse',y_one_hot, E_output)
-        print('state,one hot')
-        print(state)
-        print(y_one_hot)
         return tf.einsum('bsh,eh->bse',state, H_ouput) + tf.einsum('bsv,ev->bse',y_one_hot, E_output) + b_output
 
 
@@ -100,23 +97,25 @@ def get_context_attention(annotations, decoder_states, decoder_dims, encoder_dim
     #a = tf.einsum('bmd, ed --> ebm', decoder_states, w)
     w_tile = tf.tile(tf.expand_dims(w, 0), (batch_size, 1, 1))
     dec_w = tf.matmul(decoder_states, tf.transpose(w_tile, perm=[0, 2, 1]))  # batch x max_steps x 2 x enc_dims
-    # print(dec_w)
+    #print(dec_w)
     annotations = tf.transpose(annotations, perm=[1, 0, 2])
-    # print(annotations)
+    #print(annotations)
     annotations_mul = tf.matmul(annotations, tf.transpose(dec_w, perm=[0, 2, 1]))
-    # print(annotations_mul)
+    #print(annotations_mul)
     #b = tf.einsum('bme, ebm -> bm', annotations, dec_w)
     alphas = tf.nn.softmax(annotations_mul)  # batch_size x seq_leght
-    print(alphas)
+    #print(alphas)
     # Calculate context vector
-    alphas_tile = tf.tile(tf.expand_dims(alphas,3), (1, 1, 1, 2 * encoder_dims))
-    annotations_tile = tf.tile(tf.expand_dims(annotations, 2), (1, 1, max_length, 1))
-    weighted_annotations = tf.matmul(tf.transpose(alphas_tile, perm=[0, 1, 3, 2]), annotations_tile)
+    weighted_annotations = tf.matmul(alphas, annotations)
+    #print(weighted_annotations)
+    # alphas_tile = tf.tile(tf.expand_dims(alphas,3), (1, 1, 1, 2 * encoder_dims))
+    # annotations_tile = tf.tile(tf.expand_dims(annotations, 2), (1, 1, max_length, 1))
+    # weighted_annotations = tf.matmul(tf.transpose(alphas_tile, perm=[0, 1, 3, 2]), annotations_tile)
     #tf.einsum('bm, bme -> bme', alphas, annotations)
-    print(weighted_annotations)
+    #print(weighted_annotations)
     # weighted_annotations is (b x m x 2e x 2e) and we need context to be b x m so we reduce sum twice TODO: ask if this is alright
-    context = tf.reduce_sum(tf.reduce_sum(weighted_annotations, axis=3), axis=2)  # reduce over 2 x enc_dims twice
-    print(context)
+    context = tf.reduce_sum(weighted_annotations, axis=2)  # reduce over 2 x enc_dims twice
+    #print(context)
     return context
 
 

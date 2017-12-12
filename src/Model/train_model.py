@@ -24,13 +24,13 @@ import random
 # todo: put this stuff in arg.parse as well
 LEARNING_RATE = 1e-4
 HIDDEN_LAYERS = 1
-BATCH_SIZE = 50
+BATCH_SIZE = 60
 MAX_LENGTH = 50
 N_BUCKETS = 20
 MAX_STEPS = 10000000
 VOCAB_SIZE = 50003
 random_seed = 1234
-UNK_SYMBOL = 0
+UNK_SYMBOL = 5003
 EOQ_SYMBOL = 1
 EOS_SYMBOL = 2
 EMBEDDING_DIM = 300
@@ -49,6 +49,8 @@ class Train(object):
         self.config = config
         self.vocab = cPickle.load(open(VOCAB_FILE, 'rb'))
         self.vocab_lookup_dict = {k: v for v, k, count in self.vocab}
+        self.vocab_lookup_dict[50003] = self.vocab_lookup_dict[0]
+        self.vocab_lookup_dict[0] = '<pad>'
 
         # self.train_data, self.valid_data = data_iterator.get_batch_iterator(np.random.RandomState(random_seed), {
         #     'eoq_sym': EOQ_SYMBOL,
@@ -80,7 +82,7 @@ class Train(object):
         self.X = tf.placeholder(tf.int64, shape=(config.batch_size, config.max_length)) #(BS,seq_len)
         self.Y = tf.placeholder(tf.int64, shape=(config.batch_size, config.max_length))
 
-        self.logits = self.HERED.inference(self.X,self.Y, self.X.shape[1], attention=False) # <--- set attention here
+        self.logits = self.HERED.inference(self.X,self.Y, self.X.shape[1], attention=False)  # <--- set attention here
         self.loss = self.HERED.get_loss(self.logits, self.Y)
         # self.loss_val = tf.placeholder(tf.float32)
 
@@ -167,6 +169,10 @@ class Train(object):
                         int(self.config.max_steps), self.config.batch_size, examples_per_second,
                         loss_val
                     ))
+
+                    # summary = sess.run(summaries,
+                    #                    feed_dict={ self.loss: loss_val})
+                    # writer.add_summary(summary, global_step=iteration)
 
 
                 # Update the events file.
