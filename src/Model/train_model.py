@@ -30,7 +30,7 @@ N_BUCKETS = 20
 MAX_STEPS = 10000000
 VOCAB_SIZE = 50003
 random_seed = 1234
-UNK_SYMBOL = 0
+UNK_SYMBOL = 5003
 EOQ_SYMBOL = 1
 EOS_SYMBOL = 2
 EMBEDDING_DIM = 300
@@ -49,6 +49,8 @@ class Train(object):
         self.config = config
         self.vocab = cPickle.load(open(VOCAB_FILE, 'rb'))
         self.vocab_lookup_dict = {k: v for v, k, count in self.vocab}
+        self.vocab_lookup_dict[50003] = self.vocab_lookup_dict[0]
+        self.vocab_lookup_dict[0] = '<pad>'
 
         # self.train_data, self.valid_data = data_iterator.get_batch_iterator(np.random.RandomState(random_seed), {
         #     'eoq_sym': EOQ_SYMBOL,
