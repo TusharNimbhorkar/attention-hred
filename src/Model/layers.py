@@ -110,7 +110,7 @@ def get_context_attention(annotations, decoder_states, decoder_dims, encoder_dim
     print(alphas)
     # Calculate context vector
     alphas_tile = tf.tile(tf.expand_dims(alphas,3), (1, 1, 1, 2 * encoder_dims))
-    annotations_tile = tf.tile(tf.expand_dims(annotations, 2), (1, 1, 7, 1))
+    annotations_tile = tf.tile(tf.expand_dims(annotations, 2), (1, 1, max_length, 1))
     weighted_annotations = tf.matmul(tf.transpose(alphas_tile, perm=[0, 1, 3, 2]), annotations_tile)
     #tf.einsum('bm, bme -> bme', alphas, annotations)
     print(weighted_annotations)

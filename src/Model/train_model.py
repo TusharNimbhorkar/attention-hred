@@ -74,12 +74,12 @@ class Train(object):
                            learning_rate=self.config.learning_rate, hidden_layer=config.hidden_layer,
                            batch_size=config.batch_size)
 
-        self.sequence_max_length = tf.placeholder(tf.int64)
+        #self.sequence_max_length = tf.placeholder(tf.int64)
         # TODO: attention needs config.max_lenght to be not None <---------- check this !!!
-        self.X = tf.placeholder(tf.int64, shape=(config.batch_size, None)) #(BS,seq_len)
-        self.Y = tf.placeholder(tf.int64, shape=(config.batch_size, None))
+        self.X = tf.placeholder(tf.int64, shape=(config.batch_size, config.max_length)) #(BS,seq_len)
+        self.Y = tf.placeholder(tf.int64, shape=(config.batch_size, config.max_length))
 
-        self.logits = self.HERED.inference(self.X,self.Y, self.sequence_max_length, attention=False) # <--- set attention here
+        self.logits = self.HERED.inference(self.X,self.Y, self.X.shape[1], attention=True) # <--- set attention here
         self.loss = self.HERED.get_loss(self.logits, self.Y)
         # self.loss_val = tf.placeholder(tf.float32)
 
