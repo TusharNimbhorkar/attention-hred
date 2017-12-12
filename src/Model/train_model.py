@@ -99,7 +99,7 @@ class Train(object):
     def train_model(self, batch_size=None):
 
         # batch parameters,train
-        train_list = list(range(0, 19619225, batch_size))
+        train_list = list(range(0, len(self.train_data)-50, batch_size))
 
 
         # summaries = tf.summary.merge_all()
@@ -116,6 +116,7 @@ class Train(object):
 
             total_loss = 0.0
 
+            self.config.max_steps = int((len(self.train_data)-50)/self.config.batch_size)
 
             for iteration in range(self.config.max_steps):
 
