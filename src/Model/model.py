@@ -34,9 +34,11 @@ class HERED():
         self.eos_symbol = eos_symbol
         self.learning_rate = learning_rate
         self.hidden_layers = hidden_layer
-        self.query_encoder = Encoder(batch_size = self.batch_size, level='query')
-        self.session_encoder = Encoder(batch_size = self.batch_size, level='session', input_dim=1000, num_hidden=1500)
-        self.decoder_grucell = Decoder()
+        self.query_encoder = Encoder(batch_size=self.batch_size, level='query', num_hidden=self.query_dim)
+        self.session_encoder = Encoder(batch_size=self.batch_size, level='session', input_dim=self.query_dim,
+                                       num_hidden=self.session_dim)
+        self.decoder_grucell = Decoder(input_dim=self.embedding_dim, num_hidden_query=self.query_dim,
+                                       num_hidden_session=self.session_dim)
         self.vocabulary_matrix = tf.cast(tf.eye(self.vocab_size), tf.int32)
 
     def initialise(self, X):
