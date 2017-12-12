@@ -62,7 +62,7 @@ class Train(object):
         #     'valid_session': VALID_FILE
         # })
         # todo remove [0:200] for full training set
-        self.train_data = cPickle.load(open(train_file, 'rb'))[0:200]
+        self.train_data = cPickle.load(open(train_file, 'rb'))
         # print('getBatch', len(data))
 
         # self.train_data.start()
@@ -146,8 +146,8 @@ class Train(object):
                 x_batch, y_batch, seq_len, train_list = get_batch(train_list,self.train_data, type='train', element=random_element,
                                                                   batch_size=self.config.batch_size,
                                                                   max_len=self.config.max_length)
-                if iteration == 2:
-                    break
+                # if iteration == 2:
+                #     break
                 print(x_batch.shape,y_batch.shape)
                 feed_dict = {
                     self.X: x_batch,
