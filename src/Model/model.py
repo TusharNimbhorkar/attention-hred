@@ -136,20 +136,23 @@ class HERED():
         return logits
 
     def get_predictions(self, X):
-        embedder = layers.get_embedding_layer(vocabulary_size=self.vocab_size,
-                                              embedding_dims=self.embedding_dim, data=X)
-        # Create the query encoder state
-        self.initial_query_state = self.query_encoder.compute_state(x=embedder)
-        # Create the session state
-        self.initial_session_state = self.session_encoder.compute_state(x=self.initial_query_state)
-        outputs, self.decoder_state = self.decoder_grucell.compute_prediction(session_state=self.initial_session_state,
-                                                                            query_encoder_last_state=self.initial_query_state,
-                                                                            sequence_length=10)# todo set sequen_length=max_size
+        print('Im in prediction')
 
-        logits = layers.output_layer(embedding_dims=self.embedding_dim, vocabulary_size= self.vocab_size, num_hidden= self.hidden_layers,
-                                     state=self.decoder_state, word=outputs)
-
-        return logits
+        # embedder = layers.get_embedding_layer(vocabulary_size=self.vocab_size,
+        #                                       embedding_dims=self.embedding_dim, data=X)
+        # # Create the query encoder state
+        # self.initial_query_state = self.query_encoder.compute_state(x=embedder)
+        # # Create the session state
+        # self.initial_session_state = self.session_encoder.compute_state(x=self.initial_query_state)
+        # outputs, self.decoder_state = self.decoder_grucell.compute_prediction(session_state=self.initial_session_state,
+        #                                                                     query_encoder_last_state=self.initial_query_state,
+        #                                                                     sequence_length=10)# todo set sequen_length=max_size
+        #
+        # logits = layers.output_layer(embedding_dims=self.embedding_dim, vocabulary_size= self.vocab_size, num_hidden= self.hidden_layers,
+        #                              state=self.decoder_state, word=outputs)
+        #
+        # return logits
+        return  0
 
     def get_loss(self, logits, labels):
         # same as for train_step.....

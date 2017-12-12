@@ -133,7 +133,8 @@ class Train(object):
                 x_batch, y_batch, seq_len, train_list = get_batch(train_list,self.train_data, type='train', element=random_element,
                                                                   batch_size=self.config.batch_size,
                                                                   max_len=self.config.max_length)
-
+                if iteration == 2:
+                    break
                 print(x_batch.shape,y_batch.shape)
                 feed_dict = {
                     self.X: x_batch,
@@ -161,8 +162,9 @@ class Train(object):
                 #summary_writer.add_summary(summary_str, train_step)
                 #summary_writer.flush()
 
-                #if iteration % config.checkpoint_every == 0:
-                #    saver.save(sess, save_path=config.checkpoint_path)
+                if iteration % self.config.checkpoint_every == 0:
+                    saver.save(sess, save_path= self.config.checkpoint_path ,global_step=iteration)
+                    cPickle.dump(train_list, open("train_list.p", "wb"))
         return sess
 
     def predict_model(self, sess=None):
