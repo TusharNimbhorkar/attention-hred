@@ -30,7 +30,7 @@ N_BUCKETS = 20
 MAX_STEPS = 10000000
 VOCAB_SIZE = 50003
 random_seed = 1234
-UNK_SYMBOL = 5003
+UNK_SYMBOL = 0
 EOQ_SYMBOL = 1
 EOS_SYMBOL = 2
 EMBEDDING_DIM = 300
@@ -49,8 +49,6 @@ class Train(object):
         self.config = config
         self.vocab = cPickle.load(open(VOCAB_FILE, 'rb'))
         self.vocab_lookup_dict = {k: v for v, k, count in self.vocab}
-        self.vocab_lookup_dict[50003] = self.vocab_lookup_dict[0]
-        self.vocab_lookup_dict[0] = '<pad>'
 
         # self.train_data, self.valid_data = data_iterator.get_batch_iterator(np.random.RandomState(random_seed), {
         #     'eoq_sym': EOQ_SYMBOL,
@@ -62,7 +60,7 @@ class Train(object):
         #     'valid_session': VALID_FILE
         # })
         # todo remove [0:200] for full training set
-        self.train_data = cPickle.load(open(train_file, 'rb'))
+        self.train_data = cPickle.load(open(train_file, 'rb'))[0:200]
         # print('getBatch', len(data))
 
         # self.train_data.start()
@@ -82,7 +80,7 @@ class Train(object):
         self.X = tf.placeholder(tf.int64, shape=(config.batch_size, config.max_length)) #(BS,seq_len)
         self.Y = tf.placeholder(tf.int64, shape=(config.batch_size, config.max_length))
 
-        self.logits = self.HERED.inference(self.X,self.Y, self.X.shape[1], attention=False)  # <--- set attention here
+        self.logits = self.HERED.inference(self.X,self.Y, self.X.shape[1], attention=False) # <--- set attention here
         self.loss = self.HERED.get_loss(self.logits, self.Y)
         # self.loss_val = tf.placeholder(tf.float32)
 
@@ -91,7 +89,8 @@ class Train(object):
         #self.get_predictions = self.HERED.get_predictions(self.X)
 
         # Define global step for the optimizer  --- OPTIMIZER
-        global_step = tf.Variable(0, trainable=False, dtype=tf.int32)
+        global_step = tf.Variable(0, name = 'global_step', trainable=False, dtype=tf.int32)
+        tf.add_to_collection('global_step', global_step)
         self.optimizer = self.get_optimizer(self.loss, self.config.learning_rate, global_step)
 
         some_variables = 0
@@ -99,7 +98,7 @@ class Train(object):
         # ...
         #
 
-    def train_model(self, batch_size=None):
+    def train_model(self, batch_size=None, restore = False):
 
         # batch parameters,train
         train_list = list(range(0, len(self.train_data)-50, batch_size))
@@ -109,19 +108,31 @@ class Train(object):
         init = tf.global_variables_initializer()
         saver = tf.train.Saver()
 
-        with tf.Session() as sess:
+        if restore ==True:
+            train_list = cPickle.load(open("train_list.p", 'rb'))
+            saver = tf.train.Saver()
 
-            sess.run(tf.global_variables_initializer())
-            log_path = self.config.summary_path + time.strftime("%Y%m%d-%H%M")
+        with tf.Session() as sess:
+            if restore == False:
+
+                sess.run(tf.global_variables_initializer())
+                global_step = 0
+
+                total_loss = 0.0
+
+                self.config.max_steps = int((len(self.train_data)-50)/self.config.batch_size)
+            else:
+                print(self.config.checkpoint_path)
+                saver.restore(sess, tf.train.latest_checkpoint('./checkpoints/') )
+                global_step = tf.get_collection_ref('global_step')[0]
+                global_step= sess.run(global_step)
+
+            log_path = self.config.summary_path
             summaries = tf.summary.merge_all()
             writer = tf.summary.FileWriter(log_path)
             writer.add_graph(sess.graph)
-
-            total_loss = 0.0
-
-            self.config.max_steps = int((len(self.train_data)-50)/self.config.batch_size)
-
-            for iteration in range(self.config.max_steps):
+            # TODO check the train list for None
+            for iteration in range(global_step,  self.config.max_steps):
 
                 #todo:
                 t1 = time.time()
@@ -142,7 +153,8 @@ class Train(object):
                 }
                 # logits_ = sess.run([self.logits],feed_dict=feed_dict)
                 # loss_value,_ = sess.run([self.loss,self.optimizer],)
-                _,loss_val = sess.run([self.optimizer,self.loss], feed_dict=feed_dict)
+                _,loss_val, summ= sess.run([self.optimizer,self.loss,summaries], feed_dict=feed_dict)
+                writer.add_summary(summ, iteration)
 
                 t2 = time.time()
 
@@ -156,10 +168,6 @@ class Train(object):
                         loss_val
                     ))
 
-                    # summary = sess.run(summaries,
-                    #                    feed_dict={ self.loss: loss_val})
-                    # writer.add_summary(summary, global_step=iteration)
-
 
                 # Update the events file.
                 #summary_str = sess.run(summary, feed_dict=feed_dict)
@@ -170,18 +178,31 @@ class Train(object):
                     saver.save(sess, save_path= self.config.checkpoint_path ,global_step=iteration)
                     cPickle.dump(train_list, open("train_list.p", "wb"))
         return sess
+    def restore_training(self):
+        train_file = cPickle.load(open("train_list.p", 'rb'))
+        saver = tf.train.Saver()
+        with tf.Session() as sess:
+            saver.restore(sess, tf.train.latest_checkpoint(self.config.checkpoint_path))
 
     def predict_model(self, sess=None):
-        raise NotImplementedError
+
         if not sess:
-            saver.restore(sess, config.checkpoint_path)
-        x_batch, y_batch, seq_len = self.get_batch(dataset='valid')
-        feed_dict = {
-            self.X: x_batch,
-            self.Y: y_batch
-        }
-        # self.predictions: tensor function to compute predictions given x_batch
-        query_output = sess.run([self.get_predictions], feed_dict=feed_dict)
+            #RESTORE TRAIN LIST
+            # batch parameters,train
+            test_list = list(range(0, len(self.train_data) - 50, self.config.batch_size))[0:100]
+            random_element = random.choice(test_list)
+            saver = tf.train.Saver()
+            with tf.Session() as sess:
+                saver.restore(sess, self.config.checkpoint_path)
+                x_batch, y_batch, seq_len = get_batch(test_list,self.train_data, type='test', element=random_element,
+                                                                  batch_size=self.config.batch_size,
+                                                                  max_len=50)
+                feed_dict = {
+                    self.X: x_batch,
+                    self.Y: y_batch
+                }
+                # self.predictions: tensor function to compute predictions given x_batch
+                query_output = sess.run([self.HERED.get_predictions], feed_dict=feed_dict)
         return
 
 
@@ -259,10 +280,11 @@ if __name__ == '__main__':
     # Misc params
     parser.add_argument('--print_every', type=int, default=100, help='How often to print training progress')
     parser.add_argument('--summary_path', type=str, default='./summaries/',help='Output path for summaries.')
-    parser.add_argument('--checkpoint_every', type=int, default=10,help='How often to save checkpoints.')
+    parser.add_argument('--checkpoint_every', type=int, default=1,help='How often to save checkpoints.')
     parser.add_argument('--checkpoint_path', type=str, default='./checkpoints/model.ckpt',help='Output path for checkpoints.')
     FLAGS, unparsed = parser.parse_known_args()
 
     with tf.Graph().as_default():
         trainer = Train(config=FLAGS)
         trainer.train_model(batch_size=FLAGS.batch_size)
+        # trainer.predict_model()
