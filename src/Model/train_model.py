@@ -62,7 +62,7 @@ class Train(object):
         #     'valid_session': VALID_FILE
         # })
         # todo remove [0:200] for full training set
-        self.train_data = cPickle.load(open(train_file, 'rb'))[0:200]
+        self.train_data = cPickle.load(open(train_file, 'rb'))
         # print('getBatch', len(data))
 
         # self.train_data.start()
@@ -155,6 +155,10 @@ class Train(object):
                         int(self.config.max_steps), self.config.batch_size, examples_per_second,
                         loss_val
                     ))
+
+                    # summary = sess.run(summaries,
+                    #                    feed_dict={ self.loss: loss_val})
+                    # writer.add_summary(summary, global_step=iteration)
 
 
                 # Update the events file.
