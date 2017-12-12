@@ -30,7 +30,7 @@ N_BUCKETS = 20
 MAX_STEPS = 10000000
 VOCAB_SIZE = 50003
 random_seed = 1234
-UNK_SYMBOL = 0
+UNK_SYMBOL = 5003
 EOQ_SYMBOL = 1
 EOS_SYMBOL = 2
 EMBEDDING_DIM = 300
@@ -49,6 +49,8 @@ class Train(object):
         self.config = config
         self.vocab = cPickle.load(open(VOCAB_FILE, 'rb'))
         self.vocab_lookup_dict = {k: v for v, k, count in self.vocab}
+        self.vocab_lookup_dict[50003] = self.vocab_lookup_dict[0]
+        self.vocab_lookup_dict[0] = '<pad>'
 
         # self.train_data, self.valid_data = data_iterator.get_batch_iterator(np.random.RandomState(random_seed), {
         #     'eoq_sym': EOQ_SYMBOL,
@@ -80,7 +82,7 @@ class Train(object):
         self.X = tf.placeholder(tf.int64, shape=(config.batch_size, config.max_length)) #(BS,seq_len)
         self.Y = tf.placeholder(tf.int64, shape=(config.batch_size, config.max_length))
 
-        self.logits = self.HERED.inference(self.X,self.Y, self.X.shape[1], attention=True) # <--- set attention here
+        self.logits = self.HERED.inference(self.X,self.Y, self.X.shape[1], attention=False) # <--- set attention here
         self.loss = self.HERED.get_loss(self.logits, self.Y)
         # self.loss_val = tf.placeholder(tf.float32)
 
