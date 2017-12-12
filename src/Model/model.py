@@ -79,7 +79,6 @@ class HERED():
         # For attention, pass bidirectional RNN
         if attention:
             self.annotations = layers.bidirectional_layer(embedder, self.query_dim, self.batch_size)
-
         # Create the query encoder state
         self.initial_query_state = self.query_encoder.compute_state(x=embedder)  # batch_size x query_dims
         # Create the session state
