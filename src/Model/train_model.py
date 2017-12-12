@@ -59,7 +59,8 @@ class Train(object):
         #     'seqlen': config.max_length,
         #     'valid_session': VALID_FILE
         # })
-        self.train_data = cPickle.load(open(train_file, 'rb'))
+        # todo remove [0:200] for full training set
+        self.train_data = cPickle.load(open(train_file, 'rb'))[0:200]
         # print('getBatch', len(data))
 
         # self.train_data.start()
@@ -134,8 +135,7 @@ class Train(object):
                 print(x_batch.shape,y_batch.shape)
                 feed_dict = {
                     self.X: x_batch,
-                    self.Y: y_batch,
-                    self.sequence_max_length : seq_len
+                    self.Y: y_batch
                 }
                 # logits_ = sess.run([self.logits],feed_dict=feed_dict)
                 # loss_value,_ = sess.run([self.loss,self.optimizer],)
