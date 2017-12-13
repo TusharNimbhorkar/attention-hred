@@ -102,6 +102,23 @@ class Decoder(object):
             initial_state=state)
         return outputs
 
+    def compute_one_prediction(self, y, state, batch_size, vocab_size):
+        """
+        :session_state:            state to initialize the recurrent state of the decoder
+        :query_encoder_last_state: last encoder state of the previous query to be used as first input
+        """
+        # Add first input (zeros) by shifting
+
+        # length = self.length(tf.convert_to_tensor(y_one_hot_shifted)) + 1
+        # Calculate RNN states
+        outputs, state = tf.nn.dynamic_rnn(
+            self.gru_cell,
+            y,
+            dtype=tf.float32,
+            sequence_length=[1]*batch_size,
+            initial_state=state)
+        return outputs , state
+
     def concat_fn(self,output,state,outputs,states,seq_len):
         output, state = self.gru_cell(output, state)
         outputs = tf.concat([outputs, tf.expand_dims(output, 2)], 2)

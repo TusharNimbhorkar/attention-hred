@@ -170,6 +170,12 @@ class Train(object):
                         loss_val
                     ))
 
+                if iteration %  5==0: #self.config.validate_every
+
+                    accuracy = sess.run([self.HERED.validation(X = self.X, Y= self.Y)],feed_dict = {self.X: x_batch, self.Y: y_batch})
+                    print('accuracy'+ str(accuracy))
+
+
                     # summary = sess.run(summaries,
                     #                    feed_dict={ self.loss: loss_val})
                     # writer.add_summary(summary, global_step=iteration)

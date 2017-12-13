@@ -134,7 +134,7 @@ class HERED():
 
         return logits
 
-    def get_predictions(self, X, sequence_max_length, previous_word=None, attention=False, state= None):
+    def get_predictions(self, X,  previous_word=None, attention=False, state= None, sequence_max_length=1):
 
             """
             Function to run the model.
@@ -162,13 +162,13 @@ class HERED():
             self.initial_decoder_state = layers.decoder_initialise_layer(self.initial_session_state[0],
                                                                          self.decoder_dim)  # batch_size x decoder_dims
             if state  == None:
-                previous_word = tf.expand_dims(tf.zeros([self.batch_size, self.output_dim]),1)
+                previous_word = tf.expand_dims(tf.zeros([self.batch_size,self.vocab_size]), 1)
                 print (previous_word)
                 state = self.initial_decoder_state
 
 
             # Run decoder and retrieve outputs for next words
-            self.decoder_outputs, state = self.decoder_grucell.compute_prediction(  # batch size x 1 x output_size
+            self.decoder_outputs, state = self.decoder_grucell.compute_one_prediction(  # batch size x 1 x output_size
                 y=previous_word, state=state, batch_size=self.batch_size, vocab_size=self.vocab_size)
 
             # For attention, calculate context vector
@@ -194,6 +194,20 @@ class HERED():
             logits = tf.einsum('bse,ve->bsv', omega, ov_embedder)
 
             return logits, state
+
+    def validation(self, X, Y, sequence_max_length = 1, attention=False):
+
+        x_list =  tf.unstack(X, axis=1)
+        result, state = self.get_predictions(tf.expand_dims(x_list[0], 1))
+        outputs = tf.expand_dims(result, 1)
+        for i in range (1, len(x_list)):
+            result, state =  self.get_predictions(tf.expand_dims(x_list[i], 1), tf.one_hot(result,depth=self.vocab_size))
+            outputs = tf.stack(outputs, tf.expand_dims( result, 1),1)
+        predictions  = tf.contrib.layers.flatten(outputs)
+        y_list = tf.contrib.layers.flatten( tf.unstack(Y, axis = 1))
+        correct_predictions= tf.equal(tf.argmax(predictions), tf.argmax(y_list, 1))
+        accuracy = correct_predictions / self.batch_size
+        return accuracy
 
     def get_loss(self, logits, labels):
         # same as for train_step.....
