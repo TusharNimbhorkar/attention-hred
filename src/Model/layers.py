@@ -21,7 +21,7 @@ def get_embedding_layer(vocabulary_size, embedding_dims, data, scope):
     :return: embeddings for data
 
     """
-    with tf.variable_scope(scope):
+    with tf.variable_scope(scope, reuse= tf.AUTO_REUSE):
         embeddings_weights = tf.get_variable(name=scope, shape=[vocabulary_size, embedding_dims],
                                              initializer=tf.random_normal_initializer(mean=0.0, stddev=1.0))
         word_embeddings = tf.nn.embedding_lookup(embeddings_weights, data)
@@ -41,7 +41,7 @@ def output_layer(embedding_dims, num_hidden, vocabulary_size, state, word):
     :param word: 1D tensor embedding, previous word, should be flatten
     :return:
     """
-    with tf.variable_scope('output_layer'):
+    with tf.variable_scope('output_layer', reuse= tf.AUTO_REUSE ):
         # Define the weights H_o, E_o and bias b_o
         H_ouput = tf.get_variable(name='h_output', shape=[embedding_dims, num_hidden],
                                   initializer=tf.random_normal_initializer(mean=0.0, stddev=1.0))
@@ -50,7 +50,7 @@ def output_layer(embedding_dims, num_hidden, vocabulary_size, state, word):
         b_output = tf.get_variable(name='b_output', shape=[embedding_dims],
                                    initializer=tf.truncated_normal_initializer(mean=0.0, stddev=1.0))
 
-        y_one_hot = tf.one_hot(word, vocabulary_size)
+        y_one_hot = tf.one_hot(word, depth= vocabulary_size)
         start_word = tf.expand_dims(tf.zeros([tf.shape(word)[0],vocabulary_size]),1)
         # y_one_hot_shifted = tf.concat([start_word,y_one_hot],1)
         #y_embedding_onehot = get_embedding_layer(vocabulary_size=vocabulary_size,
