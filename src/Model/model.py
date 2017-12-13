@@ -199,7 +199,7 @@ class HERED():
         # same as for train_step.....
 
         labels = tf.one_hot(labels, self.vocab_size)
-        loss = tf.log(tf.reduce_sum(tf.nn.softmax_cross_entropy_with_logits(logits=logits, labels=labels)))
+        loss =tf.reduce_sum(tf.log(tf.nn.softmax_cross_entropy_with_logits(logits=logits, labels=labels)))
 
         tf.summary.scalar('LOSS', loss)
         return loss
