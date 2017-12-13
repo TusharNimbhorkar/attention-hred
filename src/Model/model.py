@@ -134,24 +134,66 @@ class HERED():
 
         return logits
 
-    def get_predictions(self, X):
-        print('Im in prediction')
+    def get_predictions(self, X, sequence_max_length, previous_word=None, attention=False, state= None):
 
-        # embedder = layers.get_embedding_layer(vocabulary_size=self.vocab_size,
-        #                                       embedding_dims=self.embedding_dim, data=X)
-        # # Create the query encoder state
-        # self.initial_query_state = self.query_encoder.compute_state(x=embedder)
-        # # Create the session state
-        # self.initial_session_state = self.session_encoder.compute_state(x=self.initial_query_state)
-        # outputs, self.decoder_state = self.decoder_grucell.compute_prediction(session_state=self.initial_session_state,
-        #                                                                     query_encoder_last_state=self.initial_query_state,
-        #                                                                     sequence_length=10)# todo set sequen_length=max_size
-        #
-        # logits = layers.output_layer(embedding_dims=self.embedding_dim, vocabulary_size= self.vocab_size, num_hidden= self.hidden_layers,
-        #                              state=self.decoder_state, word=outputs)
-        #
-        # return logits
-        return  0
+            """
+            Function to run the model.
+            :param X: data batch [batch_size x max_seq]
+            :param Y: target batch
+            :param sequence_max_length: max_seq of the batch
+            :return: logits [N, hidden size] where N is the number of words (including eoq) in the batch
+            """
+
+            embedder = layers.get_embedding_layer(vocabulary_size=self.vocab_size,
+                                                  embedding_dims=self.embedding_dim, data=X, scope='X_embedder')
+            # print(X)
+            # print(embedder)
+            # embedder.set_shape((50, sequence_max_length.eval(), 300)) # set shape now that is known (before it was '?')
+
+            # For attention, pass bidirectional RNN
+            if attention:
+                self.annotations = layers.bidirectional_layer(embedder, self.query_dim, self.batch_size)
+            # Create the query encoder state
+            self.initial_query_state = self.query_encoder.compute_state(x=embedder)  # batch_size x query_dims
+            # Create the session state
+            self.initial_session_state = self.session_encoder.compute_state(
+                x=self.initial_query_state)  # batch_size x session_dims
+            # Create the initial decoder state
+            self.initial_decoder_state = layers.decoder_initialise_layer(self.initial_session_state[0],
+                                                                         self.decoder_dim)  # batch_size x decoder_dims
+            if state  == None:
+                previous_word = tf.expand_dims(tf.zeros([self.batch_size, self.output_dim]),1)
+                print (previous_word)
+                state = self.initial_decoder_state
+
+
+            # Run decoder and retrieve outputs for next words
+            self.decoder_outputs, state = self.decoder_grucell.compute_prediction(  # batch size x 1 x output_size
+                y=previous_word, state=state, batch_size=self.batch_size, vocab_size=self.vocab_size)
+
+            # For attention, calculate context vector
+            if attention:
+                self.context = layers.get_context_attention(self.annotations, self.decoder_outputs, self.decoder_dim,
+                                                            self.query_dim, sequence_max_length,
+                                                            self.batch_size)  # batch_size x max_steps
+                # Concatenate context vector to decoder state, assuming in a GRU states = outputs
+                self.decoder_states_attention = tf.concat([self.decoder_outputs, tf.expand_dims(self.context, 2)],
+                                                          axis=2)  # TODO: check this
+                # Calculate the omega function w(d_n-1, w_n-1) for attention
+                omega = layers.output_layer(embedding_dims=self.embedding_dim, vocabulary_size=self.vocab_size,
+                                            num_hidden=self.decoder_dim + 1,
+                                            state=self.decoder_states_attention, word=previous_word)
+            else:
+                omega = layers.output_layer(embedding_dims=self.embedding_dim, vocabulary_size=self.vocab_size,
+                                            num_hidden=self.decoder_dim,
+                                            state=self.decoder_outputs, word=previous_word)
+
+            ov_embedder = tf.get_variable(name='Ov_embedder', shape=[self.vocab_size, self.embedding_dim],
+                                          initializer=tf.random_normal_initializer(mean=0.0, stddev=1.0))
+
+            logits = tf.einsum('bse,ve->bsv', omega, ov_embedder)
+
+            return logits, state
 
     def get_loss(self, logits, labels):
         # same as for train_step.....
