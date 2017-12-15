@@ -162,11 +162,11 @@ class HERED():
             self.initial_decoder_state = layers.decoder_initialise_layer(self.initial_session_state[0],
                                                                          self.decoder_dim)  # batch_size x decoder_dims
             if state  == None:
-                previous_word = tf.expand_dims(tf.zeros([self.batch_size,self.vocab_size]), 1)
-                print (previous_word)
+                previous_word = tf.zeros([self.batch_size,self.vocab_size])
                 state = self.initial_decoder_state
+                print (state)
 
-
+            print(previous_word)
             # Run decoder and retrieve outputs for next words
             self.decoder_outputs, state = self.decoder_grucell.compute_one_prediction(  # batch size x 1 x output_size
                 y=previous_word, state=state, batch_size=self.batch_size, vocab_size=self.vocab_size)
@@ -199,12 +199,13 @@ class HERED():
 
         x_list =  tf.unstack(X, axis=1)
         result, state = self.get_predictions(tf.expand_dims(x_list[0], 1))
+        print(state)
         outputs = tf.expand_dims(result, 1)
         for i in range (1, len(x_list)):
-            result, state =  self.get_predictions(tf.expand_dims(x_list[i], 1), tf.one_hot(result,depth=self.vocab_size))
+            result, state =  self.get_predictions(X=tf.expand_dims(x_list[i], 1), previous_word= tf.one_hot(tf.argmax(result),depth=self.vocab_size), state= state)
             outputs = tf.stack(outputs, tf.expand_dims( result, 1),1)
         predictions  = tf.contrib.layers.flatten(outputs)
-        y_list = tf.contrib.layers.flatten( tf.unstack(Y, axis = 1))
+        y_list = tf.contrib.layers.flatten(tf.unstack(Y, axis = 1))
         correct_predictions= tf.equal(tf.argmax(predictions), tf.argmax(y_list, 1))
         accuracy = correct_predictions / self.batch_size
         return accuracy
