@@ -63,6 +63,7 @@ class Train(object):
         # })
         # todo remove [0:200] for full training set
         self.train_data = cPickle.load(open(train_file, 'rb'))
+        self.valid_data = cPickle.load(open(valid_file, 'rb'))
         # print('getBatch', len(data))
 
         # self.train_data.start()
@@ -170,6 +171,12 @@ class Train(object):
                     ))
 
                 if iteration %  1==0: #self.config.validate_every
+                    valid_list = list(range(0, len(self.valid_data) - 150, batch_size))
+                    random_element = random.choice(valid_list)
+                    x_batch, y_batch, _, _ = get_batch(valid_list, self.valid_data, type='train',
+                                                                      element=random_element,
+                                                                      batch_size=self.config.batch_size,
+                                                                      max_len=self.config.max_length)
 
                     accuracy = sess.run([self.HERED.validation(X = self.X, Y= self.Y)],feed_dict = {self.X: x_batch, self.Y: y_batch})
                     print('accuracy'+ str(accuracy))
