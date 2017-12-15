@@ -111,9 +111,10 @@ class Decoder(object):
 
         # length = self.length(tf.convert_to_tensor(y_one_hot_shifted)) + 1
         # Calculate RNN states
+        y_one_hot = tf.one_hot(tf.argmax(y,2), depth=vocab_size)
         outputs, state = tf.nn.dynamic_rnn(
             self.gru_cell,
-            y,
+            y_one_hot,
             dtype=tf.float32,
             sequence_length=[1]*batch_size,
             initial_state=state)
