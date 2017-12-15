@@ -204,7 +204,7 @@ class HERED():
             outputs = tf.concat([outputs, result],1)
         predictions = tf.argmax(outputs,2)
         correct_predictions = tf.equal(predictions, Y)
-        accuracy = tf.reduce_sum(tf.cast(correct_predictions, tf.int32)) / self.batch_size
+        accuracy = tf.reduce_mean(tf.cast(correct_predictions, tf.float32))
         return accuracy
 
     def get_loss(self, logits, labels):
