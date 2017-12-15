@@ -124,7 +124,8 @@ class HERED():
         # Get embeddings for decoder output
         #ov_embedder = layers.get_embedding_layer(vocabulary_size=self.vocab_size,
         #                                        embedding_dims=self.embedding_dim, data=self.vocabulary_matrix, scope='Ov_embedder')
-        ov_embedder = tf.get_variable(name='Ov_embedder', shape=[self.vocab_size, self.embedding_dim],
+        with tf.variable_scope('ov_embedder', reuse=tf.AUTO_REUSE):
+            ov_embedder = tf.get_variable(name='Ov_embedder', shape=[self.vocab_size, self.embedding_dim],
                                              initializer=tf.random_normal_initializer(mean=0.0, stddev=1.0))
 
         # print(omega)
@@ -203,7 +204,7 @@ class HERED():
             outputs = tf.concat([outputs, result],1)
         predictions = tf.argmax(outputs,2)
         correct_predictions = tf.equal(predictions, Y)
-        accuracy = tf.cast(correct_predictions, tf.int32) / self.batch_size
+        accuracy = tf.reduce_sum(tf.cast(correct_predictions, tf.int32)) / self.batch_size
         print (accuracy)
         return accuracy
 
