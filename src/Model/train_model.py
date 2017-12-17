@@ -44,7 +44,7 @@ valid_file = '../../data/new_batch/allq_train.p'
 
 
 class Train(object):
-    def __init__(self,config=None):
+    def __init__(self, config=None):
 
         self.config = config
         self.vocab = cPickle.load(open(VOCAB_FILE, 'rb'))
@@ -126,7 +126,7 @@ class Train(object):
                 self.config.max_steps = int((len(self.train_data)-150)/self.config.batch_size)
             else:
                 print(self.config.checkpoint_path)
-                saver.restore(sess, tf.train.latest_checkpoint('./checkpoints/') )
+                saver.restore(sess, tf.train.latest_checkpoint('./checkpoints/'))
                 global_step = tf.get_collection_ref('global_step')[0]
                 global_step= sess.run(global_step)
 
@@ -144,9 +144,10 @@ class Train(object):
                 # print(x_batch)
                 # x_batch, y_batch, seq_len = self.get_random_batch()
                 random_element = random.choice(train_list)
+                print(random_element)
                 x_batch, y_batch, seq_len, train_list = get_batch(train_list,self.train_data, type='train', element=random_element,
                                                                   batch_size=self.config.batch_size,
-                                                                  max_len=self.config.max_length)
+                                                                  max_len=self.config.max_length, eoq=self.HERED.eoq_symbol)
                 # if iteration == 2:
                 #     break
                 feed_dict = {
@@ -170,15 +171,15 @@ class Train(object):
                         loss_val
                     ))
 
-                if iteration %  1==0: #self.config.validate_every
+                if iteration % 1 == 0: #self.config.validate_every
                     valid_list = list(range(0, len(self.valid_data) - 150, batch_size))
                     random_element = random.choice(valid_list)
                     x_batch, y_batch, _, _ = get_batch(valid_list, self.valid_data, type='train',
                                                                       element=random_element,
                                                                       batch_size=self.config.batch_size,
-                                                                      max_len=self.config.max_length)
+                                                                      max_len=self.config.max_length, eoq=self.HERED.eoq_symbol)
 
-                    accuracy = sess.run([self.HERED.validation(X = self.X, Y= self.Y)],feed_dict = {self.X: x_batch, self.Y: y_batch})
+                    accuracy = sess.run([self.HERED.validation(X = self.X, Y= self.Y)], feed_dict={self.X: x_batch, self.Y: y_batch})
                     print('accuracy'+ str(accuracy))
 
 

@@ -200,7 +200,7 @@ class HERED():
         result, state = self.get_predictions(tf.expand_dims(x_list[0], 1))
         outputs = result
         for i in range (1, len(x_list)):
-            result, state =  self.get_predictions(X=tf.expand_dims(x_list[i], 1), previous_word=result, state= state)
+            result, state = self.get_predictions(X=tf.expand_dims(x_list[i], 1), previous_word=result, state= state)
             outputs = tf.concat([outputs, result],1)
         predictions = tf.argmax(outputs,2)
         correct_predictions = tf.equal(predictions, Y)

@@ -8,6 +8,7 @@ Group 8
 
 import numpy as np
 
+# TODO: check that the right query is in the batch
 
 class BeamSearch(object):
     """
