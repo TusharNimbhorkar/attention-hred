@@ -214,8 +214,10 @@ class HERED():
     def get_loss(self, logits, labels):
         # same as for train_step.....
 
-        labels = tf.one_hot(labels, self.vocab_size)
-        loss =tf.reduce_sum(tf.log(tf.nn.softmax_cross_entropy_with_logits(logits=logits, labels=labels)))
+        labels_one_hot = tf.one_hot(labels, self.vocab_size)
+        mask = tf.sign(tf.reduce_max(tf.abs(labels_one_hot), 2))
+        loss = tf.reduce_sum(tf.log(tf.losses.sparse_softmax_cross_entropy(logits=logits, labels=labels, weights=mask)))
+        # loss =tf.reduce_sum(tf.log(tf.nn.softmax_cross_entropy_with_logits(logits=logits, labels=labels)))
 
         tf.summary.scalar('LOSS', loss)
         return loss
