@@ -69,16 +69,17 @@ class HERED():
         :return: logits [N, hidden size] where N is the number of words (including eoq) in the batch
         """
 
-
-        embedder = layers.get_embedding_layer(vocabulary_size=self.vocab_size,
-                                              embedding_dims=self.embedding_dim, data=X,scope='X_embedder')
+        with tf.variable_scope('X_embedder', reuse=tf.AUTO_REUSE):
+            embedder = layers.get_embedding_layer(vocabulary_size=self.vocab_size,
+                                              embedding_dims=self.embedding_dim, data=X, scope='X_embedder')
         # print(X)
         # print(embedder)
         #embedder.set_shape((50, sequence_max_length.eval(), 300)) # set shape now that is known (before it was '?')
 
         # For attention, pass bidirectional RNN
         if attention:
-            self.annotations = layers.bidirectional_layer(embedder, self.query_dim, self.batch_size)
+            with tf.variable_scope('gru_bidirectional', reuse=tf.AUTO_REUSE):
+                self.annotations = layers.bidirectional_layer(embedder, self.query_dim, self.batch_size)
         # Create the query encoder state
         self.initial_query_state = self.query_encoder.compute_state(x=embedder)  # batch_size x query_dims
         # Create the session state
@@ -144,8 +145,8 @@ class HERED():
             :param sequence_max_length: max_seq of the batch
             :return: logits [N, hidden size] where N is the number of words (including eoq) in the batch
             """
-
-            embedder = layers.get_embedding_layer(vocabulary_size=self.vocab_size,
+            with tf.variable_scope('X_embedder', reuse=tf.AUTO_REUSE):
+                embedder = layers.get_embedding_layer(vocabulary_size=self.vocab_size,
                                                   embedding_dims=self.embedding_dim, data=X, scope='X_embedder')
             # print(X)
             # print(embedder)
@@ -153,7 +154,8 @@ class HERED():
 
             # For attention, pass bidirectional RNN
             if attention:
-                self.annotations = layers.bidirectional_layer(embedder, self.query_dim, self.batch_size)
+                with tf.variable_scope('gru_bidirectional', reuse=tf.AUTO_REUSE):
+                    self.annotations = layers.bidirectional_layer(embedder, self.query_dim, self.batch_size)
             # Create the query encoder state
             self.initial_query_state = self.query_encoder.compute_state(x=embedder)  # batch_size x query_dims
             # Create the session state
@@ -197,10 +199,10 @@ class HERED():
     def validation(self, X, Y, sequence_max_length = 1, attention=False):
 
         x_list =  tf.unstack(X, axis=1)
-        result, state = self.get_predictions(tf.expand_dims(x_list[0], 1))
+        result, state = self.get_predictions(tf.expand_dims(x_list[0], 1), attention=attention)
         outputs = result
         for i in range (1, len(x_list)):
-            result, state = self.get_predictions(X=tf.expand_dims(x_list[i], 1), previous_word=result, state= state)
+            result, state = self.get_predictions(X=tf.expand_dims(x_list[i], 1), previous_word=result, state=state, attention=attention)
             outputs = tf.concat([outputs, result],1)
         predictions = tf.argmax(outputs,2)
         return predictions
@@ -219,6 +221,18 @@ class HERED():
 
         tf.summary.scalar('LOSS', loss)
         return loss
+
+    def other_loss(self, logits, labels):
+        # Compute cross entropy for each frame.
+        l = tf.log(logits)
+        cross_entropy = labels * l
+        cross_entropy = -tf.reduce_sum(cross_entropy, 2)
+        mask = tf.sign(tf.reduce_max(tf.abs(labels), 2))
+        cross_entropy *= mask
+        # Average over actual sequence lengths.
+        cross_entropy = tf.reduce_sum(cross_entropy, 1)
+        cross_entropy /= tf.reduce_sum(mask, 1)
+        return tf.reduce_mean(cross_entropy)
 
     def get_auc(self, labels, predictions):
         """

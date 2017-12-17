@@ -149,6 +149,7 @@ class Train(object):
             writer = tf.summary.FileWriter(log_path)
             writer.add_graph(sess.graph)
             # TODO check the train list for None
+
             for iteration in range(global_step,  self.config.max_steps):
 
                 #todo:
@@ -193,8 +194,8 @@ class Train(object):
                                                                       batch_size=self.config.batch_size,
                                                                       max_len=self.config.max_length, eoq=self.HERED.eoq_symbol)
 
-                    predictions = sess.run([self.HERED.validation(X = self.X, Y= self.Y)], feed_dict={self.X: x_batch, self.Y: y_batch})
-                    accuracy = self.get_accuracy(predictions , y_batch)
+                    predictions = sess.run([self.HERED.validation(X = self.X, Y= self.Y, attention=True)], feed_dict={self.X: x_batch, self.Y: y_batch})
+                    accuracy = self.get_accuracy(predictions, y_batch)
                     print('accuracy '+ str(accuracy))
 
 
@@ -212,6 +213,7 @@ class Train(object):
                     saver.save(sess, save_path= self.config.checkpoint_path ,global_step=iteration)
                     cPickle.dump(train_list, open("train_list.p", "wb"))
         return sess
+
     def restore_training(self):
         train_file = cPickle.load(open("train_list.p", 'rb'))
         saver = tf.train.Saver()
