@@ -149,6 +149,7 @@ class Train(object):
             writer = tf.summary.FileWriter(log_path)
             writer.add_graph(sess.graph)
             # TODO check the train list for None
+
             for iteration in range(global_step,  self.config.max_steps):
 
                 #todo:
@@ -212,6 +213,7 @@ class Train(object):
                     saver.save(sess, save_path= self.config.checkpoint_path ,global_step=iteration)
                     cPickle.dump(train_list, open("train_list.p", "wb"))
         return sess
+
     def restore_training(self):
         train_file = cPickle.load(open("train_list.p", 'rb'))
         saver = tf.train.Saver()

@@ -46,6 +46,7 @@ def get_batch(random_list, data, eoq, type='train', element=50, batch_size=50, m
         full_batch = np.asarray(padded_train)
         y_batch = full_batch[1:]
         x_batch = full_batch[:-1]
+
         return x_batch, y_batch, batch_max_len, random_list
 
 

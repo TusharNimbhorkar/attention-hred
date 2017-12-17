@@ -41,7 +41,7 @@ def output_layer(embedding_dims, num_hidden, vocabulary_size, state, word):
     :param word: 1D tensor embedding, previous word, should be flatten
     :return:
     """
-    with tf.variable_scope('output_layer', reuse= tf.AUTO_REUSE ):
+    with tf.variable_scope('output_layer', reuse= tf.AUTO_REUSE):
         # Define the weights H_o, E_o and bias b_o
         H_ouput = tf.get_variable(name='h_output', shape=[embedding_dims, num_hidden],
                                   initializer=tf.random_normal_initializer(mean=0.0, stddev=1.0))
@@ -51,7 +51,7 @@ def output_layer(embedding_dims, num_hidden, vocabulary_size, state, word):
                                    initializer=tf.truncated_normal_initializer(mean=0.0, stddev=1.0))
 
         y_one_hot = tf.one_hot(word, depth=vocabulary_size)
-        start_word = tf.expand_dims(tf.zeros([tf.shape(word)[0],vocabulary_size]),1)
+        start_word = tf.expand_dims(tf.zeros([tf.shape(word)[0], vocabulary_size]),1)
         # y_one_hot_shifted = tf.concat([start_word,y_one_hot],1)
         #y_embedding_onehot = get_embedding_layer(vocabulary_size=vocabulary_size,
         #                                         embedding_dims=embedding_dims, scope='output_embedding', data=y_one_hot_shifted)
@@ -59,7 +59,7 @@ def output_layer(embedding_dims, num_hidden, vocabulary_size, state, word):
         #return tf.matmul(state, tf.transpose(H_ouput)) + tf.transpose(tf.cast(y_embedding_onehot, tf.float32)) + b_output
         # tf.einsum('bsh,eh->bse',state, H_ouput)
         # tf.einsum('bsv,ev->bse',y_one_hot, E_output)
-        return tf.einsum('bsh,eh->bse',state, H_ouput) + tf.einsum('bsv,ev->bse',y_one_hot, E_output) + b_output
+        return tf.einsum('bsh,eh->bse', state, H_ouput) + tf.einsum('bsv,ev->bse',y_one_hot, E_output) + b_output
 
 
 def decoder_initialise_layer(initial_session_state, hidden_dims):
@@ -90,7 +90,8 @@ def get_context_attention(annotations, decoder_states, decoder_dims, encoder_dim
     """
 
     # Define weight for attention
-    w = tf.get_variable(name='weight', shape=(2 * encoder_dims, decoder_dims),
+    with tf.variable_scope('context', reuse=tf.AUTO_REUSE):
+        w = tf.get_variable(name='weight_context', shape=(2 * encoder_dims, decoder_dims),
                         initializer=tf.random_normal_initializer(stddev=0.01))
     # Calculate alphas for the context vector
     #a = tf.einsum('ed, bmd -> ebm', w, decoder_states)
