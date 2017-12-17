@@ -108,12 +108,12 @@ class Train(object):
         length = self.get_length(Y)
         predictions = predictions[0]
         correct = 0
-        print(Y[0])
-        print( Y[0][:length[0]])
-        print(predictions[0][:length[0]])
+        # print( Y[0][:length[0]])
+        # print(predictions[0][:length[0]])
+        # print( np.sum(np.equal( Y[0][:length[0]], predictions[0][:length[0]]).astype(float)))
         for i in range (len(predictions)):
             correct += np.sum(np.equal( Y[i][:length[i]], predictions[i][:length[i]]).astype(float))
-        return correct/float(len(predictions))
+        return correct/float(np.sum(length))
 
     def train_model(self, batch_size=None, restore = False):
 
@@ -192,7 +192,7 @@ class Train(object):
                                                                       element=random_element,
                                                                       batch_size=self.config.batch_size,
                                                                       max_len=self.config.max_length, eoq=self.HERED.eoq_symbol)
-                    print(y_batch[0])
+
                     predictions = sess.run([self.HERED.validation(X = self.X, Y= self.Y)], feed_dict={self.X: x_batch, self.Y: y_batch})
                     accuracy = self.get_accuracy(predictions , y_batch)
                     print('accuracy '+ str(accuracy))
