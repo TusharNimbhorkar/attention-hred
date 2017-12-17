@@ -100,6 +100,20 @@ class Train(object):
 
         # ...
         #
+    def get_length(self, sequence):
+        length = np.sum(np.sign(np.abs(sequence)),1)
+        return length
+
+    def get_accuracy(self, predictions, Y):
+        length = self.get_length(Y)
+        predictions = predictions[0]
+        correct = 0
+        print(Y[0])
+        print( Y[0][:length[0]])
+        print(predictions[0][:length[0]])
+        for i in range (len(predictions)):
+            correct += np.sum(np.equal( Y[i][:length[i]], predictions[i][:length[i]]).astype(float))
+        return correct/float(len(predictions))
 
     def train_model(self, batch_size=None, restore = False):
 
@@ -144,7 +158,7 @@ class Train(object):
                 # print(x_batch)
                 # x_batch, y_batch, seq_len = self.get_random_batch()
                 random_element = random.choice(train_list)
-                print(random_element)
+
                 x_batch, y_batch, seq_len, train_list = get_batch(train_list,self.train_data, type='train', element=random_element,
                                                                   batch_size=self.config.batch_size,
                                                                   max_len=self.config.max_length, eoq=self.HERED.eoq_symbol)
@@ -179,8 +193,9 @@ class Train(object):
                                                                       batch_size=self.config.batch_size,
                                                                       max_len=self.config.max_length, eoq=self.HERED.eoq_symbol)
 
-                    accuracy = sess.run([self.HERED.validation(X = self.X, Y= self.Y)], feed_dict={self.X: x_batch, self.Y: y_batch})
-                    print('accuracy'+ str(accuracy))
+                    predictions = sess.run([self.HERED.validation(X = self.X, Y= self.Y)], feed_dict={self.X: x_batch, self.Y: y_batch})
+                    accuracy = self.get_accuracy(predictions , y_batch)
+                    print('accuracy '+ str(accuracy))
 
 
                     # summary = sess.run(summaries,

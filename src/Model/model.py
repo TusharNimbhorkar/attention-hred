@@ -203,9 +203,13 @@ class HERED():
             result, state = self.get_predictions(X=tf.expand_dims(x_list[i], 1), previous_word=result, state= state)
             outputs = tf.concat([outputs, result],1)
         predictions = tf.argmax(outputs,2)
-        correct_predictions = tf.equal(predictions, Y)
-        accuracy = tf.reduce_mean(tf.cast(correct_predictions, tf.float32))
-        return accuracy
+        return predictions
+
+    def get_length(self, sequence):
+        used = tf.sign(tf.reduce_max(tf.abs(sequence), 1))
+        # length = tf.reduce_sum(used, 0)
+        length = tf.cast(used, tf.int32)
+        return length
 
     def get_loss(self, logits, labels):
         # same as for train_step.....
