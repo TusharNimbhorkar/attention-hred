@@ -74,6 +74,7 @@ class Train(object):
         # TODO: attention needs config.max_lenght to be not None <---------- check this !!!
         self.X = tf.placeholder(tf.int64, shape=(None, config.max_length)) #(BS,seq_len)
         self.Y = tf.placeholder(tf.int64, shape=(None, config.max_length))
+        self.batch_size = tf.placeholder(tf.int64)
 
         # class object
         self.HERED = HERED(vocab_size=self.vocab_size, embedding_dim=config.embedding_dim, query_dim=config.query_dim,
@@ -81,7 +82,7 @@ class Train(object):
                            output_dim=config.output_dim,
                            eoq_symbol=config.eoq_symbol, eos_symbol=config.eos_symbol, unk_symbol=config.unk_symbol,
                            learning_rate=self.config.learning_rate, hidden_layer=config.hidden_layer,
-                           batch_size=self.X.shape[0])
+                           batch_size=self.batch_size)
 
 
         self.logits = self.HERED.inference(self.X,self.Y, self.X.shape[1], attention=False)  # <--- set attention here
@@ -161,14 +162,15 @@ class Train(object):
                 # x_batch, y_batch, seq_len = self.get_random_batch()
                 random_element = random.choice(train_list)
 
-                x_batch, y_batch, seq_len, train_list = get_batch(train_list,self.train_data, type='train', element=random_element,
+                x_batch, y_batch, seq_len, batch_s, train_list = get_batch(train_list,self.train_data, type='train', element=random_element,
                                                                   batch_size=self.config.batch_size,
                                                                   max_len=self.config.max_length, eoq=self.HERED.eoq_symbol)
                 # if iteration == 2:
                 #     break
                 feed_dict = {
                     self.X: x_batch,
-                    self.Y: y_batch
+                    self.Y: y_batch,
+                    self.batch_size: batch_s
                 }
                 # logits_ = sess.run([self.logits],feed_dict=feed_dict)
                 # loss_value,_ = sess.run([self.loss,self.optimizer],)
