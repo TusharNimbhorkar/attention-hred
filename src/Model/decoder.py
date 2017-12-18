@@ -13,7 +13,7 @@ class Decoder(object):
 
     def __init__(self,batch_size, reuse, input_dim=300, num_hidden_query=1000, num_hidden_session=1500):
         """
-        This Class implements a Decoder.
+        This Class implements a Decoder using the tf.scan function. Discarded from the final model.
 
         :param batch_size: int, length of batch
         :param reuse: bool, parameter to reuse tensorflow variables

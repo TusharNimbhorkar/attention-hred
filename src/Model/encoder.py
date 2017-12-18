@@ -15,7 +15,7 @@ class Encoder(object):
 
         """
 
-        This Class implements an Encoder.
+        This Class implements an Encoder using the tf.scan function. Discarded from the final model.
 
         :param batch_size: int, length of batch
         :param reuse: bool, parameter to reuse tensorflow variables
