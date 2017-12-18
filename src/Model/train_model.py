@@ -39,8 +39,8 @@ SESSION_DIM = 1500
 VOCAB_FILE = '../../data/input_model/train.dict.pkl'
 TRAIN_FILE = '../../data/input_model/train.ses.pkl'
 VALID_FILE = '../../data/input_model/valid.ses.pkl'
-train_file = '../../data/new_batch/allq_train.p'
-valid_file = '../../data/new_batch/allq_train.p'
+train_file = '../../data/new_new_batch/allq_train.p'
+valid_file = '../../data/new_new_batch/allq_train.p'
 
 
 
@@ -82,7 +82,7 @@ class Train(object):
                            output_dim=config.output_dim,
                            eoq_symbol=config.eoq_symbol, eos_symbol=config.eos_symbol, unk_symbol=config.unk_symbol,
                            learning_rate=self.config.learning_rate, hidden_layer=config.hidden_layer,
-                           batch_size=self.config.batch_size)
+                           batch_size=tf.shape(self.X)[0])
 
 
         self.logits = self.HERED.inference(self.X,self.Y, self.X.shape[1], attention=False)  # <--- set attention here
@@ -114,8 +114,8 @@ class Train(object):
     def train_model(self, batch_size=None, restore = False):
 
         # batch parameters,train
-        train_list = list(range(0, len(self.train_data)-150, batch_size))
-        #train_list = list(range(0, len(self.train_data)))
+        #train_list = list(range(0, len(self.train_data)-150, batch_size))
+        train_list = list(range(0, len(self.train_data)))
 
 
         # summaries = tf.summary.merge_all()
