@@ -186,7 +186,7 @@ class Train(object):
                         loss_val
                     ))
 
-                if iteration % 1 == 0: #self.config.validate_every
+                if iteration %  self.config.print_every  == 0: #self.config.validate_every
                     valid_list = list(range(0, len(self.valid_data) - 150, batch_size))
                     random_element = random.choice(valid_list)
                     x_batch, y_batch, _, _ = get_batch(valid_list, self.valid_data, type='train',
