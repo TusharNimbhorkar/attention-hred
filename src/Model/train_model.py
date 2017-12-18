@@ -231,16 +231,23 @@ class Train(object):
                     #                                                  batch_size=self.config.batch_size,
                     #                                                  max_len=self.config.max_length, eoq=self.HERED.eoq_symbol)
 
+                    # Accuracy in validation set
                     predictions = sess.run([self.HERED.validation(X = self.X, Y= self.Y, attention=False)], feed_dict={self.X: x_valid_batch, self.Y: y_valid_batch})
                     accuracy, _ = self.get_accuracy(predictions[0], y_valid_batch)
-
                     # print(self.get_length(y_batch))
                     # # print(np.sum(mask,1))
                     # print(mask)
                     # print(np.sum(mask,1))
-                    tf.summary.scalar('accuracy', accuracy)
+                    tf.summary.scalar('validation_accuracy', accuracy)
                     print('validation accuracy ' + str(accuracy))
-                    logging.debug('accuracy ' + str(accuracy))
+                    logging.debug('validation_accuracy ' + str(accuracy))
+
+                    # Accuracy in train set
+                    predictions = sess.run([self.HERED.validation(X = self.X, Y= self.Y, attention=False)], feed_dict={self.X: x_batch, self.Y: y_batch})
+                    accuracy, _ = self.get_accuracy(predictions[0], y_batch)
+                    tf.summary.scalar('accuracy', accuracy)
+                    print('accuracy            ' + str(accuracy))
+                    logging.debug('accuracy            ' + str(accuracy))
 
 
                     # Update the events file.
