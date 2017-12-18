@@ -88,8 +88,7 @@ class HERED():
         self.initial_decoder_state = layers.decoder_initialise_layer(self.initial_session_state[0], self.decoder_dim)  # batch_size x decoder_dims
 
         # Run decoder and retrieve outputs and states for all timesteps
-        with tf.variable_scope('gru_decoder', reuse=tf.AUTO_REUSE):
-            self.decoder_outputs = self.decoder_grucell.compute_prediction(  # batch size x timesteps x output_size
+        self.decoder_outputs = self.decoder_grucell.compute_prediction(  # batch size x timesteps x output_size
                 y=Y, state=self.initial_decoder_state, batch_size=self.batch_size, vocab_size=self.vocab_size)
 
         # Remove mask from outputs of decoder
@@ -171,8 +170,7 @@ class HERED():
                 previous_word = tf.zeros([self.batch_size, 1, self.vocab_size])
                 state = self.initial_decoder_state
             # Run decoder and retrieve outputs for next words
-            with tf.variable_scope('gru_decoder', reuse=tf.AUTO_REUSE):
-                self.decoder_outputs, state = self.decoder_grucell.compute_one_prediction(  # batch size x 1 x output_size
+            self.decoder_outputs, state = self.decoder_grucell.compute_one_prediction(  # batch size x 1 x output_size
                     y=previous_word, state=state, batch_size=self.batch_size, vocab_size=self.vocab_size)
 
             # For attention, calculate context vector
