@@ -171,7 +171,7 @@ class Train(object):
                 }
                 # logits_ = sess.run([self.logits],feed_dict=feed_dict)
                 # loss_value,_ = sess.run([self.loss,self.optimizer],)
-                _,loss_val, summ= sess.run([self.optimizer,self.loss,summaries], feed_dict=feed_dict)
+                _, loss_val, summ= sess.run([self.optimizer, self.loss, summaries], feed_dict=feed_dict)
                 writer.add_summary(summ, iteration)
 
                 t2 = time.time()
@@ -196,6 +196,11 @@ class Train(object):
 
                     predictions = sess.run([self.HERED.validation(X = self.X, Y= self.Y)], feed_dict={self.X: x_batch, self.Y: y_batch})
                     accuracy = self.get_accuracy(predictions , y_batch)
+
+                    # print(self.get_length(y_batch))
+                    # # print(np.sum(mask,1))
+                    # print(mask)
+                    # print(np.sum(mask,1))
                     print('accuracy '+ str(accuracy))
 
 

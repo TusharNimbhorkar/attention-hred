@@ -215,9 +215,7 @@ class HERED():
 
     def get_loss(self, logits, labels):
         # same as for train_step.....
-
-        labels_one_hot = tf.one_hot(labels, self.vocab_size)
-        mask = tf.sign(tf.reduce_max(tf.abs(labels_one_hot), 2))
+        mask = tf.sign(tf.abs(tf.convert_to_tensor(labels)))
         loss = tf.reduce_sum(tf.log(tf.losses.sparse_softmax_cross_entropy(logits=logits, labels=labels, weights=mask)))
         # loss =tf.reduce_sum(tf.log(tf.nn.softmax_cross_entropy_with_logits(logits=logits, labels=labels)))
 
@@ -227,9 +225,10 @@ class HERED():
     def other_loss(self, logits, labels):
         # Compute cross entropy for each frame.
         l = tf.log(logits)
-        cross_entropy = labels * l
+        labels_one_hot = tf.one_hot(labels, self.vocab_size)
+        cross_entropy = labels_one_hot * l
         cross_entropy = -tf.reduce_sum(cross_entropy, 2)
-        mask = tf.sign(tf.reduce_max(tf.abs(labels), 2))
+        mask = tf.sign(tf.reduce_max(tf.abs(labels_one_hot), 2))
         cross_entropy *= mask
         # Average over actual sequence lengths.
         cross_entropy = tf.reduce_sum(cross_entropy, 1)
@@ -246,6 +245,8 @@ class HERED():
         one_hot_labels = tf.one_hot(indices= labels, depth=self.vocab_size)
         return tf.metrics.auc(labels= labels, predictions = predictions)
 
+    def get_mask(self, labels):
+        return  tf.sign(tf.abs(tf.convert_to_tensor(labels)))
 
     def softmax(self, logits):
         return tf.nn.softmax(logits)
