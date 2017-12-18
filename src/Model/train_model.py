@@ -149,7 +149,8 @@ class Train(object):
 
                 total_loss = 0.0
 
-                self.config.max_steps = int((len(self.train_data)-150)/self.config.batch_size)
+                #self.config.max_steps = int((len(self.train_data)-150)/self.config.batch_size)
+                self.config.max_steps = int(len(self.train_data)/self.config.batch_size)
             else:
                 print(self.config.checkpoint_path)
                 saver.restore(sess, tf.train.latest_checkpoint('./checkpoints/'))
@@ -237,23 +238,19 @@ class Train(object):
                     # # print(np.sum(mask,1))
                     # print(mask)
                     # print(np.sum(mask,1))
+                    tf.summary.scalar('accuracy', accuracy)
                     print('validation accuracy ' + str(accuracy))
                     logging.debug('accuracy ' + str(accuracy))
 
 
-                    # summary = sess.run(summaries,
-                    #                    feed_dict={ self.loss: loss_val})
-                    # writer.add_summary(summary, global_step=iteration)
+                    # Update the events file.
+                    summary = sess.run(summaries,
+                                        feed_dict={ self.loss: loss_val})
+                    writer.add_summary(summary, global_step=iteration)
 
-
-                # Update the events file.
-                #summary_str = sess.run(summary, feed_dict=feed_dict)
-                #summary_writer.add_summary(summary_str, train_step)
-                #summary_writer.flush()
-
-                #if iteration+1 % self.config.checkpoint_every == 0:
-                #    saver.save(sess, save_path= self.config.checkpoint_path ,global_step=iteration)
-                #    cPickle.dump(train_list, open("train_list.p", "wb"))
+                if iteration+1 % self.config.checkpoint_every == 0:
+                    saver.save(sess, save_path= self.config.checkpoint_path ,global_step=iteration)
+                    cPickle.dump(train_list, open("train_list.p", "wb"))
         return sess
 
     def restore_training(self):
