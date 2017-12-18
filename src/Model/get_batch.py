@@ -22,7 +22,6 @@ def get_batch(random_list, data, eoq, type='train', element=50, batch_size=50, m
     """
 
     if type == 'train':
-
         random_list.remove(element)
         train_list = data[element]
         batch_max_len = max_len

@@ -42,7 +42,7 @@ VOCAB_FILE = '../../data/input_model/train.dict.pkl'
 TRAIN_FILE = '../../data/input_model/train.ses.pkl'
 VALID_FILE = '../../data/input_model/valid.ses.pkl'
 train_file = '../../data/new_new_batch/allq_train.p'
-valid_file = '../../data/new_new_batch/allq_train.p'
+valid_file = '../../data/new_new_batch/allq_valid.p'
 
 
 
@@ -163,13 +163,14 @@ class Train(object):
             # TODO check the train list for None
 
             #random_element = random.choice(train_list)
-            random_element = 1000
+            random_element = 42 # session with 163 queries (should be good for validation)
+            valid_list = list(range(0, 43))
             #print('random ' + str(random_element))
-            x_batch, y_batch, seq_len, train_list = get_batch(train_list,self.train_data, type='train', element=random_element,
+            x_valid_batch, y_valid_batch, seq_len, _ = get_batch(valid_list,self.valid_data, type='train', element=random_element,
                                                                   batch_size=self.config.batch_size,
                                                                   max_len=self.config.max_length, eoq=self.HERED.eoq_symbol)
 
-            for iteration in range(global_step, 500):#self.config.max_steps):
+            for iteration in range(global_step, self.config.max_steps):
 
                 #todo:
                 t1 = time.time()
@@ -177,10 +178,10 @@ class Train(object):
                 # x_batch, y_batch, seq_len = self.get_batch(dataset='train')
                 # print(x_batch)
                 # x_batch, y_batch, seq_len = self.get_random_batch()
-                #random_element = random.choice(train_list)
-                #x_batch, y_batch, seq_len, train_list = get_batch(train_list,self.train_data, type='train', element=random_element,
-                #                                                  batch_size=self.config.batch_size,
-                #                                                  max_len=self.config.max_length, eoq=self.HERED.eoq_symbol)
+                random_element = random.choice(train_list)
+                x_batch, y_batch, seq_len, train_list = get_batch(train_list,self.train_data, type='train', element=random_element,
+                                                                  batch_size=self.config.batch_size,
+                                                                  max_len=self.config.max_length, eoq=self.HERED.eoq_symbol)
                 
                 feed_dict = {
                     self.X: x_batch,
@@ -222,14 +223,14 @@ class Train(object):
 
                 if iteration % 100  == 0: #self.config.validate_every
                     #valid_list = list(range(0, len(self.valid_data) - 150, batch_size))
-                    valid_list = list(range(0, len(self.train_data)))
+                    #valid_list = list(range(0, len(self.train_data)))
                     #random_element = random.choice(valid_list)
                     #x_batch, y_batch, _, _ = get_batch(valid_list, self.valid_data, type='train',
                     #                                                  element=random_element,
                     #                                                  batch_size=self.config.batch_size,
                     #                                                  max_len=self.config.max_length, eoq=self.HERED.eoq_symbol)
 
-                    predictions = sess.run([self.HERED.validation(X = self.X, Y= self.Y, attention=False)], feed_dict={self.X: x_batch, self.Y: y_batch})
+                    predictions = sess.run([self.HERED.validation(X = self.X, Y= self.Y, attention=False)], feed_dict={self.X: x_valid_batch, self.Y: y_valid_batch})
                     accuracy, all_list = self.get_accuracy(predictions[0], y_batch)
 
                     # print(self.get_length(y_batch))
