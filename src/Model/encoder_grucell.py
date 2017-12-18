@@ -67,6 +67,7 @@ class Encoder(object):
                 dtype=tf.float32,
                 sequence_length=length,
                 initial_state=state,
+                swap_memory=True,
                 scope=self.level)
         elif self.level=='session':
             # hoping this is right and GRUs outputs is equivalent to state (second answer)
