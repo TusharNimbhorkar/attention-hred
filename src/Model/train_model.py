@@ -150,7 +150,7 @@ class Train(object):
                 total_loss = 0.0
 
                 #self.config.max_steps = int((len(self.train_data)-150)/self.config.batch_size)
-                self.config.max_steps = int(len(self.train_data)/self.config.batch_size)
+                self.config.max_steps = int(len(train_list))
             else:
                 print(self.config.checkpoint_path)
                 saver.restore(sess, tf.train.latest_checkpoint('./checkpoints/'))
