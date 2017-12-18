@@ -211,9 +211,9 @@ class Train(object):
                 #summary_writer.add_summary(summary_str, train_step)
                 #summary_writer.flush()
 
-                if iteration % self.config.checkpoint_every == 0:
-                    #saver.save(sess, save_path= self.config.checkpoint_path ,global_step=iteration)
-                    #cPickle.dump(train_list, open("train_list.p", "wb"))
+                if iteration+1 % self.config.checkpoint_every == 0:
+                    saver.save(sess, save_path= self.config.checkpoint_path ,global_step=iteration)
+                    cPickle.dump(train_list, open("train_list.p", "wb"))
         return sess
 
     def restore_training(self):
@@ -318,7 +318,7 @@ if __name__ == '__main__':
     # Misc params
     parser.add_argument('--print_every', type=int, default=100, help='How often to print training progress')
     parser.add_argument('--summary_path', type=str, default='./summaries/',help='Output path for summaries.')
-    parser.add_argument('--checkpoint_every', type=int, default=100,help='How often to save checkpoints.')
+    parser.add_argument('--checkpoint_every', type=int, default=1000,help='How often to save checkpoints.')
     parser.add_argument('--checkpoint_path', type=str, default='./checkpoints/model.ckpt',help='Output path for checkpoints.')
     FLAGS, unparsed = parser.parse_known_args()
 
