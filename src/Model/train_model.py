@@ -69,19 +69,20 @@ class Train(object):
         # self.train_data.start()
         # self.valid_data.start()
         self.vocab_size = len(self.vocab_lookup_dict)
-        # class object
         # todo: put variables as needed and place holders
+        #self.sequence_max_length = tf.placeholder(tf.int64)
+        # TODO: attention needs config.max_lenght to be not None <---------- check this !!!
+        self.X = tf.placeholder(tf.int64, shape=(None, config.max_length)) #(BS,seq_len)
+        self.Y = tf.placeholder(tf.int64, shape=(None, config.max_length))
+
+        # class object
         self.HERED = HERED(vocab_size=self.vocab_size, embedding_dim=config.embedding_dim, query_dim=config.query_dim,
                            session_dim=config.session_dim, decoder_dim=config.query_dim,
                            output_dim=config.output_dim,
                            eoq_symbol=config.eoq_symbol, eos_symbol=config.eos_symbol, unk_symbol=config.unk_symbol,
                            learning_rate=self.config.learning_rate, hidden_layer=config.hidden_layer,
-                           batch_size=config.batch_size)
+                           batch_size=X.shape[0])
 
-        #self.sequence_max_length = tf.placeholder(tf.int64)
-        # TODO: attention needs config.max_lenght to be not None <---------- check this !!!
-        self.X = tf.placeholder(tf.int64, shape=(config.batch_size, config.max_length)) #(BS,seq_len)
-        self.Y = tf.placeholder(tf.int64, shape=(config.batch_size, config.max_length))
 
         self.logits = self.HERED.inference(self.X,self.Y, self.X.shape[1], attention=False)  # <--- set attention here
         self.loss = self.HERED.get_loss(self.logits, self.Y)
