@@ -163,7 +163,7 @@ class Train(object):
             # TODO check the train list for None
 
             #random_element = random.choice(train_list)
-            random_element = 6515580
+            random_element = 1000
             #print('random ' + str(random_element))
             x_batch, y_batch, seq_len, train_list = get_batch(train_list,self.train_data, type='train', element=random_element,
                                                                   batch_size=self.config.batch_size,
@@ -221,7 +221,8 @@ class Train(object):
                     ))
 
                 if iteration % 100  == 0: #self.config.validate_every
-                    valid_list = list(range(0, len(self.valid_data) - 150, batch_size))
+                    #valid_list = list(range(0, len(self.valid_data) - 150, batch_size))
+                    valid_list = list(range(0, len(self.train_data)))
                     #random_element = random.choice(valid_list)
                     #x_batch, y_batch, _, _ = get_batch(valid_list, self.valid_data, type='train',
                     #                                                  element=random_element,
