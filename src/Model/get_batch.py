@@ -7,7 +7,7 @@ valid_file = 'allq_valid.p'
 # element = 0
 
 # uses data/new_new_batch/*
-def get_batch_new(random_list, data, eoq, type='train', element=50, batch_size=50, max_len=50):
+def get_batch(random_list, data, eoq, type='train', element=50, batch_size=50, max_len=50):
 
     """
     Function to get a batch from element. It pads it to max_len and add the eoq symbol.
@@ -46,7 +46,7 @@ def get_batch_new(random_list, data, eoq, type='train', element=50, batch_size=5
 
 
 # uses data/new_batch/*
-def get_batch(random_list, data, eoq, type='train', element=50, batch_size=50, max_len=50):
+def get_batch_old(random_list, data, eoq, type='train', element=50, batch_size=50, max_len=50):
 
     """
     Function to get a batch from element. It pads it to max_len and add the eoq symbol.
