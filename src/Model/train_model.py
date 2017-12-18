@@ -39,8 +39,8 @@ SESSION_DIM = 1500
 VOCAB_FILE = '../../data/input_model/train.dict.pkl'
 TRAIN_FILE = '../../data/input_model/train.ses.pkl'
 VALID_FILE = '../../data/input_model/valid.ses.pkl'
-train_file = '../../data/new_batch/allq_train.p'
-valid_file = '../../data/new_batch/allq_train.p'
+train_file = '../../data/new_new_batch/allq_train.p'
+valid_file = '../../data/new_new_batch/allq_train.p'
 
 
 class Train(object):
@@ -119,7 +119,8 @@ class Train(object):
     def train_model(self, batch_size=None, restore = False):
 
         # batch parameters,train
-        train_list = list(range(0, len(self.train_data)-150, batch_size))
+        #train_list = list(range(0, len(self.train_data)-150, batch_size))
+        train_list = list(range(0, len(self.train_data)))
 
 
         # summaries = tf.summary.merge_all()
@@ -161,7 +162,7 @@ class Train(object):
                 # x_batch, y_batch, seq_len = self.get_random_batch()
                 random_element = random.choice(train_list)
 
-                x_batch, y_batch, seq_len, batch_s, train_list = get_batch(train_list,self.train_data, type='train', element=random_element,
+                x_batch, y_batch, seq_len, train_list = get_batch(train_list,self.train_data, type='train', element=random_element,
                                                                   batch_size=self.config.batch_size,
                                                                   max_len=self.config.max_length, eoq=self.HERED.eoq_symbol)
                 # if iteration == 2:
