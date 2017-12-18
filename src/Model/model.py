@@ -205,7 +205,17 @@ class HERED():
             result, state = self.get_predictions(X=tf.expand_dims(x_list[i], 1), previous_word=result, state=state, attention=attention)
             outputs = tf.concat([outputs, result],1)
         predictions = tf.argmax(outputs,2)
-        return predictions
+        return predictions # predictions
+    def predictions(self, X, Y, sequence_max_length = 1, attention=False):
+
+        x_list =  tf.unstack(X, axis=1)
+        result, state = self.get_predictions(tf.expand_dims(x_list[0], 1), attention=attention)
+        outputs = result
+        for i in range (1, len(x_list)):
+            result, state = self.get_predictions(X=tf.expand_dims(x_list[i], 1), previous_word=result, state=state, attention=attention)
+            outputs = tf.concat([outputs, result],1)
+        predictions = tf.argmax(outputs,2)
+        return outputs # predictions
 
     def get_length(self, sequence):
         used = tf.sign(tf.reduce_max(tf.abs(sequence), 1))
@@ -216,11 +226,12 @@ class HERED():
     def get_loss(self, logits, labels):
         # same as for train_step.....
         mask = tf.sign(tf.abs(tf.convert_to_tensor(labels)))
-        loss = tf.reduce_sum(tf.log(tf.losses.sparse_softmax_cross_entropy(logits=logits, labels=labels, weights=mask)))
+        loss = tf.reduce_sum(tf.losses.sparse_softmax_cross_entropy(logits=logits, labels=labels, weights=mask))
         # loss =tf.reduce_sum(tf.log(tf.nn.softmax_cross_entropy_with_logits(logits=logits, labels=labels)))
 
         tf.summary.scalar('LOSS', loss)
         return loss
+
 
     def other_loss(self, logits, labels):
         # Compute cross entropy for each frame.
