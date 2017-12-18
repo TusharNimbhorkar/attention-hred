@@ -94,7 +94,7 @@ class Train(object):
         # Define global step for the optimizer  --- OPTIMIZER
         global_step = tf.Variable(0, name = 'global_step', trainable=False, dtype=tf.int32)
         tf.add_to_collection('global_step', global_step)
-        self.optimizer = self.get_optimizer(self.loss, self.config.learning_rate, global_step)
+        self.optimizer = tf.train.AdamOptimizer(self.config.learning_rate).minimize(self.loss)
 
         some_variables = 0
 
