@@ -212,8 +212,8 @@ class Train(object):
                 #summary_writer.flush()
 
                 if iteration % self.config.checkpoint_every == 0:
-                    saver.save(sess, save_path= self.config.checkpoint_path ,global_step=iteration)
-                    cPickle.dump(train_list, open("train_list.p", "wb"))
+                    #saver.save(sess, save_path= self.config.checkpoint_path ,global_step=iteration)
+                    #cPickle.dump(train_list, open("train_list.p", "wb"))
         return sess
 
     def restore_training(self):
