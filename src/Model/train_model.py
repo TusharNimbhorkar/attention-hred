@@ -74,8 +74,8 @@ class Train(object):
         self.vocab_size = len(self.vocab_lookup_dict)
         #self.sequence_max_length = tf.placeholder(tf.int64)
         # TODO: attention needs config.max_lenght to be not None <---------- check this !!!
-        self.X = tf.placeholder(tf.int64, shape=(config.batch_size, config.max_length)) #(BS,seq_len)
-        self.Y = tf.placeholder(tf.int64, shape=(config.batch_size, config.max_length))
+        self.X = tf.placeholder(tf.int64, shape=(None, config.max_length)) #(BS,seq_len)
+        self.Y = tf.placeholder(tf.int64, shape=(None, config.max_length))
         # class object
         # todo: put variables as needed and place holders
         self.HERED = HERED(vocab_size=self.vocab_size, embedding_dim=config.embedding_dim, query_dim=config.query_dim,
