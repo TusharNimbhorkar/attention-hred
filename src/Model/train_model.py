@@ -231,9 +231,7 @@ class Train(object):
                     #                                                  max_len=self.config.max_length, eoq=self.HERED.eoq_symbol)
 
                     predictions = sess.run([self.HERED.validation(X = self.X, Y= self.Y, attention=False)], feed_dict={self.X: x_valid_batch, self.Y: y_valid_batch})
-                    logging.debug(predictions[0])
-                    logging.debug(y_batch)
-                    accuracy, _ = self.get_accuracy(predictions[0], y_batch)
+                    accuracy, _ = self.get_accuracy(predictions[0], y_valid_batch)
 
                     # print(self.get_length(y_batch))
                     # # print(np.sum(mask,1))
