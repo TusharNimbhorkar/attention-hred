@@ -16,6 +16,7 @@ from datetime import datetime
 
 # Path to get batch iterator
 sys.path.insert(0, '../sordoni/')
+import data_iterator
 from model import HERED
 from get_batch import get_batch
 import random
@@ -33,8 +34,8 @@ UNK_SYMBOL = 5003
 EOQ_SYMBOL = 1
 EOS_SYMBOL = 2
 EMBEDDING_DIM = 300
-QUERY_DIM = 500  #1000
-SESSION_DIM = 750 #1500
+QUERY_DIM = 1000
+SESSION_DIM = 1500
 VOCAB_FILE = '../../data/input_model/train.dict.pkl'
 TRAIN_FILE = '../../data/input_model/train.ses.pkl'
 VALID_FILE = '../../data/input_model/valid.ses.pkl'
@@ -69,19 +70,20 @@ class Train(object):
         # self.train_data.start()
         # self.valid_data.start()
         self.vocab_size = len(self.vocab_lookup_dict)
-        # class object
         # todo: put variables as needed and place holders
+        #self.sequence_max_length = tf.placeholder(tf.int64)
+        # TODO: attention needs config.max_lenght to be not None <---------- check this !!!
+        self.X = tf.placeholder(tf.int64, shape=(None, config.max_length)) #(BS,seq_len)
+        self.Y = tf.placeholder(tf.int64, shape=(None, config.max_length))
+
+        # class object
         self.HERED = HERED(vocab_size=self.vocab_size, embedding_dim=config.embedding_dim, query_dim=config.query_dim,
                            session_dim=config.session_dim, decoder_dim=config.query_dim,
                            output_dim=config.output_dim,
                            eoq_symbol=config.eoq_symbol, eos_symbol=config.eos_symbol, unk_symbol=config.unk_symbol,
                            learning_rate=self.config.learning_rate, hidden_layer=config.hidden_layer,
-                           batch_size=config.batch_size)
+                           batch_size=self.config.batch_size)
 
-        #self.sequence_max_length = tf.placeholder(tf.int64)
-        # TODO: attention needs config.max_lenght to be not None <---------- check this !!!
-        self.X = tf.placeholder(tf.int64, shape=(config.batch_size, config.max_length)) #(BS,seq_len)
-        self.Y = tf.placeholder(tf.int64, shape=(config.batch_size, config.max_length))
 
         self.logits = self.HERED.inference(self.X,self.Y, self.X.shape[1], attention=False)  # <--- set attention here
         self.loss = self.HERED.get_loss(self.logits, self.Y)
@@ -95,22 +97,11 @@ class Train(object):
         global_step = tf.Variable(0, name = 'global_step', trainable=False, dtype=tf.int32)
         tf.add_to_collection('global_step', global_step)
         self.optimizer = tf.train.AdamOptimizer(self.config.learning_rate).minimize(self.loss)
-   
+
 
     def get_length(self, sequence):
         length = np.sum(np.sign(np.abs(sequence)),1)
         return length
-
-    #def get_accuracy(self, predictions, Y):
-    #    length = self.get_length(Y)
-    #    predictions = predictions[0]
-    #    correct = 0
-        # print( Y[0][:length[0]])
-        # print(predictions[0][:length[0]])
-        # print( np.sum(np.equal( Y[0][:length[0]], predictions[0][:length[0]]).astype(float)))
-    #    for i in range (len(predictions)):
-    #        correct += np.sum(np.equal( Y[i][:length[i]], predictions[i][:length[i]]).astype(float))
-    #    return correct/float(np.sum(length))
 
     def get_accuracy(self, predictions, Y):
         length = self.get_length(Y)
@@ -118,12 +109,13 @@ class Train(object):
         correct = 0
         for i in range (len(predictions)):
             correct += np.sum(np.equal( Y[i][:length[i]], predictions[i][:length[i]]).astype(float))
-        return correct/float(np.sum(length)), all
+        return correct/float(np.sum(length))
 
     def train_model(self, batch_size=None, restore = False):
 
         # batch parameters,train
         train_list = list(range(0, len(self.train_data)-150, batch_size))
+        #train_list = list(range(0, len(self.train_data)))
 
 
         # summaries = tf.summary.merge_all()
@@ -155,12 +147,7 @@ class Train(object):
             writer.add_graph(sess.graph)
             # TODO check the train list for None
 
-            random_element = random.choice(train_list)
-            x_batch, y_batch, seq_len, train_list = get_batch(train_list,self.train_data, type='train', element=random_element,
-                                                                  batch_size=self.config.batch_size,
-                                                                  max_len=self.config.max_length, eoq=self.HERED.eoq_symbol)
-
-            for iteration in range(global_step, 50):#self.config.max_steps):
+            for iteration in range(global_step,  self.config.max_steps):
 
                 #todo:
                 t1 = time.time()
@@ -168,10 +155,11 @@ class Train(object):
                 # x_batch, y_batch, seq_len = self.get_batch(dataset='train')
                 # print(x_batch)
                 # x_batch, y_batch, seq_len = self.get_random_batch()
-                #random_element = random.choice(train_list)
-                #x_batch, y_batch, seq_len, train_list = get_batch(train_list,self.train_data, type='train', element=random_element,
-                #                                                  batch_size=self.config.batch_size,
-                #                                                  max_len=self.config.max_length, eoq=self.HERED.eoq_symbol)
+                random_element = random.choice(train_list)
+
+                x_batch, y_batch, seq_len, train_list = get_batch(train_list,self.train_data, type='train', element=random_element,
+                                                                  batch_size=self.config.batch_size,
+                                                                  max_len=self.config.max_length, eoq=self.HERED.eoq_symbol)
                 # if iteration == 2:
                 #     break
                 feed_dict = {
@@ -180,30 +168,28 @@ class Train(object):
                 }
                 # logits_ = sess.run([self.logits],feed_dict=feed_dict)
                 # loss_value,_ = sess.run([self.loss,self.optimizer],)
-                _, loss_val, summ, logits_train= sess.run([self.optimizer, self.loss, summaries, self.logits], feed_dict=feed_dict)
+                _, loss_val, summ= sess.run([self.optimizer, self.loss, summaries], feed_dict=feed_dict)
                 writer.add_summary(summ, iteration)
-                # print(y_batch[0])
-                # print(np.argmax(logits_train, 2)[0])
 
                 t2 = time.time()
 
                 examples_per_second = self.config.batch_size/float(t2-t1)
 
                 # Output the training progress
-                if iteration % 5 == 0:
+                if iteration % self.config.print_every == 0:
                     print("[{}] Train Step {:04d}/{:04d}, Batch Size = {}, Examples/Sec = {:.2f}, Loss = {:.2f}".format(
                         datetime.now().strftime("%Y-%m-%d %H:%M"), iteration+1,
                         int(self.config.max_steps), self.config.batch_size, examples_per_second,
                         loss_val
                     ))
 
-                if iteration % 5  == 0: #self.config.validate_every
+                if iteration %  self.config.print_every  == 0: #self.config.validate_every
                     valid_list = list(range(0, len(self.valid_data) - 150, batch_size))
-                    #random_element = random.choice(valid_list)
-                    #x_batch, y_batch, _, _ = get_batch(valid_list, self.valid_data, type='train',
-                    #                                                  element=random_element,
-                    #                                                  batch_size=self.config.batch_size,
-                    #                                                  max_len=self.config.max_length, eoq=self.HERED.eoq_symbol)
+                    random_element = random.choice(valid_list)
+                    x_batch, y_batch, _, _ = get_batch(valid_list, self.valid_data, type='train',
+                                                                      element=random_element,
+                                                                      batch_size=self.config.batch_size,
+                                                                      max_len=self.config.max_length, eoq=self.HERED.eoq_symbol)
 
                     predictions = sess.run([self.HERED.validation(X = self.X, Y= self.Y, attention=False)], feed_dict={self.X: x_batch, self.Y: y_batch})
                     accuracy = self.get_accuracy(predictions, y_batch)
