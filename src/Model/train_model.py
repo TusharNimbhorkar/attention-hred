@@ -20,6 +20,9 @@ import data_iterator
 from model import HERED
 from get_batch import get_batch
 import random
+import logging
+logging.basicConfig(filename='output.log',level=logging.DEBUG)
+
 
 # todo: put this stuff in arg.parse as well
 LEARNING_RATE = 1e-4
@@ -182,6 +185,11 @@ class Train(object):
                         int(self.config.max_steps), self.config.batch_size, examples_per_second,
                         loss_val
                     ))
+                    logging.debug("[{}] Train Step {:04d}/{:04d}, Batch Size = {}, Examples/Sec = {:.2f}, Loss = {:.2f}".format(
+                        datetime.now().strftime("%Y-%m-%d %H:%M"), iteration+1,
+                        int(self.config.max_steps), self.config.batch_size, examples_per_second,
+                        loss_val
+                    ))
 
                 if iteration %  self.config.print_every  == 0: #self.config.validate_every
                     valid_list = list(range(0, len(self.valid_data) - 150, batch_size))
@@ -199,6 +207,7 @@ class Train(object):
                     # print(mask)
                     # print(np.sum(mask,1))
                     print('accuracy ' + str(accuracy))
+                    logging.debug('accuracy ' + str(accuracy))
 
 
                     # summary = sess.run(summaries,
