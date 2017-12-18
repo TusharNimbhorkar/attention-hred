@@ -81,7 +81,7 @@ class Train(object):
                            output_dim=config.output_dim,
                            eoq_symbol=config.eoq_symbol, eos_symbol=config.eos_symbol, unk_symbol=config.unk_symbol,
                            learning_rate=self.config.learning_rate, hidden_layer=config.hidden_layer,
-                           batch_size=tf.shape(self.X)[0])
+                           batch_size=self.config.batch_size)
 
 
         self.logits = self.HERED.inference(self.X,self.Y, self.X.shape[1], attention=False)  # <--- set attention here
