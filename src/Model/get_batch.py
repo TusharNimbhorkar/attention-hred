@@ -41,10 +41,11 @@ def get_batch(random_list, data, eoq, type='train', element=50, batch_size=50, m
         for i in train_list:
             listofzeros = [0] * batch_max_len
             listofzeros[:len(i)] = i
+            listofzeros = listofzeros[0:max_len]
             if len(i)<max_len:
                 listofzeros[len(i)] = eoq
             else:
-                listofzeros[-1] = eoq
+                listofzeros[max_len-1] = eoq
             padded_train.append(listofzeros)
         full_batch = np.asarray(padded_train)
         y_batch = full_batch[1:]
