@@ -116,7 +116,6 @@ class Decoder(object):
             self.gru_cell,
             y_one_hot,
             dtype=tf.float32,
-            sequence_length=[1]*batch_size,
             initial_state=state)
         return outputs , state
 

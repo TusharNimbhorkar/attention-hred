@@ -100,7 +100,7 @@ class Train(object):
 
 
     def get_length(self, sequence):
-        length = np.sum(np.sign(np.abs(sequence)),1)
+        length = np.sum(np.sign(np.abs(sequence)), 1)
         return length
 
     def get_accuracy(self, predictions, Y):
@@ -147,7 +147,14 @@ class Train(object):
             writer.add_graph(sess.graph)
             # TODO check the train list for None
 
-            for iteration in range(global_step,  self.config.max_steps):
+            random_element = random.choice(train_list)
+
+            x_batch, y_batch, seq_len, train_list = get_batch(train_list, self.train_data, type='train',
+                                                              element=random_element,
+                                                              batch_size=self.config.batch_size,
+                                                              max_len=self.config.max_length, eoq=self.HERED.eoq_symbol)
+
+            for iteration in range(global_step,  100): #self.config.max_steps):
 
                 #todo:
                 t1 = time.time()
@@ -155,13 +162,12 @@ class Train(object):
                 # x_batch, y_batch, seq_len = self.get_batch(dataset='train')
                 # print(x_batch)
                 # x_batch, y_batch, seq_len = self.get_random_batch()
-                random_element = random.choice(train_list)
+                # random_element = random.choice(train_list)
+                #
+                # x_batch, y_batch, seq_len, train_list = get_batch(train_list,self.train_data, type='train', element=random_element,
+                #                                                   batch_size=self.config.batch_size,
+                #                                                   max_len=self.config.max_length, eoq=self.HERED.eoq_symbol)
 
-                x_batch, y_batch, seq_len, train_list = get_batch(train_list,self.train_data, type='train', element=random_element,
-                                                                  batch_size=self.config.batch_size,
-                                                                  max_len=self.config.max_length, eoq=self.HERED.eoq_symbol)
-                # if iteration == 2:
-                #     break
                 feed_dict = {
                     self.X: x_batch,
                     self.Y: y_batch
@@ -183,22 +189,25 @@ class Train(object):
                         loss_val
                     ))
 
-                if iteration %  self.config.print_every  == 0: #self.config.validate_every
+                if iteration % 1 == 0: #self.config.validate_every
                     valid_list = list(range(0, len(self.valid_data) - 150, batch_size))
-                    random_element = random.choice(valid_list)
-                    x_batch, y_batch, _, _ = get_batch(valid_list, self.valid_data, type='train',
-                                                                      element=random_element,
-                                                                      batch_size=self.config.batch_size,
-                                                                      max_len=self.config.max_length, eoq=self.HERED.eoq_symbol)
+                    # random_element = random.choice(valid_list)
+                    # x_batch, y_batch, _, _ = get_batch(valid_list, self.valid_data, type='train',
+                    #                                                   element=random_element,
+                    #                                                   batch_size=self.config.batch_size,
+                    #                                                   max_len=self.config.max_length, eoq=self.HERED.eoq_symbol)
 
                     predictions = sess.run([self.HERED.validation(X = self.X, Y= self.Y, attention=False)], feed_dict={self.X: x_batch, self.Y: y_batch})
                     accuracy = self.get_accuracy(predictions, y_batch)
+                    batch_sentences, pred_sentences = self.get_sentences(y_batch, predictions)
 
                     # print(self.get_length(y_batch))
                     # # print(np.sum(mask,1))
                     # print(mask)
                     # print(np.sum(mask,1))
                     print('accuracy ' + str(accuracy))
+                    print(batch_sentences)
+                    print(pred_sentences)
 
 
                     # summary = sess.run(summaries,
@@ -215,6 +224,18 @@ class Train(object):
                     saver.save(sess, save_path= self.config.checkpoint_path ,global_step=iteration)
                     cPickle.dump(train_list, open("train_list.p", "wb"))
         return sess
+
+    def get_sentences(self, batch, outputs):
+        batch_sentence = [''] * len(batch)
+        output_sentence = [''] * len(outputs[0])
+        total_length = self.get_length(batch)
+        for i in range(len(batch)):
+            length = total_length[i]
+            for j in range (length):
+                batch_sentence[i] += self.vocab_lookup_dict[batch[i][j]] + ' '
+                output_sentence[i] += self.vocab_lookup_dict[outputs[0][i][j]] + ' '
+        return batch_sentence, output_sentence
+
 
     def restore_training(self):
         train_file = cPickle.load(open("train_list.p", 'rb'))
