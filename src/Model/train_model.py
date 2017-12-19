@@ -170,7 +170,7 @@ class Train(object):
                                                                   max_len=self.config.max_length, eoq=self.HERED.eoq_symbol)
             '''
 
-            valid_list = list(range(0, len(self.valid_data) - 150, batch_size))
+            valid_list = list(range(0, 43))
             random_element = 42
             #print(random_element)
             x_valid_batch, y_valid_batch, _, _ = get_batch(valid_list, self.valid_data, type='train',
