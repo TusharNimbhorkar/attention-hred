@@ -178,7 +178,7 @@ class Train(object):
                                                              batch_size=self.config.batch_size,
                                                              max_len=self.config.max_length, eoq=self.HERED.eoq_symbol)
 
-
+            self.config.max_steps = 47500
             for iteration in range(global_step, self.config.max_steps):
 
                 #todo:
