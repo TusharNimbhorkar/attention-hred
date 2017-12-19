@@ -87,8 +87,8 @@ class Train(object):
                            batch_size=tf.shape(self.X)[0])
 
 
-        self.logits = self.HERED.predictions(self.X, self.Y, attention=False)
-        # self.logits = self.HERED.inference(self.X,self.Y, self.X.shape[1], attention=False)  # <--- set attention here
+        self.logits = self.HERED.predictions(self.X, self.Y, attention=self.config.attention)
+        # self.logits = self.HERED.inference(self.X,self.Y, self.X.shape[1], attention=self.config.attention)  # <--- set attention here
         self.loss = self.HERED.get_loss(self.logits, self.Y)
         # self.loss_val = tf.placeholder(tf.float32)
 
@@ -240,7 +240,7 @@ class Train(object):
                     #                                                  max_len=self.config.max_length, eoq=self.HERED.eoq_symbol)
 
                     # Accuracy in validation set
-                    predictions = sess.run([self.HERED.validation(X = self.X, Y= self.Y, attention=False)], feed_dict={self.X: x_valid_batch, self.Y: y_valid_batch})
+                    predictions = sess.run([self.HERED.validation(X = self.X, Y= self.Y, attention=self.config.attention)], feed_dict={self.X: x_valid_batch, self.Y: y_valid_batch})
                     accuracy, words = self.get_accuracy(predictions, y_valid_batch)
                     #batch_sentences, pred_sentences = self.get_sentences(y_valid_batch, predictions)
                     # print(self.get_length(y_batch))
@@ -255,7 +255,7 @@ class Train(object):
                     logging.debug('validation_words    ' + str(words))
 
                     # Accuracy in train set
-                    predictions = sess.run([self.HERED.validation(X = self.X, Y= self.Y, attention=False)], feed_dict={self.X: x_batch, self.Y: y_batch})
+                    predictions = sess.run([self.HERED.validation(X = self.X, Y= self.Y, attention=self.config.attention)], feed_dict={self.X: x_batch, self.Y: y_batch})
                     accuracy, words = self.get_accuracy(predictions, y_batch)
                     #batch_sentences_training, pred_sentences_training = self.get_sentences(y_batch, predictions)
                     tf.summary.scalar('training_accuracy', accuracy)
@@ -285,7 +285,7 @@ class Train(object):
                                                                element=random_element,
                                                                batch_size=self.config.batch_size,
                                                                max_len=self.config.max_length, eoq=self.HERED.eoq_symbol)
-                predictions = sess.run([self.HERED.validation(X=self.X, Y=self.Y, attention=False)],
+                predictions = sess.run([self.HERED.validation(X=self.X, Y=self.Y, attention=self.config.attention)],
                                        feed_dict={self.X: x_batch, self.Y: y_batch})
                 accuracy, all_list = self.get_accuracy(predictions[0], y_batch)
                 logging.debug("[{}] Train Step {:04d}/{:04d}, Batch Size = {}, accuracy = {:.2f}".format(
@@ -418,6 +418,7 @@ if __name__ == '__main__':
     parser.add_argument('--summary_path', type=str, default='./summaries/basto_3/',help='Output path for summaries.')
     parser.add_argument('--checkpoint_every', type=int, default=1000,help='How often to save checkpoints.')
     parser.add_argument('--checkpoint_path', type=str, default='./checkpoints/basto_3/model.ckpt',help='Output path for checkpoints.')
+    parser.add_argument('--attention', type=bool, default=False,help='With or without attention.')
     FLAGS, unparsed = parser.parse_known_args()
 
     with tf.Graph().as_default():
