@@ -121,6 +121,8 @@ class Decoder(object):
             initial_state=state)
         return outputs , state
 
+
+
     def concat_fn(self,output,state,outputs,states,seq_len):
         output, state = self.gru_cell(output, state)
         outputs = tf.concat([outputs, tf.expand_dims(output, 2)], 2)

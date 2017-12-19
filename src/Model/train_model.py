@@ -87,7 +87,8 @@ class Train(object):
         self.X = tf.placeholder(tf.int64, shape=(config.batch_size, config.max_length)) #(BS,seq_len)
         self.Y = tf.placeholder(tf.int64, shape=(config.batch_size, config.max_length))
 
-        self.logits = self.HERED.inference(self.X,self.Y, self.X.shape[1], attention=False)  # <--- set attention here
+        self.logits = self.HERED.predictions(self.X, self.Y, attention=False)
+        # self.logits = self.HERED.inference(self.X,self.Y, self.X.shape[1], attention=False)  # <--- set attention here
         self.loss = self.HERED.get_loss(self.logits, self.Y)
         # self.loss_val = tf.placeholder(tf.float32)
 
@@ -168,6 +169,7 @@ class Train(object):
 
             valid_list = list(range(0, len(self.valid_data) - 150, batch_size))
             random_element = random.choice(valid_list)
+            print(random_element)
             x_batch_valid, y_batch_valid, _, _ = get_batch(valid_list, self.valid_data, type='train',
                                                              element=random_element,
                                                              batch_size=self.config.batch_size,
