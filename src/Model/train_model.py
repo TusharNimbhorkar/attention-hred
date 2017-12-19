@@ -84,11 +84,7 @@ class Train(object):
                            output_dim=config.output_dim,
                            eoq_symbol=config.eoq_symbol, eos_symbol=config.eos_symbol, unk_symbol=config.unk_symbol,
                            learning_rate=self.config.learning_rate, hidden_layer=config.hidden_layer,
-<<<<<<< HEAD
                            batch_size=tf.shape(self.X)[0])
-=======
-                           batch_size=self.config.batch_size)
->>>>>>> master
 
 
         self.logits = self.HERED.inference(self.X,self.Y, self.X.shape[1], attention=False)  # <--- set attention here
@@ -123,15 +119,10 @@ class Train(object):
     def train_model(self, batch_size=None, restore = False):
 
         # batch parameters,train
-<<<<<<< HEAD
         #train_list = list(range(0, len(self.train_data)-150, batch_size))
         train_list = list(range(0, len(self.train_data)))
 
-=======
-        train_list = list(range(0, len(self.train_data)-150, batch_size))
         # self.save_dict_to_tsv()
->>>>>>> master
-
         # summaries = tf.summary.merge_all()
         init = tf.global_variables_initializer()
         saver = tf.train.Saver()
@@ -170,16 +161,10 @@ class Train(object):
 
             '''
             #random_element = random.choice(train_list)
-<<<<<<< HEAD
             random_element = 42 # session with 163 queries (should be good for validation)
             valid_list = list(range(0, 43))
             #print('random ' + str(random_element))
             x_valid_batch, y_valid_batch, seq_len, _ = get_batch(valid_list,self.valid_data, type='train', element=random_element,
-=======
-            random_element = 6515580
-            #logging.debug('random ' + str(random_element))
-            x_batch, y_batch, seq_len, train_list = get_batch(train_list,self.train_data, type='train', element=random_element,
->>>>>>> master
                                                                   batch_size=self.config.batch_size,
                                                                   max_len=self.config.max_length, eoq=self.HERED.eoq_symbol)
             '''
@@ -192,11 +177,7 @@ class Train(object):
                                                              max_len=self.config.max_length, eoq=self.HERED.eoq_symbol)
 
 
-<<<<<<< HEAD
             for iteration in range(global_step, self.config.max_steps):
-=======
-            for iteration in range(global_step, 100):#self.config.max_steps):
->>>>>>> master
 
                 #todo:
                 t1 = time.time()
@@ -206,15 +187,9 @@ class Train(object):
                 # x_batch, y_batch, seq_len = self.get_random_batch()
                 random_element = random.choice(train_list)
                 x_batch, y_batch, seq_len, train_list = get_batch(train_list,self.train_data, type='train', element=random_element,
-<<<<<<< HEAD
                                                                   batch_size=self.config.batch_size,
                                                                   max_len=self.config.max_length, eoq=self.HERED.eoq_symbol)
                 
-=======
-                                                                 batch_size=self.config.batch_size,
-                                                                 max_len=self.config.max_length, eoq=self.HERED.eoq_symbol)
-
->>>>>>> master
                 feed_dict = {
                     self.X: x_batch,
                     self.Y: y_batch
@@ -262,41 +237,31 @@ class Train(object):
                     #                                                  batch_size=self.config.batch_size,
                     #                                                  max_len=self.config.max_length, eoq=self.HERED.eoq_symbol)
 
-<<<<<<< HEAD
                     # Accuracy in validation set
                     predictions = sess.run([self.HERED.validation(X = self.X, Y= self.Y, attention=False)], feed_dict={self.X: x_valid_batch, self.Y: y_valid_batch})
-                    accuracy, _ = self.get_accuracy(predictions[0], y_valid_batch)
+                    accuracy, words = self.get_accuracy(predictions, y_valid_batch)
+                    #batch_sentences, pred_sentences = self.get_sentences(y_valid_batch, predictions)
                     # print(self.get_length(y_batch))
                     # # print(np.sum(mask,1))
                     # print(mask)
                     # print(np.sum(mask,1))
                     tf.summary.scalar('validation_accuracy', accuracy)
+                    tf.summary.scalar('validation_words', words)
                     print('validation accuracy ' + str(accuracy))
+                    print('validation words    ' + str(words))
                     logging.debug('validation_accuracy ' + str(accuracy))
-=======
-                    predictions = sess.run([self.HERED.validation(X = self.X, Y= self.Y, attention=False)], feed_dict={self.X: x_batch, self.Y: y_batch})
-                    accuracy, words = self.get_accuracy(predictions, y_batch)
-                    batch_sentences, pred_sentences = self.get_sentences(y_batch, predictions)
-                    saver.save(sess, save_path='summaries/a_model.ckpt' ,global_step=iteration)
-
-                    # logging.debug(self.get_length(y_batch))
-                    # # logging.debug(np.sum(mask,1))
-                    # logging.debug(mask)
-                    # logging.debug(np.sum(mask,1))
-                    # logging.debug('validation accuracy ' + str(accuracy))
-                    # logging.debug('validation words guessed ' + str(words))
-                    print('validation accuracy ' + str(accuracy))
-                    print('validation words guessed ' + str(words))
-                    # print(batch_sentences)
-                    # print(pred_sentences)
->>>>>>> master
+                    logging.debug('validation_words    ' + str(words))
 
                     # Accuracy in train set
                     predictions = sess.run([self.HERED.validation(X = self.X, Y= self.Y, attention=False)], feed_dict={self.X: x_batch, self.Y: y_batch})
-                    accuracy, _ = self.get_accuracy(predictions[0], y_batch)
-                    tf.summary.scalar('accuracy', accuracy)
-                    print('accuracy            ' + str(accuracy))
-                    logging.debug('accuracy            ' + str(accuracy))
+                    accuracy, words = self.get_accuracy(predictions, y_batch)
+                    #batch_sentences_training, pred_sentences_training = self.get_sentences(y_batch, predictions)
+                    tf.summary.scalar('training_accuracy', accuracy)
+                    tf.summary.scalar('training_words', words)
+                    print('training accuracy ' + str(accuracy))
+                    print('training words    ' + str(words))
+                    logging.debug('training_accuracy ' + str(accuracy))
+                    logging.debug('training_words    ' + str(words))
 
 
                     # Update the events file.
@@ -304,13 +269,7 @@ class Train(object):
                                         feed_dict={ self.loss: loss_val})
                     writer.add_summary(summary, global_step=iteration)
 
-<<<<<<< HEAD
-                if iteration+1 % self.config.checkpoint_every == 0:
-=======
-
-
                 if iteration % self.config.checkpoint_every == 0:
->>>>>>> master
                     saver.save(sess, save_path= self.config.checkpoint_path ,global_step=iteration)
                 #     cPickle.dump(train_list, open("train_list.p", "wb"))
 
@@ -327,7 +286,7 @@ class Train(object):
                                                                max_len=self.config.max_length, eoq=self.HERED.eoq_symbol)
                 predictions = sess.run([self.HERED.validation(X=self.X, Y=self.Y, attention=False)],
                                        feed_dict={self.X: x_batch, self.Y: y_batch})
-                accuracy, all_list = self.get_accuracy(predictions[0], y_batch)
+                accuracy, all_list = self.geHEt_accuracy(predictions[0], y_batch)
                 logging.debug("[{}] Train Step {:04d}/{:04d}, Batch Size = {}, accuracy = {:.2f}".format(
                     datetime.now().strftime("%Y-%m-%d %H:%M"), iteration + 1,
                     int(self.config.max_steps), self.config.batch_size, accuracy
