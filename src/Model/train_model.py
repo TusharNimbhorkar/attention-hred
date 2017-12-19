@@ -87,7 +87,7 @@ class Train(object):
                            batch_size=tf.shape(self.X)[0])
 
 
-        self.logits = self.HERED.inference(self.X,self.Y, self.X.shape[1], attention=True)  # <--- set attention here
+        self.logits = self.HERED.inference(self.X,self.Y, self.X.shape[1], attention=False)  # <--- set attention here
         self.loss = self.HERED.get_loss(self.logits, self.Y)
         # self.loss_val = tf.placeholder(tf.float32)
 
@@ -171,7 +171,7 @@ class Train(object):
 
             valid_list = list(range(0, len(self.valid_data) - 150, batch_size))
             random_element = random.choice(valid_list)
-            x_batch_valid, y_batch_valid, _, _ = get_batch(valid_list, self.valid_data, type='train',
+            x_valid_batch, y_valid_batch, _, _ = get_batch(valid_list, self.valid_data, type='train',
                                                              element=random_element,
                                                              batch_size=self.config.batch_size,
                                                              max_len=self.config.max_length, eoq=self.HERED.eoq_symbol)
@@ -285,7 +285,7 @@ class Train(object):
                                                                max_len=self.config.max_length, eoq=self.HERED.eoq_symbol)
                 predictions = sess.run([self.HERED.validation(X=self.X, Y=self.Y, attention=False)],
                                        feed_dict={self.X: x_batch, self.Y: y_batch})
-                accuracy, all_list = self.geHEt_accuracy(predictions[0], y_batch)
+                accuracy, all_list = self.get_accuracy(predictions[0], y_batch)
                 logging.debug("[{}] Train Step {:04d}/{:04d}, Batch Size = {}, accuracy = {:.2f}".format(
                     datetime.now().strftime("%Y-%m-%d %H:%M"), iteration + 1,
                     int(self.config.max_steps), self.config.batch_size, accuracy
@@ -422,3 +422,4 @@ if __name__ == '__main__':
         trainer = Train(config=FLAGS)
         trainer.train_model(batch_size=FLAGS.batch_size)
         # trainer.predict_model()
+v
