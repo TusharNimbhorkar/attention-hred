@@ -58,7 +58,6 @@ class HERED():
         self.decoder_state = self.decoder_grucell.compute_state(x=self.initial_query_state,
                                                       session_state=self.initial_session_state)
 
-
     def inference(self, X, Y, sequence_max_length, attention=False):
 
         """
@@ -124,17 +123,19 @@ class HERED():
                                             num_hidden=self.decoder_dim,
                                             state=self.decoder_outputs, word=Y)
 
+
         # Get embeddings for decoder output
         #ov_embedder = layers.get_embedding_layer(vocabulary_size=self.vocab_size,
         #                                        embedding_dims=self.embedding_dim, data=self.vocabulary_matrix, scope='Ov_embedder')
         with tf.variable_scope('ov_embedder', reuse=tf.AUTO_REUSE):
             ov_embedder = tf.get_variable(name='Ov_embedder', shape=[self.vocab_size, self.embedding_dim],
                                              initializer=tf.random_normal_initializer(mean=0.0, stddev=1.0))
+        print(ov_embedder)
 
         # print(omega)
         # print(ov_embedder)
         # Dot product between omega and embeddings of vocabulary matrix
-        logits = tf.einsum('bse,ve->bsv', omega, ov_embedder)
+        logits = tf.einsum('bse,ve->bsv',omega, ov_embedder)
 
         return logits
 
