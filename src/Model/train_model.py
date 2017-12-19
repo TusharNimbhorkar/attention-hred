@@ -20,7 +20,7 @@ from model import HERED
 from get_batch import get_batch
 import random
 import logging
-logging.basicConfig(filename='output.log',level=logging.DEBUG)
+logging.basicConfig(filename='output_basto2.log',level=logging.DEBUG)
 
 
 # todo: put this stuff in arg.parse as well
@@ -86,7 +86,7 @@ class Train(object):
                            batch_size=tf.shape(self.X)[0])
 
 
-        self.logits = self.HERED.inference(self.X,self.Y, self.X.shape[1], attention=False)  # <--- set attention here
+        self.logits = self.HERED.inference(self.X,self.Y, self.X.shape[1], attention=True)  # <--- set attention here
         self.loss = self.HERED.get_loss(self.logits, self.Y)
         # self.loss_val = tf.placeholder(tf.float32)
 
@@ -153,7 +153,7 @@ class Train(object):
                 self.config.max_steps = int(len(train_list))
             else:
                 print(self.config.checkpoint_path)
-                saver.restore(sess, tf.train.latest_checkpoint('./checkpoints/'))
+                saver.restore(sess, tf.train.latest_checkpoint('./checkpoints/basto_attention'))
                 global_step = tf.get_collection_ref('global_step')[0]
                 global_step= sess.run(global_step)
 
@@ -232,7 +232,7 @@ class Train(object):
                     #                                                  max_len=self.config.max_length, eoq=self.HERED.eoq_symbol)
 
                     # Accuracy in validation set
-                    predictions = sess.run([self.HERED.validation(X = self.X, Y= self.Y, attention=False)], feed_dict={self.X: x_valid_batch, self.Y: y_valid_batch})
+                    predictions = sess.run([self.HERED.validation(X = self.X, Y= self.Y, attention=True)], feed_dict={self.X: x_valid_batch, self.Y: y_valid_batch})
                     accuracy, _ = self.get_accuracy(predictions[0], y_valid_batch)
                     # print(self.get_length(y_batch))
                     # # print(np.sum(mask,1))
@@ -243,7 +243,7 @@ class Train(object):
                     logging.debug('validation_accuracy ' + str(accuracy))
 
                     # Accuracy in train set
-                    predictions = sess.run([self.HERED.validation(X = self.X, Y= self.Y, attention=False)], feed_dict={self.X: x_batch, self.Y: y_batch})
+                    predictions = sess.run([self.HERED.validation(X = self.X, Y= self.Y, attention=True)], feed_dict={self.X: x_batch, self.Y: y_batch})
                     accuracy, _ = self.get_accuracy(predictions[0], y_batch)
                     tf.summary.scalar('accuracy', accuracy)
                     print('accuracy            ' + str(accuracy))
@@ -255,7 +255,7 @@ class Train(object):
                                         feed_dict={ self.loss: loss_val})
                     writer.add_summary(summary, global_step=iteration)
 
-                if iteration+1 % self.config.checkpoint_every == 0:
+                if iteration % self.config.checkpoint_every == 0:
                     saver.save(sess, save_path= self.config.checkpoint_path ,global_step=iteration)
                     cPickle.dump(train_list, open("train_list.p", "wb"))
         return sess
@@ -361,9 +361,9 @@ if __name__ == '__main__':
 
     # Misc params
     parser.add_argument('--print_every', type=int, default=100, help='How often to print training progress')
-    parser.add_argument('--summary_path', type=str, default='./summaries/',help='Output path for summaries.')
+    parser.add_argument('--summary_path', type=str, default='./summaries/basto_2/',help='Output path for summaries.')
     parser.add_argument('--checkpoint_every', type=int, default=1000,help='How often to save checkpoints.')
-    parser.add_argument('--checkpoint_path', type=str, default='./checkpoints/model.ckpt',help='Output path for checkpoints.')
+    parser.add_argument('--checkpoint_path', type=str, default='./checkpoints/basto_attention/model.ckpt',help='Output path for checkpoints.')
     FLAGS, unparsed = parser.parse_known_args()
 
     with tf.Graph().as_default():
