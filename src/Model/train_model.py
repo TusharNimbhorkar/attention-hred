@@ -20,7 +20,7 @@ from model import HERED
 from get_batch import get_batch
 import random
 import logging
-logging.basicConfig(filename='output_basto_5.log',level=logging.DEBUG)
+logging.basicConfig(filename='output_basto_6.log',level=logging.DEBUG)
 
 from tensorflow.contrib.tensorboard.plugins import projector
 
@@ -282,10 +282,10 @@ class Train(object):
                                                                max_len=self.config.max_length, eoq=self.HERED.eoq_symbol)
                 predictions = sess.run([self.HERED.validation(X=self.X, Y=self.Y, attention=self.config.attention)],
                                        feed_dict={self.X: x_batch, self.Y: y_batch})
-                accuracy, all_list = self.get_accuracy(predictions[0], y_batch)
-                logging.debug("[{}] Train Step {:04d}/{:04d}, Batch Size = {}, accuracy = {:.2f}".format(
+                accuracy, all_list = self.get_accuracy(predictions, y_batch)
+                logging.debug("[{}] Train Step {:04d}/{:04d}, Batch Size = {}, accuracy = {:.2f}, words={:.2f}".format(
                     datetime.now().strftime("%Y-%m-%d %H:%M"), iteration + 1,
-                    int(self.config.max_steps), self.config.batch_size, accuracy
+                    int(self.config.max_steps), self.config.batch_size, accuracy, all_list
                 ))
 
 
@@ -410,9 +410,9 @@ if __name__ == '__main__':
 
     # Misc params
     parser.add_argument('--print_every', type=int, default=100, help='How often to print training progress')
-    parser.add_argument('--summary_path', type=str, default='./summaries/basto_5/',help='Output path for summaries.')
+    parser.add_argument('--summary_path', type=str, default='./summaries/basto_6/',help='Output path for summaries.')
     parser.add_argument('--checkpoint_every', type=int, default=1000,help='How often to save checkpoints.')
-    parser.add_argument('--checkpoint_path', type=str, default='./checkpoints/basto_5/model.ckpt',help='Output path for checkpoints.')
+    parser.add_argument('--checkpoint_path', type=str, default='./checkpoints/basto_6/model.ckpt',help='Output path for checkpoints.')
     parser.add_argument('--attention', type=bool, default=False,help='With or without attention.')
     FLAGS, unparsed = parser.parse_known_args()
 
