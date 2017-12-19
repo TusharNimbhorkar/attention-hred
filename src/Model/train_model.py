@@ -108,10 +108,12 @@ class Train(object):
         length = self.get_length(Y)
         predictions = predictions[0]
         correct = 0
+        words = 0
         for i in range (len(predictions)):
             correct += np.sum(np.equal( Y[i][:length[i]], predictions[i][:length[i]]).astype(float))
+            words += np.sum(np.isin(Y[i][:length[i]], predictions[i][:length[i]]).astype(float))
         logging.debug(np.sum(length))
-        return correct/float(np.sum(length))
+        return correct/float(np.sum(length)), words/ float(np.sum(length))
 
     def train_model(self, batch_size=None, restore = False):
 
@@ -220,16 +222,19 @@ class Train(object):
                     #                                                  max_len=self.config.max_length, eoq=self.HERED.eoq_symbol)
 
                     predictions = sess.run([self.HERED.validation(X = self.X, Y= self.Y, attention=False)], feed_dict={self.X: x_batch, self.Y: y_batch})
-                    accuracy = self.get_accuracy(predictions, y_batch)
+                    accuracy, words = self.get_accuracy(predictions, y_batch)
                     batch_sentences, pred_sentences = self.get_sentences(y_batch, predictions)
 
                     # logging.debug(self.get_length(y_batch))
                     # # logging.debug(np.sum(mask,1))
                     # logging.debug(mask)
                     # logging.debug(np.sum(mask,1))
-                    logging.debug('validation accuracy ' + str(accuracy))
-                    print(batch_sentences)
-                    print(pred_sentences)
+                    # logging.debug('validation accuracy ' + str(accuracy))
+                    # logging.debug('validation words guessed ' + str(words))
+                    print('validation accuracy ' + str(accuracy))
+                    print('validation words guessed ' + str(words))
+                    # print(batch_sentences)
+                    # print(pred_sentences)
 
 
                     # summary = sess.run(summaries,
