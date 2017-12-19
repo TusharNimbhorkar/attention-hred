@@ -41,7 +41,7 @@ def output_layer(embedding_dims, num_hidden, vocabulary_size, state, word):
     :param word: 1D tensor embedding, previous word, should be flatten
     :return:
     """
-    with tf.variable_scope('output_layer', reuse= tf.AUTO_REUSE):
+    with tf.variable_scope('output_layer', reuse=tf.AUTO_REUSE):
         # Define the weights H_o, E_o and bias b_o
         H_ouput = tf.get_variable(name='h_output', shape=[embedding_dims, num_hidden],
                                   initializer=tf.random_normal_initializer(mean=0.0, stddev=1.0))

@@ -89,7 +89,7 @@ class HERED():
 
         # Run decoder and retrieve outputs and states for all timesteps
         self.decoder_outputs = self.decoder_grucell.compute_prediction(  # batch size x timesteps x output_size
-            y=Y, state=self.initial_decoder_state, batch_size=self.batch_size, vocab_size=self.vocab_size)
+                y=Y, state=self.initial_decoder_state, batch_size=self.batch_size, vocab_size=self.vocab_size)
 
         # Remove mask from outputs of decoder
         # print(self.decoder_outputs.shape)
@@ -114,15 +114,15 @@ class HERED():
             # Concatenate context vector to decoder state, assuming in a GRU states = outputs
             self.decoder_states_attention = tf.concat([self.decoder_outputs, tf.expand_dims(self.context, 2)], axis=2) # TODO: check this
             # Calculate the omega function w(d_n-1, w_n-1) for attention
-            with tf.variable_scope('omega', reuse=tf.AUTO_REUSE):
+            with tf.variable_scope('output_layer', reuse=tf.AUTO_REUSE):
                 omega = layers.output_layer(embedding_dims=self.embedding_dim, vocabulary_size=self.vocab_size,
-                                        num_hidden=self.decoder_dim + 1,
-                                        state=self.decoder_states_attention, word=Y)
+                                            num_hidden=self.decoder_dim + 1,
+                                            state=self.decoder_states_attention, word=Y)
         else:
-            with tf.variable_scope('omega', reuse=tf.AUTO_REUSE):
+            with tf.variable_scope('output_layer', reuse=tf.AUTO_REUSE):
                 omega = layers.output_layer(embedding_dims=self.embedding_dim, vocabulary_size=self.vocab_size,
-                                        num_hidden=self.decoder_dim,
-                                        state=self.decoder_outputs, word=Y)
+                                            num_hidden=self.decoder_dim,
+                                            state=self.decoder_outputs, word=Y)
 
         # Get embeddings for decoder output
         #ov_embedder = layers.get_embedding_layer(vocabulary_size=self.vocab_size,
@@ -137,10 +137,6 @@ class HERED():
         logits = tf.einsum('bse,ve->bsv',omega, ov_embedder)
 
         return logits
-
-
-
-
 
     def get_predictions(self, X,  previous_word=None, attention=False, state= None, sequence_max_length=1):
 
@@ -175,7 +171,7 @@ class HERED():
                 state = self.initial_decoder_state
             # Run decoder and retrieve outputs for next words
             self.decoder_outputs, state = self.decoder_grucell.compute_one_prediction(  # batch size x 1 x output_size
-                y=previous_word, state=state, batch_size=self.batch_size, vocab_size=self.vocab_size)
+                    y=previous_word, state=state, batch_size=self.batch_size, vocab_size=self.vocab_size)
 
             # For attention, calculate context vector
             if attention:
@@ -186,14 +182,15 @@ class HERED():
                 self.decoder_states_attention = tf.concat([self.decoder_outputs, tf.expand_dims(self.context, 2)],
                                                           axis=2)  # TODO: check this
                 # Calculate the omega function w(d_n-1, w_n-1) for attention
-                omega = layers.output_layer(embedding_dims=self.embedding_dim, vocabulary_size=self.vocab_size,
-                                            num_hidden=self.decoder_dim + 1,
-                                            state=self.decoder_states_attention, word=tf.argmax(previous_word,2))
-            else:
-                with tf.variable_scope('omega', reuse=tf.AUTO_REUSE):
+                with tf.variable_scope('output_layer', reuse=tf.AUTO_REUSE):
                     omega = layers.output_layer(embedding_dims=self.embedding_dim, vocabulary_size=self.vocab_size,
-                                            num_hidden=self.decoder_dim,
-                                            state=self.decoder_outputs, word=tf.argmax(previous_word,2))
+                                                num_hidden=self.decoder_dim + 1,
+                                                state=self.decoder_states_attention, word=tf.argmax(previous_word,2))
+            else:
+                with tf.variable_scope('output_layer', reuse=tf.AUTO_REUSE):
+                    omega = layers.output_layer(embedding_dims=self.embedding_dim, vocabulary_size=self.vocab_size,
+                                                num_hidden=self.decoder_dim,
+                                                state=self.decoder_outputs, word=tf.argmax(previous_word,2))
 
             with tf.variable_scope('ov_embedder', reuse=tf.AUTO_REUSE):
                 ov_embedder = tf.get_variable(name='Ov_embedder', shape=[self.vocab_size, self.embedding_dim],
