@@ -20,6 +20,7 @@ from model import HERED
 from get_batch import get_batch
 import random
 import logging
+from tensorflow.contrib.tensorboard.plugins import projector
 
 logging.basicConfig(filename='output.log',level=logging.DEBUG)
 
@@ -119,7 +120,7 @@ class Train(object):
 
         # batch parameters,train
         train_list = list(range(0, len(self.train_data)-150, batch_size))
-
+        # self.save_dict_to_tsv()
 
         # summaries = tf.summary.merge_all()
         init = tf.global_variables_initializer()
@@ -148,6 +149,12 @@ class Train(object):
             summaries = tf.summary.merge_all()
             writer = tf.summary.FileWriter(log_path)
             writer.add_graph(sess.graph)
+
+            config = projector.ProjectorConfig()
+            embed = config.embeddings.add()
+            embed.tensor_name = 'ov_embedder/Ov_embedder:0'
+            embed.metadata_path = '/summaries/metadata.tsv'
+            projector.visualize_embeddings(writer, config)
             # TODO check the train list for None
 
             '''
@@ -224,6 +231,7 @@ class Train(object):
                     predictions = sess.run([self.HERED.validation(X = self.X, Y= self.Y, attention=False)], feed_dict={self.X: x_batch, self.Y: y_batch})
                     accuracy, words = self.get_accuracy(predictions, y_batch)
                     batch_sentences, pred_sentences = self.get_sentences(y_batch, predictions)
+                    saver.save(sess, save_path='summaries/a_model.ckpt' ,global_step=iteration)
 
                     # logging.debug(self.get_length(y_batch))
                     # # logging.debug(np.sum(mask,1))
@@ -247,8 +255,10 @@ class Train(object):
                 #summary_writer.add_summary(summary_str, train_step)
                 #summary_writer.flush()
 
-                # if iteration % self.config.checkpoint_every == 0:
-                #     saver.save(sess, save_path= self.config.checkpoint_path ,global_step=iteration)
+
+
+                if iteration % self.config.checkpoint_every == 0:
+                    saver.save(sess, save_path= self.config.checkpoint_path ,global_step=iteration)
                 #     cPickle.dump(train_list, open("train_list.p", "wb"))
 
             logging.debug('Train finished now validate')
@@ -351,6 +361,12 @@ class Train(object):
 
         # Return minimizer
         return opt
+
+    def save_dict_to_tsv(self):
+        with open('projector/word_dictionary.tsv', "w") as f:
+            # f.write(first_line + "\n")
+            for key, value in self.vocab_lookup_dict.items():
+                f.write("{}\t{}\n".format(key, value))
 
     def get_random_batch(self):
         a = np.random.randint(5000, size=(51, 7))
