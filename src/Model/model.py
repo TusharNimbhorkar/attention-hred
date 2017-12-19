@@ -211,6 +211,7 @@ class HERED():
             outputs = tf.concat([outputs, result],1)
         predictions = tf.argmax(outputs,2)
         return predictions # predictions
+
     def predictions(self, X, Y, sequence_max_length = 1, attention=False):
 
         x_list =  tf.unstack(X, axis=1)
