@@ -1,0 +1,656 @@
+DEBUG:root:[2017-12-19 21:33] Train Step 0001/3751848, Batch Size = 60, Examples/Sec = 28.26, Loss = 74.08
+DEBUG:root:[2017-12-19 21:33] Train Step 0001/3751848, Batch Size = 60, Examples/Sec = 28.26, Loss = 74.08
+DEBUG:root:4
+DEBUG:root:validation_accuracy 0.0
+DEBUG:root:validation_words    0.0
+DEBUG:root:5
+DEBUG:root:training_accuracy 0.2
+DEBUG:root:training_words    0.2
+DEBUG:root:[2017-12-19 21:34] Train Step 0101/3751848, Batch Size = 60, Examples/Sec = 86.79, Loss = 211.87
+DEBUG:root:[2017-12-19 21:34] Train Step 0101/3751848, Batch Size = 60, Examples/Sec = 86.79, Loss = 211.87
+DEBUG:root:4
+DEBUG:root:validation_accuracy 0.25
+DEBUG:root:validation_words    0.25
+DEBUG:root:7
+DEBUG:root:training_accuracy 0.285714285714
+DEBUG:root:training_words    0.285714285714
+DEBUG:root:[2017-12-19 21:35] Train Step 0201/3751848, Batch Size = 60, Examples/Sec = 152.76, Loss = 171.22
+DEBUG:root:[2017-12-19 21:35] Train Step 0201/3751848, Batch Size = 60, Examples/Sec = 152.76, Loss = 171.22
+DEBUG:root:4
+DEBUG:root:validation_accuracy 0.0
+DEBUG:root:validation_words    0.0
+DEBUG:root:3
+DEBUG:root:training_accuracy 0.333333333333
+DEBUG:root:training_words    0.333333333333
+DEBUG:root:[2017-12-19 21:37] Train Step 0301/3751848, Batch Size = 60, Examples/Sec = 143.14, Loss = 856.63
+DEBUG:root:[2017-12-19 21:37] Train Step 0301/3751848, Batch Size = 60, Examples/Sec = 143.14, Loss = 856.63
+DEBUG:root:4
+DEBUG:root:validation_accuracy 0.0
+DEBUG:root:validation_words    0.25
+DEBUG:root:2
+DEBUG:root:training_accuracy 0.0
+DEBUG:root:training_words    0.0
+DEBUG:root:[2017-12-19 21:38] Train Step 0401/3751848, Batch Size = 60, Examples/Sec = 73.18, Loss = 115.31
+DEBUG:root:[2017-12-19 21:38] Train Step 0401/3751848, Batch Size = 60, Examples/Sec = 73.18, Loss = 115.31
+DEBUG:root:4
+DEBUG:root:validation_accuracy 0.0
+DEBUG:root:validation_words    0.0
+DEBUG:root:46
+DEBUG:root:training_accuracy 0.0217391304348
+DEBUG:root:training_words    0.0652173913043
+DEBUG:root:[2017-12-19 21:39] Train Step 0501/3751848, Batch Size = 60, Examples/Sec = 142.62, Loss = 56.78
+DEBUG:root:[2017-12-19 21:39] Train Step 0501/3751848, Batch Size = 60, Examples/Sec = 142.62, Loss = 56.78
+DEBUG:root:4
+DEBUG:root:validation_accuracy 0.0
+DEBUG:root:validation_words    0.5
+DEBUG:root:10
+DEBUG:root:training_accuracy 0.0
+DEBUG:root:training_words    0.1
+DEBUG:root:[2017-12-19 21:40] Train Step 0601/3751848, Batch Size = 60, Examples/Sec = 83.72, Loss = 51.99
+DEBUG:root:[2017-12-19 21:40] Train Step 0601/3751848, Batch Size = 60, Examples/Sec = 83.72, Loss = 51.99
+DEBUG:root:4
+DEBUG:root:validation_accuracy 0.25
+DEBUG:root:validation_words    0.25
+DEBUG:root:15
+DEBUG:root:training_accuracy 0.0
+DEBUG:root:training_words    0.333333333333
+DEBUG:root:[2017-12-19 21:42] Train Step 0701/3751848, Batch Size = 60, Examples/Sec = 135.46, Loss = 28.43
+DEBUG:root:[2017-12-19 21:42] Train Step 0701/3751848, Batch Size = 60, Examples/Sec = 135.46, Loss = 28.43
+DEBUG:root:4
+DEBUG:root:validation_accuracy 0.0
+DEBUG:root:validation_words    0.25
+DEBUG:root:2
+DEBUG:root:training_accuracy 0.5
+DEBUG:root:training_words    0.5
+DEBUG:root:[2017-12-19 21:43] Train Step 0801/3751848, Batch Size = 60, Examples/Sec = 150.23, Loss = 14.50
+DEBUG:root:[2017-12-19 21:43] Train Step 0801/3751848, Batch Size = 60, Examples/Sec = 150.23, Loss = 14.50
+DEBUG:root:4
+DEBUG:root:validation_accuracy 0.25
+DEBUG:root:validation_words    0.5
+DEBUG:root:2
+DEBUG:root:training_accuracy 0.5
+DEBUG:root:training_words    0.5
+DEBUG:root:[2017-12-19 21:44] Train Step 0901/3751848, Batch Size = 60, Examples/Sec = 86.00, Loss = 33.01
+DEBUG:root:[2017-12-19 21:44] Train Step 0901/3751848, Batch Size = 60, Examples/Sec = 86.00, Loss = 33.01
+DEBUG:root:4
+DEBUG:root:validation_accuracy 0.25
+DEBUG:root:validation_words    0.25
+DEBUG:root:9
+DEBUG:root:training_accuracy 0.333333333333
+DEBUG:root:training_words    0.333333333333
+DEBUG:root:[2017-12-19 21:45] Train Step 1001/3751848, Batch Size = 60, Examples/Sec = 84.27, Loss = 40.85
+DEBUG:root:[2017-12-19 21:45] Train Step 1001/3751848, Batch Size = 60, Examples/Sec = 84.27, Loss = 40.85
+DEBUG:root:4
+DEBUG:root:validation_accuracy 0.0
+DEBUG:root:validation_words    0.0
+DEBUG:root:15
+DEBUG:root:training_accuracy 0.0
+DEBUG:root:training_words    0.0
+DEBUG:root:[2017-12-19 21:47] Train Step 1101/3751848, Batch Size = 60, Examples/Sec = 85.16, Loss = 110.08
+DEBUG:root:[2017-12-19 21:47] Train Step 1101/3751848, Batch Size = 60, Examples/Sec = 85.16, Loss = 110.08
+DEBUG:root:4
+DEBUG:root:validation_accuracy 0.25
+DEBUG:root:validation_words    0.25
+DEBUG:root:36
+DEBUG:root:training_accuracy 0.0
+DEBUG:root:training_words    0.222222222222
+DEBUG:root:[2017-12-19 21:48] Train Step 1201/3751848, Batch Size = 60, Examples/Sec = 84.37, Loss = 41.47
+DEBUG:root:[2017-12-19 21:48] Train Step 1201/3751848, Batch Size = 60, Examples/Sec = 84.37, Loss = 41.47
+DEBUG:root:4
+DEBUG:root:validation_accuracy 0.25
+DEBUG:root:validation_words    0.25
+DEBUG:root:15
+DEBUG:root:training_accuracy 0.133333333333
+DEBUG:root:training_words    0.266666666667
+DEBUG:root:[2017-12-19 21:49] Train Step 1301/3751848, Batch Size = 60, Examples/Sec = 128.27, Loss = 31.05
+DEBUG:root:[2017-12-19 21:49] Train Step 1301/3751848, Batch Size = 60, Examples/Sec = 128.27, Loss = 31.05
+DEBUG:root:4
+DEBUG:root:validation_accuracy 0.0
+DEBUG:root:validation_words    0.0
+DEBUG:root:3
+DEBUG:root:training_accuracy 0.0
+DEBUG:root:training_words    0.0
+DEBUG:root:[2017-12-19 21:51] Train Step 1401/3751848, Batch Size = 60, Examples/Sec = 85.84, Loss = 6.21
+DEBUG:root:[2017-12-19 21:51] Train Step 1401/3751848, Batch Size = 60, Examples/Sec = 85.84, Loss = 6.21
+DEBUG:root:4
+DEBUG:root:validation_accuracy 0.25
+DEBUG:root:validation_words    0.25
+DEBUG:root:6
+DEBUG:root:training_accuracy 0.5
+DEBUG:root:training_words    0.5
+DEBUG:root:[2017-12-19 21:52] Train Step 1501/3751848, Batch Size = 60, Examples/Sec = 128.13, Loss = 34.09
+DEBUG:root:[2017-12-19 21:52] Train Step 1501/3751848, Batch Size = 60, Examples/Sec = 128.13, Loss = 34.09
+DEBUG:root:4
+DEBUG:root:validation_accuracy 0.0
+DEBUG:root:validation_words    0.25
+DEBUG:root:3
+DEBUG:root:training_accuracy 0.333333333333
+DEBUG:root:training_words    0.333333333333
+DEBUG:root:[2017-12-19 21:53] Train Step 1601/3751848, Batch Size = 60, Examples/Sec = 129.73, Loss = 9.33
+DEBUG:root:[2017-12-19 21:53] Train Step 1601/3751848, Batch Size = 60, Examples/Sec = 129.73, Loss = 9.33
+DEBUG:root:4
+DEBUG:root:validation_accuracy 0.25
+DEBUG:root:validation_words    0.5
+DEBUG:root:3
+DEBUG:root:training_accuracy 0.666666666667
+DEBUG:root:training_words    0.666666666667
+DEBUG:root:[2017-12-19 21:55] Train Step 1701/3751848, Batch Size = 60, Examples/Sec = 80.53, Loss = 63.58
+DEBUG:root:[2017-12-19 21:55] Train Step 1701/3751848, Batch Size = 60, Examples/Sec = 80.53, Loss = 63.58
+DEBUG:root:4
+DEBUG:root:validation_accuracy 0.25
+DEBUG:root:validation_words    0.25
+DEBUG:root:48
+DEBUG:root:training_accuracy 0.291666666667
+DEBUG:root:training_words    0.291666666667
+DEBUG:root:[2017-12-19 21:56] Train Step 1801/3751848, Batch Size = 60, Examples/Sec = 81.82, Loss = 32.93
+DEBUG:root:[2017-12-19 21:56] Train Step 1801/3751848, Batch Size = 60, Examples/Sec = 81.82, Loss = 32.93
+DEBUG:root:4
+DEBUG:root:validation_accuracy 0.25
+DEBUG:root:validation_words    0.25
+DEBUG:root:8
+DEBUG:root:training_accuracy 0.0
+DEBUG:root:training_words    0.25
+DEBUG:root:[2017-12-19 21:57] Train Step 1901/3751848, Batch Size = 60, Examples/Sec = 87.40, Loss = 57.10
+DEBUG:root:[2017-12-19 21:57] Train Step 1901/3751848, Batch Size = 60, Examples/Sec = 87.40, Loss = 57.10
+DEBUG:root:4
+DEBUG:root:validation_accuracy 0.0
+DEBUG:root:validation_words    0.0
+DEBUG:root:8
+DEBUG:root:training_accuracy 0.0
+DEBUG:root:training_words    0.0
+DEBUG:root:[2017-12-19 21:59] Train Step 2001/3751848, Batch Size = 60, Examples/Sec = 138.56, Loss = 43.09
+DEBUG:root:[2017-12-19 21:59] Train Step 2001/3751848, Batch Size = 60, Examples/Sec = 138.56, Loss = 43.09
+DEBUG:root:4
+DEBUG:root:validation_accuracy 0.25
+DEBUG:root:validation_words    0.25
+DEBUG:root:4
+DEBUG:root:training_accuracy 0.25
+DEBUG:root:training_words    0.25
+DEBUG:root:[2017-12-19 22:00] Train Step 2101/3751848, Batch Size = 60, Examples/Sec = 148.31, Loss = 27.91
+DEBUG:root:[2017-12-19 22:00] Train Step 2101/3751848, Batch Size = 60, Examples/Sec = 148.31, Loss = 27.91
+DEBUG:root:4
+DEBUG:root:validation_accuracy 0.25
+DEBUG:root:validation_words    0.5
+DEBUG:root:4
+DEBUG:root:training_accuracy 0.25
+DEBUG:root:training_words    0.25
+DEBUG:root:[2017-12-19 22:02] Train Step 2201/3751848, Batch Size = 60, Examples/Sec = 85.23, Loss = 43.40
+DEBUG:root:[2017-12-19 22:02] Train Step 2201/3751848, Batch Size = 60, Examples/Sec = 85.23, Loss = 43.40
+DEBUG:root:4
+DEBUG:root:validation_accuracy 0.25
+DEBUG:root:validation_words    0.25
+DEBUG:root:22
+DEBUG:root:training_accuracy 0.318181818182
+DEBUG:root:training_words    0.318181818182
+DEBUG:root:[2017-12-19 22:03] Train Step 2301/3751848, Batch Size = 60, Examples/Sec = 84.84, Loss = 37.94
+DEBUG:root:[2017-12-19 22:03] Train Step 2301/3751848, Batch Size = 60, Examples/Sec = 84.84, Loss = 37.94
+DEBUG:root:4
+DEBUG:root:validation_accuracy 0.5
+DEBUG:root:validation_words    0.5
+DEBUG:root:20
+DEBUG:root:training_accuracy 0.25
+DEBUG:root:training_words    0.3
+DEBUG:root:[2017-12-19 22:05] Train Step 2401/3751848, Batch Size = 60, Examples/Sec = 79.87, Loss = 28.24
+DEBUG:root:[2017-12-19 22:05] Train Step 2401/3751848, Batch Size = 60, Examples/Sec = 79.87, Loss = 28.24
+DEBUG:root:4
+DEBUG:root:validation_accuracy 0.25
+DEBUG:root:validation_words    0.25
+DEBUG:root:26
+DEBUG:root:training_accuracy 0.230769230769
+DEBUG:root:training_words    0.230769230769
+DEBUG:root:[2017-12-19 22:06] Train Step 2501/3751848, Batch Size = 60, Examples/Sec = 148.77, Loss = 30.35
+DEBUG:root:[2017-12-19 22:06] Train Step 2501/3751848, Batch Size = 60, Examples/Sec = 148.77, Loss = 30.35
+DEBUG:root:4
+DEBUG:root:validation_accuracy 0.25
+DEBUG:root:validation_words    0.25
+DEBUG:root:3
+DEBUG:root:training_accuracy 0.333333333333
+DEBUG:root:training_words    0.333333333333
+DEBUG:root:[2017-12-19 22:07] Train Step 2601/3751848, Batch Size = 60, Examples/Sec = 148.60, Loss = 44.00
+DEBUG:root:[2017-12-19 22:07] Train Step 2601/3751848, Batch Size = 60, Examples/Sec = 148.60, Loss = 44.00
+DEBUG:root:4
+DEBUG:root:validation_accuracy 0.0
+DEBUG:root:validation_words    0.0
+DEBUG:root:4
+DEBUG:root:training_accuracy 0.5
+DEBUG:root:training_words    0.5
+DEBUG:root:[2017-12-19 22:09] Train Step 2701/3751848, Batch Size = 60, Examples/Sec = 78.69, Loss = 21.50
+DEBUG:root:[2017-12-19 22:09] Train Step 2701/3751848, Batch Size = 60, Examples/Sec = 78.69, Loss = 21.50
+DEBUG:root:4
+DEBUG:root:validation_accuracy 0.0
+DEBUG:root:validation_words    0.25
+DEBUG:root:24
+DEBUG:root:training_accuracy 0.25
+DEBUG:root:training_words    0.5
+DEBUG:root:[2017-12-19 22:10] Train Step 2801/3751848, Batch Size = 60, Examples/Sec = 154.55, Loss = 30.52
+DEBUG:root:[2017-12-19 22:10] Train Step 2801/3751848, Batch Size = 60, Examples/Sec = 154.55, Loss = 30.52
+DEBUG:root:4
+DEBUG:root:validation_accuracy 0.25
+DEBUG:root:validation_words    0.25
+DEBUG:root:4
+DEBUG:root:training_accuracy 0.25
+DEBUG:root:training_words    0.25
+DEBUG:root:[2017-12-19 22:12] Train Step 2901/3751848, Batch Size = 60, Examples/Sec = 82.19, Loss = 25.19
+DEBUG:root:[2017-12-19 22:12] Train Step 2901/3751848, Batch Size = 60, Examples/Sec = 82.19, Loss = 25.19
+DEBUG:root:4
+DEBUG:root:validation_accuracy 0.25
+DEBUG:root:validation_words    0.25
+DEBUG:root:14
+DEBUG:root:training_accuracy 0.428571428571
+DEBUG:root:training_words    0.428571428571
+DEBUG:root:[2017-12-19 22:13] Train Step 3001/3751848, Batch Size = 60, Examples/Sec = 148.42, Loss = 11.13
+DEBUG:root:[2017-12-19 22:13] Train Step 3001/3751848, Batch Size = 60, Examples/Sec = 148.42, Loss = 11.13
+DEBUG:root:4
+DEBUG:root:validation_accuracy 0.0
+DEBUG:root:validation_words    0.25
+DEBUG:root:3
+DEBUG:root:training_accuracy 0.333333333333
+DEBUG:root:training_words    0.333333333333
+DEBUG:root:[2017-12-19 22:15] Train Step 3101/3751848, Batch Size = 60, Examples/Sec = 76.44, Loss = 41.42
+DEBUG:root:[2017-12-19 22:15] Train Step 3101/3751848, Batch Size = 60, Examples/Sec = 76.44, Loss = 41.42
+DEBUG:root:4
+DEBUG:root:validation_accuracy 0.0
+DEBUG:root:validation_words    0.25
+DEBUG:root:84
+DEBUG:root:training_accuracy 0.333333333333
+DEBUG:root:training_words    0.333333333333
+DEBUG:root:[2017-12-19 22:17] Train Step 3201/3751848, Batch Size = 60, Examples/Sec = 82.41, Loss = 14.00
+DEBUG:root:[2017-12-19 22:17] Train Step 3201/3751848, Batch Size = 60, Examples/Sec = 82.41, Loss = 14.00
+DEBUG:root:4
+DEBUG:root:validation_accuracy 0.5
+DEBUG:root:validation_words    0.5
+DEBUG:root:25
+DEBUG:root:training_accuracy 0.52
+DEBUG:root:training_words    0.56
+DEBUG:root:[2017-12-19 22:18] Train Step 3301/3751848, Batch Size = 60, Examples/Sec = 82.68, Loss = 34.16
+DEBUG:root:[2017-12-19 22:18] Train Step 3301/3751848, Batch Size = 60, Examples/Sec = 82.68, Loss = 34.16
+DEBUG:root:4
+DEBUG:root:validation_accuracy 0.0
+DEBUG:root:validation_words    0.25
+DEBUG:root:12
+DEBUG:root:training_accuracy 0.333333333333
+DEBUG:root:training_words    0.333333333333
+DEBUG:root:[2017-12-19 22:20] Train Step 3401/3751848, Batch Size = 60, Examples/Sec = 149.07, Loss = 9.84
+DEBUG:root:[2017-12-19 22:20] Train Step 3401/3751848, Batch Size = 60, Examples/Sec = 149.07, Loss = 9.84
+DEBUG:root:4
+DEBUG:root:validation_accuracy 0.25
+DEBUG:root:validation_words    0.5
+DEBUG:root:4
+DEBUG:root:training_accuracy 0.75
+DEBUG:root:training_words    0.75
+DEBUG:root:[2017-12-19 22:21] Train Step 3501/3751848, Batch Size = 60, Examples/Sec = 78.87, Loss = 37.17
+DEBUG:root:[2017-12-19 22:21] Train Step 3501/3751848, Batch Size = 60, Examples/Sec = 78.87, Loss = 37.17
+DEBUG:root:4
+DEBUG:root:validation_accuracy 0.25
+DEBUG:root:validation_words    0.25
+DEBUG:root:32
+DEBUG:root:training_accuracy 0.25
+DEBUG:root:training_words    0.3125
+DEBUG:root:[2017-12-19 22:23] Train Step 3601/3751848, Batch Size = 60, Examples/Sec = 79.06, Loss = 51.93
+DEBUG:root:[2017-12-19 22:23] Train Step 3601/3751848, Batch Size = 60, Examples/Sec = 79.06, Loss = 51.93
+DEBUG:root:4
+DEBUG:root:validation_accuracy 0.0
+DEBUG:root:validation_words    0.0
+DEBUG:root:45
+DEBUG:root:training_accuracy 0.111111111111
+DEBUG:root:training_words    0.222222222222
+DEBUG:root:[2017-12-19 22:25] Train Step 3701/3751848, Batch Size = 60, Examples/Sec = 87.37, Loss = 26.83
+DEBUG:root:[2017-12-19 22:25] Train Step 3701/3751848, Batch Size = 60, Examples/Sec = 87.37, Loss = 26.83
+DEBUG:root:4
+DEBUG:root:validation_accuracy 0.25
+DEBUG:root:validation_words    0.25
+DEBUG:root:17
+DEBUG:root:training_accuracy 0.294117647059
+DEBUG:root:training_words    0.294117647059
+DEBUG:root:[2017-12-19 22:26] Train Step 3801/3751848, Batch Size = 60, Examples/Sec = 85.78, Loss = 41.84
+DEBUG:root:[2017-12-19 22:26] Train Step 3801/3751848, Batch Size = 60, Examples/Sec = 85.78, Loss = 41.84
+DEBUG:root:4
+DEBUG:root:validation_accuracy 0.0
+DEBUG:root:validation_words    0.25
+DEBUG:root:7
+DEBUG:root:training_accuracy 0.0
+DEBUG:root:training_words    0.0
+DEBUG:root:[2017-12-19 22:28] Train Step 3901/3751848, Batch Size = 60, Examples/Sec = 136.23, Loss = 20.86
+DEBUG:root:[2017-12-19 22:28] Train Step 3901/3751848, Batch Size = 60, Examples/Sec = 136.23, Loss = 20.86
+DEBUG:root:4
+DEBUG:root:validation_accuracy 0.5
+DEBUG:root:validation_words    0.5
+DEBUG:root:3
+DEBUG:root:training_accuracy 0.0
+DEBUG:root:training_words    0.0
+DEBUG:root:[2017-12-19 22:29] Train Step 4001/3751848, Batch Size = 60, Examples/Sec = 74.80, Loss = 47.20
+DEBUG:root:[2017-12-19 22:29] Train Step 4001/3751848, Batch Size = 60, Examples/Sec = 74.80, Loss = 47.20
+DEBUG:root:4
+DEBUG:root:validation_accuracy 0.25
+DEBUG:root:validation_words    0.25
+DEBUG:root:108
+DEBUG:root:training_accuracy 0.175925925926
+DEBUG:root:training_words    0.175925925926
+DEBUG:root:[2017-12-19 22:32] Train Step 4101/3751848, Batch Size = 60, Examples/Sec = 84.10, Loss = 17.91
+DEBUG:root:[2017-12-19 22:32] Train Step 4101/3751848, Batch Size = 60, Examples/Sec = 84.10, Loss = 17.91
+DEBUG:root:4
+DEBUG:root:validation_accuracy 0.25
+DEBUG:root:validation_words    0.25
+DEBUG:root:12
+DEBUG:root:training_accuracy 0.333333333333
+DEBUG:root:training_words    0.333333333333
+DEBUG:root:[2017-12-19 22:33] Train Step 4201/3751848, Batch Size = 60, Examples/Sec = 89.35, Loss = 17.31
+DEBUG:root:[2017-12-19 22:33] Train Step 4201/3751848, Batch Size = 60, Examples/Sec = 89.35, Loss = 17.31
+DEBUG:root:4
+DEBUG:root:validation_accuracy 0.0
+DEBUG:root:validation_words    0.0
+DEBUG:root:6
+DEBUG:root:training_accuracy 0.166666666667
+DEBUG:root:training_words    0.166666666667
+DEBUG:root:[2017-12-19 22:35] Train Step 4301/3751848, Batch Size = 60, Examples/Sec = 143.49, Loss = 12.57
+DEBUG:root:[2017-12-19 22:35] Train Step 4301/3751848, Batch Size = 60, Examples/Sec = 143.49, Loss = 12.57
+DEBUG:root:4
+DEBUG:root:validation_accuracy 0.25
+DEBUG:root:validation_words    0.25
+DEBUG:root:5
+DEBUG:root:training_accuracy 0.2
+DEBUG:root:training_words    0.6
+DEBUG:root:[2017-12-19 22:37] Train Step 4401/3751848, Batch Size = 60, Examples/Sec = 84.64, Loss = 35.64
+DEBUG:root:[2017-12-19 22:37] Train Step 4401/3751848, Batch Size = 60, Examples/Sec = 84.64, Loss = 35.64
+DEBUG:root:4
+DEBUG:root:validation_accuracy 0.25
+DEBUG:root:validation_words    0.25
+DEBUG:root:6
+DEBUG:root:training_accuracy 0.0
+DEBUG:root:training_words    0.0
+DEBUG:root:[2017-12-19 22:38] Train Step 4501/3751848, Batch Size = 60, Examples/Sec = 151.11, Loss = 9.29
+DEBUG:root:[2017-12-19 22:38] Train Step 4501/3751848, Batch Size = 60, Examples/Sec = 151.11, Loss = 9.29
+DEBUG:root:4
+DEBUG:root:validation_accuracy 0.0
+DEBUG:root:validation_words    0.0
+DEBUG:root:3
+DEBUG:root:training_accuracy 0.0
+DEBUG:root:training_words    0.0
+DEBUG:root:[2017-12-19 22:40] Train Step 4601/3751848, Batch Size = 60, Examples/Sec = 85.86, Loss = 38.46
+DEBUG:root:[2017-12-19 22:40] Train Step 4601/3751848, Batch Size = 60, Examples/Sec = 85.86, Loss = 38.46
+DEBUG:root:4
+DEBUG:root:validation_accuracy 0.25
+DEBUG:root:validation_words    0.25
+DEBUG:root:19
+DEBUG:root:training_accuracy 0.263157894737
+DEBUG:root:training_words    0.263157894737
+DEBUG:root:[2017-12-19 22:41] Train Step 4701/3751848, Batch Size = 60, Examples/Sec = 132.41, Loss = 32.92
+DEBUG:root:[2017-12-19 22:41] Train Step 4701/3751848, Batch Size = 60, Examples/Sec = 132.41, Loss = 32.92
+DEBUG:root:4
+DEBUG:root:validation_accuracy 0.25
+DEBUG:root:validation_words    0.25
+DEBUG:root:5
+DEBUG:root:training_accuracy 0.2
+DEBUG:root:training_words    0.2
+DEBUG:root:[2017-12-19 22:43] Train Step 4801/3751848, Batch Size = 60, Examples/Sec = 140.02, Loss = 31.46
+DEBUG:root:[2017-12-19 22:43] Train Step 4801/3751848, Batch Size = 60, Examples/Sec = 140.02, Loss = 31.46
+DEBUG:root:4
+DEBUG:root:validation_accuracy 0.25
+DEBUG:root:validation_words    0.25
+DEBUG:root:3
+DEBUG:root:training_accuracy 0.333333333333
+DEBUG:root:training_words    0.333333333333
+DEBUG:root:[2017-12-19 22:45] Train Step 4901/3751848, Batch Size = 60, Examples/Sec = 132.47, Loss = 19.50
+DEBUG:root:[2017-12-19 22:45] Train Step 4901/3751848, Batch Size = 60, Examples/Sec = 132.47, Loss = 19.50
+DEBUG:root:4
+DEBUG:root:validation_accuracy 0.25
+DEBUG:root:validation_words    0.25
+DEBUG:root:2
+DEBUG:root:training_accuracy 0.0
+DEBUG:root:training_words    0.0
+DEBUG:root:[2017-12-19 22:46] Train Step 5001/3751848, Batch Size = 60, Examples/Sec = 138.88, Loss = 80.89
+DEBUG:root:[2017-12-19 22:46] Train Step 5001/3751848, Batch Size = 60, Examples/Sec = 138.88, Loss = 80.89
+DEBUG:root:4
+DEBUG:root:validation_accuracy 0.0
+DEBUG:root:validation_words    0.25
+DEBUG:root:3
+DEBUG:root:training_accuracy 0.0
+DEBUG:root:training_words    0.333333333333
+DEBUG:root:[2017-12-19 22:49] Train Step 5101/3751848, Batch Size = 60, Examples/Sec = 82.84, Loss = 32.15
+DEBUG:root:[2017-12-19 22:49] Train Step 5101/3751848, Batch Size = 60, Examples/Sec = 82.84, Loss = 32.15
+DEBUG:root:4
+DEBUG:root:validation_accuracy 0.25
+DEBUG:root:validation_words    0.25
+DEBUG:root:14
+DEBUG:root:training_accuracy 0.357142857143
+DEBUG:root:training_words    0.428571428571
+DEBUG:root:[2017-12-19 22:51] Train Step 5201/3751848, Batch Size = 60, Examples/Sec = 85.29, Loss = 33.58
+DEBUG:root:[2017-12-19 22:51] Train Step 5201/3751848, Batch Size = 60, Examples/Sec = 85.29, Loss = 33.58
+DEBUG:root:4
+DEBUG:root:validation_accuracy 0.25
+DEBUG:root:validation_words    0.25
+DEBUG:root:16
+DEBUG:root:training_accuracy 0.375
+DEBUG:root:training_words    0.4375
+DEBUG:root:[2017-12-19 22:52] Train Step 5301/3751848, Batch Size = 60, Examples/Sec = 137.97, Loss = 24.74
+DEBUG:root:[2017-12-19 22:52] Train Step 5301/3751848, Batch Size = 60, Examples/Sec = 137.97, Loss = 24.74
+DEBUG:root:4
+DEBUG:root:validation_accuracy 0.25
+DEBUG:root:validation_words    0.25
+DEBUG:root:3
+DEBUG:root:training_accuracy 0.0
+DEBUG:root:training_words    0.0
+DEBUG:root:[2017-12-19 22:54] Train Step 5401/3751848, Batch Size = 60, Examples/Sec = 85.39, Loss = 17.43
+DEBUG:root:[2017-12-19 22:54] Train Step 5401/3751848, Batch Size = 60, Examples/Sec = 85.39, Loss = 17.43
+DEBUG:root:4
+DEBUG:root:validation_accuracy 0.25
+DEBUG:root:validation_words    0.25
+DEBUG:root:18
+DEBUG:root:training_accuracy 0.333333333333
+DEBUG:root:training_words    0.5
+DEBUG:root:[2017-12-19 22:56] Train Step 5501/3751848, Batch Size = 60, Examples/Sec = 129.39, Loss = 19.57
+DEBUG:root:[2017-12-19 22:56] Train Step 5501/3751848, Batch Size = 60, Examples/Sec = 129.39, Loss = 19.57
+DEBUG:root:4
+DEBUG:root:validation_accuracy 0.0
+DEBUG:root:validation_words    0.0
+DEBUG:root:4
+DEBUG:root:training_accuracy 0.25
+DEBUG:root:training_words    0.25
+DEBUG:root:[2017-12-19 22:57] Train Step 5601/3751848, Batch Size = 60, Examples/Sec = 132.87, Loss = 34.67
+DEBUG:root:[2017-12-19 22:57] Train Step 5601/3751848, Batch Size = 60, Examples/Sec = 132.87, Loss = 34.67
+DEBUG:root:4
+DEBUG:root:validation_accuracy 0.25
+DEBUG:root:validation_words    0.25
+DEBUG:root:5
+DEBUG:root:training_accuracy 0.0
+DEBUG:root:training_words    0.2
+DEBUG:root:[2017-12-19 22:59] Train Step 5701/3751848, Batch Size = 60, Examples/Sec = 145.68, Loss = 5.80
+DEBUG:root:[2017-12-19 22:59] Train Step 5701/3751848, Batch Size = 60, Examples/Sec = 145.68, Loss = 5.80
+DEBUG:root:4
+DEBUG:root:validation_accuracy 0.25
+DEBUG:root:validation_words    0.25
+DEBUG:root:4
+DEBUG:root:training_accuracy 0.5
+DEBUG:root:training_words    0.5
+DEBUG:root:[2017-12-19 23:01] Train Step 5801/3751848, Batch Size = 60, Examples/Sec = 77.84, Loss = 32.74
+DEBUG:root:[2017-12-19 23:01] Train Step 5801/3751848, Batch Size = 60, Examples/Sec = 77.84, Loss = 32.74
+DEBUG:root:4
+DEBUG:root:validation_accuracy 0.5
+DEBUG:root:validation_words    0.5
+DEBUG:root:67
+DEBUG:root:training_accuracy 0.134328358209
+DEBUG:root:training_words    0.194029850746
+DEBUG:root:[2017-12-19 23:03] Train Step 5901/3751848, Batch Size = 60, Examples/Sec = 77.69, Loss = 32.81
+DEBUG:root:[2017-12-19 23:03] Train Step 5901/3751848, Batch Size = 60, Examples/Sec = 77.69, Loss = 32.81
+DEBUG:root:4
+DEBUG:root:validation_accuracy 0.0
+DEBUG:root:validation_words    0.0
+DEBUG:root:71
+DEBUG:root:training_accuracy 0.0704225352113
+DEBUG:root:training_words    0.12676056338
+DEBUG:root:[2017-12-19 23:05] Train Step 6001/3751848, Batch Size = 60, Examples/Sec = 78.96, Loss = 51.38
+DEBUG:root:[2017-12-19 23:05] Train Step 6001/3751848, Batch Size = 60, Examples/Sec = 78.96, Loss = 51.38
+DEBUG:root:4
+DEBUG:root:validation_accuracy 0.0
+DEBUG:root:validation_words    0.25
+DEBUG:root:43
+DEBUG:root:training_accuracy 0.0232558139535
+DEBUG:root:training_words    0.116279069767
+DEBUG:root:[2017-12-19 23:08] Train Step 6101/3751848, Batch Size = 60, Examples/Sec = 87.57, Loss = 27.28
+DEBUG:root:[2017-12-19 23:08] Train Step 6101/3751848, Batch Size = 60, Examples/Sec = 87.57, Loss = 27.28
+DEBUG:root:4
+DEBUG:root:validation_accuracy 0.25
+DEBUG:root:validation_words    0.25
+DEBUG:root:10
+DEBUG:root:training_accuracy 0.3
+DEBUG:root:training_words    0.3
+DEBUG:root:[2017-12-19 23:09] Train Step 6201/3751848, Batch Size = 60, Examples/Sec = 86.88, Loss = 13.16
+DEBUG:root:[2017-12-19 23:09] Train Step 6201/3751848, Batch Size = 60, Examples/Sec = 86.88, Loss = 13.16
+DEBUG:root:4
+DEBUG:root:validation_accuracy 0.25
+DEBUG:root:validation_words    0.25
+DEBUG:root:9
+DEBUG:root:training_accuracy 0.0
+DEBUG:root:training_words    0.0
+DEBUG:root:[2017-12-19 23:11] Train Step 6301/3751848, Batch Size = 60, Examples/Sec = 74.47, Loss = 8.24
+DEBUG:root:[2017-12-19 23:11] Train Step 6301/3751848, Batch Size = 60, Examples/Sec = 74.47, Loss = 8.24
+DEBUG:root:4
+DEBUG:root:validation_accuracy 0.0
+DEBUG:root:validation_words    0.0
+DEBUG:root:20
+DEBUG:root:training_accuracy 0.0
+DEBUG:root:training_words    0.0
+DEBUG:root:[2017-12-19 23:13] Train Step 6401/3751848, Batch Size = 60, Examples/Sec = 86.31, Loss = 21.66
+DEBUG:root:[2017-12-19 23:13] Train Step 6401/3751848, Batch Size = 60, Examples/Sec = 86.31, Loss = 21.66
+DEBUG:root:4
+DEBUG:root:validation_accuracy 0.25
+DEBUG:root:validation_words    0.25
+DEBUG:root:5
+DEBUG:root:training_accuracy 0.4
+DEBUG:root:training_words    0.4
+DEBUG:root:[2017-12-19 23:15] Train Step 6501/3751848, Batch Size = 60, Examples/Sec = 84.41, Loss = 38.38
+DEBUG:root:[2017-12-19 23:15] Train Step 6501/3751848, Batch Size = 60, Examples/Sec = 84.41, Loss = 38.38
+DEBUG:root:4
+DEBUG:root:validation_accuracy 0.25
+DEBUG:root:validation_words    0.25
+DEBUG:root:13
+DEBUG:root:training_accuracy 0.307692307692
+DEBUG:root:training_words    0.307692307692
+DEBUG:root:[2017-12-19 23:17] Train Step 6601/3751848, Batch Size = 60, Examples/Sec = 90.10, Loss = 10.67
+DEBUG:root:[2017-12-19 23:17] Train Step 6601/3751848, Batch Size = 60, Examples/Sec = 90.10, Loss = 10.67
+DEBUG:root:4
+DEBUG:root:validation_accuracy 0.0
+DEBUG:root:validation_words    0.5
+DEBUG:root:6
+DEBUG:root:training_accuracy 0.0
+DEBUG:root:training_words    0.333333333333
+DEBUG:root:[2017-12-19 23:19] Train Step 6701/3751848, Batch Size = 60, Examples/Sec = 83.99, Loss = 29.96
+DEBUG:root:[2017-12-19 23:19] Train Step 6701/3751848, Batch Size = 60, Examples/Sec = 83.99, Loss = 29.96
+DEBUG:root:4
+DEBUG:root:validation_accuracy 0.25
+DEBUG:root:validation_words    0.25
+DEBUG:root:12
+DEBUG:root:training_accuracy 0.166666666667
+DEBUG:root:training_words    0.166666666667
+DEBUG:root:[2017-12-19 23:20] Train Step 6801/3751848, Batch Size = 60, Examples/Sec = 82.66, Loss = 35.03
+DEBUG:root:[2017-12-19 23:20] Train Step 6801/3751848, Batch Size = 60, Examples/Sec = 82.66, Loss = 35.03
+DEBUG:root:4
+DEBUG:root:validation_accuracy 0.25
+DEBUG:root:validation_words    0.25
+DEBUG:root:10
+DEBUG:root:training_accuracy 0.2
+DEBUG:root:training_words    0.2
+DEBUG:root:[2017-12-19 23:22] Train Step 6901/3751848, Batch Size = 60, Examples/Sec = 132.38, Loss = 24.04
+DEBUG:root:[2017-12-19 23:22] Train Step 6901/3751848, Batch Size = 60, Examples/Sec = 132.38, Loss = 24.04
+DEBUG:root:4
+DEBUG:root:validation_accuracy 0.25
+DEBUG:root:validation_words    0.25
+DEBUG:root:2
+DEBUG:root:training_accuracy 0.0
+DEBUG:root:training_words    0.0
+DEBUG:root:[2017-12-19 23:24] Train Step 7001/3751848, Batch Size = 60, Examples/Sec = 89.26, Loss = 29.41
+DEBUG:root:[2017-12-19 23:24] Train Step 7001/3751848, Batch Size = 60, Examples/Sec = 89.26, Loss = 29.41
+DEBUG:root:4
+DEBUG:root:validation_accuracy 0.25
+DEBUG:root:validation_words    0.25
+DEBUG:root:27
+DEBUG:root:training_accuracy 0.111111111111
+DEBUG:root:training_words    0.148148148148
+DEBUG:root:[2017-12-19 23:27] Train Step 7101/3751848, Batch Size = 60, Examples/Sec = 81.60, Loss = 36.49
+DEBUG:root:[2017-12-19 23:27] Train Step 7101/3751848, Batch Size = 60, Examples/Sec = 81.60, Loss = 36.49
+DEBUG:root:4
+DEBUG:root:validation_accuracy 0.25
+DEBUG:root:validation_words    0.5
+DEBUG:root:24
+DEBUG:root:training_accuracy 0.125
+DEBUG:root:training_words    0.125
+DEBUG:root:[2017-12-19 23:29] Train Step 7201/3751848, Batch Size = 60, Examples/Sec = 141.89, Loss = 22.52
+DEBUG:root:[2017-12-19 23:29] Train Step 7201/3751848, Batch Size = 60, Examples/Sec = 141.89, Loss = 22.52
+DEBUG:root:4
+DEBUG:root:validation_accuracy 0.25
+DEBUG:root:validation_words    0.25
+DEBUG:root:5
+DEBUG:root:training_accuracy 0.2
+DEBUG:root:training_words    0.2
+DEBUG:root:[2017-12-19 23:31] Train Step 7301/3751848, Batch Size = 60, Examples/Sec = 84.76, Loss = 43.48
+DEBUG:root:[2017-12-19 23:31] Train Step 7301/3751848, Batch Size = 60, Examples/Sec = 84.76, Loss = 43.48
+DEBUG:root:4
+DEBUG:root:validation_accuracy 0.5
+DEBUG:root:validation_words    0.5
+DEBUG:root:29
+DEBUG:root:training_accuracy 0.0689655172414
+DEBUG:root:training_words    0.103448275862
+DEBUG:root:[2017-12-19 23:33] Train Step 7401/3751848, Batch Size = 60, Examples/Sec = 85.95, Loss = 31.09
+DEBUG:root:[2017-12-19 23:33] Train Step 7401/3751848, Batch Size = 60, Examples/Sec = 85.95, Loss = 31.09
+DEBUG:root:4
+DEBUG:root:validation_accuracy 0.25
+DEBUG:root:validation_words    0.25
+DEBUG:root:6
+DEBUG:root:training_accuracy 0.166666666667
+DEBUG:root:training_words    0.333333333333
+DEBUG:root:[2017-12-19 23:35] Train Step 7501/3751848, Batch Size = 60, Examples/Sec = 78.30, Loss = 340.82
+DEBUG:root:[2017-12-19 23:35] Train Step 7501/3751848, Batch Size = 60, Examples/Sec = 78.30, Loss = 340.82
+DEBUG:root:4
+DEBUG:root:validation_accuracy 0.5
+DEBUG:root:validation_words    0.5
+DEBUG:root:26
+DEBUG:root:training_accuracy 0.115384615385
+DEBUG:root:training_words    0.115384615385
+DEBUG:root:[2017-12-19 23:37] Train Step 7601/3751848, Batch Size = 60, Examples/Sec = 152.80, Loss = 17.79
+DEBUG:root:[2017-12-19 23:37] Train Step 7601/3751848, Batch Size = 60, Examples/Sec = 152.80, Loss = 17.79
+DEBUG:root:4
+DEBUG:root:validation_accuracy 0.25
+DEBUG:root:validation_words    0.25
+DEBUG:root:3
+DEBUG:root:training_accuracy 0.333333333333
+DEBUG:root:training_words    0.333333333333
+DEBUG:root:[2017-12-19 23:39] Train Step 7701/3751848, Batch Size = 60, Examples/Sec = 75.60, Loss = 162.12
+DEBUG:root:[2017-12-19 23:39] Train Step 7701/3751848, Batch Size = 60, Examples/Sec = 75.60, Loss = 162.12
+DEBUG:root:4
+DEBUG:root:validation_accuracy 0.25
+DEBUG:root:validation_words    0.5
+DEBUG:root:39
+DEBUG:root:training_accuracy 0.205128205128
+DEBUG:root:training_words    0.25641025641
+DEBUG:root:[2017-12-19 23:41] Train Step 7801/3751848, Batch Size = 60, Examples/Sec = 84.48, Loss = 39.93
+DEBUG:root:[2017-12-19 23:41] Train Step 7801/3751848, Batch Size = 60, Examples/Sec = 84.48, Loss = 39.93
+DEBUG:root:4
+DEBUG:root:validation_accuracy 0.5
+DEBUG:root:validation_words    0.5
+DEBUG:root:15
+DEBUG:root:training_accuracy 0.133333333333
+DEBUG:root:training_words    0.133333333333
+DEBUG:root:[2017-12-19 23:43] Train Step 7901/3751848, Batch Size = 60, Examples/Sec = 83.63, Loss = 35.87
+DEBUG:root:[2017-12-19 23:43] Train Step 7901/3751848, Batch Size = 60, Examples/Sec = 83.63, Loss = 35.87
+DEBUG:root:4
+DEBUG:root:validation_accuracy 0.25
+DEBUG:root:validation_words    0.25
+DEBUG:root:30
+DEBUG:root:training_accuracy 0.2
+DEBUG:root:training_words    0.2
+DEBUG:root:[2017-12-19 23:45] Train Step 8001/3751848, Batch Size = 60, Examples/Sec = 139.14, Loss = 2.68
+DEBUG:root:[2017-12-19 23:45] Train Step 8001/3751848, Batch Size = 60, Examples/Sec = 139.14, Loss = 2.68
+DEBUG:root:4
+DEBUG:root:validation_accuracy 0.25
+DEBUG:root:validation_words    0.25
+DEBUG:root:2
+DEBUG:root:training_accuracy 0.5
+DEBUG:root:training_words    0.5
+DEBUG:root:[2017-12-19 23:48] Train Step 8101/3751848, Batch Size = 60, Examples/Sec = 76.21, Loss = 31.51
+DEBUG:root:[2017-12-19 23:48] Train Step 8101/3751848, Batch Size = 60, Examples/Sec = 76.21, Loss = 31.51
+DEBUG:root:4
+DEBUG:root:validation_accuracy 0.0
+DEBUG:root:validation_words    0.25
+DEBUG:root:75
+DEBUG:root:training_accuracy 0.0666666666667
+DEBUG:root:training_words    0.186666666667

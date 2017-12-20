@@ -1,0 +1,941 @@
+DEBUG:root:[2017-12-18 23:17] Train Step 0001/3751848, Batch Size = 60, Examples/Sec = 47.34, Loss = 110.45
+DEBUG:root:validation_accuracy 0.0
+DEBUG:root:accuracy            0.0
+DEBUG:root:[2017-12-18 23:18] Train Step 0101/3751848, Batch Size = 60, Examples/Sec = 147.99, Loss = 83.00
+DEBUG:root:validation_accuracy 0.0176991150442
+DEBUG:root:accuracy            0.125
+DEBUG:root:[2017-12-18 23:19] Train Step 0201/3751848, Batch Size = 60, Examples/Sec = 151.52, Loss = 77.44
+DEBUG:root:validation_accuracy 0.0
+DEBUG:root:accuracy            0.0
+DEBUG:root:[2017-12-18 23:20] Train Step 0301/3751848, Batch Size = 60, Examples/Sec = 140.35, Loss = 31.62
+DEBUG:root:validation_accuracy 0.0
+DEBUG:root:accuracy            0.0
+DEBUG:root:[2017-12-18 23:20] Train Step 0401/3751848, Batch Size = 60, Examples/Sec = 154.07, Loss = 43.73
+DEBUG:root:validation_accuracy 0.0
+DEBUG:root:accuracy            0.0
+DEBUG:root:[2017-12-18 23:21] Train Step 0501/3751848, Batch Size = 60, Examples/Sec = 140.73, Loss = 21.22
+DEBUG:root:validation_accuracy 0.0230088495575
+DEBUG:root:accuracy            0.0
+DEBUG:root:[2017-12-18 23:22] Train Step 0601/3751848, Batch Size = 60, Examples/Sec = 142.46, Loss = 54.08
+DEBUG:root:validation_accuracy 0.0
+DEBUG:root:accuracy            0.0
+DEBUG:root:[2017-12-18 23:23] Train Step 0701/3751848, Batch Size = 60, Examples/Sec = 226.51, Loss = 6.28
+DEBUG:root:validation_accuracy 0.0
+DEBUG:root:accuracy            0.0
+DEBUG:root:[2017-12-18 23:24] Train Step 0801/3751848, Batch Size = 60, Examples/Sec = 136.02, Loss = 25.66
+DEBUG:root:validation_accuracy 0.0
+DEBUG:root:accuracy            0.0
+DEBUG:root:[2017-12-18 23:24] Train Step 0901/3751848, Batch Size = 60, Examples/Sec = 143.02, Loss = 0.00
+DEBUG:root:validation_accuracy 0.0159292035398
+DEBUG:root:accuracy            0.0
+DEBUG:root:[2017-12-18 23:25] Train Step 1001/3751848, Batch Size = 60, Examples/Sec = 135.60, Loss = 37.48
+DEBUG:root:validation_accuracy 0.0
+DEBUG:root:accuracy            0.0
+DEBUG:root:[2017-12-18 23:26] Train Step 1101/3751848, Batch Size = 60, Examples/Sec = 143.31, Loss = 59.85
+DEBUG:root:validation_accuracy 0.0
+DEBUG:root:accuracy            0.0
+DEBUG:root:[2017-12-18 23:27] Train Step 1201/3751848, Batch Size = 60, Examples/Sec = 161.21, Loss = 44.28
+DEBUG:root:validation_accuracy 0.0
+DEBUG:root:accuracy            0.0
+DEBUG:root:[2017-12-18 23:28] Train Step 1301/3751848, Batch Size = 60, Examples/Sec = 157.68, Loss = 10.90
+DEBUG:root:validation_accuracy 0.0
+DEBUG:root:accuracy            0.0
+DEBUG:root:[2017-12-18 23:29] Train Step 1401/3751848, Batch Size = 60, Examples/Sec = 133.73, Loss = 39.72
+DEBUG:root:validation_accuracy 0.0
+DEBUG:root:accuracy            0.0
+DEBUG:root:[2017-12-18 23:29] Train Step 1501/3751848, Batch Size = 60, Examples/Sec = 149.57, Loss = 30.22
+DEBUG:root:validation_accuracy 0.0
+DEBUG:root:accuracy            0.0
+DEBUG:root:[2017-12-18 23:30] Train Step 1601/3751848, Batch Size = 60, Examples/Sec = 134.69, Loss = 51.80
+DEBUG:root:validation_accuracy 0.0
+DEBUG:root:accuracy            0.0
+DEBUG:root:[2017-12-18 23:31] Train Step 1701/3751848, Batch Size = 60, Examples/Sec = 134.30, Loss = 42.21
+DEBUG:root:validation_accuracy 0.0
+DEBUG:root:accuracy            0.0
+DEBUG:root:[2017-12-18 23:32] Train Step 1801/3751848, Batch Size = 60, Examples/Sec = 122.58, Loss = 37.12
+DEBUG:root:validation_accuracy 0.0
+DEBUG:root:accuracy            0.0
+DEBUG:root:[2017-12-18 23:33] Train Step 1901/3751848, Batch Size = 60, Examples/Sec = 268.04, Loss = 28.55
+DEBUG:root:validation_accuracy 0.0
+DEBUG:root:accuracy            0.0
+DEBUG:root:[2017-12-18 23:34] Train Step 2001/3751848, Batch Size = 60, Examples/Sec = 158.86, Loss = 35.42
+DEBUG:root:validation_accuracy 0.0
+DEBUG:root:accuracy            0.0
+DEBUG:root:[2017-12-18 23:35] Train Step 2101/3751848, Batch Size = 60, Examples/Sec = 134.35, Loss = 23.17
+DEBUG:root:validation_accuracy 0.0
+DEBUG:root:accuracy            0.0
+DEBUG:root:[2017-12-18 23:36] Train Step 2201/3751848, Batch Size = 60, Examples/Sec = 149.55, Loss = 0.00
+DEBUG:root:validation_accuracy 0.0
+DEBUG:root:accuracy            0.0
+DEBUG:root:[2017-12-18 23:37] Train Step 2301/3751848, Batch Size = 60, Examples/Sec = 268.12, Loss = 34.21
+DEBUG:root:validation_accuracy 0.0
+DEBUG:root:accuracy            0.0
+DEBUG:root:[2017-12-18 23:38] Train Step 2401/3751848, Batch Size = 60, Examples/Sec = 144.29, Loss = 16.53
+DEBUG:root:validation_accuracy 0.0
+DEBUG:root:accuracy            0.0
+DEBUG:root:[2017-12-18 23:39] Train Step 2501/3751848, Batch Size = 60, Examples/Sec = 151.83, Loss = 45.66
+DEBUG:root:validation_accuracy 0.0
+DEBUG:root:accuracy            0.0
+DEBUG:root:[2017-12-18 23:40] Train Step 2601/3751848, Batch Size = 60, Examples/Sec = 220.59, Loss = 7.44
+DEBUG:root:validation_accuracy 0.0
+DEBUG:root:accuracy            0.0
+DEBUG:root:[2017-12-18 23:41] Train Step 2701/3751848, Batch Size = 60, Examples/Sec = 214.95, Loss = 48.93
+DEBUG:root:validation_accuracy 0.0
+DEBUG:root:accuracy            0.0
+DEBUG:root:[2017-12-18 23:42] Train Step 2801/3751848, Batch Size = 60, Examples/Sec = 270.47, Loss = 0.00
+DEBUG:root:validation_accuracy 0.0
+DEBUG:root:accuracy            0.0
+DEBUG:root:[2017-12-18 23:43] Train Step 2901/3751848, Batch Size = 60, Examples/Sec = 141.97, Loss = 60.40
+DEBUG:root:validation_accuracy 0.0
+DEBUG:root:accuracy            0.0
+DEBUG:root:[2017-12-18 23:44] Train Step 3001/3751848, Batch Size = 60, Examples/Sec = 136.11, Loss = 36.22
+DEBUG:root:validation_accuracy 0.0
+DEBUG:root:accuracy            0.0
+DEBUG:root:[2017-12-18 23:45] Train Step 3101/3751848, Batch Size = 60, Examples/Sec = 155.89, Loss = 10.26
+DEBUG:root:validation_accuracy 0.0
+DEBUG:root:accuracy            0.0
+DEBUG:root:[2017-12-18 23:46] Train Step 3201/3751848, Batch Size = 60, Examples/Sec = 140.21, Loss = 0.00
+DEBUG:root:validation_accuracy 0.0
+DEBUG:root:accuracy            0.0
+DEBUG:root:[2017-12-18 23:47] Train Step 3301/3751848, Batch Size = 60, Examples/Sec = 231.07, Loss = 47.96
+DEBUG:root:validation_accuracy 0.0
+DEBUG:root:accuracy            0.0
+DEBUG:root:[2017-12-18 23:48] Train Step 3401/3751848, Batch Size = 60, Examples/Sec = 253.99, Loss = 17.22
+DEBUG:root:validation_accuracy 0.0
+DEBUG:root:accuracy            0.0
+DEBUG:root:[2017-12-18 23:49] Train Step 3501/3751848, Batch Size = 60, Examples/Sec = 285.51, Loss = 41.86
+DEBUG:root:validation_accuracy 0.0
+DEBUG:root:accuracy            0.0
+DEBUG:root:[2017-12-18 23:50] Train Step 3601/3751848, Batch Size = 60, Examples/Sec = 217.02, Loss = 11.28
+DEBUG:root:validation_accuracy 0.0230088495575
+DEBUG:root:accuracy            0.0
+DEBUG:root:[2017-12-18 23:51] Train Step 3701/3751848, Batch Size = 60, Examples/Sec = 144.83, Loss = 0.00
+DEBUG:root:validation_accuracy 0.0
+DEBUG:root:accuracy            0.0
+DEBUG:root:[2017-12-18 23:52] Train Step 3801/3751848, Batch Size = 60, Examples/Sec = 246.51, Loss = 0.00
+DEBUG:root:validation_accuracy 0.0
+DEBUG:root:accuracy            0.0
+DEBUG:root:[2017-12-18 23:53] Train Step 3901/3751848, Batch Size = 60, Examples/Sec = 135.67, Loss = 42.74
+DEBUG:root:validation_accuracy 0.0
+DEBUG:root:accuracy            0.0
+DEBUG:root:[2017-12-18 23:55] Train Step 4001/3751848, Batch Size = 60, Examples/Sec = 284.30, Loss = 12.18
+DEBUG:root:validation_accuracy 0.0230088495575
+DEBUG:root:accuracy            0.0
+DEBUG:root:[2017-12-18 23:56] Train Step 4101/3751848, Batch Size = 60, Examples/Sec = 135.34, Loss = 7.07
+DEBUG:root:validation_accuracy 0.0
+DEBUG:root:accuracy            0.0
+DEBUG:root:[2017-12-18 23:57] Train Step 4201/3751848, Batch Size = 60, Examples/Sec = 266.99, Loss = 11.67
+DEBUG:root:validation_accuracy 0.0
+DEBUG:root:accuracy            0.0
+DEBUG:root:[2017-12-18 23:58] Train Step 4301/3751848, Batch Size = 60, Examples/Sec = 150.89, Loss = 0.00
+DEBUG:root:validation_accuracy 0.0
+DEBUG:root:accuracy            0.0
+DEBUG:root:[2017-12-18 23:59] Train Step 4401/3751848, Batch Size = 60, Examples/Sec = 146.01, Loss = 3.52
+DEBUG:root:validation_accuracy 0.0
+DEBUG:root:accuracy            0.0
+DEBUG:root:[2017-12-19 00:00] Train Step 4501/3751848, Batch Size = 60, Examples/Sec = 137.05, Loss = 25.71
+DEBUG:root:validation_accuracy 0.0
+DEBUG:root:accuracy            0.0
+DEBUG:root:[2017-12-19 00:02] Train Step 4601/3751848, Batch Size = 60, Examples/Sec = 135.15, Loss = 15.53
+DEBUG:root:validation_accuracy 0.0
+DEBUG:root:accuracy            0.0
+DEBUG:root:[2017-12-19 00:03] Train Step 4701/3751848, Batch Size = 60, Examples/Sec = 245.06, Loss = 11.58
+DEBUG:root:validation_accuracy 0.0
+DEBUG:root:accuracy            0.0
+DEBUG:root:[2017-12-19 00:04] Train Step 4801/3751848, Batch Size = 60, Examples/Sec = 156.49, Loss = 9.95
+DEBUG:root:validation_accuracy 0.0
+DEBUG:root:accuracy            0.0
+DEBUG:root:[2017-12-19 00:05] Train Step 4901/3751848, Batch Size = 60, Examples/Sec = 228.57, Loss = 25.99
+DEBUG:root:validation_accuracy 0.0
+DEBUG:root:accuracy            0.0
+DEBUG:root:[2017-12-19 00:06] Train Step 5001/3751848, Batch Size = 60, Examples/Sec = 159.93, Loss = 25.33
+DEBUG:root:validation_accuracy 0.0
+DEBUG:root:accuracy            0.0
+DEBUG:root:[2017-12-19 00:08] Train Step 5101/3751848, Batch Size = 60, Examples/Sec = 224.66, Loss = 0.00
+DEBUG:root:validation_accuracy 0.0
+DEBUG:root:accuracy            0.0
+DEBUG:root:[2017-12-19 00:09] Train Step 5201/3751848, Batch Size = 60, Examples/Sec = 151.69, Loss = 0.00
+DEBUG:root:validation_accuracy 0.0
+DEBUG:root:accuracy            0.0
+DEBUG:root:[2017-12-19 00:10] Train Step 5301/3751848, Batch Size = 60, Examples/Sec = 150.59, Loss = 26.72
+DEBUG:root:validation_accuracy 0.0
+DEBUG:root:accuracy            0.0
+DEBUG:root:[2017-12-19 00:11] Train Step 5401/3751848, Batch Size = 60, Examples/Sec = 265.33, Loss = 30.81
+DEBUG:root:validation_accuracy 0.0
+DEBUG:root:accuracy            0.0
+DEBUG:root:[2017-12-19 00:13] Train Step 5501/3751848, Batch Size = 60, Examples/Sec = 153.84, Loss = 13.00
+DEBUG:root:validation_accuracy 0.0
+DEBUG:root:accuracy            0.0
+DEBUG:root:[2017-12-19 00:14] Train Step 5601/3751848, Batch Size = 60, Examples/Sec = 155.26, Loss = 4.44
+DEBUG:root:validation_accuracy 0.0
+DEBUG:root:accuracy            0.0
+DEBUG:root:[2017-12-19 00:15] Train Step 5701/3751848, Batch Size = 60, Examples/Sec = 138.16, Loss = 32.40
+DEBUG:root:validation_accuracy 0.0
+DEBUG:root:accuracy            0.0
+DEBUG:root:[2017-12-19 00:17] Train Step 5801/3751848, Batch Size = 60, Examples/Sec = 244.11, Loss = 31.74
+DEBUG:root:validation_accuracy 0.0
+DEBUG:root:accuracy            0.0
+DEBUG:root:[2017-12-19 00:18] Train Step 5901/3751848, Batch Size = 60, Examples/Sec = 137.78, Loss = 8.87
+DEBUG:root:validation_accuracy 0.0
+DEBUG:root:accuracy            0.0
+DEBUG:root:[2017-12-19 00:19] Train Step 6001/3751848, Batch Size = 60, Examples/Sec = 138.22, Loss = 5.19
+DEBUG:root:validation_accuracy 0.0
+DEBUG:root:accuracy            0.0
+DEBUG:root:[2017-12-19 00:21] Train Step 6101/3751848, Batch Size = 60, Examples/Sec = 146.18, Loss = 52.36
+DEBUG:root:validation_accuracy 0.0
+DEBUG:root:accuracy            0.0
+DEBUG:root:[2017-12-19 00:22] Train Step 6201/3751848, Batch Size = 60, Examples/Sec = 214.37, Loss = 17.79
+DEBUG:root:validation_accuracy 0.0
+DEBUG:root:accuracy            0.0
+DEBUG:root:[2017-12-19 00:23] Train Step 6301/3751848, Batch Size = 60, Examples/Sec = 143.43, Loss = 10.07
+DEBUG:root:validation_accuracy 0.0
+DEBUG:root:accuracy            0.0
+DEBUG:root:[2017-12-19 00:25] Train Step 6401/3751848, Batch Size = 60, Examples/Sec = 159.42, Loss = 6.76
+DEBUG:root:validation_accuracy 0.0
+DEBUG:root:accuracy            0.0
+DEBUG:root:[2017-12-19 00:26] Train Step 6501/3751848, Batch Size = 60, Examples/Sec = 133.66, Loss = 41.14
+DEBUG:root:validation_accuracy 0.0
+DEBUG:root:accuracy            0.0
+DEBUG:root:[2017-12-19 00:27] Train Step 6601/3751848, Batch Size = 60, Examples/Sec = 232.20, Loss = 27.94
+DEBUG:root:validation_accuracy 0.0
+DEBUG:root:accuracy            0.0
+DEBUG:root:[2017-12-19 00:29] Train Step 6701/3751848, Batch Size = 60, Examples/Sec = 137.57, Loss = 42.83
+DEBUG:root:validation_accuracy 0.0
+DEBUG:root:accuracy            0.0
+DEBUG:root:[2017-12-19 00:30] Train Step 6801/3751848, Batch Size = 60, Examples/Sec = 153.31, Loss = 11.27
+DEBUG:root:validation_accuracy 0.0
+DEBUG:root:accuracy            0.0
+DEBUG:root:[2017-12-19 00:32] Train Step 6901/3751848, Batch Size = 60, Examples/Sec = 139.67, Loss = 0.00
+DEBUG:root:validation_accuracy 0.0
+DEBUG:root:accuracy            0.0
+DEBUG:root:[2017-12-19 00:33] Train Step 7001/3751848, Batch Size = 60, Examples/Sec = 154.72, Loss = 6.06
+DEBUG:root:validation_accuracy 0.0
+DEBUG:root:accuracy            0.0
+DEBUG:root:[2017-12-19 00:35] Train Step 7101/3751848, Batch Size = 60, Examples/Sec = 239.20, Loss = 0.00
+DEBUG:root:validation_accuracy 0.0
+DEBUG:root:accuracy            0.0
+DEBUG:root:[2017-12-19 00:36] Train Step 7201/3751848, Batch Size = 60, Examples/Sec = 130.16, Loss = 24.41
+DEBUG:root:validation_accuracy 0.0
+DEBUG:root:accuracy            0.0
+DEBUG:root:[2017-12-19 00:38] Train Step 7301/3751848, Batch Size = 60, Examples/Sec = 240.78, Loss = 0.00
+DEBUG:root:validation_accuracy 0.0
+DEBUG:root:accuracy            0.0
+DEBUG:root:[2017-12-19 00:39] Train Step 7401/3751848, Batch Size = 60, Examples/Sec = 124.08, Loss = 18.27
+DEBUG:root:validation_accuracy 0.0
+DEBUG:root:accuracy            0.0
+DEBUG:root:[2017-12-19 00:41] Train Step 7501/3751848, Batch Size = 60, Examples/Sec = 154.70, Loss = 26.52
+DEBUG:root:validation_accuracy 0.0
+DEBUG:root:accuracy            0.0
+DEBUG:root:[2017-12-19 00:42] Train Step 7601/3751848, Batch Size = 60, Examples/Sec = 148.30, Loss = 13.58
+DEBUG:root:validation_accuracy 0.0
+DEBUG:root:accuracy            0.0
+DEBUG:root:[2017-12-19 00:44] Train Step 7701/3751848, Batch Size = 60, Examples/Sec = 133.27, Loss = 23.33
+DEBUG:root:validation_accuracy 0.0
+DEBUG:root:accuracy            0.0
+DEBUG:root:[2017-12-19 00:45] Train Step 7801/3751848, Batch Size = 60, Examples/Sec = 256.70, Loss = 0.00
+DEBUG:root:validation_accuracy 0.0
+DEBUG:root:accuracy            0.0
+DEBUG:root:[2017-12-19 00:47] Train Step 7901/3751848, Batch Size = 60, Examples/Sec = 134.53, Loss = 37.75
+DEBUG:root:validation_accuracy 0.0
+DEBUG:root:accuracy            0.0
+DEBUG:root:[2017-12-19 00:48] Train Step 8001/3751848, Batch Size = 60, Examples/Sec = 147.68, Loss = 9.16
+DEBUG:root:validation_accuracy 0.0
+DEBUG:root:accuracy            0.0
+DEBUG:root:[2017-12-19 00:50] Train Step 8101/3751848, Batch Size = 60, Examples/Sec = 231.24, Loss = 26.98
+DEBUG:root:validation_accuracy 0.0
+DEBUG:root:accuracy            0.0
+DEBUG:root:[2017-12-19 00:52] Train Step 8201/3751848, Batch Size = 60, Examples/Sec = 136.28, Loss = 0.00
+DEBUG:root:validation_accuracy 0.0
+DEBUG:root:accuracy            0.0
+DEBUG:root:[2017-12-19 00:53] Train Step 8301/3751848, Batch Size = 60, Examples/Sec = 247.63, Loss = 0.00
+DEBUG:root:validation_accuracy 0.0
+DEBUG:root:accuracy            0.0
+DEBUG:root:[2017-12-19 00:55] Train Step 8401/3751848, Batch Size = 60, Examples/Sec = 258.46, Loss = 22.48
+DEBUG:root:validation_accuracy 0.0
+DEBUG:root:accuracy            0.0
+DEBUG:root:[2017-12-19 00:56] Train Step 8501/3751848, Batch Size = 60, Examples/Sec = 234.57, Loss = 43.39
+DEBUG:root:validation_accuracy 0.0
+DEBUG:root:accuracy            0.0
+DEBUG:root:[2017-12-19 00:58] Train Step 8601/3751848, Batch Size = 60, Examples/Sec = 285.21, Loss = 21.26
+DEBUG:root:validation_accuracy 0.0
+DEBUG:root:accuracy            0.0
+DEBUG:root:[2017-12-19 01:00] Train Step 8701/3751848, Batch Size = 60, Examples/Sec = 160.06, Loss = 20.46
+DEBUG:root:validation_accuracy 0.0
+DEBUG:root:accuracy            0.0
+DEBUG:root:[2017-12-19 01:01] Train Step 8801/3751848, Batch Size = 60, Examples/Sec = 269.56, Loss = 14.68
+DEBUG:root:validation_accuracy 0.0
+DEBUG:root:accuracy            0.0
+DEBUG:root:[2017-12-19 01:03] Train Step 8901/3751848, Batch Size = 60, Examples/Sec = 270.44, Loss = 0.00
+DEBUG:root:validation_accuracy 0.0
+DEBUG:root:accuracy            0.0
+DEBUG:root:[2017-12-19 01:05] Train Step 9001/3751848, Batch Size = 60, Examples/Sec = 136.67, Loss = 0.00
+DEBUG:root:validation_accuracy 0.0
+DEBUG:root:accuracy            0.0
+DEBUG:root:[2017-12-19 01:06] Train Step 9101/3751848, Batch Size = 60, Examples/Sec = 130.45, Loss = 50.09
+DEBUG:root:validation_accuracy 0.0
+DEBUG:root:accuracy            0.0
+DEBUG:root:[2017-12-19 01:08] Train Step 9201/3751848, Batch Size = 60, Examples/Sec = 248.35, Loss = 0.00
+DEBUG:root:validation_accuracy 0.0
+DEBUG:root:accuracy            0.0
+DEBUG:root:[2017-12-19 01:10] Train Step 9301/3751848, Batch Size = 60, Examples/Sec = 161.09, Loss = 28.54
+DEBUG:root:validation_accuracy 0.0
+DEBUG:root:accuracy            0.0
+DEBUG:root:[2017-12-19 01:12] Train Step 9401/3751848, Batch Size = 60, Examples/Sec = 127.05, Loss = 22.49
+DEBUG:root:validation_accuracy 0.0
+DEBUG:root:accuracy            0.0
+DEBUG:root:[2017-12-19 01:13] Train Step 9501/3751848, Batch Size = 60, Examples/Sec = 284.20, Loss = 31.47
+DEBUG:root:validation_accuracy 0.0
+DEBUG:root:accuracy            0.0
+DEBUG:root:[2017-12-19 01:15] Train Step 9601/3751848, Batch Size = 60, Examples/Sec = 152.34, Loss = 14.67
+DEBUG:root:validation_accuracy 0.0
+DEBUG:root:accuracy            0.0
+DEBUG:root:[2017-12-19 01:17] Train Step 9701/3751848, Batch Size = 60, Examples/Sec = 135.45, Loss = 24.47
+DEBUG:root:validation_accuracy 0.0
+DEBUG:root:accuracy            0.0
+DEBUG:root:[2017-12-19 01:18] Train Step 9801/3751848, Batch Size = 60, Examples/Sec = 145.34, Loss = 36.81
+DEBUG:root:validation_accuracy 0.0
+DEBUG:root:accuracy            0.0
+DEBUG:root:[2017-12-19 01:20] Train Step 9901/3751848, Batch Size = 60, Examples/Sec = 154.29, Loss = 13.98
+DEBUG:root:validation_accuracy 0.0
+DEBUG:root:accuracy            0.0
+DEBUG:root:[2017-12-19 01:22] Train Step 10001/3751848, Batch Size = 60, Examples/Sec = 131.32, Loss = 12.76
+DEBUG:root:validation_accuracy 0.0
+DEBUG:root:accuracy            0.0
+DEBUG:root:[2017-12-19 01:24] Train Step 10101/3751848, Batch Size = 60, Examples/Sec = 235.01, Loss = 39.90
+DEBUG:root:validation_accuracy 0.0
+DEBUG:root:accuracy            0.0
+DEBUG:root:[2017-12-19 01:26] Train Step 10201/3751848, Batch Size = 60, Examples/Sec = 219.36, Loss = 36.86
+DEBUG:root:validation_accuracy 0.0
+DEBUG:root:accuracy            0.0
+DEBUG:root:[2017-12-19 01:27] Train Step 10301/3751848, Batch Size = 60, Examples/Sec = 157.86, Loss = 5.71
+DEBUG:root:validation_accuracy 0.0
+DEBUG:root:accuracy            0.0
+DEBUG:root:[2017-12-19 01:29] Train Step 10401/3751848, Batch Size = 60, Examples/Sec = 159.45, Loss = 12.74
+DEBUG:root:validation_accuracy 0.0
+DEBUG:root:accuracy            0.0
+DEBUG:root:[2017-12-19 01:31] Train Step 10501/3751848, Batch Size = 60, Examples/Sec = 154.05, Loss = 0.00
+DEBUG:root:validation_accuracy 0.0
+DEBUG:root:accuracy            0.0
+DEBUG:root:[2017-12-19 01:33] Train Step 10601/3751848, Batch Size = 60, Examples/Sec = 140.45, Loss = 26.50
+DEBUG:root:validation_accuracy 0.0
+DEBUG:root:accuracy            0.0
+DEBUG:root:[2017-12-19 01:35] Train Step 10701/3751848, Batch Size = 60, Examples/Sec = 125.00, Loss = 22.79
+DEBUG:root:validation_accuracy 0.0
+DEBUG:root:accuracy            0.0
+DEBUG:root:[2017-12-19 01:37] Train Step 10801/3751848, Batch Size = 60, Examples/Sec = 279.92, Loss = 39.05
+DEBUG:root:validation_accuracy 0.0
+DEBUG:root:accuracy            0.0
+DEBUG:root:[2017-12-19 01:39] Train Step 10901/3751848, Batch Size = 60, Examples/Sec = 157.94, Loss = 3.40
+DEBUG:root:validation_accuracy 0.0
+DEBUG:root:accuracy            0.0
+DEBUG:root:[2017-12-19 01:40] Train Step 11001/3751848, Batch Size = 60, Examples/Sec = 149.54, Loss = 21.94
+DEBUG:root:validation_accuracy 0.0
+DEBUG:root:accuracy            0.0
+DEBUG:root:[2017-12-19 01:42] Train Step 11101/3751848, Batch Size = 60, Examples/Sec = 151.03, Loss = 30.52
+DEBUG:root:validation_accuracy 0.0
+DEBUG:root:accuracy            0.0
+DEBUG:root:[2017-12-19 01:44] Train Step 11201/3751848, Batch Size = 60, Examples/Sec = 146.56, Loss = 6.26
+DEBUG:root:validation_accuracy 0.0
+DEBUG:root:accuracy            0.0
+DEBUG:root:[2017-12-19 01:46] Train Step 11301/3751848, Batch Size = 60, Examples/Sec = 271.75, Loss = 0.00
+DEBUG:root:validation_accuracy 0.0
+DEBUG:root:accuracy            0.0
+DEBUG:root:[2017-12-19 01:48] Train Step 11401/3751848, Batch Size = 60, Examples/Sec = 227.17, Loss = 12.47
+DEBUG:root:validation_accuracy 0.0
+DEBUG:root:accuracy            0.0
+DEBUG:root:[2017-12-19 01:50] Train Step 11501/3751848, Batch Size = 60, Examples/Sec = 151.31, Loss = 10.64
+DEBUG:root:validation_accuracy 0.0
+DEBUG:root:accuracy            0.0
+DEBUG:root:[2017-12-19 01:52] Train Step 11601/3751848, Batch Size = 60, Examples/Sec = 128.72, Loss = 16.68
+DEBUG:root:validation_accuracy 0.0
+DEBUG:root:accuracy            0.0
+DEBUG:root:[2017-12-19 01:54] Train Step 11701/3751848, Batch Size = 60, Examples/Sec = 135.21, Loss = 0.00
+DEBUG:root:validation_accuracy 0.0
+DEBUG:root:accuracy            0.0
+DEBUG:root:[2017-12-19 01:56] Train Step 11801/3751848, Batch Size = 60, Examples/Sec = 158.21, Loss = 0.00
+DEBUG:root:validation_accuracy 0.0
+DEBUG:root:accuracy            0.0
+DEBUG:root:[2017-12-19 01:58] Train Step 11901/3751848, Batch Size = 60, Examples/Sec = 129.59, Loss = 0.00
+DEBUG:root:validation_accuracy 0.0
+DEBUG:root:accuracy            0.0
+DEBUG:root:[2017-12-19 02:00] Train Step 12001/3751848, Batch Size = 60, Examples/Sec = 142.78, Loss = 18.02
+DEBUG:root:validation_accuracy 0.0
+DEBUG:root:accuracy            0.0
+DEBUG:root:[2017-12-19 02:02] Train Step 12101/3751848, Batch Size = 60, Examples/Sec = 150.72, Loss = 16.82
+DEBUG:root:validation_accuracy 0.0
+DEBUG:root:accuracy            0.0
+DEBUG:root:[2017-12-19 02:04] Train Step 12201/3751848, Batch Size = 60, Examples/Sec = 136.95, Loss = 7.02
+DEBUG:root:validation_accuracy 0.0
+DEBUG:root:accuracy            0.0
+DEBUG:root:[2017-12-19 02:06] Train Step 12301/3751848, Batch Size = 60, Examples/Sec = 220.43, Loss = 7.04
+DEBUG:root:validation_accuracy 0.0
+DEBUG:root:accuracy            0.0
+DEBUG:root:[2017-12-19 02:08] Train Step 12401/3751848, Batch Size = 60, Examples/Sec = 246.74, Loss = 12.96
+DEBUG:root:validation_accuracy 0.0
+DEBUG:root:accuracy            0.0
+DEBUG:root:[2017-12-19 02:10] Train Step 12501/3751848, Batch Size = 60, Examples/Sec = 237.73, Loss = 26.28
+DEBUG:root:validation_accuracy 0.0
+DEBUG:root:accuracy            0.0
+DEBUG:root:[2017-12-19 02:12] Train Step 12601/3751848, Batch Size = 60, Examples/Sec = 141.44, Loss = 18.53
+DEBUG:root:validation_accuracy 0.0
+DEBUG:root:accuracy            0.0
+DEBUG:root:[2017-12-19 02:14] Train Step 12701/3751848, Batch Size = 60, Examples/Sec = 134.85, Loss = 0.00
+DEBUG:root:validation_accuracy 0.0
+DEBUG:root:accuracy            0.0
+DEBUG:root:[2017-12-19 02:16] Train Step 12801/3751848, Batch Size = 60, Examples/Sec = 147.13, Loss = 1.07
+DEBUG:root:validation_accuracy 0.0
+DEBUG:root:accuracy            0.0
+DEBUG:root:[2017-12-19 02:18] Train Step 12901/3751848, Batch Size = 60, Examples/Sec = 234.83, Loss = 5.13
+DEBUG:root:validation_accuracy 0.0
+DEBUG:root:accuracy            0.0
+DEBUG:root:[2017-12-19 02:20] Train Step 13001/3751848, Batch Size = 60, Examples/Sec = 238.17, Loss = 0.00
+DEBUG:root:validation_accuracy 0.0
+DEBUG:root:accuracy            0.0
+DEBUG:root:[2017-12-19 02:23] Train Step 13101/3751848, Batch Size = 60, Examples/Sec = 148.11, Loss = 4.63
+DEBUG:root:validation_accuracy 0.0
+DEBUG:root:accuracy            0.0
+DEBUG:root:[2017-12-19 02:25] Train Step 13201/3751848, Batch Size = 60, Examples/Sec = 156.33, Loss = 3.98
+DEBUG:root:validation_accuracy 0.0
+DEBUG:root:accuracy            0.0
+DEBUG:root:[2017-12-19 02:27] Train Step 13301/3751848, Batch Size = 60, Examples/Sec = 239.38, Loss = 0.00
+DEBUG:root:validation_accuracy 0.0
+DEBUG:root:accuracy            0.0
+DEBUG:root:[2017-12-19 02:29] Train Step 13401/3751848, Batch Size = 60, Examples/Sec = 281.97, Loss = 16.80
+DEBUG:root:validation_accuracy 0.0
+DEBUG:root:accuracy            0.0
+DEBUG:root:[2017-12-19 02:31] Train Step 13501/3751848, Batch Size = 60, Examples/Sec = 258.76, Loss = 6.07
+DEBUG:root:validation_accuracy 0.0
+DEBUG:root:accuracy            0.0
+DEBUG:root:[2017-12-19 02:33] Train Step 13601/3751848, Batch Size = 60, Examples/Sec = 135.72, Loss = 8.71
+DEBUG:root:validation_accuracy 0.0
+DEBUG:root:accuracy            0.0
+DEBUG:root:[2017-12-19 02:35] Train Step 13701/3751848, Batch Size = 60, Examples/Sec = 161.37, Loss = 0.00
+DEBUG:root:validation_accuracy 0.0
+DEBUG:root:accuracy            0.0
+DEBUG:root:[2017-12-19 02:38] Train Step 13801/3751848, Batch Size = 60, Examples/Sec = 133.90, Loss = 50.82
+DEBUG:root:validation_accuracy 0.0
+DEBUG:root:accuracy            0.0
+DEBUG:root:[2017-12-19 02:40] Train Step 13901/3751848, Batch Size = 60, Examples/Sec = 142.53, Loss = 67.30
+DEBUG:root:validation_accuracy 0.0
+DEBUG:root:accuracy            0.0
+DEBUG:root:[2017-12-19 02:42] Train Step 14001/3751848, Batch Size = 60, Examples/Sec = 157.74, Loss = 0.00
+DEBUG:root:validation_accuracy 0.0
+DEBUG:root:accuracy            0.0
+DEBUG:root:[2017-12-19 02:44] Train Step 14101/3751848, Batch Size = 60, Examples/Sec = 233.80, Loss = 0.00
+DEBUG:root:validation_accuracy 0.0
+DEBUG:root:accuracy            0.0
+DEBUG:root:[2017-12-19 02:47] Train Step 14201/3751848, Batch Size = 60, Examples/Sec = 255.81, Loss = 0.00
+DEBUG:root:validation_accuracy 0.0
+DEBUG:root:accuracy            0.0
+DEBUG:root:[2017-12-19 02:49] Train Step 14301/3751848, Batch Size = 60, Examples/Sec = 231.53, Loss = 0.00
+DEBUG:root:validation_accuracy 0.0
+DEBUG:root:accuracy            0.0
+DEBUG:root:[2017-12-19 02:51] Train Step 14401/3751848, Batch Size = 60, Examples/Sec = 233.43, Loss = 14.13
+DEBUG:root:validation_accuracy 0.0
+DEBUG:root:accuracy            0.0
+DEBUG:root:[2017-12-19 02:53] Train Step 14501/3751848, Batch Size = 60, Examples/Sec = 134.30, Loss = 1.81
+DEBUG:root:validation_accuracy 0.0
+DEBUG:root:accuracy            0.0
+DEBUG:root:[2017-12-19 02:56] Train Step 14601/3751848, Batch Size = 60, Examples/Sec = 136.05, Loss = 3.81
+DEBUG:root:validation_accuracy 0.0
+DEBUG:root:accuracy            0.0
+DEBUG:root:[2017-12-19 02:58] Train Step 14701/3751848, Batch Size = 60, Examples/Sec = 229.41, Loss = 50.93
+DEBUG:root:validation_accuracy 0.0
+DEBUG:root:accuracy            0.0
+DEBUG:root:[2017-12-19 03:00] Train Step 14801/3751848, Batch Size = 60, Examples/Sec = 155.38, Loss = 0.20
+DEBUG:root:validation_accuracy 0.0
+DEBUG:root:accuracy            0.0
+DEBUG:root:[2017-12-19 03:03] Train Step 14901/3751848, Batch Size = 60, Examples/Sec = 216.97, Loss = 0.00
+DEBUG:root:validation_accuracy 0.0
+DEBUG:root:accuracy            0.0
+DEBUG:root:[2017-12-19 03:05] Train Step 15001/3751848, Batch Size = 60, Examples/Sec = 125.52, Loss = 17.91
+DEBUG:root:validation_accuracy 0.0
+DEBUG:root:accuracy            0.0
+DEBUG:root:[2017-12-19 03:07] Train Step 15101/3751848, Batch Size = 60, Examples/Sec = 214.62, Loss = 0.05
+DEBUG:root:validation_accuracy 0.0
+DEBUG:root:accuracy            0.0
+DEBUG:root:[2017-12-19 03:10] Train Step 15201/3751848, Batch Size = 60, Examples/Sec = 220.31, Loss = 0.00
+DEBUG:root:validation_accuracy 0.0
+DEBUG:root:accuracy            0.0
+DEBUG:root:[2017-12-19 03:12] Train Step 15301/3751848, Batch Size = 60, Examples/Sec = 258.58, Loss = 11.58
+DEBUG:root:validation_accuracy 0.0
+DEBUG:root:accuracy            0.0
+DEBUG:root:[2017-12-19 03:14] Train Step 15401/3751848, Batch Size = 60, Examples/Sec = 133.75, Loss = 0.00
+DEBUG:root:validation_accuracy 0.0
+DEBUG:root:accuracy            0.0
+DEBUG:root:[2017-12-19 03:17] Train Step 15501/3751848, Batch Size = 60, Examples/Sec = 230.24, Loss = 10.13
+DEBUG:root:validation_accuracy 0.0
+DEBUG:root:accuracy            0.0
+DEBUG:root:[2017-12-19 03:19] Train Step 15601/3751848, Batch Size = 60, Examples/Sec = 264.83, Loss = 23.58
+DEBUG:root:validation_accuracy 0.0
+DEBUG:root:accuracy            0.0
+DEBUG:root:[2017-12-19 03:22] Train Step 15701/3751848, Batch Size = 60, Examples/Sec = 217.59, Loss = 9.73
+DEBUG:root:validation_accuracy 0.0
+DEBUG:root:accuracy            0.0
+DEBUG:root:[2017-12-19 03:24] Train Step 15801/3751848, Batch Size = 60, Examples/Sec = 135.24, Loss = 34.35
+DEBUG:root:validation_accuracy 0.0
+DEBUG:root:accuracy            0.0
+DEBUG:root:[2017-12-19 03:27] Train Step 15901/3751848, Batch Size = 60, Examples/Sec = 146.19, Loss = 0.00
+DEBUG:root:validation_accuracy 0.0
+DEBUG:root:accuracy            0.0
+DEBUG:root:[2017-12-19 03:29] Train Step 16001/3751848, Batch Size = 60, Examples/Sec = 150.48, Loss = 0.00
+DEBUG:root:validation_accuracy 0.0
+DEBUG:root:accuracy            0.0
+DEBUG:root:[2017-12-19 03:31] Train Step 16101/3751848, Batch Size = 60, Examples/Sec = 224.07, Loss = 39.65
+DEBUG:root:validation_accuracy 0.0
+DEBUG:root:accuracy            0.0
+DEBUG:root:[2017-12-19 03:34] Train Step 16201/3751848, Batch Size = 60, Examples/Sec = 275.37, Loss = 0.00
+DEBUG:root:validation_accuracy 0.0
+DEBUG:root:accuracy            0.0
+DEBUG:root:[2017-12-19 03:36] Train Step 16301/3751848, Batch Size = 60, Examples/Sec = 147.79, Loss = 14.99
+DEBUG:root:validation_accuracy 0.0
+DEBUG:root:accuracy            0.0
+DEBUG:root:[2017-12-19 03:39] Train Step 16401/3751848, Batch Size = 60, Examples/Sec = 152.99, Loss = 13.70
+DEBUG:root:validation_accuracy 0.0
+DEBUG:root:accuracy            0.0
+DEBUG:root:[2017-12-19 03:42] Train Step 16501/3751848, Batch Size = 60, Examples/Sec = 154.08, Loss = 0.00
+DEBUG:root:validation_accuracy 0.0
+DEBUG:root:accuracy            0.0
+DEBUG:root:[2017-12-19 03:44] Train Step 16601/3751848, Batch Size = 60, Examples/Sec = 226.89, Loss = 0.00
+DEBUG:root:validation_accuracy 0.0
+DEBUG:root:accuracy            0.0
+DEBUG:root:[2017-12-19 03:47] Train Step 16701/3751848, Batch Size = 60, Examples/Sec = 135.56, Loss = 30.08
+DEBUG:root:validation_accuracy 0.0
+DEBUG:root:accuracy            0.0
+DEBUG:root:[2017-12-19 03:49] Train Step 16801/3751848, Batch Size = 60, Examples/Sec = 152.77, Loss = 0.00
+DEBUG:root:validation_accuracy 0.0
+DEBUG:root:accuracy            0.0
+DEBUG:root:[2017-12-19 03:52] Train Step 16901/3751848, Batch Size = 60, Examples/Sec = 138.05, Loss = 0.00
+DEBUG:root:validation_accuracy 0.0
+DEBUG:root:accuracy            0.0
+DEBUG:root:[2017-12-19 03:54] Train Step 17001/3751848, Batch Size = 60, Examples/Sec = 263.97, Loss = 30.09
+DEBUG:root:validation_accuracy 0.0
+DEBUG:root:accuracy            0.0
+DEBUG:root:[2017-12-19 03:57] Train Step 17101/3751848, Batch Size = 60, Examples/Sec = 154.20, Loss = 48.44
+DEBUG:root:validation_accuracy 0.0
+DEBUG:root:accuracy            0.0
+DEBUG:root:[2017-12-19 03:59] Train Step 17201/3751848, Batch Size = 60, Examples/Sec = 141.41, Loss = 0.00
+DEBUG:root:validation_accuracy 0.0
+DEBUG:root:accuracy            0.0
+DEBUG:root:[2017-12-19 04:02] Train Step 17301/3751848, Batch Size = 60, Examples/Sec = 145.21, Loss = 10.74
+DEBUG:root:validation_accuracy 0.0
+DEBUG:root:accuracy            0.0
+DEBUG:root:[2017-12-19 04:05] Train Step 17401/3751848, Batch Size = 60, Examples/Sec = 140.87, Loss = 7.44
+DEBUG:root:validation_accuracy 0.0
+DEBUG:root:accuracy            0.0
+DEBUG:root:[2017-12-19 04:08] Train Step 17501/3751848, Batch Size = 60, Examples/Sec = 290.48, Loss = 0.00
+DEBUG:root:validation_accuracy 0.0
+DEBUG:root:accuracy            0.0
+DEBUG:root:[2017-12-19 04:10] Train Step 17601/3751848, Batch Size = 60, Examples/Sec = 226.61, Loss = 0.00
+DEBUG:root:validation_accuracy 0.0
+DEBUG:root:accuracy            0.0
+DEBUG:root:[2017-12-19 04:13] Train Step 17701/3751848, Batch Size = 60, Examples/Sec = 149.58, Loss = 23.43
+DEBUG:root:validation_accuracy 0.0
+DEBUG:root:accuracy            0.0
+DEBUG:root:[2017-12-19 04:16] Train Step 17801/3751848, Batch Size = 60, Examples/Sec = 229.79, Loss = 0.00
+DEBUG:root:validation_accuracy 0.0
+DEBUG:root:accuracy            0.0
+DEBUG:root:[2017-12-19 04:18] Train Step 17901/3751848, Batch Size = 60, Examples/Sec = 287.37, Loss = 7.20
+DEBUG:root:validation_accuracy 0.0
+DEBUG:root:accuracy            0.0
+DEBUG:root:[2017-12-19 04:21] Train Step 18001/3751848, Batch Size = 60, Examples/Sec = 288.31, Loss = 0.00
+DEBUG:root:validation_accuracy 0.0
+DEBUG:root:accuracy            0.0
+DEBUG:root:[2017-12-19 04:24] Train Step 18101/3751848, Batch Size = 60, Examples/Sec = 144.84, Loss = 19.27
+DEBUG:root:validation_accuracy 0.0
+DEBUG:root:accuracy            0.0
+DEBUG:root:[2017-12-19 04:26] Train Step 18201/3751848, Batch Size = 60, Examples/Sec = 139.82, Loss = 7.31
+DEBUG:root:validation_accuracy 0.0
+DEBUG:root:accuracy            0.0
+DEBUG:root:[2017-12-19 04:29] Train Step 18301/3751848, Batch Size = 60, Examples/Sec = 225.28, Loss = 0.00
+DEBUG:root:validation_accuracy 0.0
+DEBUG:root:accuracy            0.0
+DEBUG:root:[2017-12-19 04:32] Train Step 18401/3751848, Batch Size = 60, Examples/Sec = 140.35, Loss = 21.79
+DEBUG:root:validation_accuracy 0.0
+DEBUG:root:accuracy            0.0
+DEBUG:root:[2017-12-19 04:35] Train Step 18501/3751848, Batch Size = 60, Examples/Sec = 142.89, Loss = 34.40
+DEBUG:root:validation_accuracy 0.0
+DEBUG:root:accuracy            0.0
+DEBUG:root:[2017-12-19 04:37] Train Step 18601/3751848, Batch Size = 60, Examples/Sec = 146.88, Loss = 1.07
+DEBUG:root:validation_accuracy 0.0
+DEBUG:root:accuracy            0.0
+DEBUG:root:[2017-12-19 04:40] Train Step 18701/3751848, Batch Size = 60, Examples/Sec = 277.88, Loss = 19.84
+DEBUG:root:validation_accuracy 0.0
+DEBUG:root:accuracy            0.0
+DEBUG:root:[2017-12-19 04:43] Train Step 18801/3751848, Batch Size = 60, Examples/Sec = 154.65, Loss = 9.76
+DEBUG:root:validation_accuracy 0.0
+DEBUG:root:accuracy            0.0
+DEBUG:root:[2017-12-19 04:46] Train Step 18901/3751848, Batch Size = 60, Examples/Sec = 135.43, Loss = 12.26
+DEBUG:root:validation_accuracy 0.0
+DEBUG:root:accuracy            0.0
+DEBUG:root:[2017-12-19 04:49] Train Step 19001/3751848, Batch Size = 60, Examples/Sec = 273.37, Loss = 21.17
+DEBUG:root:validation_accuracy 0.0
+DEBUG:root:accuracy            0.0
+DEBUG:root:[2017-12-19 04:51] Train Step 19101/3751848, Batch Size = 60, Examples/Sec = 270.12, Loss = 27.85
+DEBUG:root:validation_accuracy 0.0
+DEBUG:root:accuracy            0.0
+DEBUG:root:[2017-12-19 04:54] Train Step 19201/3751848, Batch Size = 60, Examples/Sec = 255.35, Loss = 19.15
+DEBUG:root:validation_accuracy 0.0
+DEBUG:root:accuracy            0.0
+DEBUG:root:[2017-12-19 04:57] Train Step 19301/3751848, Batch Size = 60, Examples/Sec = 226.08, Loss = 13.64
+DEBUG:root:validation_accuracy 0.0
+DEBUG:root:accuracy            0.0
+DEBUG:root:[2017-12-19 05:00] Train Step 19401/3751848, Batch Size = 60, Examples/Sec = 153.93, Loss = 0.00
+DEBUG:root:validation_accuracy 0.0
+DEBUG:root:accuracy            0.0
+DEBUG:root:[2017-12-19 05:03] Train Step 19501/3751848, Batch Size = 60, Examples/Sec = 289.09, Loss = 23.19
+DEBUG:root:validation_accuracy 0.0
+DEBUG:root:accuracy            0.0
+DEBUG:root:[2017-12-19 05:06] Train Step 19601/3751848, Batch Size = 60, Examples/Sec = 218.74, Loss = 0.00
+DEBUG:root:validation_accuracy 0.0
+DEBUG:root:accuracy            0.0
+DEBUG:root:[2017-12-19 05:09] Train Step 19701/3751848, Batch Size = 60, Examples/Sec = 148.20, Loss = 3.14
+DEBUG:root:validation_accuracy 0.0
+DEBUG:root:accuracy            0.0
+DEBUG:root:[2017-12-19 05:12] Train Step 19801/3751848, Batch Size = 60, Examples/Sec = 147.77, Loss = 9.38
+DEBUG:root:validation_accuracy 0.0
+DEBUG:root:accuracy            0.0
+DEBUG:root:[2017-12-19 05:15] Train Step 19901/3751848, Batch Size = 60, Examples/Sec = 134.86, Loss = 0.00
+DEBUG:root:validation_accuracy 0.0
+DEBUG:root:accuracy            0.0
+DEBUG:root:[2017-12-19 05:18] Train Step 20001/3751848, Batch Size = 60, Examples/Sec = 287.82, Loss = 0.00
+DEBUG:root:validation_accuracy 0.0
+DEBUG:root:accuracy            0.0
+DEBUG:root:[2017-12-19 05:21] Train Step 20101/3751848, Batch Size = 60, Examples/Sec = 130.27, Loss = 11.29
+DEBUG:root:validation_accuracy 0.0
+DEBUG:root:accuracy            0.0
+DEBUG:root:[2017-12-19 05:24] Train Step 20201/3751848, Batch Size = 60, Examples/Sec = 276.06, Loss = 0.00
+DEBUG:root:validation_accuracy 0.0
+DEBUG:root:accuracy            0.0
+DEBUG:root:[2017-12-19 05:27] Train Step 20301/3751848, Batch Size = 60, Examples/Sec = 283.74, Loss = 0.01
+DEBUG:root:validation_accuracy 0.0
+DEBUG:root:accuracy            0.0
+DEBUG:root:[2017-12-19 05:30] Train Step 20401/3751848, Batch Size = 60, Examples/Sec = 161.75, Loss = 0.00
+DEBUG:root:validation_accuracy 0.0
+DEBUG:root:accuracy            0.0
+DEBUG:root:[2017-12-19 05:33] Train Step 20501/3751848, Batch Size = 60, Examples/Sec = 287.09, Loss = 24.29
+DEBUG:root:validation_accuracy 0.0
+DEBUG:root:accuracy            0.0
+DEBUG:root:[2017-12-19 05:36] Train Step 20601/3751848, Batch Size = 60, Examples/Sec = 150.21, Loss = 5.71
+DEBUG:root:validation_accuracy 0.0
+DEBUG:root:accuracy            0.0
+DEBUG:root:[2017-12-19 05:39] Train Step 20701/3751848, Batch Size = 60, Examples/Sec = 259.41, Loss = 0.06
+DEBUG:root:validation_accuracy 0.0
+DEBUG:root:accuracy            0.0
+DEBUG:root:[2017-12-19 05:42] Train Step 20801/3751848, Batch Size = 60, Examples/Sec = 135.72, Loss = 25.12
+DEBUG:root:validation_accuracy 0.0
+DEBUG:root:accuracy            0.0
+DEBUG:root:[2017-12-19 05:45] Train Step 20901/3751848, Batch Size = 60, Examples/Sec = 217.56, Loss = 10.10
+DEBUG:root:validation_accuracy 0.0
+DEBUG:root:accuracy            0.0
+DEBUG:root:[2017-12-19 05:49] Train Step 21001/3751848, Batch Size = 60, Examples/Sec = 137.43, Loss = 8.40
+DEBUG:root:validation_accuracy 0.0
+DEBUG:root:accuracy            0.0
+DEBUG:root:[2017-12-19 05:52] Train Step 21101/3751848, Batch Size = 60, Examples/Sec = 136.60, Loss = 0.00
+DEBUG:root:validation_accuracy 0.0
+DEBUG:root:accuracy            0.0
+DEBUG:root:[2017-12-19 05:55] Train Step 21201/3751848, Batch Size = 60, Examples/Sec = 160.09, Loss = 7.16
+DEBUG:root:validation_accuracy 0.0
+DEBUG:root:accuracy            0.0
+DEBUG:root:[2017-12-19 05:58] Train Step 21301/3751848, Batch Size = 60, Examples/Sec = 159.78, Loss = 5.96
+DEBUG:root:validation_accuracy 0.0
+DEBUG:root:accuracy            0.0
+DEBUG:root:[2017-12-19 06:02] Train Step 21401/3751848, Batch Size = 60, Examples/Sec = 232.00, Loss = 0.00
+DEBUG:root:validation_accuracy 0.0
+DEBUG:root:accuracy            0.0
+DEBUG:root:[2017-12-19 06:05] Train Step 21501/3751848, Batch Size = 60, Examples/Sec = 116.56, Loss = 7.69
+DEBUG:root:validation_accuracy 0.0
+DEBUG:root:accuracy            0.0
+DEBUG:root:[2017-12-19 06:08] Train Step 21601/3751848, Batch Size = 60, Examples/Sec = 137.88, Loss = 2.67
+DEBUG:root:validation_accuracy 0.0
+DEBUG:root:accuracy            0.0
+DEBUG:root:[2017-12-19 06:12] Train Step 21701/3751848, Batch Size = 60, Examples/Sec = 134.59, Loss = 0.00
+DEBUG:root:validation_accuracy 0.0
+DEBUG:root:accuracy            0.0
+DEBUG:root:[2017-12-19 06:15] Train Step 21801/3751848, Batch Size = 60, Examples/Sec = 129.34, Loss = 5.85
+DEBUG:root:validation_accuracy 0.0
+DEBUG:root:accuracy            0.0
+DEBUG:root:[2017-12-19 06:19] Train Step 21901/3751848, Batch Size = 60, Examples/Sec = 135.36, Loss = 0.47
+DEBUG:root:validation_accuracy 0.0
+DEBUG:root:accuracy            0.0
+DEBUG:root:[2017-12-19 06:22] Train Step 22001/3751848, Batch Size = 60, Examples/Sec = 135.64, Loss = 5.95
+DEBUG:root:validation_accuracy 0.0
+DEBUG:root:accuracy            0.0
+DEBUG:root:[2017-12-19 06:26] Train Step 22101/3751848, Batch Size = 60, Examples/Sec = 232.19, Loss = 0.00
+DEBUG:root:validation_accuracy 0.0
+DEBUG:root:accuracy            0.0
+DEBUG:root:[2017-12-19 06:29] Train Step 22201/3751848, Batch Size = 60, Examples/Sec = 135.40, Loss = 24.13
+DEBUG:root:validation_accuracy 0.0
+DEBUG:root:accuracy            0.0
+DEBUG:root:[2017-12-19 06:33] Train Step 22301/3751848, Batch Size = 60, Examples/Sec = 220.81, Loss = 8.41
+DEBUG:root:validation_accuracy 0.0
+DEBUG:root:accuracy            0.0
+DEBUG:root:[2017-12-19 06:36] Train Step 22401/3751848, Batch Size = 60, Examples/Sec = 217.38, Loss = 0.00
+DEBUG:root:validation_accuracy 0.0
+DEBUG:root:accuracy            0.0
+DEBUG:root:[2017-12-19 06:40] Train Step 22501/3751848, Batch Size = 60, Examples/Sec = 143.82, Loss = 5.45
+DEBUG:root:validation_accuracy 0.0
+DEBUG:root:accuracy            0.0
+DEBUG:root:[2017-12-19 06:44] Train Step 22601/3751848, Batch Size = 60, Examples/Sec = 271.37, Loss = 20.12
+DEBUG:root:validation_accuracy 0.0
+DEBUG:root:accuracy            0.0
+DEBUG:root:[2017-12-19 06:47] Train Step 22701/3751848, Batch Size = 60, Examples/Sec = 144.71, Loss = 7.04
+DEBUG:root:validation_accuracy 0.0
+DEBUG:root:accuracy            0.0
+DEBUG:root:[2017-12-19 06:51] Train Step 22801/3751848, Batch Size = 60, Examples/Sec = 153.56, Loss = 14.45
+DEBUG:root:validation_accuracy 0.0
+DEBUG:root:accuracy            0.0
+DEBUG:root:[2017-12-19 06:55] Train Step 22901/3751848, Batch Size = 60, Examples/Sec = 146.98, Loss = 0.00
+DEBUG:root:validation_accuracy 0.0
+DEBUG:root:accuracy            0.0
+DEBUG:root:[2017-12-19 06:58] Train Step 23001/3751848, Batch Size = 60, Examples/Sec = 140.27, Loss = 0.00
+DEBUG:root:validation_accuracy 0.0
+DEBUG:root:accuracy            0.0
+DEBUG:root:[2017-12-19 07:02] Train Step 23101/3751848, Batch Size = 60, Examples/Sec = 275.55, Loss = 0.00
+DEBUG:root:validation_accuracy 0.0
+DEBUG:root:accuracy            0.0
+DEBUG:root:[2017-12-19 07:06] Train Step 23201/3751848, Batch Size = 60, Examples/Sec = 150.93, Loss = 24.31
+DEBUG:root:validation_accuracy 0.0
+DEBUG:root:accuracy            0.0
+DEBUG:root:[2017-12-19 07:09] Train Step 23301/3751848, Batch Size = 60, Examples/Sec = 121.21, Loss = 11.78
+DEBUG:root:validation_accuracy 0.0
+DEBUG:root:accuracy            0.0
+DEBUG:root:[2017-12-19 07:13] Train Step 23401/3751848, Batch Size = 60, Examples/Sec = 141.97, Loss = 0.00
+DEBUG:root:validation_accuracy 0.0
+DEBUG:root:accuracy            0.0
+DEBUG:root:[2017-12-19 07:17] Train Step 23501/3751848, Batch Size = 60, Examples/Sec = 133.42, Loss = 15.98
+DEBUG:root:validation_accuracy 0.0
+DEBUG:root:accuracy            0.0
+DEBUG:root:[2017-12-19 07:21] Train Step 23601/3751848, Batch Size = 60, Examples/Sec = 145.87, Loss = 6.04
+DEBUG:root:validation_accuracy 0.0
+DEBUG:root:accuracy            0.0
+DEBUG:root:[2017-12-19 07:25] Train Step 23701/3751848, Batch Size = 60, Examples/Sec = 157.51, Loss = 12.75
+DEBUG:root:validation_accuracy 0.0
+DEBUG:root:accuracy            0.0
+DEBUG:root:[2017-12-19 07:29] Train Step 23801/3751848, Batch Size = 60, Examples/Sec = 294.90, Loss = 0.00
+DEBUG:root:validation_accuracy 0.0
+DEBUG:root:accuracy            0.0
+DEBUG:root:[2017-12-19 07:33] Train Step 23901/3751848, Batch Size = 60, Examples/Sec = 144.93, Loss = 0.00
+DEBUG:root:validation_accuracy 0.0
+DEBUG:root:accuracy            0.0
+DEBUG:root:[2017-12-19 07:37] Train Step 24001/3751848, Batch Size = 60, Examples/Sec = 133.15, Loss = 5.86
+DEBUG:root:validation_accuracy 0.0
+DEBUG:root:accuracy            0.0
+DEBUG:root:[2017-12-19 07:41] Train Step 24101/3751848, Batch Size = 60, Examples/Sec = 284.98, Loss = 0.00
+DEBUG:root:validation_accuracy 0.0
+DEBUG:root:accuracy            0.0
+DEBUG:root:[2017-12-19 07:46] Train Step 24201/3751848, Batch Size = 60, Examples/Sec = 265.38, Loss = 0.00
+DEBUG:root:validation_accuracy 0.0
+DEBUG:root:accuracy            0.0
+DEBUG:root:[2017-12-19 07:50] Train Step 24301/3751848, Batch Size = 60, Examples/Sec = 142.99, Loss = 13.78
+DEBUG:root:validation_accuracy 0.0
+DEBUG:root:accuracy            0.0
+DEBUG:root:[2017-12-19 07:54] Train Step 24401/3751848, Batch Size = 60, Examples/Sec = 148.66, Loss = 17.61
+DEBUG:root:validation_accuracy 0.0
+DEBUG:root:accuracy            0.0
+DEBUG:root:[2017-12-19 07:58] Train Step 24501/3751848, Batch Size = 60, Examples/Sec = 237.92, Loss = 39.85
+DEBUG:root:validation_accuracy 0.0
+DEBUG:root:accuracy            0.0
+DEBUG:root:[2017-12-19 08:02] Train Step 24601/3751848, Batch Size = 60, Examples/Sec = 127.02, Loss = 1.21
+DEBUG:root:validation_accuracy 0.0
+DEBUG:root:accuracy            0.0
+DEBUG:root:[2017-12-19 08:06] Train Step 24701/3751848, Batch Size = 60, Examples/Sec = 246.69, Loss = 0.00
+DEBUG:root:validation_accuracy 0.0
+DEBUG:root:accuracy            0.0
+DEBUG:root:[2017-12-19 08:11] Train Step 24801/3751848, Batch Size = 60, Examples/Sec = 144.75, Loss = 0.00
+DEBUG:root:validation_accuracy 0.0
+DEBUG:root:accuracy            0.0
+DEBUG:root:[2017-12-19 08:15] Train Step 24901/3751848, Batch Size = 60, Examples/Sec = 134.05, Loss = 34.19
+DEBUG:root:validation_accuracy 0.0
+DEBUG:root:accuracy            0.0
+DEBUG:root:[2017-12-19 08:19] Train Step 25001/3751848, Batch Size = 60, Examples/Sec = 135.15, Loss = 0.00
+DEBUG:root:validation_accuracy 0.0
+DEBUG:root:accuracy            0.0
+DEBUG:root:[2017-12-19 08:23] Train Step 25101/3751848, Batch Size = 60, Examples/Sec = 156.23, Loss = 0.00
+DEBUG:root:validation_accuracy 0.0
+DEBUG:root:accuracy            0.0
+DEBUG:root:[2017-12-19 08:28] Train Step 25201/3751848, Batch Size = 60, Examples/Sec = 243.47, Loss = 14.48
+DEBUG:root:validation_accuracy 0.0
+DEBUG:root:accuracy            0.0
+DEBUG:root:[2017-12-19 08:32] Train Step 25301/3751848, Batch Size = 60, Examples/Sec = 144.23, Loss = 0.00
+DEBUG:root:validation_accuracy 0.0
+DEBUG:root:accuracy            0.0
+DEBUG:root:[2017-12-19 08:36] Train Step 25401/3751848, Batch Size = 60, Examples/Sec = 289.52, Loss = 0.00
+DEBUG:root:validation_accuracy 0.0
+DEBUG:root:accuracy            0.0
+DEBUG:root:[2017-12-19 08:40] Train Step 25501/3751848, Batch Size = 60, Examples/Sec = 140.41, Loss = 2.99
+DEBUG:root:validation_accuracy 0.0
+DEBUG:root:accuracy            0.0
+DEBUG:root:[2017-12-19 08:45] Train Step 25601/3751848, Batch Size = 60, Examples/Sec = 284.79, Loss = 11.57
+DEBUG:root:validation_accuracy 0.0
+DEBUG:root:accuracy            0.0
+DEBUG:root:[2017-12-19 08:49] Train Step 25701/3751848, Batch Size = 60, Examples/Sec = 152.67, Loss = 0.00
+DEBUG:root:validation_accuracy 0.0
+DEBUG:root:accuracy            0.0
+DEBUG:root:[2017-12-19 08:54] Train Step 25801/3751848, Batch Size = 60, Examples/Sec = 250.19, Loss = 0.00
+DEBUG:root:validation_accuracy 0.0
+DEBUG:root:accuracy            0.0
+DEBUG:root:[2017-12-19 08:58] Train Step 25901/3751848, Batch Size = 60, Examples/Sec = 150.75, Loss = 12.45
+DEBUG:root:validation_accuracy 0.0
+DEBUG:root:accuracy            0.0
+DEBUG:root:[2017-12-19 09:03] Train Step 26001/3751848, Batch Size = 60, Examples/Sec = 135.59, Loss = 22.03
+DEBUG:root:validation_accuracy 0.0
+DEBUG:root:accuracy            0.0
+DEBUG:root:[2017-12-19 09:08] Train Step 26101/3751848, Batch Size = 60, Examples/Sec = 147.27, Loss = 12.50
+DEBUG:root:validation_accuracy 0.0
+DEBUG:root:accuracy            0.0
+DEBUG:root:[2017-12-19 09:12] Train Step 26201/3751848, Batch Size = 60, Examples/Sec = 138.17, Loss = 0.00
+DEBUG:root:validation_accuracy 0.0
+DEBUG:root:accuracy            0.0
+DEBUG:root:[2017-12-19 09:17] Train Step 26301/3751848, Batch Size = 60, Examples/Sec = 141.82, Loss = 9.12
+DEBUG:root:validation_accuracy 0.0
+DEBUG:root:accuracy            0.0
+DEBUG:root:[2017-12-19 09:21] Train Step 26401/3751848, Batch Size = 60, Examples/Sec = 136.03, Loss = 0.00
+DEBUG:root:validation_accuracy 0.0
+DEBUG:root:accuracy            0.0
+DEBUG:root:[2017-12-19 09:26] Train Step 26501/3751848, Batch Size = 60, Examples/Sec = 268.28, Loss = 0.00
+DEBUG:root:validation_accuracy 0.0
+DEBUG:root:accuracy            0.0
+DEBUG:root:[2017-12-19 09:31] Train Step 26601/3751848, Batch Size = 60, Examples/Sec = 150.60, Loss = 13.06
+DEBUG:root:validation_accuracy 0.0
+DEBUG:root:accuracy            0.0
+DEBUG:root:[2017-12-19 09:35] Train Step 26701/3751848, Batch Size = 60, Examples/Sec = 217.54, Loss = 17.62
+DEBUG:root:validation_accuracy 0.0
+DEBUG:root:accuracy            0.0
+DEBUG:root:[2017-12-19 09:40] Train Step 26801/3751848, Batch Size = 60, Examples/Sec = 134.73, Loss = 5.92
+DEBUG:root:validation_accuracy 0.0
+DEBUG:root:accuracy            0.0
+DEBUG:root:[2017-12-19 09:45] Train Step 26901/3751848, Batch Size = 60, Examples/Sec = 135.80, Loss = 0.00
+DEBUG:root:validation_accuracy 0.0
+DEBUG:root:accuracy            0.0
+DEBUG:root:[2017-12-19 09:49] Train Step 27001/3751848, Batch Size = 60, Examples/Sec = 142.08, Loss = 13.97
+DEBUG:root:validation_accuracy 0.0
+DEBUG:root:accuracy            0.0
+DEBUG:root:[2017-12-19 09:54] Train Step 27101/3751848, Batch Size = 60, Examples/Sec = 291.21, Loss = 13.46
+DEBUG:root:validation_accuracy 0.0
+DEBUG:root:accuracy            0.0
+DEBUG:root:[2017-12-19 09:59] Train Step 27201/3751848, Batch Size = 60, Examples/Sec = 151.13, Loss = 0.43
+DEBUG:root:validation_accuracy 0.0
+DEBUG:root:accuracy            0.0
+DEBUG:root:[2017-12-19 10:04] Train Step 27301/3751848, Batch Size = 60, Examples/Sec = 249.36, Loss = 4.41
+DEBUG:root:validation_accuracy 0.0
+DEBUG:root:accuracy            0.0
+DEBUG:root:[2017-12-19 10:09] Train Step 27401/3751848, Batch Size = 60, Examples/Sec = 141.36, Loss = 0.00
+DEBUG:root:validation_accuracy 0.0
+DEBUG:root:accuracy            0.0
+DEBUG:root:[2017-12-19 10:13] Train Step 27501/3751848, Batch Size = 60, Examples/Sec = 268.12, Loss = 0.00
+DEBUG:root:validation_accuracy 0.0
+DEBUG:root:accuracy            0.0
+DEBUG:root:[2017-12-19 10:19] Train Step 27601/3751848, Batch Size = 60, Examples/Sec = 224.39, Loss = 0.00
+DEBUG:root:validation_accuracy 0.0
+DEBUG:root:accuracy            0.0
+DEBUG:root:[2017-12-19 10:24] Train Step 27701/3751848, Batch Size = 60, Examples/Sec = 138.39, Loss = 0.00
+DEBUG:root:validation_accuracy 0.0
+DEBUG:root:accuracy            0.0
+DEBUG:root:[2017-12-19 10:29] Train Step 27801/3751848, Batch Size = 60, Examples/Sec = 276.58, Loss = 0.00
+DEBUG:root:validation_accuracy 0.0
+DEBUG:root:accuracy            0.0
+DEBUG:root:[2017-12-19 10:34] Train Step 27901/3751848, Batch Size = 60, Examples/Sec = 267.22, Loss = 0.00
+DEBUG:root:validation_accuracy 0.0
+DEBUG:root:accuracy            0.0
+DEBUG:root:[2017-12-19 10:39] Train Step 28001/3751848, Batch Size = 60, Examples/Sec = 231.08, Loss = 6.68
+DEBUG:root:validation_accuracy 0.0
+DEBUG:root:accuracy            0.0
+DEBUG:root:[2017-12-19 10:44] Train Step 28101/3751848, Batch Size = 60, Examples/Sec = 140.10, Loss = 0.00
+DEBUG:root:validation_accuracy 0.0
+DEBUG:root:accuracy            0.0
+DEBUG:root:[2017-12-19 10:49] Train Step 28201/3751848, Batch Size = 60, Examples/Sec = 136.52, Loss = 5.14
+DEBUG:root:validation_accuracy 0.0
+DEBUG:root:accuracy            0.0
+DEBUG:root:[2017-12-19 10:55] Train Step 28301/3751848, Batch Size = 60, Examples/Sec = 154.63, Loss = 4.25
+DEBUG:root:validation_accuracy 0.0
+DEBUG:root:accuracy            0.0
+DEBUG:root:[2017-12-19 11:00] Train Step 28401/3751848, Batch Size = 60, Examples/Sec = 146.95, Loss = 22.79
+DEBUG:root:validation_accuracy 0.0
+DEBUG:root:accuracy            0.0
+DEBUG:root:[2017-12-19 11:05] Train Step 28501/3751848, Batch Size = 60, Examples/Sec = 151.66, Loss = 0.00
+DEBUG:root:validation_accuracy 0.0
+DEBUG:root:accuracy            0.0
+DEBUG:root:[2017-12-19 11:10] Train Step 28601/3751848, Batch Size = 60, Examples/Sec = 147.03, Loss = 9.96
+DEBUG:root:validation_accuracy 0.0
+DEBUG:root:accuracy            0.0
+DEBUG:root:[2017-12-19 11:16] Train Step 28701/3751848, Batch Size = 60, Examples/Sec = 152.67, Loss = 0.00
+DEBUG:root:validation_accuracy 0.0
+DEBUG:root:accuracy            0.0
+DEBUG:root:[2017-12-19 11:21] Train Step 28801/3751848, Batch Size = 60, Examples/Sec = 248.69, Loss = 0.00
+DEBUG:root:validation_accuracy 0.0
+DEBUG:root:accuracy            0.0
+DEBUG:root:[2017-12-19 11:26] Train Step 28901/3751848, Batch Size = 60, Examples/Sec = 161.53, Loss = 0.04
+DEBUG:root:validation_accuracy 0.0
+DEBUG:root:accuracy            0.0
+DEBUG:root:[2017-12-19 11:32] Train Step 29001/3751848, Batch Size = 60, Examples/Sec = 266.67, Loss = 10.31
+DEBUG:root:validation_accuracy 0.0
+DEBUG:root:accuracy            0.0
+DEBUG:root:[2017-12-19 11:37] Train Step 29101/3751848, Batch Size = 60, Examples/Sec = 143.39, Loss = 0.00
+DEBUG:root:validation_accuracy 0.0
+DEBUG:root:accuracy            0.0
+DEBUG:root:[2017-12-19 11:43] Train Step 29201/3751848, Batch Size = 60, Examples/Sec = 133.58, Loss = 3.80
+DEBUG:root:validation_accuracy 0.0
+DEBUG:root:accuracy            0.0
+DEBUG:root:[2017-12-19 11:48] Train Step 29301/3751848, Batch Size = 60, Examples/Sec = 264.96, Loss = 0.00
+DEBUG:root:validation_accuracy 0.0
+DEBUG:root:accuracy            0.0
+DEBUG:root:[2017-12-19 11:54] Train Step 29401/3751848, Batch Size = 60, Examples/Sec = 122.07, Loss = 7.86
+DEBUG:root:validation_accuracy 0.0
+DEBUG:root:accuracy            0.0
+DEBUG:root:[2017-12-19 11:59] Train Step 29501/3751848, Batch Size = 60, Examples/Sec = 232.18, Loss = 0.00
+DEBUG:root:validation_accuracy 0.0
+DEBUG:root:accuracy            0.0
+DEBUG:root:[2017-12-19 12:05] Train Step 29601/3751848, Batch Size = 60, Examples/Sec = 293.16, Loss = 0.00
+DEBUG:root:validation_accuracy 0.0
+DEBUG:root:accuracy            0.0
+DEBUG:root:[2017-12-19 12:10] Train Step 29701/3751848, Batch Size = 60, Examples/Sec = 134.46, Loss = 0.00
+DEBUG:root:validation_accuracy 0.0
+DEBUG:root:accuracy            0.0
+DEBUG:root:[2017-12-19 12:16] Train Step 29801/3751848, Batch Size = 60, Examples/Sec = 133.85, Loss = 1.39
+DEBUG:root:validation_accuracy 0.0
+DEBUG:root:accuracy            0.0
+DEBUG:root:[2017-12-19 12:22] Train Step 29901/3751848, Batch Size = 60, Examples/Sec = 242.07, Loss = 20.02
+DEBUG:root:validation_accuracy 0.0
+DEBUG:root:accuracy            0.0
+DEBUG:root:[2017-12-19 12:27] Train Step 30001/3751848, Batch Size = 60, Examples/Sec = 267.51, Loss = 16.18
+DEBUG:root:validation_accuracy 0.0
+DEBUG:root:accuracy            0.0
+DEBUG:root:[2017-12-19 12:33] Train Step 30101/3751848, Batch Size = 60, Examples/Sec = 147.79, Loss = 0.00
+DEBUG:root:validation_accuracy 0.0
+DEBUG:root:accuracy            0.0
+DEBUG:root:[2017-12-19 12:39] Train Step 30201/3751848, Batch Size = 60, Examples/Sec = 133.27, Loss = 10.04
+DEBUG:root:validation_accuracy 0.0
+DEBUG:root:accuracy            0.0
+DEBUG:root:[2017-12-19 12:45] Train Step 30301/3751848, Batch Size = 60, Examples/Sec = 265.42, Loss = 20.33
+DEBUG:root:validation_accuracy 0.0
+DEBUG:root:accuracy            0.0
+DEBUG:root:[2017-12-19 12:51] Train Step 30401/3751848, Batch Size = 60, Examples/Sec = 144.51, Loss = 0.00
+DEBUG:root:validation_accuracy 0.0
+DEBUG:root:accuracy            0.0
+DEBUG:root:[2017-12-19 12:57] Train Step 30501/3751848, Batch Size = 60, Examples/Sec = 160.40, Loss = 15.10
+DEBUG:root:validation_accuracy 0.0
+DEBUG:root:accuracy            0.0
+DEBUG:root:[2017-12-19 13:02] Train Step 30601/3751848, Batch Size = 60, Examples/Sec = 273.99, Loss = 11.31
+DEBUG:root:validation_accuracy 0.0
+DEBUG:root:accuracy            0.0
+DEBUG:root:[2017-12-19 13:08] Train Step 30701/3751848, Batch Size = 60, Examples/Sec = 266.39, Loss = 0.00
+DEBUG:root:validation_accuracy 0.0
+DEBUG:root:accuracy            0.0
+DEBUG:root:[2017-12-19 13:14] Train Step 30801/3751848, Batch Size = 60, Examples/Sec = 219.87, Loss = 0.00
+DEBUG:root:validation_accuracy 0.0
+DEBUG:root:accuracy            0.0
+DEBUG:root:[2017-12-19 13:20] Train Step 30901/3751848, Batch Size = 60, Examples/Sec = 154.96, Loss = 7.48
+DEBUG:root:validation_accuracy 0.0
+DEBUG:root:accuracy            0.0
+DEBUG:root:[2017-12-19 13:26] Train Step 31001/3751848, Batch Size = 60, Examples/Sec = 128.30, Loss = 0.48
+DEBUG:root:validation_accuracy 0.0
+DEBUG:root:accuracy            0.0
+DEBUG:root:[2017-12-19 13:32] Train Step 31101/3751848, Batch Size = 60, Examples/Sec = 246.59, Loss = 0.00
+DEBUG:root:validation_accuracy 0.0
+DEBUG:root:accuracy            0.0
+DEBUG:root:[2017-12-19 13:38] Train Step 31201/3751848, Batch Size = 60, Examples/Sec = 150.45, Loss = 0.01
+DEBUG:root:validation_accuracy 0.0
+DEBUG:root:accuracy            0.0
+DEBUG:root:[2017-12-19 13:44] Train Step 31301/3751848, Batch Size = 60, Examples/Sec = 138.10, Loss = 16.99
+DEBUG:root:validation_accuracy 0.0
