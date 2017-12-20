@@ -404,7 +404,7 @@ if __name__ == '__main__':
 
     # Training params
     parser.add_argument('--batch_size', type=int, default=BATCH_SIZE, help='Batch size to run trainer.')
-    parser.add_argument('--learning_rate', type=float, default=2e-4, help='Learning rate')
+    parser.add_argument('--learning_rate', type=float, default=1e-4, help='Learning rate')
     parser.add_argument('--learning_rate_decay', type=float, default=0.96, help='Learning rate decay fraction')
     parser.add_argument('--max_steps', type=int, default=MAX_STEPS, help='Number of steps to run trainer.')
 
