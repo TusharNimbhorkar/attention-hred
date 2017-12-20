@@ -20,7 +20,7 @@ from model import HERED
 from get_batch import get_batch
 import random
 import logging
-logging.basicConfig(filename='output_basto_6.log',level=logging.DEBUG)
+logging.basicConfig(filename='output_basto_7.log',level=logging.DEBUG)
 
 from tensorflow.contrib.tensorboard.plugins import projector
 
@@ -178,7 +178,7 @@ class Train(object):
                                                              batch_size=self.config.batch_size,
                                                              max_len=self.config.max_length, eoq=self.HERED.eoq_symbol)
 
-            self.config.max_steps = 40000
+            self.config.max_steps = 90000
             for iteration in range(global_step, self.config.max_steps):
 
                 #todo:
@@ -410,9 +410,9 @@ if __name__ == '__main__':
 
     # Misc params
     parser.add_argument('--print_every', type=int, default=100, help='How often to print training progress')
-    parser.add_argument('--summary_path', type=str, default='./summaries/basto_6/',help='Output path for summaries.')
+    parser.add_argument('--summary_path', type=str, default='./summaries/basto_7/',help='Output path for summaries.')
     parser.add_argument('--checkpoint_every', type=int, default=1000,help='How often to save checkpoints.')
-    parser.add_argument('--checkpoint_path', type=str, default='./checkpoints/basto_6/model.ckpt',help='Output path for checkpoints.')
+    parser.add_argument('--checkpoint_path', type=str, default='./checkpoints/basto_7/model.ckpt',help='Output path for checkpoints.')
     parser.add_argument('--attention', type=bool, default=False,help='With or without attention.')
     FLAGS, unparsed = parser.parse_known_args()
 
