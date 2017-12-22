@@ -1,0 +1,351 @@
+INFO:tensorflow:Restoring parameters from ./checkpoints/basto_attention_8/model.ckpt-20000
+DEBUG:root:2
+DEBUG:root:validation accuracy 0.0
+DEBUG:root:validation words guessed 0.0
+DEBUG:root:--------------------------------------------------
+DEBUG:root:['pepper </q> ']
+DEBUG:root:['yahoo fans ']
+DEBUG:root:--------------------------------------------------
+DEBUG:root:3
+DEBUG:root:validation accuracy 0.666666666667
+DEBUG:root:validation words guessed 0.666666666667
+DEBUG:root:--------------------------------------------------
+DEBUG:root:['citrus gov </q> ']
+DEBUG:root:['citrus com </q> ']
+DEBUG:root:--------------------------------------------------
+DEBUG:root:12
+DEBUG:root:validation accuracy 0.0
+DEBUG:root:validation words guessed 0.0
+DEBUG:root:--------------------------------------------------
+DEBUG:root:['roller drummond citrus </q> ', 'roller drummond citrus </q> ', 'roller drummond citrus </q> ']
+DEBUG:root:['apache yuan dietstudy shareware ', 'apache yuan dietstudy shareware ', 'apache yuan dietstudy shareware ']
+DEBUG:root:--------------------------------------------------
+DEBUG:root:4
+DEBUG:root:validation accuracy 0.0
+DEBUG:root:validation words guessed 0.0
+DEBUG:root:--------------------------------------------------
+DEBUG:root:['roller drummond citrus </q> ']
+DEBUG:root:['apache yuan dietstudy shareware ']
+DEBUG:root:--------------------------------------------------
+DEBUG:root:3
+DEBUG:root:validation accuracy 0.666666666667
+DEBUG:root:validation words guessed 0.666666666667
+DEBUG:root:--------------------------------------------------
+DEBUG:root:['citrus gov </q> ']
+DEBUG:root:['citrus com </q> ']
+DEBUG:root:--------------------------------------------------
+DEBUG:root:6
+DEBUG:root:validation accuracy 0.333333333333
+DEBUG:root:validation words guessed 0.333333333333
+DEBUG:root:--------------------------------------------------
+DEBUG:root:['va gov </q> ', 'va gov </q> ']
+DEBUG:root:['idaho </q> </q> ', 'idaho </q> </q> ']
+DEBUG:root:--------------------------------------------------
+DEBUG:root:3
+DEBUG:root:validation accuracy 0.333333333333
+DEBUG:root:validation words guessed 0.333333333333
+DEBUG:root:--------------------------------------------------
+DEBUG:root:['boot stretcher </q> ']
+DEBUG:root:['finn registered </q> ']
+DEBUG:root:--------------------------------------------------
+DEBUG:root:4
+DEBUG:root:validation accuracy 0.25
+DEBUG:root:validation words guessed 0.25
+DEBUG:root:--------------------------------------------------
+DEBUG:root:['florida truss builders </q> ']
+DEBUG:root:['yumi </q> </q> </q> ']
+DEBUG:root:--------------------------------------------------
+DEBUG:root:5
+DEBUG:root:validation accuracy 0.2
+DEBUG:root:validation words guessed 0.2
+DEBUG:root:--------------------------------------------------
+DEBUG:root:['okeechobee county property appraiser </q> ']
+DEBUG:root:['citrus com </q> </q> </q> ']
+DEBUG:root:--------------------------------------------------
+DEBUG:root:4
+DEBUG:root:validation accuracy 0.25
+DEBUG:root:validation words guessed 0.75
+DEBUG:root:--------------------------------------------------
+DEBUG:root:['www citrus com </q> ']
+DEBUG:root:['citrus com </q> </q> ']
+DEBUG:root:--------------------------------------------------
+DEBUG:root:15
+DEBUG:root:validation accuracy 0.0
+DEBUG:root:validation words guessed 0.333333333333
+DEBUG:root:--------------------------------------------------
+DEBUG:root:['marine speakers </q> ', 'marine speakers </q> ', 'marine citrus </q> ', 'marine speakers </q> ', 'marine speakers </q> ']
+DEBUG:root:['milfseekers </q> com ', 'milfseekers </q> com ', 'milfseekers </q> com ', 'milfseekers </q> com ', 'milfseekers </q> com ']
+DEBUG:root:--------------------------------------------------
+DEBUG:root:3
+DEBUG:root:validation accuracy 0.333333333333
+DEBUG:root:validation words guessed 0.333333333333
+DEBUG:root:--------------------------------------------------
+DEBUG:root:['torrey jenkins </q> ']
+DEBUG:root:['poplar laprensagrafica </q> ']
+DEBUG:root:--------------------------------------------------
+DEBUG:root:3
+DEBUG:root:validation accuracy 0.0
+DEBUG:root:validation words guessed 0.0
+DEBUG:root:--------------------------------------------------
+DEBUG:root:['star rods </q> ']
+DEBUG:root:['sctax turret aolchat ']
+DEBUG:root:--------------------------------------------------
+DEBUG:root:16
+DEBUG:root:validation accuracy 0.125
+DEBUG:root:validation words guessed 0.125
+DEBUG:root:--------------------------------------------------
+DEBUG:root:['tucker real estate and florida </q> ', 'tucker group real estate and florida </q> ', 'bobby tucker </q> ']
+DEBUG:root:['paolo horticultural amoxicillin citrus </q> </q> ', 'paolo horticultural amoxicillin citrus </q> </q> </q> ', 'paolo horticultural amoxicillin ']
+DEBUG:root:--------------------------------------------------
+DEBUG:root:4
+DEBUG:root:validation accuracy 1.0
+DEBUG:root:validation words guessed 1.0
+DEBUG:root:--------------------------------------------------
+DEBUG:root:['www citrus com </q> ']
+DEBUG:root:['www citrus com </q> ']
+DEBUG:root:--------------------------------------------------
+DEBUG:root:8
+DEBUG:root:validation accuracy 0.75
+DEBUG:root:validation words guessed 0.75
+DEBUG:root:--------------------------------------------------
+DEBUG:root:['www abcdistributing com </q> ', 'www abcdistributing com </q> ']
+DEBUG:root:['www citrus com </q> ', 'www citrus com </q> ']
+DEBUG:root:--------------------------------------------------
+DEBUG:root:4
+DEBUG:root:validation accuracy 1.0
+DEBUG:root:validation words guessed 1.0
+DEBUG:root:--------------------------------------------------
+DEBUG:root:['www citrus com </q> ']
+DEBUG:root:['www citrus com </q> ']
+DEBUG:root:--------------------------------------------------
+DEBUG:root:2
+DEBUG:root:validation accuracy 0.5
+DEBUG:root:validation words guessed 0.5
+DEBUG:root:--------------------------------------------------
+DEBUG:root:['wwe </q> ']
+DEBUG:root:['www </q> ']
+DEBUG:root:--------------------------------------------------
+DEBUG:root:177
+DEBUG:root:validation accuracy 0.248587570621
+DEBUG:root:validation words guessed 0.248587570621
+DEBUG:root:--------------------------------------------------
+DEBUG:root:['southeast asia </q> ', 'southeast asia </q> ', 'southeast asia </q> ', 'southeast asia </q> ', 'southeast asia </q> ', 'southeast asia </q> ', 'southeast asia </q> ', 'southeast asia </q> ', 'southeast asia </q> ', 'southeast asia </q> ', 'southeast asia map </q> ', 'southeast asia map </q> ', 'southeast asia map </q> ', 'southeast asia map </q> ', 'southeast asia map </q> ', 'southeast asia map </q> ', 'southeast asia map </q> ', 'southeast asia map </q> ', 'southeast asia map </q> ', 'southeast asia map </q> ', 'southeast asia map </q> ', 'southeast asia map </q> ', 'southeast asia map </q> ', 'southeast asia map </q> ', 'southeast asia map </q> ', 'southeast asia map </q> ', 'southeast asia map </q> ', 'southeast asia map </q> ', 'mad dog </q> ', 'mad dog </q> ', 'mad dog </q> ', 'mad dog </q> ', 'mad dog </q> ', 'southeast asia map </q> ', 'southeast asia map </q> ', 'southeast asia map </q> ', 'southeast asia map </q> ', 'southeast asia map </q> ', 'southeast asia map </q> ', 'southeast asia map tolerance org </q> ', 'southeast asia map tolerance org </q> ', 'southeast asia map tolerance org </q> ', 'vietnam map </q> ', 'vietnam map </q> ', 'vietnam map </q> ', 'vietnam map </q> ', 'vietnam map </q> ', 'vietnam map </q> ']
+DEBUG:root:['bodybyjake com </q> ', 'bodybyjake com </q> ', 'bodybyjake com </q> ', 'bodybyjake com </q> ', 'bodybyjake com </q> ', 'bodybyjake com </q> ', 'bodybyjake com </q> ', 'bodybyjake com </q> ', 'bodybyjake com </q> ', 'bodybyjake com </q> ', 'bodybyjake com </q> </q> ', 'bodybyjake com </q> </q> ', 'bodybyjake com </q> </q> ', 'bodybyjake com </q> </q> ', 'bodybyjake com </q> </q> ', 'bodybyjake com </q> </q> ', 'bodybyjake com </q> </q> ', 'bodybyjake com </q> </q> ', 'bodybyjake com </q> </q> ', 'bodybyjake com </q> </q> ', 'bodybyjake com </q> </q> ', 'bodybyjake com </q> </q> ', 'bodybyjake com </q> </q> ', 'bodybyjake com </q> </q> ', 'bodybyjake com </q> </q> ', 'bodybyjake com </q> </q> ', 'bodybyjake com </q> </q> ', 'bodybyjake com </q> </q> ', 'bodybyjake com </q> ', 'dermatologist starkey citrus ', 'dermatologist starkey citrus ', 'dermatologist starkey citrus ', 'dermatologist starkey citrus ', 'dermatologist starkey citrus </q> ', 'bodybyjake com </q> </q> ', 'bodybyjake com </q> </q> ', 'bodybyjake com </q> </q> ', 'bodybyjake com </q> </q> ', 'bodybyjake com </q> </q> ', 'bodybyjake com </q> </q> </q> </q> ', 'bodybyjake com </q> </q> </q> </q> ', 'bodybyjake com </q> </q> </q> </q> ', 'bodybyjake com </q> ', 'moons com </q> ', 'moons com </q> ', 'moons com </q> ', 'moons com </q> ', 'moons com </q> ']
+DEBUG:root:--------------------------------------------------
+DEBUG:root:407
+DEBUG:root:validation accuracy 0.250614250614
+DEBUG:root:validation words guessed 0.250614250614
+DEBUG:root:--------------------------------------------------
+DEBUG:root:['taiwan </q> ', 'taiwan zebra underwear </q> ', 'taiwan underwear </q> ', 'taiwan underwear </q> ', 'taiwan men underwear </q> ', 'taiwan men underwear </q> ', 'men underwear </q> ', 'men underwear </q> ', 'men underwear </q> ', 'men underwear </q> ', 'men underwear </q> ', 'men underwear </q> ', 'men underwear </q> ', 'men underwear </q> ', 'men underwear </q> ', 'men underwear </q> ', 'men underwear </q> ', 'men underwear </q> ', 'men underwear </q> ', 'men underwear </q> ', 'men underwear </q> ', 'men nylon underwear </q> ', 'men nylon underwear </q> ', 'men nylon underwear </q> ', 'men nylon underwear </q> ', 'men nylon underwear </q> ', 'men nylon underwear </q> ', 'men nylon underwear </q> ', 'men nylon briefs </q> ', 'men nylon briefs </q> ', 'men nylon briefs </q> ', 'men nylon briefs </q> ', 'men nylon briefs </q> ', 'men nylon briefs </q> ', 'men thighs briefs </q> ', 'men thighs briefs </q> ', 'men thighs </q> ', 'men thighs </q> ', 'men thighs </q> ', 'men thighs </q> ', 'men thighs </q> ', 'men thighs </q> ', 'men thighs </q> ', 'men thighs </q> ', 'men swim thighs </q> ', 'fruit of the loom </q> ', 'fruit of the loom zebra </q> ', 'fruit of the loom zebra </q> ', 'fruit of the loom nylon </q> ', 'fruit of the loom nylon </q> ', 'fruit of the loom nylon </q> ', 'hanes nylon </q> ', 'hanes nylon </q> ', 'zebra stripes underwear men </q> ', 'zebra stripes underwear </q> ', 'zebra stripes briefs </q> ', 'zebra stripes briefs </q> ', 'zebra striped briefs </q> ', 'zebra men briefs </q> ', 'zebra men briefs </q> ', 'zebra men briefs </q> ', 'stripper men briefs </q> ', 'strippers men briefs </q> ', 'strippers men </q> ', 'strippers men </q> ', 'strippers men </q> ', 'strippers men </q> ', 'strippers men </q> ', 'strippers men underwear </q> ', 'strippers men </q> ', 'strippers men </q> ', 'strippers men </q> ', 'men in briefs </q> ', 'men in briefs </q> ', 'men in briefs </q> ', 'men in briefs </q> ', 'men in briefs </q> ', 'men in briefs </q> ', 'men in briefs </q> ', 'men in briefs </q> ', 'men in briefs </q> ', 'men in briefs </q> ', 'men in briefs </q> ', 'men in briefs </q> ', 'men in briefs </q> ', 'men in briefs </q> ', 'men in briefs </q> ', 'men in briefs </q> ', 'men in briefs </q> ', 'men in briefs </q> ', 'men in briefs </q> ', 'men in briefs </q> ', 'men in briefs </q> ', 'men in speedos </q> ', 'men in speedos </q> ', 'men in speedos </q> ', 'men in speedos </q> ', 'men in speedos </q> ', 'men in speedos </q> ', 'men in speedos </q> ', 'men in speedos </q> ', 'men in speedos </q> ', 'men in speedos </q> ', 'men in speedos </q> ', 'men in speedos </q> ', 'men in speedos </q> ', 'men in speedos </q> ', 'men in speedos </q> ']
+DEBUG:root:['com cupp ', 'com cupp nigga </q> ', 'com cupp nigga ', 'com cupp nigga ', 'com cupp nigga </q> ', 'com cupp nigga </q> ', 'com cupp nigga ', 'banning cabi </q> ', 'banning cabi </q> ', 'banning cabi </q> ', 'banning cabi </q> ', 'banning cabi </q> ', 'banning cabi </q> ', 'banning cabi </q> ', 'banning cabi </q> ', 'banning cabi </q> ', 'banning cabi </q> ', 'banning cabi </q> ', 'banning cabi </q> ', 'banning cabi </q> ', 'banning cabi </q> ', 'banning cabi </q> </q> ', 'banning cabi </q> </q> ', 'banning cabi </q> </q> ', 'banning cabi </q> </q> ', 'banning cabi </q> </q> ', 'banning cabi </q> </q> ', 'banning cabi </q> </q> ', 'banning cabi </q> </q> ', 'banning cabi </q> </q> ', 'banning cabi </q> </q> ', 'banning cabi </q> </q> ', 'banning cabi </q> </q> ', 'banning cabi </q> </q> ', 'banning cabi </q> </q> ', 'banning cabi </q> </q> ', 'banning cabi </q> ', 'banning cabi </q> ', 'banning cabi </q> ', 'banning cabi </q> ', 'banning cabi </q> ', 'banning cabi </q> ', 'banning cabi </q> ', 'banning cabi </q> ', 'banning cabi </q> </q> ', 'banning cabi </q> </q> </q> ', 'paschal 1998 </q> </q> </q> </q> ', 'paschal 1998 </q> </q> </q> </q> ', 'paschal 1998 </q> </q> </q> </q> ', 'paschal 1998 </q> </q> </q> </q> ', 'paschal 1998 </q> </q> </q> </q> ', 'paschal 1998 </q> ', 'citrus sc wiley ', 'citrus sc wiley compensation niacin ', 'pendelton com </q> </q> ', 'pendelton com </q> </q> ', 'pendelton com </q> </q> ', 'pendelton com </q> </q> ', 'pendelton com </q> </q> ', 'pendelton com </q> </q> ', 'pendelton com </q> </q> ', 'pendelton com </q> </q> ', 'lon lockets </q> </q> ', 'sunnybrook want </q> ', 'sunnybrook want </q> ', 'sunnybrook want </q> ', 'sunnybrook want </q> ', 'sunnybrook want </q> ', 'sunnybrook want </q> </q> ', 'sunnybrook want </q> ', 'sunnybrook want </q> ', 'sunnybrook want </q> ', 'sunnybrook want </q> </q> ', 'banning cabi </q> </q> ', 'banning cabi </q> </q> ', 'banning cabi </q> </q> ', 'banning cabi </q> </q> ', 'banning cabi </q> </q> ', 'banning cabi </q> </q> ', 'banning cabi </q> </q> ', 'banning cabi </q> </q> ', 'banning cabi </q> </q> ', 'banning cabi </q> </q> ', 'banning cabi </q> </q> ', 'banning cabi </q> </q> ', 'banning cabi </q> </q> ', 'banning cabi </q> </q> ', 'banning cabi </q> </q> ', 'banning cabi </q> </q> ', 'banning cabi </q> </q> ', 'banning cabi </q> </q> ', 'banning cabi </q> </q> ', 'banning cabi </q> </q> ', 'banning cabi </q> </q> ', 'banning cabi </q> </q> ', 'banning cabi </q> </q> ', 'banning cabi </q> </q> ', 'banning cabi </q> </q> ', 'banning cabi </q> </q> ', 'banning cabi </q> </q> ', 'banning cabi </q> </q> ', 'banning cabi </q> </q> ', 'banning cabi </q> </q> ', 'banning cabi </q> </q> ', 'banning cabi </q> </q> ', 'banning cabi </q> </q> ', 'banning cabi </q> </q> ', 'banning cabi </q> </q> ']
+DEBUG:root:--------------------------------------------------
+DEBUG:root:57
+DEBUG:root:validation accuracy 0.0526315789474
+DEBUG:root:validation words guessed 0.280701754386
+DEBUG:root:--------------------------------------------------
+DEBUG:root:['tan </q> ', 'tan speedo </q> ', 'tan speedo </q> ', 'tan speedo </q> ', 'tan speedos </q> ', 'tan man swimsuit </q> ', 'tan man swimsuit </q> ', 'tan man swimsuit </q> ', 'tan man swimsuit </q> ', 'tan man swimsuit </q> ', 'tan man swimsuit </q> ', 'tan man swimsuit </q> ', 'tan man brief </q> ', 'tanning man </q> ', 'tanning man speedo </q> ', 'tan man speedo </q> ']
+DEBUG:root:['323 </q> ', '323 </q> com ', '323 </q> com ', '323 </q> com ', '323 </q> com ', '323 </q> com bb68827 ', '323 </q> com bb68827 ', '323 </q> com bb68827 ', '323 </q> com bb68827 ', '323 </q> com bb68827 ', '323 </q> com bb68827 ', '323 </q> com bb68827 ', '323 </q> com bb68827 ', '323 </q> com ', 'paolo owned </q> </q> ', 'paolo owned </q> </q> ']
+DEBUG:root:--------------------------------------------------
+DEBUG:root:78
+DEBUG:root:validation accuracy 0.333333333333
+DEBUG:root:validation words guessed 0.333333333333
+DEBUG:root:--------------------------------------------------
+DEBUG:root:['warsaw shock </q> ', 'warsaw boy </q> ', 'warsaw boy </q> ', 'warsaw boy </q> ', 'warsaw boy </q> ', 'warsaw boy </q> ', 'warsaw boy </q> ', 'warsaw boy </q> ', 'warsaw boy </q> ', 'warsaw boy </q> ', 'warsaw boy </q> ', 'warsaw boy </q> ', 'warsaw boy </q> ', 'warsaw boy </q> ', 'warsaw boy </q> ', 'warsaw boy </q> ', 'warsaw ghetto </q> ', 'warsaw ghetto </q> ', 'warsaw ghetto </q> ', 'warsaw ghetto </q> ', 'warsaw ghetto </q> ', 'warsaw ghetto </q> ', 'warsaw ghetto </q> ', 'warsaw ghetto </q> ', 'warsaw ghetto </q> ', 'warsaw ghetto </q> ']
+DEBUG:root:['citrus </q> </q> ', 'citrus </q> </q> ', 'citrus </q> </q> ', 'citrus </q> </q> ', 'citrus </q> </q> ', 'citrus </q> </q> ', 'citrus </q> </q> ', 'citrus </q> </q> ', 'citrus </q> </q> ', 'citrus </q> </q> ', 'citrus </q> </q> ', 'citrus </q> </q> ', 'citrus </q> </q> ', 'citrus </q> </q> ', 'citrus </q> </q> ', 'citrus </q> </q> ', 'citrus </q> </q> ', 'citrus </q> </q> ', 'citrus </q> </q> ', 'citrus </q> </q> ', 'citrus </q> </q> ', 'citrus </q> </q> ', 'citrus </q> </q> ', 'citrus </q> </q> ', 'citrus </q> </q> ', 'citrus </q> </q> ']
+DEBUG:root:--------------------------------------------------
+DEBUG:root:565
+DEBUG:root:validation accuracy 0.263716814159
+DEBUG:root:validation words guessed 0.281415929204
+DEBUG:root:--------------------------------------------------
+DEBUG:root:['warsaw ghetto </q> ', 'tan </q> ', 'tan </q> ', 'tan man </q> ', 'tan man </q> ', 'tan man </q> ', 'tan man </q> ', 'tan man </q> ', 'tan man </q> ', 'tan man speedo </q> ', 'tanning in speedo </q> ', 'tanning in speedo </q> ', 'tanning in speedo </q> ', 'tanning in speedo </q> ', 'tanning in speedo </q> ', 'tanning guy in speedo </q> ', 'citrus guy in speedo </q> ', 'tan guy in speedo </q> ', 'guy in speedo </q> ', 'guy in speedo </q> ', 'in speedo </q> ', 'men stripper </q> ', 'men stripper </q> ', 'men stripper </q> ', 'men stripper </q> ', 'men stripper </q> ', 'men stripper </q> ', 'men stripper </q> ', 'men stripper </q> ', 'tan </q> ', 'tan </q> ', 'tanning oil man </q> ', 'tanning oil </q> ', 'tanning oil body </q> ', 'tanning oil body </q> ', 'tanning oil body </q> ', 'tanning oil body man </q> ', 'dog citrus </q> ', 'dog mouth </q> ', 'dog mouth </q> ', 'dog mouth </q> ', 'dog mouth </q> ', 'dog tongue </q> ', 'dog tongue </q> ', 'dog tongue </q> ', 'dog tongue </q> ', 'dog tongue </q> ', 'dog sout </q> ', 'dog citrus </q> ', 'dog citrus </q> ', 'dog citrus </q> ', 'dog citrus </q> ', 'dog citrus attack </q> ', 'dog attack </q> ', 'dog attack </q> ', 'dog attack </q> ', 'dog attack </q> ', 'dog attack </q> ', 'dog blood attack </q> ', 'dog blood attack </q> ', 'dog blood attack </q> ', 'dog bloody </q> ', 'dog bloody </q> ', 'dog vicious </q> ', 'dog vicious </q> ', 'dog vicious </q> ', 'dog vicious </q> ', 'dog vicious mad </q> ', 'dog mad </q> ', 'dog mad </q> ', 'dog mad </q> ', 'dog mad </q> ', 'dog mad </q> ', 'dog mad </q> ', 'dog mad </q> ', 'dog mad </q> ', 'dog mad bite </q> ', 'dog mad bite </q> ', 'dog mad bite </q> ', 'dog mad bite </q> ', 'dog teeth bite </q> ', 'dog teeth bite </q> ', 'dog teeth bite </q> ', 'dog teeth bite </q> ', 'dog teeth bite </q> ', 'dog teeth citrus </q> ', 'dog teeth citrus </q> ', 'dog teeth munch </q> ', 'dog teeth crunch </q> ', 'dog teeth attack </q> ', 'dog teeth attack </q> ', 'dog teeth bone </q> ', 'dog teeth bone </q> ', 'dog teeth bone </q> ', 'dog teeth bone </q> ', 'dog teeth bone </q> ', 'dog teeth bone </q> ', 'dog teeth bone </q> ', 'monkey small </q> ', 'monkey small </q> ', 'monkey small </q> ', 'monkey small </q> ', 'monkey small citrus </q> ', 'monkey citrus </q> ', 'monkey zoo </q> ', 'monkey zoo </q> ', 'monkey long tail </q> ', 'monkey long tail </q> ', 'monkey long tail </q> ', 'monkey small adorable </q> ', 'monkey small adorable </q> ', 'monkey wearing clothes </q> ', 'monkey wearing clothes </q> ', 'monkey in clothes </q> ', 'monkey cute clothes </q> ', 'man </q> ', 'man </q> ', 'man sexy citrus </q> ', 'man sexy brie </q> ', 'man sexy brief </q> ', 'man swim brief </q> ', 'man swimsuit brief </q> ', 'man swimsuit brief </q> ', 'man swimsuit </q> ', 'man swimsuit </q> ', 'man swimsuit </q> ', 'man swimsuit </q> ', 'man swimsuit </q> ', 'man swimsuit </q> ', 'man swimsuit </q> ', 'man swimsuit </q> ', 'man swimsuit </q> ', 'man swimsuit </q> ', 'man swimsuit </q> ', 'man swimsuit </q> ', 'man swimsuit </q> ', 'man swimsuit </q> ', 'man swimsuit </q> ', 'man swimsuit </q> ', 'man swimsuit </q> ', 'man swimsuit </q> ', 'man swimsuit </q> ', 'man swimsuit </q> ', 'man nylon brief </q> ', 'man nylon brief </q> ', 'men nylon briefs citrus </q> ', 'men nylon briefs citrus </q> ', 'men nylon briefs taylor </q> ', 'nylon briefs taylor </q> ', 'nylon briefs men </q> ', 'nylon briefs men </q> ', 'nylon briefs men </q> ', 'nylon briefs men </q> ', 'nylon briefs men </q> ', 'nylon briefs men </q> ', 'nylon briefs men </q> ', 'nylon briefs men </q> ', 'nylon briefs men </q> ', 'nylon briefs men </q> ', 'nylon briefs men </q> ', 'nylon briefs men </q> ', 'nylon briefs men </q> ']
+DEBUG:root:['citrus </q> </q> ', 'citrus </q> ', '323 </q> ', '323 </q> com ', '323 </q> com ', '323 </q> com ', '323 </q> com ', '323 </q> com ', '323 </q> com ', '323 </q> com bb68827 ', '323 </q> com bb68827 ', 'paolo owned </q> </q> ', 'paolo owned </q> </q> ', 'paolo owned </q> </q> ', 'paolo owned </q> </q> ', 'paolo owned </q> </q> </q> ', 'paolo owned </q> </q> </q> ', 'citrus com </q> </q> </q> ', '323 </q> com bb68827 ', 'hillsdale lineup whedon </q> ', 'hillsdale lineup whedon ', 'klien haseltine </q> ', 'banning cabi </q> ', 'banning cabi </q> ', 'banning cabi </q> ', 'banning cabi </q> ', 'banning cabi </q> ', 'banning cabi </q> ', 'banning cabi </q> ', 'banning cabi ', '323 </q> ', '323 </q> com bb68827 ', 'paolo owned </q> ', 'paolo owned </q> </q> ', 'paolo owned </q> </q> ', 'paolo owned </q> </q> ', 'paolo owned </q> </q> </q> ', 'paolo owned </q> ', 'cribs lasvegasescorts </q> ', 'cribs lasvegasescorts </q> ', 'cribs lasvegasescorts </q> ', 'cribs lasvegasescorts </q> ', 'cribs lasvegasescorts </q> ', 'cribs lasvegasescorts </q> ', 'cribs lasvegasescorts </q> ', 'cribs lasvegasescorts </q> ', 'cribs lasvegasescorts </q> ', 'cribs lasvegasescorts </q> ', 'cribs lasvegasescorts </q> ', 'cribs lasvegasescorts </q> ', 'cribs lasvegasescorts </q> ', 'cribs lasvegasescorts </q> ', 'cribs lasvegasescorts </q> </q> ', 'cribs lasvegasescorts </q> ', 'cribs lasvegasescorts </q> ', 'cribs lasvegasescorts </q> ', 'cribs lasvegasescorts </q> ', 'cribs lasvegasescorts </q> ', 'cribs lasvegasescorts </q> </q> ', 'cribs lasvegasescorts </q> </q> ', 'cribs lasvegasescorts </q> </q> ', 'cribs lasvegasescorts </q> ', 'cribs lasvegasescorts </q> ', 'cribs lasvegasescorts </q> ', 'cribs lasvegasescorts </q> ', 'cribs lasvegasescorts </q> ', 'cribs lasvegasescorts </q> ', 'cribs lasvegasescorts </q> </q> ', 'cribs lasvegasescorts </q> ', 'cribs lasvegasescorts </q> ', 'cribs lasvegasescorts </q> ', 'cribs lasvegasescorts </q> ', 'cribs lasvegasescorts </q> ', 'cribs lasvegasescorts </q> ', 'cribs lasvegasescorts </q> ', 'cribs lasvegasescorts </q> ', 'cribs lasvegasescorts </q> </q> ', 'cribs lasvegasescorts </q> </q> ', 'cribs lasvegasescorts </q> </q> ', 'cribs lasvegasescorts </q> </q> ', 'cribs lasvegasescorts </q> </q> ', 'cribs lasvegasescorts </q> </q> ', 'cribs lasvegasescorts </q> </q> ', 'cribs lasvegasescorts </q> </q> ', 'cribs lasvegasescorts </q> </q> ', 'cribs lasvegasescorts </q> </q> ', 'cribs lasvegasescorts </q> </q> ', 'cribs lasvegasescorts </q> </q> ', 'cribs lasvegasescorts </q> </q> ', 'cribs lasvegasescorts </q> </q> ', 'cribs lasvegasescorts </q> </q> ', 'cribs lasvegasescorts </q> </q> ', 'cribs lasvegasescorts </q> </q> ', 'cribs lasvegasescorts </q> </q> ', 'cribs lasvegasescorts </q> </q> ', 'cribs lasvegasescorts </q> </q> ', 'cribs lasvegasescorts </q> </q> ', 'cribs lasvegasescorts </q> </q> ', 'cribs lasvegasescorts </q> ', 'vanity </q> </q> ', 'vanity </q> </q> ', 'vanity </q> </q> ', 'vanity </q> </q> </q> ', 'vanity </q> </q> ', 'vanity </q> </q> ', 'vanity </q> </q> ', 'vanity </q> </q> </q> ', 'vanity </q> </q> </q> ', 'vanity </q> </q> </q> ', 'vanity </q> </q> </q> ', 'vanity </q> </q> </q> ', 'vanity </q> </q> </q> ', 'vanity </q> </q> </q> ', 'vanity </q> </q> </q> ', 'vanity </q> </q> </q> ', 'vanity </q> ', 'myspace over ', 'myspace over </q> </q> ', 'myspace over </q> </q> ', 'myspace over </q> </q> ', 'myspace over </q> </q> ', 'myspace over </q> </q> ', 'myspace over </q> </q> ', 'myspace over </q> ', 'myspace over </q> ', 'myspace over </q> ', 'myspace over </q> ', 'myspace over </q> ', 'myspace over </q> ', 'myspace over </q> ', 'myspace over </q> ', 'myspace over </q> ', 'myspace over </q> ', 'myspace over </q> ', 'myspace over </q> ', 'myspace over </q> ', 'myspace over </q> ', 'myspace over </q> ', 'myspace over </q> ', 'myspace over </q> ', 'myspace over </q> ', 'myspace over </q> ', 'myspace over </q> ', 'myspace over </q> </q> ', 'myspace over </q> </q> ', 'myspace over </q> </q> </q> ', 'banning cabi </q> </q> </q> ', 'banning cabi </q> </q> </q> ', 'banning cabi </q> </q> ', 'florist tatoo </q> </q> ', 'florist tatoo </q> </q> ', 'florist tatoo </q> </q> ', 'florist tatoo </q> </q> ', 'florist tatoo </q> </q> ', 'florist tatoo </q> </q> ', 'florist tatoo </q> </q> ', 'florist tatoo </q> </q> ', 'florist tatoo </q> </q> ', 'florist tatoo </q> </q> ', 'florist tatoo </q> </q> ', 'florist tatoo </q> </q> ', 'florist tatoo </q> </q> ']
+DEBUG:root:--------------------------------------------------
+DEBUG:root:480
+DEBUG:root:validation accuracy 0.195833333333
+DEBUG:root:validation words guessed 0.2125
+DEBUG:root:--------------------------------------------------
+DEBUG:root:['united states map </q> ', 'united states map vietnam </q> ', 'united states map vietnamese american </q> ', 'united states map </q> ', 'united states map labeled </q> ', 'united states map labeled </q> ', 'united states map labeled </q> ', 'united states map labeled </q> ', 'united states map labeled </q> ', 'united states map labeled </q> ', 'united states map labeled </q> ', 'united states map labeled </q> ', 'united states map labeled </q> ', 'united states map labeled </q> ', 'united states map labeled </q> ', 'united states map labeled </q> ', 'united states map abbreviations </q> ', 'united states map abbreviations </q> ', 'united states map abbreviations </q> ', 'united states map abbreviations </q> ', 'united states map abbreviations </q> ', 'united states map abbreviations </q> ', 'united states map abbreviations </q> ', 'tv </q> ', 'oprah abc7 </q> ', 'oprah abc7 </q> ', 'oprah abc7 </q> ', 'logo abc7 </q> ', 'logo abc7 </q> ', 'logo abc7 </q> ', 'logo abc7 </q> ', 'logo abc7 </q> ', 'logo abc7 </q> ', 'logo abc7 </q> ', 'logo abc7 </q> ', 'logo abc7 </q> ', 'logo abc7 </q> ', 'logo abc7 </q> ', 'logo abc7 </q> ', 'logo abc7 </q> ', 'logo abc7 </q> ', 'logo abc7 </q> ', 'logo abc7 </q> ', 'logo abc7 </q> ', 'logo abc7 </q> ', 'logo abc7 </q> ', 'logo abc7 </q> ', 'logo abc7 </q> ', 'logo abc7 </q> ', 'logo abc7 </q> ', 'logo abc7 </q> ', 'logo abc7 </q> ', 'laguna beach california </q> ', 'laguna beach california </q> ', 'laguna beach california </q> ', 'laguna beach california </q> ', 'laguna beach california </q> ', 'laguna beach california </q> ', 'titanic </q> ', 'titanic </q> ', 'titanic </q> ', 'titanic </q> ', 'titanic </q> ', 'titanic </q> ', 'citrus citrus lanterns </q> ', 'citrus citrus lanterns </q> ', 'citrus citrus lanterns </q> ', 'citrus citrus lanterns </q> ', 'citrus citrus lanterns </q> ', 'citrus citrus lanterns </q> ', 'citrus citrus lanterns </q> ', 'citrus citrus lanterns </q> ', 'olive garden pasta </q> ', 'olive garden pasta </q> ', 'olive garden pasta </q> ', 'olive garden pasta </q> ', 'olive garden pasta </q> ', 'monkey cute clothes </q> ', 'capuchin monkey </q> ', 'capuchin monkey </q> ', 'capuchin monkey </q> ', 'death of salesman play </q> ', 'death of salesman play </q> ', 'death of salesman play </q> ', 'capuchin monkey </q> ', 'capuchin monkey </q> ', 'capuchin monkey </q> ', 'capuchin monkey </q> ', 'capuchin monkey </q> ', 'capuchin monkey </q> ', 'capuchin monkey </q> ', 'capuchin monkey </q> ', 'capuchin monkey </q> ', 'capuchin monkey face </q> ', 'capuchin monkey face </q> ', 'capuchin monkey face </q> ', 'capuchin monkey face </q> ', 'capuchin monkey face </q> ', 'capuchin monkey face </q> ', 'capuchin monkey clothes dog </q> ', 'capuchin monkey clothes </q> ', 'capuchin monkey clothes </q> ', 'capuchin monkey vest </q> ', 'capuchin monkey dog </q> ', 'capuchin monkey dog </q> ', 'capuchin monkey dog </q> ', 'monkey eat dog </q> ', 'dog eat monkey </q> ', 'dog eat monkey </q> ', 'capuchin monkey dog </q> ', 'dog eating monkey </q> ', 'dog eating monkey </q> ', 'dog eating monkey </q> ', 'dog eats monkey </q> ', 'dog eats monkey </q> ', 'eating capuchin monkey </q> ', 'eating capuchin monkey </q> ', 'eating capuchin monkey </q> ', 'kill capuchin monkey </q> ', 'killing capuchin monkey </q> ', 'slaughter capuchin monkey </q> ', 'feeding capuchin monkey </q> ', 'feeding capuchin monkey </q> ', 'eyes capuchin monkey </q> ', 'tail capuchin monkey </q> ', 'tail capuchin monkey </q> ', 'tail capuchin monkey </q> ']
+DEBUG:root:['midsummer double boba mccown ', 'midsummer double boba mccown </q> ', 'midsummer double boba mccown </q> </q> ', 'midsummer double boba mccown ', 'midsummer double boba mccown </q> ', 'midsummer double boba mccown </q> ', 'midsummer double boba mccown </q> ', 'midsummer double boba mccown </q> ', 'midsummer double boba mccown </q> ', 'midsummer double boba mccown </q> ', 'midsummer double boba mccown </q> ', 'midsummer double boba mccown </q> ', 'midsummer double boba mccown </q> ', 'midsummer double boba mccown </q> ', 'midsummer double boba mccown </q> ', 'midsummer double boba mccown </q> ', 'midsummer double boba mccown </q> ', 'midsummer double boba mccown </q> ', 'midsummer double boba mccown </q> ', 'midsummer double boba mccown </q> ', 'midsummer double boba mccown </q> ', 'midsummer double boba mccown </q> ', 'midsummer double boba mccown </q> ', 'midsummer double ', '88sears tracking sma ', 'kcc lyrcs </q> ', 'kcc lyrcs </q> ', 'kcc lyrcs </q> ', 'groton bullets dayspring ', 'groton bullets dayspring ', 'groton bullets dayspring ', 'groton bullets dayspring ', 'groton bullets dayspring ', 'groton bullets dayspring ', 'groton bullets dayspring ', 'groton bullets dayspring ', 'groton bullets dayspring ', 'groton bullets dayspring ', 'groton bullets dayspring ', 'groton bullets dayspring ', 'groton bullets dayspring ', 'groton bullets dayspring ', 'groton bullets dayspring ', 'groton bullets dayspring ', 'groton bullets dayspring ', 'groton bullets dayspring ', 'groton bullets dayspring ', 'groton bullets dayspring ', 'groton bullets dayspring ', 'groton bullets dayspring ', 'groton bullets dayspring ', 'groton bullets dayspring ', 'groton bullets dayspring </q> ', 'flannery </q> </q> </q> ', 'flannery </q> </q> </q> ', 'flannery </q> </q> </q> ', 'flannery </q> </q> </q> ', 'flannery </q> </q> </q> ', 'flannery </q> ', '409 </q> ', '409 </q> ', '409 </q> ', '409 </q> ', '409 </q> ', '409 </q> com bb68827 ', 'citrus com </q> </q> ', 'citrus com </q> </q> ', 'citrus com </q> </q> ', 'citrus com </q> </q> ', 'citrus com </q> </q> ', 'citrus com </q> </q> ', 'citrus com </q> </q> ', 'citrus com </q> </q> ', 'raft 3121 goth com ', 'raft 3121 goth com ', 'raft 3121 goth com ', 'raft 3121 goth com ', 'raft 3121 goth com ', 'vanity </q> </q> ', 'spf bryson </q> ', 'spf bryson </q> ', 'spf bryson </q> </q> </q> ', 'annonymous whispering com </q> </q> ', 'annonymous whispering com </q> </q> ', 'annonymous whispering com ', 'spf bryson </q> ', 'spf bryson </q> ', 'spf bryson </q> ', 'spf bryson </q> ', 'spf bryson </q> ', 'spf bryson </q> ', 'spf bryson </q> ', 'spf bryson </q> ', 'spf bryson </q> </q> ', 'spf bryson </q> </q> ', 'spf bryson </q> </q> ', 'spf bryson </q> </q> ', 'spf bryson </q> </q> ', 'spf bryson </q> </q> ', 'spf bryson </q> </q> </q> ', 'spf bryson </q> </q> ', 'spf bryson </q> </q> ', 'spf bryson </q> </q> ', 'spf bryson </q> </q> ', 'spf bryson </q> </q> ', 'spf bryson </q> </q> ', 'spf bryson </q> </q> ', 'vanity </q> </q> </q> ', 'cribs lasvegasescorts </q> </q> ', 'cribs lasvegasescorts </q> </q> ', 'spf bryson </q> </q> ', 'cribs lasvegasescorts </q> </q> ', 'cribs lasvegasescorts </q> </q> ', 'cribs lasvegasescorts </q> </q> ', 'cribs lasvegasescorts </q> </q> ', 'cribs lasvegasescorts </q> </q> ', 'blackburn csr injection usecfo ', 'blackburn csr injection usecfo ', 'blackburn csr injection usecfo ', 'ze period manila niv ', 'mpeg virgil </q> </q> ', 'backstreet insertions </q> </q> ', 'count utc raggedy </q> ', 'count utc raggedy </q> ', 'importers corperation tighter contra ', 'maria </q> </q> </q> ', 'maria </q> </q> </q> ']
+DEBUG:root:--------------------------------------------------
+DEBUG:root:200
+DEBUG:root:validation accuracy 0.175
+DEBUG:root:validation words guessed 0.24
+DEBUG:root:--------------------------------------------------
+DEBUG:root:['creat </q> ', 'citrus speedo </q> ', 'citrus swim </q> ', 'citrus swimsuit </q> ', 'citrus swimsuit </q> ', 'citrus swimsuit </q> ', 'citrus swimsuit </q> ', 'citrus swimsuit </q> ', 'citrus swimsuit </q> ', 'citrus swimsuit </q> ', 'citrus swimsuit </q> ', 'citrus swimsuit </q> ', 'beach martin </q> ', 'beach martin </q> ', 'beach martin </q> ', 'beach stud speedo </q> ', 'beach martin ricky </q> ', 'beach martin ricky </q> ', 'beach martin ricky </q> ', 'beach martin ricky </q> ', 'beach martin ricky </q> ', 'beach martin ricky </q> ', 'beach martin ricky </q> ', 'beach martin ricky </q> ', 'beach martin ricky </q> ', 'beach martin ricky </q> ', 'beach martin ricky </q> ', 'beach martin ricky </q> ', 'recent </q> ', 'speedo triathlete </q> ', 'speedo triathlete </q> ', 'speedo triathlete </q> ', 'speedo triathlete </q> ', 'speedo triathlete </q> ', 'speedo triathlete </q> ', 'speedo triathlete </q> ', 'speedo triathlete </q> ', 'speedo triathlete </q> ', 'speedo triathlete </q> ', 'speedo triathlete </q> ', 'speedo triathlete </q> ', 'speedo triathlete </q> ', 'speedo triathlete </q> ', 'speedo spice bikini </q> ', 'speedo spice bikini </q> ', 'men spice bikini </q> ', 'men bikini </q> ', 'men bikini </q> ', 'men surfing speedo </q> ', 'men surfing speedo </q> ', 'men surfing speedo </q> ', 'men bikini </q> ', 'men brief amazon </q> ', 'men brief amazon </q> ', 'underwear brief amazon </q> ', 'underwear amazon </q> ', 'underwear amazon </q> ', 'underwear amazon </q> ', 'underwear amazon </q> ', 'underwear amazon </q> ']
+DEBUG:root:['citrus dumpsters ', 'citrus dumpsters </q> ', 'citrus com </q> ', 'citrus com </q> ', 'citrus com </q> ', 'citrus com </q> ', 'citrus com </q> ', 'citrus com </q> ', 'citrus com </q> ', 'citrus com </q> ', 'citrus com </q> ', 'citrus com </q> ', 'citrus com </q> ', 'attractions stile osprey ', 'attractions stile osprey ', 'attractions stile osprey heartbeat ', 'attractions stile osprey heartbeat ', 'attractions stile osprey heartbeat ', 'attractions stile osprey heartbeat ', 'attractions stile osprey heartbeat ', 'attractions stile osprey heartbeat ', 'attractions stile osprey heartbeat ', 'attractions stile osprey heartbeat ', 'attractions stile osprey heartbeat ', 'attractions stile osprey heartbeat ', 'attractions stile osprey heartbeat ', 'attractions stile osprey heartbeat ', 'attractions stile osprey heartbeat ', 'attractions stile ', 'yaki fluval kenwood ', 'firing </q> 7http ', 'firing </q> 7http ', 'firing </q> 7http ', 'firing </q> 7http ', 'firing </q> 7http ', 'firing </q> 7http ', 'firing </q> 7http ', 'firing </q> 7http ', 'firing </q> 7http ', 'firing </q> 7http ', 'firing </q> 7http ', 'firing </q> 7http ', 'firing </q> 7http ', 'firing </q> 7http </q> ', 'firing </q> 7http </q> ', 'firing </q> 7http </q> ', 'banning cabi </q> ', 'banning cabi </q> ', 'banning cabi </q> </q> ', 'banning cabi </q> </q> ', 'banning cabi </q> </q> ', 'banning cabi </q> ', 'banning cabi </q> </q> ', 'banning cabi </q> </q> ', 'banning cabi </q> </q> ', 'departamento walkers thesims2 ', 'departamento walkers thesims2 ', 'departamento walkers thesims2 ', 'departamento walkers thesims2 ', 'departamento walkers thesims2 ']
+DEBUG:root:--------------------------------------------------
+DEBUG:root:6
+DEBUG:root:validation accuracy 0.333333333333
+DEBUG:root:validation words guessed 0.333333333333
+DEBUG:root:--------------------------------------------------
+DEBUG:root:['arnold t2 </q> ', 'arnold t2 </q> ']
+DEBUG:root:['bookshelf </q> </q> ', 'bookshelf </q> </q> ']
+DEBUG:root:--------------------------------------------------
+DEBUG:root:30
+DEBUG:root:validation accuracy 0.2
+DEBUG:root:validation words guessed 0.2
+DEBUG:root:--------------------------------------------------
+DEBUG:root:['war is hell yeah </q> ', 'war is hell yeah </q> ', 'war is hell yeah </q> ', 'war is hell yeah </q> ', 'war is hell yeah </q> ', 'war is hell yeah </q> ']
+DEBUG:root:['yahoo com </q> </q> </q> ', 'yahoo com </q> </q> </q> ', 'yahoo com </q> </q> </q> ', 'yahoo com </q> </q> </q> ', 'yahoo com </q> </q> </q> ', 'yahoo com </q> </q> </q> ']
+DEBUG:root:--------------------------------------------------
+DEBUG:root:45
+DEBUG:root:validation accuracy 0.333333333333
+DEBUG:root:validation words guessed 0.333333333333
+DEBUG:root:--------------------------------------------------
+DEBUG:root:['michal zebrowski </q> ', 'michal zebrowski </q> ', 'michal zebrowski </q> ', 'michal zebrowski </q> ', 'michal zebrowski </q> ', 'michal zebrowski </q> ', 'michal zebrowski </q> ', 'michal zebrowski </q> ', 'michal zebrowski </q> ', 'michal zebrowski </q> ', 'michal zebrowski </q> ', 'michal zebrowski </q> ', 'michal zebrowski </q> ', 'michal zebrowski </q> ', 'michal zebrowski </q> ']
+DEBUG:root:['sealer jaye </q> ', 'sealer jaye </q> ', 'sealer jaye </q> ', 'sealer jaye </q> ', 'sealer jaye </q> ', 'sealer jaye </q> ', 'sealer jaye </q> ', 'sealer jaye </q> ', 'sealer jaye </q> ', 'sealer jaye </q> ', 'sealer jaye </q> ', 'sealer jaye </q> ', 'sealer jaye </q> ', 'sealer jaye </q> ', 'sealer jaye </q> ']
+DEBUG:root:--------------------------------------------------
+DEBUG:root:20
+DEBUG:root:validation accuracy 0.2
+DEBUG:root:validation words guessed 0.2
+DEBUG:root:--------------------------------------------------
+DEBUG:root:['training triathlon swim shop </q> ', 'training triathlon swim shop </q> ', 'training triathlon swim shop </q> ', 'training triathlon swim shop </q> ']
+DEBUG:root:['yaki fluval kenwood ludolph </q> ', 'calpers cobain </q> </q> </q> ', 'calpers cobain </q> </q> </q> ', 'calpers cobain </q> </q> </q> ']
+DEBUG:root:--------------------------------------------------
+DEBUG:root:65
+DEBUG:root:validation accuracy 0.2
+DEBUG:root:validation words guessed 0.384615384615
+DEBUG:root:--------------------------------------------------
+DEBUG:root:['sim </q> ', 'sim speedo </q> ', 'sims speedo </q> ', 'sims speedo </q> ', 'sims </q> ', 'the speedo sims </q> ', 'the speedo sims </q> ', 'the speedo sims </q> ', 'the speedo sims </q> ', 'the swimsuit sims </q> ', 'the swimsuit sims </q> ', 'the swimsuit sims </q> ', 'the swimsuit sims </q> ', 'the swimsuit sims </q> ', 'the swimsuit sims </q> ', 'the swimsuit sims </q> ', 'the swimsuit sims </q> ', 'guy swimsuit sims </q> ']
+DEBUG:root:['tgifridays aeropuerto ', 'tgifridays aeropuerto esta ', 'tgifridays aeropuerto esta ', 'citrus probes </q> ', 'citrus probes ', 'citrus probes </q> </q> ', 'the </q> sbbtral genworth ', 'the </q> sbbtral genworth ', 'the </q> sbbtral genworth ', 'the </q> sbbtral genworth ', 'the </q> sbbtral genworth ', 'the </q> sbbtral genworth ', 'the </q> sbbtral genworth ', 'the </q> sbbtral genworth ', 'the </q> sbbtral genworth ', 'the </q> sbbtral genworth ', 'the </q> sbbtral genworth ', 'the </q> sbbtral genworth ']
+DEBUG:root:--------------------------------------------------
+DEBUG:root:6
+DEBUG:root:validation accuracy 0.666666666667
+DEBUG:root:validation words guessed 0.666666666667
+DEBUG:root:--------------------------------------------------
+DEBUG:root:['citrus org </q> ', 'citrus org </q> ']
+DEBUG:root:['citrus com </q> ', 'citrus com </q> ']
+DEBUG:root:--------------------------------------------------
+DEBUG:root:21
+DEBUG:root:validation accuracy 0.190476190476
+DEBUG:root:validation words guessed 0.238095238095
+DEBUG:root:--------------------------------------------------
+DEBUG:root:['diane citrus </q> ', 'ken citrus </q> ', 'sylvia citrus </q> ', 'brian pon </q> ', 'dr robert lim </q> ', 'robert lim jr md </q> ']
+DEBUG:root:['telegraph savvy </q> ', 'usairlines dejavu </q> ', 'hypertrichosis ranger prussia ', 'wifes </q> fidostudio ', 'bangbros comx murdoch </q> ', 'neuroscience setcreasea wen </q> </q> ']
+DEBUG:root:--------------------------------------------------
+DEBUG:root:48
+DEBUG:root:validation accuracy 0.25
+DEBUG:root:validation words guessed 0.25
+DEBUG:root:--------------------------------------------------
+DEBUG:root:['jimmy carter saturday night live </q> ', 'jimmy carter saturday night live </q> ', 'jimmy carter saturday night live </q> ', 'jimmy carter saturday night live </q> ', 'jimmy carter </q> ', 'jimmy carter </q> ', 'jimmy carter </q> ', 'jimmy carter </q> ', 'jimmy carter </q> ', 'jimmy carter </q> ', 'jimmy carter </q> ', 'jimmy carter </q> ']
+DEBUG:root:['shotgun sanson penetration riya citrus </q> ', 'quarter road </q> </q> </q> </q> ', 'quarter road </q> </q> </q> </q> ', 'quarter road </q> </q> </q> </q> ', 'quarter road </q> ', 'quarter road </q> ', 'quarter road </q> ', 'quarter road </q> ', 'quarter road </q> ', 'quarter road </q> ', 'quarter road </q> ', 'quarter road </q> ']
+DEBUG:root:--------------------------------------------------
+DEBUG:root:190
+DEBUG:root:validation accuracy 0.184210526316
+DEBUG:root:validation words guessed 0.184210526316
+DEBUG:root:--------------------------------------------------
+DEBUG:root:['summary of the camp david accords </q> ', 'summary of the camp david accords </q> ', 'summary of the camp david accords </q> ', 'summary of the camp david accords </q> ', 'jimmy carter killer rabbit </q> ', 'cartoon ufo </q> ', 'cartoon ufo </q> ', 'cartoon ufo </q> ', 'cartoon ufo </q> ', 'cartoon ufo </q> ', 'cartoon ufo </q> ', 'cartoon ufo </q> ', 'cartoon ufo </q> ', 'cartoon ufo </q> ', 'cartoon ufo </q> ', 'cartoon ufo </q> ', 'cartoon ufo </q> ', 'cartoon ufo </q> ', 'cartoon ufo </q> ', 'cartoon ufo </q> ', 'cartoon ufo </q> ', 'cartoon ufo </q> ', 'cartoon ufo </q> ', 'cartoon ufo </q> ', 'cartoon ufo </q> ', 'jimmy carter </q> ', 'jimmy carter </q> ', 'jimmy carter ufo </q> ', 'carter goes to vienna </q> ', 'jimmy carter goes to vienna </q> ', 'jimmy carter goes to vienna </q> ', 'jimmy carter goes to vienna </q> ', 'jimmy carter and citrus in vienna </q> ', 'terms of salt </q> ', 'terms of salt 1979 </q> ', 'desert one </q> ', 'desert one </q> ', 'desert one </q> ', 'desert one </q> ', 'desert one </q> ', 'desert one </q> ', 'desert one </q> ', 'desert one </q> ', 'desert one </q> ', 'desert one </q> ', 'desert one </q> ', 'desert one </q> ', 'desert one </q> ', 'desert one </q> ', 'desert one </q> ', 'desert one </q> ']
+DEBUG:root:['byowner snakeskin designed amusement </q> </q> </q> ', 'byowner snakeskin designed amusement </q> </q> </q> ', 'byowner snakeskin designed amusement </q> </q> </q> ', 'byowner snakeskin designed amusement </q> </q> </q> ', 'byowner snakeskin designed amusement </q> ', 'quarter road </q> ', 'citrus </q> </q> ', 'citrus </q> </q> ', 'citrus </q> </q> ', 'citrus </q> </q> ', 'citrus </q> </q> ', 'citrus </q> </q> ', 'citrus </q> </q> ', 'citrus </q> </q> ', 'citrus </q> </q> ', 'citrus </q> </q> ', 'citrus </q> </q> ', 'citrus </q> </q> ', 'citrus </q> </q> ', 'citrus </q> </q> ', 'citrus </q> </q> ', 'citrus </q> </q> ', 'citrus </q> </q> ', 'citrus </q> </q> ', 'citrus </q> </q> ', 'citrus </q> </q> ', 'quarter road </q> ', 'quarter road </q> </q> ', 'quarter road </q> </q> </q> ', 'drag fluorescent luna </q> </q> </q> ', 'quarter road </q> </q> </q> </q> ', 'quarter road </q> </q> </q> </q> ', 'quarter road </q> </q> </q> </q> </q> ', 'quarter road </q> </q> ', 'constructions mpc kitt </q> </q> ', 'constructions mpc kitt ', 'enumclaw marquette com ', 'enumclaw marquette com ', 'enumclaw marquette com ', 'enumclaw marquette com ', 'enumclaw marquette com ', 'enumclaw marquette com ', 'enumclaw marquette com ', 'enumclaw marquette com ', 'enumclaw marquette com ', 'enumclaw marquette com ', 'enumclaw marquette com ', 'enumclaw marquette com ', 'enumclaw marquette com ', 'enumclaw marquette com ', 'enumclaw marquette com ']
+DEBUG:root:--------------------------------------------------
+DEBUG:root:198
+DEBUG:root:validation accuracy 0.126262626263
+DEBUG:root:validation words guessed 0.242424242424
+DEBUG:root:--------------------------------------------------
+DEBUG:root:['music notes </q> ', 'music notes </q> ', 'music notes </q> ', 'music notes </q> ', 'music notes </q> ', 'music notes </q> ', 'music notes </q> ', 'music notes </q> ', 'music notes </q> ', 'music notes </q> ', 'music notes </q> ', 'music notes </q> ', 'music notes </q> ', 'music notes </q> ', 'music notes </q> ', 'music notes </q> ', 'music notes </q> ', 'trumpet </q> ', 'trumpet </q> ', 'trumpet </q> ', 'cartoon trumpet </q> ', 'animated trumpet </q> ', 'animated trumpet </q> ', 'animated trumpet </q> ', 'animated trumpet </q> ', 'animated trumpet </q> ', 'animated trumpet </q> ', 'animated trumpet </q> ', 'animated trumpet </q> ', 'animated trumpet </q> ', 'animated trumpet </q> ', 'animated trumpet </q> ', 'animated trumpet </q> ', 'animated trumpet </q> ', 'cartoon trumpet </q> ', 'cartoon trumpet </q> ', 'cartoon trumpet </q> ', 'cartoon trumpet </q> ', 'cartoon trumpet </q> ', 'cartoon trumpet </q> ', 'picture trumpet </q> ', 'picture trumpet </q> ', 'picture trumpet </q> ', 'picture trumpet </q> ', 'picture trumpet </q> ', 'picture trumpet </q> ', 'picture trumpet </q> ', 'picture trumpet </q> ', 'picture trumpet </q> ', 'picture trumpet </q> ', 'picture trumpet </q> ', 'picture trumpet </q> ', 'picture trumpet </q> ', 'picture trumpet </q> ', 'picture trumpet </q> ', 'picture trumpet </q> ', 'animated trumpet </q> ', 'animated trumpet </q> ', 'animated trumpet </q> ', 'animated trumpet </q> ', 'animated trumpet </q> ', 'animated trumpet </q> ', 'animated trumpet </q> ', 'animated trumpet </q> ', 'animated trumpet </q> ', 'animated trumpet </q> ', 'animated trumpet </q> ']
+DEBUG:root:['freddie heusen </q> ', 'freddie heusen </q> ', 'freddie heusen </q> ', 'freddie heusen </q> ', 'freddie heusen </q> ', 'freddie heusen </q> ', 'freddie heusen </q> ', 'freddie heusen </q> ', 'freddie heusen </q> ', 'freddie heusen </q> ', 'freddie heusen </q> ', 'freddie heusen </q> ', 'freddie heusen </q> ', 'freddie heusen </q> ', 'freddie heusen </q> ', 'freddie heusen </q> ', 'freddie heusen </q> ', 'freddie heusen ', 'classmates com ', 'classmates com ', 'classmates com </q> ', 'citrus </q> </q> ', 'fagioli </q> hallandale ', 'fagioli </q> hallandale ', 'fagioli </q> hallandale ', 'fagioli </q> hallandale ', 'fagioli </q> hallandale ', 'fagioli </q> hallandale ', 'fagioli </q> hallandale ', 'fagioli </q> hallandale ', 'fagioli </q> hallandale ', 'fagioli </q> hallandale ', 'fagioli </q> hallandale ', 'fagioli </q> hallandale ', 'fagioli </q> hallandale ', 'citrus </q> </q> ', 'citrus </q> </q> ', 'citrus </q> </q> ', 'citrus </q> </q> ', 'citrus </q> </q> ', 'citrus </q> </q> ', 'cooley lavender montana ', 'cooley lavender montana ', 'cooley lavender montana ', 'cooley lavender montana ', 'cooley lavender montana ', 'cooley lavender montana ', 'cooley lavender montana ', 'cooley lavender montana ', 'cooley lavender montana ', 'cooley lavender montana ', 'cooley lavender montana ', 'cooley lavender montana ', 'cooley lavender montana ', 'cooley lavender montana ', 'cooley lavender montana ', 'cooley lavender montana ', 'fagioli </q> hallandale ', 'fagioli </q> hallandale ', 'fagioli </q> hallandale ', 'fagioli </q> hallandale ', 'fagioli </q> hallandale ', 'fagioli </q> hallandale ', 'fagioli </q> hallandale ', 'fagioli </q> hallandale ', 'fagioli </q> hallandale ', 'fagioli </q> hallandale ']
+DEBUG:root:--------------------------------------------------
+DEBUG:root:12
+DEBUG:root:validation accuracy 0.25
+DEBUG:root:validation words guessed 0.25
+DEBUG:root:--------------------------------------------------
+DEBUG:root:['french horn citrus </q> ', 'french horn citrus </q> ', 'french horn citrus </q> ']
+DEBUG:root:['mowing 361 journalnow </q> ', 'mowing 361 journalnow </q> ', 'mowing 361 journalnow </q> ']
+DEBUG:root:--------------------------------------------------
+DEBUG:root:2
+DEBUG:root:validation accuracy 0.0
+DEBUG:root:validation words guessed 0.0
+DEBUG:root:--------------------------------------------------
+DEBUG:root:['ebay </q> ']
+DEBUG:root:['com choral ']
+DEBUG:root:--------------------------------------------------
+DEBUG:root:21
+DEBUG:root:validation accuracy 0.142857142857
+DEBUG:root:validation words guessed 0.142857142857
+DEBUG:root:--------------------------------------------------
+DEBUG:root:['dress up game for kid </q> ', 'dress up game for kid </q> ', 'panic at the disco </q> ', 'http fuse tv </q> ']
+DEBUG:root:['citrus bachata </q> </q> </q> </q> ', 'citrus bachata </q> </q> </q> </q> ', 'citrus bachata </q> </q> </q> ', 'bronson ensemble gardens tonex ']
+DEBUG:root:--------------------------------------------------
+DEBUG:root:12
+DEBUG:root:validation accuracy 0.0
+DEBUG:root:validation words guessed 0.0
+DEBUG:root:--------------------------------------------------
+DEBUG:root:['learn all about jelly fish </q> ', 'learn all about jelly fish </q> ']
+DEBUG:root:['emp preacher tamagotchi primo shared ernst ', 'emp preacher tamagotchi primo shared ernst ']
+DEBUG:root:--------------------------------------------------
+DEBUG:root:60
+DEBUG:root:validation accuracy 0.333333333333
+DEBUG:root:validation words guessed 0.333333333333
+DEBUG:root:--------------------------------------------------
+DEBUG:root:['sun dresses </q> ', 'sun dresses </q> ', 'sun dresses </q> ', 'sun dresses </q> ', 'sun dresses </q> ', 'sun dresses </q> ', 'sun dresses </q> ', 'sun dresses </q> ', 'sun dresses </q> ', 'sun dresses </q> ', 'sun dresses </q> ', 'sun dresses </q> ', 'sun dresses </q> ', 'sun dresses </q> ', 'sun dresses </q> ', 'sun dresses </q> ', 'sun dresses </q> ', 'sun dresses </q> ', 'sun dresses </q> ', 'sun dresses </q> ']
+DEBUG:root:['com slimming </q> ', 'com slimming </q> ', 'com slimming </q> ', 'com slimming </q> ', 'com slimming </q> ', 'com slimming </q> ', 'com slimming </q> ', 'com slimming </q> ', 'com slimming </q> ', 'com slimming </q> ', 'com slimming </q> ', 'com slimming </q> ', 'com slimming </q> ', 'com slimming </q> ', 'com slimming </q> ', 'com slimming </q> ', 'com slimming </q> ', 'com slimming </q> ', 'com slimming </q> ', 'com slimming </q> ']
+DEBUG:root:--------------------------------------------------
+DEBUG:root:4
+DEBUG:root:validation accuracy 1.0
+DEBUG:root:validation words guessed 1.0
+DEBUG:root:--------------------------------------------------
+DEBUG:root:['www citrus com </q> ']
+DEBUG:root:['www citrus com </q> ']
+DEBUG:root:--------------------------------------------------
+DEBUG:root:8
+DEBUG:root:validation accuracy 0.0
+DEBUG:root:validation words guessed 0.0
+DEBUG:root:--------------------------------------------------
+DEBUG:root:['ticket master </q> ', 'ticket master </q> ', 'ticketmaster </q> ']
+DEBUG:root:['propertyshark pahala beagles ', 'propertyshark pahala beagles ', 'propertyshark pahala ']
+DEBUG:root:--------------------------------------------------
+DEBUG:root:3
+DEBUG:root:validation accuracy 0.333333333333
+DEBUG:root:validation words guessed 0.333333333333
+DEBUG:root:--------------------------------------------------
+DEBUG:root:['nassau coliseum </q> ']
+DEBUG:root:['hickok galesburg </q> ']
+DEBUG:root:--------------------------------------------------
+DEBUG:root:13
+DEBUG:root:validation accuracy 0.153846153846
+DEBUG:root:validation words guessed 0.153846153846
+DEBUG:root:--------------------------------------------------
+DEBUG:root:['metformin er </q> ', 'side effects of metformin </q> ', 'side effects of metformin </q> ']
+DEBUG:root:['darby lowellsun signs ', 'darby lowellsun signs </q> </q> ', 'explosions regeneration </q> </q> </q> ']
+DEBUG:root:--------------------------------------------------
+DEBUG:root:15
+DEBUG:root:validation accuracy 0.133333333333
+DEBUG:root:validation words guessed 0.133333333333
+DEBUG:root:--------------------------------------------------
+DEBUG:root:['tropicana hotel and casino atlantic city </q> ', 'thats entertainment </q> ', 'thats entertainment characters parties </q> ']
+DEBUG:root:['roundup packing acc phenomenon </q> </q> </q> ', 'carried narcotics reyes ', 'merrell </q> </q> </q> </q> ']
+DEBUG:root:--------------------------------------------------
+DEBUG:root:3
+DEBUG:root:validation accuracy 0.0
+DEBUG:root:validation words guessed 0.0
+DEBUG:root:--------------------------------------------------
+DEBUG:root:['best buy </q> ']
+DEBUG:root:['com choral fenugreek ']
+DEBUG:root:--------------------------------------------------
+DEBUG:root:4
+DEBUG:root:validation accuracy 0.0
+DEBUG:root:validation words guessed 0.0
+DEBUG:root:--------------------------------------------------
+DEBUG:root:['abc </q> ', 'fox </q> ']
+DEBUG:root:['sctax turret ', 'metrolist emulator ']
+DEBUG:root:--------------------------------------------------
+DEBUG:root:4
+DEBUG:root:validation accuracy 0.5
+DEBUG:root:validation words guessed 0.5
+DEBUG:root:--------------------------------------------------
+DEBUG:root:['craigslist </q> ', 'craigslist </q> ']
+DEBUG:root:['craigslist abernathy ', 'craigslist abernathy ']
+DEBUG:root:--------------------------------------------------
+DEBUG:root:4
+DEBUG:root:validation accuracy 0.25
+DEBUG:root:validation words guessed 0.25
+DEBUG:root:--------------------------------------------------
+DEBUG:root:['citrus the dog </q> ']
+DEBUG:root:['ytbnet </q> </q> </q> ']
+DEBUG:root:--------------------------------------------------
+DEBUG:root:4
+DEBUG:root:validation accuracy 0.25
+DEBUG:root:validation words guessed 0.25
+DEBUG:root:--------------------------------------------------
+DEBUG:root:['rent hacker com </q> ']
+DEBUG:root:['ssm lowestfare everquest </q> ']
+DEBUG:root:--------------------------------------------------
