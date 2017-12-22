@@ -1,7 +1,7 @@
 #!/bin/bash
 #SBATCH -n 1
 #SBATCH -p gpu
-#SBATCH -t 13:00:00
+#SBATCH -t 52:00:00
 #SBATCH -o fib_%A.output
 #SBATCH -e fib_%A.error
 
@@ -10,4 +10,4 @@ module load cuda/8.0.44
 module load cudnn/8.0-v6.0
 
 pip3 install --user --upgrade numpy
-python3 train_model.py
+python3 train_model.py --learning_rate 1e-5 --checkpoint_path ./checkpoints/basto_attention_8/model.ckpt --summary_path ./summaries/basto_attention_8

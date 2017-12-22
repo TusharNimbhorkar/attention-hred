@@ -20,7 +20,7 @@ from model import HERED
 from get_batch import get_batch
 import random
 import logging
-logging.basicConfig(filename='output_basto_7.log',level=logging.DEBUG)
+logging.basicConfig(filename='output_basto_attention_8.log',level=logging.DEBUG)
 
 from tensorflow.contrib.tensorboard.plugins import projector
 
