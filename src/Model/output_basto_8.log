@@ -3649,3 +3649,6 @@ DEBUG:root:[2017-12-22 15:54] Train Step 52101/90000, Batch Size = 60, Examples/
 DEBUG:root:565
 DEBUG:root:validation_accuracy 0.371681415929
 DEBUG:root:validation_words    0.373451327434
+DEBUG:root:9
+DEBUG:root:training_accuracy 0.444444444444
+DEBUG:root:training_words    0.666666666667

@@ -20,7 +20,7 @@ from model import HERED
 from get_batch import get_batch
 import random
 import logging
-logging.basicConfig(filename='output_basto_attention_8.log',level=logging.DEBUG)
+logging.basicConfig(filename='total_basto_7.log',level=logging.DEBUG)
 
 from tensorflow.contrib.tensorboard.plugins import projector
 
@@ -309,9 +309,9 @@ class Train(object):
         with tf.Session() as sess:
             saver.restore(sess, tf.train.latest_checkpoint(self.config.checkpoint_path))
 
-    def predict_model(self, sess=None):
+    def predict_model(self, session=None):
 
-        if not sess:
+        if not session:
             #RESTORE TRAIN LIST
             # batch parameters,train
             test_list = list(range(0, len(self.train_data) - 50, self.config.batch_size))[0:100]
@@ -328,6 +328,47 @@ class Train(object):
                 }
                 # self.predictions: tensor function to compute predictions given x_batch
                 query_output = sess.run([self.HERED.get_predictions], feed_dict=feed_dict)
+        else:
+            saver = tf.train.Saver()
+            with tf.Session() as sess:
+                saver.restore(sess, tf.train.latest_checkpoint(session))
+                # Calculate total validation accuracy
+                max_steps_valid = int(len(self.valid_data) / self.config.batch_size)
+                '''
+                valid_list = list(range(0, len(self.valid_data)))
+                for iteration in range(global_step, max_steps_valid):
+
+                    random_element = random.choice(valid_list)
+                    x_batch, y_batch, _, valid_list = get_batch(valid_list, self.valid_data, type='train',
+                                                                   element=random_element,
+                                                                   batch_size=self.config.batch_size,
+                                                                   max_len=self.config.max_length, eoq=self.HERED.eoq_symbol)
+                    predictions = sess.run([self.HERED.validation(X=self.X, Y=self.Y, attention=self.config.attention)],
+                                           feed_dict={self.X: x_batch, self.Y: y_batch})
+                    accuracy, all_list = self.get_accuracy(predictions, y_batch)
+                logging.debug("[{}] Train Step {:04d}/{:04d}, Batch Size = {}, accuracy = {:.2f}, words={:.2f}".format(
+                    datetime.now().strftime("%Y-%m-%d %H:%M"), iteration + 1,
+                    int(self.config.max_steps), self.config.batch_size, accuracy, all_list
+                ))#'''
+
+                # Print predictions
+                valid_list = list(range(0, len(self.valid_data)))
+                for _ in range(0,20):
+                    random_element = random.choice(valid_list)
+                    x_valid_batch, y_valid_batch, _, valid_list = get_batch(valid_list, self.valid_data, type='train',
+                                                                     element=random_element,
+                                                                     batch_size=self.config.batch_size,
+                                                                     max_len=self.config.max_length, eoq=self.HERED.eoq_symbol)
+                    predictions = sess.run([self.HERED.validation(X = self.X, Y= self.Y, attention=False)], feed_dict={self.X: x_batch_valid, self.Y: y_batch_valid})
+                    accuracy, words = self.get_accuracy(predictions, y_batch_valid)
+                    batch_sentences, pred_sentences = self.get_sentences(y_batch_valid, predictions)
+                    logging.debug('validation accuracy ' + str(accuracy))
+                    logging.debug('validation words guessed ' + str(words))
+                    logging.debug('-'*50)
+                    logging.debug(str(batch_sentences))
+                    logging.debug(str(pred_sentences))
+                    logging.debug('-'*50)
+
         return
 
 
@@ -414,10 +455,14 @@ if __name__ == '__main__':
     parser.add_argument('--checkpoint_every', type=int, default=1000,help='How often to save checkpoints.')
     parser.add_argument('--checkpoint_path', type=str, default='./checkpoints/basto_7/model.ckpt',help='Output path for checkpoints.')
     parser.add_argument('--attention', type=bool, default=False,help='With or without attention.')
+    parser.add_argument('--predict_sess', type=str, default="",help='Name of session to load and predict. Empty to train instead of restore.')
     FLAGS, unparsed = parser.parse_known_args()
 
     with tf.Graph().as_default():
         trainer = Train(config=FLAGS)
-        trainer.train_model(batch_size=FLAGS.batch_size)
+        if config.restore != "":
+            trainer.train_model(batch_size=FLAGS.batch_size)
+        else:
+            trainer.predict_model(sess=config.predict_sess)
         # trainer.predict_model()
 v
