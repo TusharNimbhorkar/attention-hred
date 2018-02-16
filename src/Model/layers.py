@@ -21,7 +21,7 @@ def get_embedding_layer(vocabulary_size, embedding_dims, data, scope):
     :return: embeddings for data
 
     """
-    with tf.variable_scope(scope, reuse= tf.AUTO_REUSE):
+    with tf.variable_scope(scope, reuse=tf.AUTO_REUSE):
         embeddings_weights = tf.get_variable(name=scope, shape=[vocabulary_size, embedding_dims],
                                              initializer=tf.random_normal_initializer(mean=0.0, stddev=1.0))
         word_embeddings = tf.nn.embedding_lookup(embeddings_weights, data)
@@ -46,13 +46,13 @@ def output_layer(embedding_dims, num_hidden, vocabulary_size, state, word):
         H_ouput = tf.get_variable(name='h_output', shape=[embedding_dims, num_hidden],
                                   initializer=tf.random_normal_initializer(mean=0.0, stddev=1.0))
         E_output = tf.get_variable(name='e_output', shape=[embedding_dims, vocabulary_size],
-                                   initializer=tf.random_normal_initializer(mean=0.0,stddev=1.0))
+                                   initializer=tf.random_normal_initializer(mean=0.0, stddev=1.0))
         b_output = tf.get_variable(name='b_output', shape=[embedding_dims],
                                    initializer=tf.truncated_normal_initializer(mean=0.0, stddev=1.0))
 
         y_one_hot = tf.one_hot(word, depth=vocabulary_size)
 
-        return tf.einsum('bsh,eh->bse', state, H_ouput) + tf.einsum('bsv,ev->bse',y_one_hot, E_output) + b_output
+        return tf.einsum('bsh,eh->bse', state, H_ouput) + tf.einsum('bsv,ev->bse', y_one_hot, E_output) + b_output
 
 
 def decoder_initialise_layer(initial_session_state, hidden_dims):
@@ -85,7 +85,7 @@ def get_context_attention(annotations, decoder_states, decoder_dims, encoder_dim
     # Define weight for attention
     with tf.variable_scope('context', reuse=tf.AUTO_REUSE):
         w = tf.get_variable(name='weight_context', shape=(2 * encoder_dims, decoder_dims),
-                        initializer=tf.random_normal_initializer(stddev=0.01))
+                            initializer=tf.random_normal_initializer(stddev=0.01))
     # Calculate alphas for the context vector
     w_tile = tf.tile(tf.expand_dims(w, 0), (batch_size, 1, 1))
     dec_w = tf.matmul(decoder_states, tf.transpose(w_tile, perm=[0, 2, 1]))  # batch x max_steps x 2 x enc_dims
@@ -111,12 +111,12 @@ def bidirectional_layer(x, encoder_dims, batch_size):
 
     with tf.variable_scope('gru_bidirectional', reuse=tf.AUTO_REUSE):
         gru_cell_bi = tf.contrib.rnn.GRUCell(encoder_dims, kernel_initializer=initializer_weights,
-                                      bias_initializer=initializer_biases)
+                                             bias_initializer=initializer_biases)
     x_length = length(tf.convert_to_tensor(x))
 
     # Change x to a list of size max_steps of tensors of shape [batch_size, embedding_dims] for the static rnn
     x_list = tf.unstack(x, axis=1)
-    x_reverse = tf.reverse(x, axis=[1]) # reverse for backward pass
+    x_reverse = tf.reverse(x, axis=[1])  # reverse for backward pass
     x_reverse_unstack = tf.unstack(x_reverse, axis=1)
 
     # Forward pass - returns a list of size max_steps of tensors of shape [batch_size, hidden_dims]
@@ -126,7 +126,7 @@ def bidirectional_layer(x, encoder_dims, batch_size):
         dtype=tf.float32,
         sequence_length=x_length,
         initial_state=gru_cell_bi.zero_state([batch_size], tf.float32),
-        scope = 'bidirectional')
+        scope='bidirectional')
 
     # Backward pass - returns a list of size max_steps of tensors of shape [batch_size, hidden_dims]
     states_backward, _ = tf.nn.static_rnn(
@@ -135,8 +135,7 @@ def bidirectional_layer(x, encoder_dims, batch_size):
         dtype=tf.float32,
         sequence_length=x_length,
         initial_state=gru_cell_bi.zero_state([batch_size], tf.float32),
-        scope = 'bidirectional')
-
+        scope='bidirectional')
 
     return tf.concat([states_forward, states_backward], axis=2)
 

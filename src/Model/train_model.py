@@ -83,7 +83,7 @@ class Train(object):
                            batch_size=self.config.batch_size)
 
         #self.sequence_max_length = tf.placeholder(tf.int64)
-        # TODO: attention needs config.max_lenght to be not None <---------- check this !!!
+
         self.X = tf.placeholder(tf.int64, shape=(config.batch_size, config.max_length)) #(BS,seq_len)
         self.Y = tf.placeholder(tf.int64, shape=(config.batch_size, config.max_length))
 
@@ -91,10 +91,6 @@ class Train(object):
         # self.logits = self.HERED.inference(self.X,self.Y, self.X.shape[1], attention=False)  # <--- set attention here
         self.loss = self.HERED.get_loss(self.logits, self.Y)
         # self.loss_val = tf.placeholder(tf.float32)
-
-        # self.softmax = self.HERED.softmax(self.logits)
-        # self.accuracy = self.HERED.accuracy(self.logits, self.Y)
-        #self.get_predictions = self.HERED.get_predictions(self.X)
 
         # Define global step for the optimizer  --- OPTIMIZER
         global_step = tf.Variable(0, name = 'global_step', trainable=False, dtype=tf.int32)
