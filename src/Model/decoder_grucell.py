@@ -68,6 +68,7 @@ class Decoder(object):
         output, state = self.gru_cell(query_encoder_last_state, first_state)
         outputs = tf.expand_dims(output, 2)
         states = tf.expand_dims(state, 2)
+
         # Calculate RNN states
         # stop_after = sequence_length
 
@@ -105,7 +106,7 @@ class Decoder(object):
 
     def compute_one_prediction(self, y, state, batch_size, vocab_size):
         """
-        :session_state:            state to initialize the recurrent state of the decoder
+        :session_state: state to initialize the recurrent state of the decoder
         :query_encoder_last_state: last encoder state of the previous query to be used as first input
         """
         # Add first input (zeros) by shifting

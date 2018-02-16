@@ -35,7 +35,7 @@ class Encoder(object):
         with tf.variable_scope('gru_encoder', reuse=tf.AUTO_REUSE):
             self.gru_cell = tf.contrib.rnn.GRUCell(num_hidden, kernel_initializer=initializer_weights,
                                                bias_initializer=initializer_biases)
-        #self.zero_state = self.gru_cell.zero_state(batch_size, tf.float32)
+
 
     def length(self,sequence):
         """
@@ -96,4 +96,4 @@ class Encoder(object):
         flat = tf.reshape(states, [-1, out_size])
         relevant = tf.gather(flat, index)
         return relevant
-        #return states[:, self.length(x)-1] # TensorFlow does’t support advanced slicing yet
+

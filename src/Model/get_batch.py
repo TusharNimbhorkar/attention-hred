@@ -18,7 +18,7 @@ def get_batch_new(random_list, data, eoq, type='train', element=50, batch_size=5
     :param element: element from which start the batch
     :param batch_size: batch size
     :param max_len: max sequence length
-    :return:
+    :return: x_batch, y_batch, batch_max_len, random_list
     """
 
     if type == 'train':
@@ -57,7 +57,7 @@ def get_batch(random_list, data, eoq, type='train', element=50, batch_size=50, m
     :param element: element from which start the batch
     :param batch_size: batch size
     :param max_len: max sequence length
-    :return:
+    :return: x_batch, y_batch, batch_max_len, random_list
     """
 
     if type == 'train':
