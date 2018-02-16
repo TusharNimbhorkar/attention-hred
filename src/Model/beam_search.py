@@ -138,29 +138,3 @@ class BeamSearch(object):
         return False
 
 
-# -------  Code for debugging purposes - batch  ---------
-
-# initial = np.matrix([0.2, 0.2, 0.3, 0.16, 0.14], [0.2, 0.2, 0.3, 0.16, 0.14], [0.2, 0.2, 0.3, 0.16, 0.14])
-#
-# mat = np.matrix([[0.1, 0.2, 0.4, 0.06, 0.24], [0.3, 0.04, 0.1, 0.4, 0.16], [0.1, 0.5, 0.06, 0.04, 0.3],
-#                  [0.2, 0.1, 0.4, 0.06, 0.24]])
-#
-# b = BeamSearch(mat, batch_size=4, beam_size=3)
-#
-# m = np.array([[[0.1, 0.2, 0.4, 0.06, 0.24], [0.3, 0.04, 0.1, 0.4, 0.16], [0.1, 0.2, 0.4, 0.06, 0.24]],
-#                  [[0.3, 0.04, 0.1, 0.4, 0.16], [0.1, 0.2, 0.4, 0.06, 0.24], [0.1, 0.2, 0.4, 0.06, 0.24]],
-#                  [[0.1, 0.5, 0.06, 0.04, 0.3], [0.3, 0.04, 0.1, 0.4, 0.16], [0.1, 0.2, 0.4, 0.06, 0.24]],[[0.1, 0.5, 0.06, 0.04, 0.3], [0.3, 0.04, 0.1, 0.4, 0.16], [0.1, 0.2, 0.4, 0.06, 0.24]]])
-# b.beam_step(m)
-# b.beam_step(m)
-
-# end of query == 1
-
-# -------  Code for debugging purposes - example  ---------
-
-# b = BeamSearch(np.asarray([0.2, 0.2, 0.3, 0.16, 0.14]), batch_size=None, beam_size=3)
-# print(b.beam_items)
-# print(b.sorted_probs)
-# print(b.check_eoq_single(b.beam_items))
-#
-# mat = np.matrix([[0.1, 0.2, 0.4, 0.06, 0.24], [0.3, 0.04, 0.1, 0.4, 0.16], [0.1, 0.5, 0.06, 0.04, 0.3]])
-# b.beam_step_single(mat)
